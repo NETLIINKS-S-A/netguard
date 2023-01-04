@@ -1,7 +1,4 @@
 # Plataforma de administración
 
-**Reportar errores de la plataforma:**
-
+**Reportar errores de la plataforma:** <br>
 https://github.com/NETLIINKS-S-A/mainPlatform/issues
-
-_Es necesario usar las etiquetas._
