@@ -1,48 +1,41 @@
-import { UI } from './Source/Sections/AppElements.js'
-import { checkTokenValidation } from './Source/Tools/checkToken.js'
-import { InterfaceElement } from './Source/Tools/types.js'
-
+import { UI } from './Source/Sections/AppElements.js';
+import { checkTokenValidation } from './Source/Tools/checkToken.js';
 // KEYBINDINGS
-window.addEventListener("keyup", (e): void => {
-    const search: HTMLElement | null = document.getElementById("searcher")
-    let key: string = e.code
-    if (e.altKey && key === "KeyS") search?.focus()
-})
-
+window.addEventListener("keyup", (e) => {
+    const search = document.getElementById("searcher");
+    let key = e.code;
+    if (e.altKey && key === "KeyS")
+        search?.focus();
+});
 /* ===========================
 Document date
 ============================== */
-
 /**
  * @function renderInterface()
  * @description render user interface
  */
 export async function renderInteface() {
-    let url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
-
+    let url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
     // REQUEST HEADER
-    let requestHeader: Headers = new Headers()
-    requestHeader.append("Authorization", `Bearer ${UI.accessToken}`)
-    requestHeader.append("Cookie", "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF")
-
+    let requestHeader = new Headers();
+    requestHeader.append("Authorization", `Bearer ${UI.accessToken}`);
+    requestHeader.append("Cookie", "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF");
     // Request options
-    let requestOptions: {} = {
+    let requestOptions = {
         method: 'GET',
         headers: requestHeader,
         redirect: 'follow'
-    }
-
+    };
     await fetch(url, requestOptions)
-    .then((response: Response) => response.json())
-    .then((data) => {
-        let app = UI.App.app
-        let sidebar = UI.App.sidebar
-        let content = UI.App.content
-
-            if (data.error)
-                localStorage.removeItem("access_token")
-            else
-                app.style.display = "flex",
+        .then((response) => response.json())
+        .then((data) => {
+        let app = UI.App.app;
+        let sidebar = UI.App.sidebar;
+        let content = UI.App.content;
+        if (data.error)
+            localStorage.removeItem("access_token");
+        else
+            app.style.display = "flex",
                 content.style.display = "block",
                 sidebar.style.display = "flex",
                 sidebar.innerHTML += `<div class="menu">
@@ -118,26 +111,21 @@ export async function renderInteface() {
                     </div>
                 </div>
             </div>
-            `
-
-            const menu = document.querySelector(".menu")
-            const items = menu?.querySelectorAll(".menu_item")
-            const icons = menu?.querySelectorAll(".fa-regular")
-
-            items?.forEach((item)=> {
-                item.addEventListener("click", () => {
-                    items.forEach((item) => {
-                        item.classList.remove("menu_item-isActive")
-                    })
-
-                    item.classList.add("menu_item-isActive")
-                })
-            })
-
-            // renderBusiness()
-        })
+            `;
+        const menu = document.querySelector(".menu");
+        const items = menu?.querySelectorAll(".menu_item");
+        const icons = menu?.querySelectorAll(".fa-regular");
+        items?.forEach((item) => {
+            item.addEventListener("click", () => {
+                items.forEach((item) => {
+                    item.classList.remove("menu_item-isActive");
+                });
+                item.classList.add("menu_item-isActive");
+            });
+        });
+        // renderBusiness()
+    });
 }
-
 /* ===========================
 Render login
 ============================== */
@@ -149,53 +137,49 @@ Render login
  * @todo cerrar sesión al caducar el token
  */
 function login() {
-    const email: InterfaceElement = document.getElementById("userEmail")
-    const password: InterfaceElement = document.getElementById("userPassword")
-    const form = document.getElementById("loginForm")
-
-    form?.addEventListener("submit", (e: SubmitEvent) => {
-        e.preventDefault()
-
+    const email = document.getElementById("userEmail");
+    const password = document.getElementById("userPassword");
+    const form = document.getElementById("loginForm");
+    form?.addEventListener("submit", (e) => {
+        e.preventDefault();
         // validar si los campos están vacíos
         // TODO: mejorar la validación en este campo
-        if (email?.value === "") alert("El campo email no puede estar vacío")
-        else if (password.value === "") alert("El campo password no puede estar vacío")
+        if (email?.value === "")
+            alert("El campo email no puede estar vacío");
+        else if (password.value === "")
+            alert("El campo password no puede estar vacío");
         else {
-            generateToken()
-            UI.login.style.display = "none"
+            generateToken();
+            UI.login.style.display = "none";
         }
-    })
-
+    });
     // Generate an access token
     async function generateToken() {
-        let url: string = "https://backend.netliinks.com:443/oauth/token"
+        let url = "https://backend.netliinks.com:443/oauth/token";
         let requestOptions = {
             method: "POST",
             body: `grant_type=password&username=${email.value}&password=${password.value}`,
             headers: {
-                "Accept" : "application/json",
-                "User-agent" : `${UI.UserAgent}`,
-                "Authorization" : "Basic YzNjMDM1MzQ2MjoyZmM5ZjFiZTVkN2IwZDE4ZjI1YmU2NDJiM2FmMWU1Yg==",
-                "Content-Type" : "application/x-www-form-urlencoded",
+                "Accept": "application/json",
+                "User-agent": `${UI.UserAgent}`,
+                "Authorization": "Basic YzNjMDM1MzQ2MjoyZmM5ZjFiZTVkN2IwZDE4ZjI1YmU2NDJiM2FmMWU1Yg==",
+                "Content-Type": "application/x-www-form-urlencoded",
                 "Cookie": "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF"
             }
-        }
-
+        };
         fetch(url, requestOptions)
-            .then((response: Response) => response.json())
+            .then((response) => response.json())
             .then((data) => {
-                localStorage.setItem("access_token", data.access_token)
-
-                if (!data.error) {
-                    setTimeout(() => {
-                        UI.login.style.display = "none";
-                        window.location.reload()
-                        renderInteface()
-                    }, 100)
-                }
-            }).catch(error => console.error("Error" + error))
+            localStorage.setItem("access_token", data.access_token);
+            if (!data.error) {
+                setTimeout(() => {
+                    UI.login.style.display = "none";
+                    window.location.reload();
+                    renderInteface();
+                }, 100);
+            }
+        }).catch(error => console.error("Error" + error));
     }
 }
-
-login()
-checkTokenValidation()
+login();
+checkTokenValidation();
