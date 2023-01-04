@@ -1,0 +1,33 @@
+.btn {
+    background-color: $slategray-800;
+    border: 1px solid $slategray-700;
+    color: $slategray-100;
+
+    &:hover {
+        background-color: $slategray-600;
+        border: 1px solid $slategray-500;
+        color: $slategray-400;
+    }
+
+    &:active {
+        background-color: $slategray-700;
+        border-color: $slategray-600;
+    }
+
+    &_table {
+        color: $slategray-100;
+        background-color: $slategray-800;
+        border-color: $slategray-600;
+
+        &:hover {
+            background-color: $slategray-600;
+            border: 1px solid $slategray-500;
+            color: $slategray-400;
+        }
+
+        &:active {
+            background-color: $slategray-700;
+            border-color: $slategray-600;
+        }
+    }
+}

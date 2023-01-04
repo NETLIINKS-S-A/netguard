@@ -1,0 +1,11 @@
+@media screen and (prefers-color-scheme: dark) {
+    @import './components/alerts';
+    @import './components/buttons';
+    @import './components/fonts';
+    @import './components/form';
+    @import './components/inputs';
+    @import './components/menu';
+    @import './components/modal';
+    @import './components/pagination';
+    @import './components/table';
+}

@@ -1,0 +1,73 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1010;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 30px 30px;
+    background-color: rgba($slategray-900, 0.6);
+    transition: 0.2s all ease;
+  
+    &_dialog {
+        position: relative;
+        margin: 0 auto;
+        border-radius: 8px;
+        width: 600px;
+        max-width: 100% !important;
+        background-color: $white;
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: 0.3s linear;
+        transition-property: opacity, transform;
+        box-shadow: $box-shadow;
+    }
+  
+    &_title {
+        font-size: 25px;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+  
+    &_body {
+        display: flow-root;
+        padding: 20px;
+
+        form {
+            display: block;
+
+            .form-group {
+                display: flex;
+            }
+
+            .input-group {
+                display: block;
+                width: 100%;
+
+                & + * {
+                    margin-left: 10px
+                }
+            }
+        }
+    }
+  
+    &_footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 24px;
+
+        .button {
+            margin-left: 10px;
+        }
+    }
+}
+  
+// Add open with the dialog is display
+.open .modal-dialog {
+    opacity: 1;
+    transform: rotateY(0);
+}

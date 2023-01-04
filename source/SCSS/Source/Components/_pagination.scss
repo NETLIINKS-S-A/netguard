@@ -1,0 +1,57 @@
+.pagination {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        display: inline;
+        border: 1px solid transparent;
+        background-color: transparent;
+        font-size: 14px;
+        padding: 5px 8px;
+        border-radius: 5px;
+        line-height: 14px;
+        margin: 0 2px;
+        color: $slategray-500;
+
+        transition: 0.3s all ease;
+
+        &:hover {
+            background-color: $slategray-100;
+            border-color: $slategray-300;
+            color: $slategray-700;
+            box-shadow: $box-shadow;
+        }
+    }
+
+    .active {
+        border: 1px solid $blue-500;
+        background-color: $white;
+        color: $blue-600;
+
+        &:hover {
+            border: 1px solid $blue-500;
+            background-color: $blue-100;
+            color: $blue-600;
+        }
+    }
+}
+
+#paginationLimiter {
+    display: inline;
+    border: 1px solid $slategray-500;
+    background-color: transparent;
+    font-size: 14px;
+    padding: 4px 0px 4px 8px;
+    border-radius: 5px;
+    line-height: 14px;
+    margin: 0 2px;
+    color: $slategray-600;
+
+    outline: none;
+    &::-webkit-inner-spin-button {
+        font-size: 20px;
+    }
+}

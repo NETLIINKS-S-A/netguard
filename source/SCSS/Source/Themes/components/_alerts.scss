@@ -1,0 +1,41 @@
+.alert {
+    background-color: $neutral-800;
+    border: 1px solid $neutral-700;
+    box-shadow: $box-shadow;
+
+    .fa-warning {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        color: $yellow-600;
+    }
+
+    &_msg {
+        &_title {
+            color: $neutral-300;
+        }
+
+        &_content {
+            font-size: 12px;
+            color: $neutral-400;
+            margin-top: 5px;
+        }
+    }
+
+    .close_btn {
+        position: absolute;
+        right: 8px;
+        top: 5px;
+        font-size: 16px;
+        padding: 4px 8px;
+        border-radius: 5px;
+
+        transition: 0.3s all ease;
+
+        &:hover {
+            background-color: $neutral-200;
+        }
+    }
+}

@@ -148,9 +148,10 @@ $black : 900;
 // BORDERS
 // ==========================
 $border-color: $slategray-300;
-$border-dark-color: $neutral-800;
+$border-color-dark: $neutral-800;
 
-$regular-border: 1px solid $border-color;
+$border-regular: 1px solid $border-color;
+$border-regular-dark: 1px solid $border-color-dark;
 
 // ==========================
 // SHADOWS

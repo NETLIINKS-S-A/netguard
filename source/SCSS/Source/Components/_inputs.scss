@@ -1,0 +1,30 @@
+// .input_group {
+//     margin-top: 20px;
+// }
+
+.input {
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Inter'; // TODO: change to variable
+    padding: 9px 12px;
+    border-radius: 4px;
+    border: $border-regular;
+    width: 100%;
+    outline: none;
+    transition: 0.3s all ease;
+    color: $slategray-800;
+    box-shadow: $input-shadow;
+
+    &::placeholder {
+        color: $slategray-600;
+    }
+
+    &_group {
+        margin-top: 20px;
+    }
+
+    // Use monospace font for important inputs */
+    // &-mono {
+    //     font-family: monospace;
+    // }
+}

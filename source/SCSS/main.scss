@@ -1,7 +1,20 @@
 // TOOLS
 @import './Source/Tools/vars';
+@import './Source/Tools/reset';
 
 // COMPONENTS
+@import './Source/Components/alerts';
+@import './Source/Components/buttons';
+@import './Source/Components/fonts';
+@import './Source/Components/form';
+@import './Source/Components/inputs';
+@import './Source/Components/menu';
+@import './Source/Components/modal';
+@import './Source/Components/pagination';
+@import './Source/Components/table';
 
 // VIEWS
 @import './Source/Modules/login';
+
+// DARK MODE
+@import './Source/Themes/dark';

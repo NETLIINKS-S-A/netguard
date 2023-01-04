@@ -1,0 +1,27 @@
+.menu {
+    &_brandname {
+        color: $slategray-100;
+    }
+
+    &_username {
+        color: $slategray-400;
+    }
+
+    &_item {
+        color: $slategray-500;
+
+        &:hover {
+            background-color: rgba($slategray-900, 0.2);
+            color: $slategray-300;
+        }
+
+        &_name {
+            display: inline-block;
+        }
+
+        &_active {
+            background-color: rgba($slategray-900, 0.5);
+            color: $slategray-100;
+        }
+    }
+}

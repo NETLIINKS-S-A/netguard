@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NETLIINKS S.A.</title>
-    <link rel="stylesheet" href="assets/font/sans/Inter.css">
+    <link rel="stylesheet" href="public/fonts/Inter/Inter.css">
     <link rel="stylesheet" href="public/styles/main.css">
-    <link rel="stylesheet" href="assets/icons/css/all.css">
+    <link rel="stylesheet" href="public/icons/css/all.css">
 </head>
 <body>
     <div id="login" class="login">
@@ -15,7 +15,7 @@
             <!-- Login Header -->
             <div class="login_header">
                 <div class="login_showcase">
-                    <img class="login_showcase_picture" src="./public/pictures/" alt="Netliinks Logo">
+                    <img class="login_showcase_picture" src="./public/pictures/icon_login-light.png" alt="Netliinks Logo">
                     <div class="login_showcase_text">
                         <h4>Netliinks s.a.</h4>
                         <p>Networking & security</p>
@@ -32,12 +32,12 @@
                 <form autocomplete="off" method="POST" id="loginForm" class="login_form">
                     <div class="input_group">
                         <label for="userEmail" class="form_label">Correo</label>
-                        <input type="text" class="form_input" name="userEmail" placeholder="jhon.doe@ejemplo.com">
+                        <input type="text" class="input" name="userEmail" placeholder="jhon.doe@ejemplo.com">
                     </div>
 
                     <div class="input_group">
                         <label for="userPassword" class="form_label">Contraseña</label>
-                        <input type="password" class="form_input" name="userPassword" placeholder="••••••••••">
+                        <input type="password" class="input" name="userPassword" placeholder="••••••••••">
                     </div>
 
                     <button id="loginSubmitButton" class="btn btn_widder btn_success" onclick="login()">Iniciar sesión</button>

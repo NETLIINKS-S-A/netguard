@@ -1,0 +1,110 @@
+.menu {
+    display: block;
+
+    &_brandicon {
+        display: none;
+    }
+
+    &_brandname {
+        text-transform: uppercase;
+        font-weight: $black;
+        letter-spacing: 2px;
+        color: $slategray-800;
+        font-size: 18px;
+    }
+
+    &_username {
+        display: block;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+        font-size: 14px;
+        font-weight: $medium;
+        color: $slategray-700;
+    }
+
+    &_item {
+        display: inline-block;
+        margin-bottom: 5px;
+        padding: 8px;
+        width: 100%;
+        color: $slategray-500;
+        border-radius: 5px;
+        transition: 0.3s all ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($slategray-500, 0.2);
+            color: $slategray-700;
+        }
+
+        &_name {
+            display: inline-block;
+        }
+
+        &_icon {
+            $icon-size: 18px;
+            display: flex;
+            align-items: center;
+            height: $icon-size;
+            width: $icon-size;
+            margin-right: 5px;
+            float: left;
+        }
+
+        &_active {
+            background-color: rgba($slategray-500, 0.2);
+            color: $slategray-700;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .menu {
+        &_brandname {
+            display: none;
+        }
+
+        &_brandicon {
+            display: block;
+            height: 30px;
+            margin: 0 auto 10px auto;
+        }
+
+        &_username {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        &_item {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 5px;
+            padding: 18px 9px 9px 9px;
+
+            &_icon {
+                $icon-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: $icon-size;
+                width: $icon-size;
+                margin: auto;
+            }
+
+            &_name {
+                display: block;
+                text-align: center;
+                font-size: 10px;
+            }
+
+            .fa-regular {
+                display: inline-block;
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+// @media screen and (max-width: 420px) {}
