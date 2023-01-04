@@ -1,0 +1,71 @@
+/* Thin */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100;
+    src: url("./Inter-Thin.ttf");
+}
+
+/* Extra Light */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    src: url("./Inter-ExtraLight.ttf");
+}
+
+/* Light */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    src: url("./Inter-Light.ttf");
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url("./Inter-Regular.ttf");
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url("./Inter-Medium.ttf");
+}
+
+/* SemiBold */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url("./Inter-SemiBold.ttf");
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url("./Inter-Bold.ttf");
+}
+
+/* ExtraBold */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    src: url("./Inter-ExtraBold.ttf");
+}
+
+/* Black */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    src: url("./Inter-Black.ttf");
+}
