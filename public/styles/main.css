@@ -700,6 +700,11 @@ table .tbody tr:hover td,
   overflow: auto;
   resize: horizontal;
   background-color: #F1F5F9;
+  -ms-overflow-style: none; /* ms windows */
+  scrollbar-width: none; /* firefox */
+}
+.app_sidebar::-webkit-scrollbar {
+  display: none;
 }
 .app .options span, .app .options a {
   color: #94A2B8;
@@ -737,6 +742,29 @@ table .tbody tr:hover td,
     padding: 12px;
     max-width: 89px !important;
     min-width: 89px !important;
+  }
+  .app_sidebar .options a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2px;
+    padding: 18px 9px 9px 9px;
+    text-align: center;
+    font-size: 10px;
+  }
+  .app_sidebar .options a i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    margin: auto;
+    display: inline-block;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .app_sidebar .options a_name {
+    display: block;
   }
   .app_content {
     padding: 15px 10px;
@@ -838,6 +866,9 @@ table .tbody tr:hover td,
 }
 
 @media screen and (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #1E293B;
+  }
   .alert {
     background-color: #404040;
     border: 1px solid #525252;

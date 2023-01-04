@@ -21,6 +21,12 @@
         overflow: auto;
         resize: horizontal;
         background-color: $slategray-200;
+
+        // hide scrollbars
+        -ms-overflow-style: none; /* ms windows */
+        scrollbar-width: none; /* firefox */
+
+        &::-webkit-scrollbar { display: none; }
     }
 
     .options {
@@ -64,6 +70,34 @@
         padding: 12px;
         max-width: 89px !important;
         min-width: 89px !important;
+        .options {
+            a {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                margin-bottom: 2px;
+                padding: 18px 9px 9px 9px;
+                text-align: center;
+                font-size: 10px;
+
+                i {
+                    $icon-size: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: $icon-size;
+                    width: $icon-size;
+                    margin: auto;
+                    display: inline-block;
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                }
+
+                &_name {
+                    display: block;
+                }
+            }
+        }
     }
 
     .app_content {

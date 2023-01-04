@@ -1,4 +1,8 @@
 @media screen and (prefers-color-scheme: dark) {
+    html, body {
+        background-color: $slategray-900;
+    }
+
     @import './components/alerts';
     @import './components/buttons';
     @import './components/fonts';
