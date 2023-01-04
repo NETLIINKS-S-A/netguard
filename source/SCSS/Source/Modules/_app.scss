@@ -1,0 +1,72 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    @mixin UIBase {
+        display: block;
+        height: 100vh;
+    }
+
+    &_sidebar {
+        @include UIBase();
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+        width: 200px;
+        max-width: 500px;
+        min-width: 200px;
+        overflow: auto;
+        resize: horizontal;
+        background-color: $slategray-200;
+    }
+
+    .options {
+        span, a {
+            color: $slategray-500;
+            cursor: pointer;
+            text-decoration: none;
+
+            div {
+                display: inline-block;
+                margin-left: 5px;
+            }
+
+            &:hover { color: $slategray-600; }
+        }
+
+        a {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+
+    &_wrapper {
+        @include UIBase();
+        padding: 15px 40px;
+        overflow-y: scroll;
+        width: 90%;
+    }
+
+    &_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .app_sidebar {
+        display: block;
+        padding: 12px;
+        max-width: 89px !important;
+        min-width: 89px !important;
+    }
+
+    .app_content {
+        padding: 15px 10px;
+    }
+}
