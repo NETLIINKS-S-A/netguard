@@ -5,8 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NETLIINKS S.A.</title>
+    <link rel="stylesheet" href="assets/font/sans/Inter.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/icons/css/all.css">
 </head>
 <body>
-    
+    <div id="login" class="login">
+        <div class="login_window">
+            <!-- Login Header -->
+            <div class="login_header">
+                <div class="login_showcase">
+                    <img class="login_showcase_picture" src="./public/pictures/" alt="Netliinks Logo">
+                    <div class="login_showcase_text"></div>
+                </div>
+            </div>
+
+            <!-- Login Body -->
+            <div class="login_body">
+                <h1 class="login_title">Iniciar Sesión</h1>
+                <p class="login_subtitle">Inicie sesión con los datos proporcionados por el proveedor</p>
+
+                <!-- Login Form -->
+                <form autocomplete="off" method="POST" id="loginForm" class="login_form">
+                    <div class="input_group">
+                        <label for="userEmail" class="form_label">Correo</label>
+                        <input type="text" class="form_input" name="userEmail" placeholder="jhon.doe@ejemplo.com">
+                    </div>
+
+                    <div class="input_group">
+                        <label for="userPassword" class="form_label">Contraseña</label>
+                        <input type="password" class="form_input" name="userPassword" placeholder="••••••••••">
+                    </div>
+
+                    <button id="loginSubmitButton" class="btn btn_widder btn_success" onclick="login()">Iniciar sesión</button>
+                </form>
+            </div>
+
+            <!-- Login Footer -->
+            <div class="login_footer">
+                <div class="login_footer_horizontal">
+                    <i class="fa-duotone fa-buildings"></i>
+                    <i class="fa-duotone fa-user-police"></i>
+                    <i class="fa-duotone fa-inboxes"></i>
+                    <i class="fa-duotone fa-briefcase-medical"></i>
+                    <i class="fa-duotone fa-file-excel"></i>
+                    <i class="fa-duotone fa-note"></i>
+                </div>
+
+                <p>Accede a todas nuestras herramientas</p>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
