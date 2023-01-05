@@ -3,7 +3,6 @@ import { UIType } from "../Tools/types.js"
 export const UI: UIType = {
     App: {
         app: document.getElementById("app"),
-        sidebar: document.getElementById("appSidebar"),
         wrapper: document.getElementById("appWrapper"),
         content: document.getElementById("appContent"),
         date: document.getElementById("appDate"),

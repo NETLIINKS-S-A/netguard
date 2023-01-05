@@ -23,6 +23,26 @@
         margin-top: 20px;
     }
 
+    &_spotlight {
+        width: 0;
+        padding: 0;
+        border-width: 0 !important;
+        outline: none;
+
+        &:focus {
+            width: auto;
+            padding: 9px 12px;
+            border-width: 1px !important;
+
+            & + .spotlight_label {
+                width: 0;
+                padding: 0;
+                border-width: 0;
+                display: none;
+            }
+        }
+    }
+
     // Use monospace font for important inputs */
     // &-mono {
     //     font-family: monospace;

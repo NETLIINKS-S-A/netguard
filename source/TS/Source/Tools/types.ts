@@ -2,7 +2,6 @@ export type InterfaceElement = any;
 export type UIType = {
     App: {
         app?: InterfaceElement | null,
-        sidebar?: InterfaceElement | null,
         wrapper?: InterfaceElement | null,
         content?: InterfaceElement | null,
         date?: InterfaceElement | null,

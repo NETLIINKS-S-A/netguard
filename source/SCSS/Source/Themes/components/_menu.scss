@@ -19,9 +19,12 @@
             display: inline-block;
         }
 
-        &_active {
+        &-isActive {
             background-color: rgba($slategray-900, 0.5);
-            color: $slategray-100;
+
+            .menu_item_name {
+                color: $slategray-100 !important;
+            }
         }
     }
 }

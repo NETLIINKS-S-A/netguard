@@ -1,7 +1,6 @@
 export const UI = {
     App: {
         app: document.getElementById("app"),
-        sidebar: document.getElementById("appSidebar"),
         wrapper: document.getElementById("appWrapper"),
         content: document.getElementById("appContent"),
         date: document.getElementById("appDate"),

@@ -51,7 +51,7 @@
             float: left;
         }
 
-        &_active {
+        &-isActive {
             background-color: rgba($slategray-500, 0.2);
             color: $slategray-700;
         }

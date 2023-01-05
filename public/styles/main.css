@@ -287,6 +287,23 @@ img {
 .input_group {
   margin-top: 20px;
 }
+.input_spotlight {
+  width: 0;
+  padding: 0;
+  border-width: 0 !important;
+  outline: none;
+}
+.input_spotlight:focus {
+  width: auto;
+  padding: 9px 12px;
+  border-width: 1px !important;
+}
+.input_spotlight:focus + .spotlight_label {
+  width: 0;
+  padding: 0;
+  border-width: 0;
+  display: none;
+}
 
 .menu {
   display: block;
@@ -334,7 +351,7 @@ img {
   margin-right: 5px;
   float: left;
 }
-.menu_item_active {
+.menu_item-isActive {
   background-color: rgba(148, 162, 184, 0.2);
   color: #475469;
 }
@@ -735,6 +752,19 @@ table .tbody tr:hover td,
   justify-content: space-between;
   width: 100%;
 }
+.app .toolbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.app .toolbox .btn {
+  margin-top: 0 !important;
+  margin-right: 5px;
+}
+.app .toolbox_spotlight {
+  display: flex;
+}
 
 @media screen and (max-width: 1024px) {
   .app_sidebar {
@@ -1002,9 +1032,11 @@ table .tbody tr:hover td,
   .menu_item_name {
     display: inline-block;
   }
-  .menu_item_active {
+  .menu_item-isActive {
     background-color: rgba(30, 41, 59, 0.5);
-    color: #F7FBFC;
+  }
+  .menu_item-isActive .menu_item_name {
+    color: #F7FBFC !important;
   }
   .modal {
     background-color: rgba(30, 41, 59, 0.8);
