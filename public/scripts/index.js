@@ -4,6 +4,7 @@ import { DTROptions } from './Source/Tools/RequestOptions.js';
 // Importing views
 import { renderBusiness } from './Source/Views/BusinessView.js';
 import { renderUsers } from './Source/Views/UsersView.js';
+import { destroySession, endSession } from './Source/Views/Login.js';
 // KEYBINDINGS
 window.addEventListener("keyup", (e) => {
     const spotlight = document.getElementById("spotlight");
@@ -27,7 +28,13 @@ function renderAppDate() {
         "Julio", "Agosto", "Septiembre",
         "Octubre", "Noviembre", "Diciembre"
     ];
-    appMonth.innerHTML = months[0];
+    const days = [
+        "Domingo", "Lunes", "Martes",
+        "Miércoles", "Jueves", "Viernes",
+        "Sábado"
+    ];
+    appMonth.innerHTML = months[month];
+    appDay.innerHTML = days[day];
 }
 renderAppDate();
 /* ===========================
@@ -164,7 +171,7 @@ export async function renderInteface() {
                     <br>
                     <a href="https://www.netliinks.com"><i class="fa-solid fa-browser"></i> <div>Visita nuestra web</div></a>
                     <br>
-                    <a href="#" onclick="destroySession('DestroySession')"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
+                    <a href="#" id="destroySession"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
                 </div>
 
                 <div class="modal" id="DestroySession">
@@ -178,13 +185,17 @@ export async function renderInteface() {
                         <div class="modal-footer">
                             <button class="button" onclick="closeModal('DestroySession')">Cerrar</button>
 
-                            <button class="button button-danger" onclick="endSession()">Cerrar sesión</button>
+                            <button class="button button-danger" id="endSession">Cerrar sesión</button>
                         </div>
                     </div>
                 </div>
                 `;
             document.getElementById("goToBusiness")?.addEventListener("click", e => renderBusiness());
             document.getElementById("goToUsers")?.addEventListener("click", e => renderUsers());
+            document.getElementById("destroySession")?.addEventListener("click", e => {
+                destroySession('DestroySession');
+            });
+            document.getElementById("endSession")?.addEventListener("click", e => endSession());
             const menu = document.querySelector(".menu");
             const items = menu?.querySelectorAll(".menu_item");
             const icons = menu?.querySelectorAll(".fa-regular");
@@ -200,4 +211,7 @@ export async function renderInteface() {
         }
     });
 }
-checkTokenValidation();
+login();
+setTimeout(() => {
+    checkTokenValidation();
+}, 100);

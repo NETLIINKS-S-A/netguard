@@ -5,6 +5,7 @@ import { DTROptions } from './Source/Tools/RequestOptions.js'
 // Importing views
 import { renderBusiness } from './Source/Views/BusinessView.js'
 import { renderUsers } from './Source/Views/UsersView.js'
+import { destroySession, endSession } from './Source/Views/Login.js'
 
 // KEYBINDINGS
 window.addEventListener("keyup", (e): void => {
@@ -31,7 +32,14 @@ function renderAppDate() {
         "Octubre", "Noviembre", "Diciembre"
     ]
 
-    appMonth.innerHTML = months[0]
+    const days = [
+        "Domingo", "Lunes", "Martes",
+        "Miércoles", "Jueves", "Viernes",
+        "Sábado"
+    ]
+
+    appMonth.innerHTML = months[month]
+    appDay.innerHTML = days[day]
 }
 
 renderAppDate();
@@ -51,7 +59,7 @@ function login() {
     const password: InterfaceElement = document.getElementById("userPassword")
     const form = document.getElementById("loginForm")
 
-    form?.addEventListener("submit", (e: SubmitEvent) => {
+    form?.addEventListener("submit", (e) => {
         e.preventDefault()
 
         // validar si los campos están vacíos
@@ -177,7 +185,7 @@ export async function renderInteface() {
                     <br>
                     <a href="https://www.netliinks.com"><i class="fa-solid fa-browser"></i> <div>Visita nuestra web</div></a>
                     <br>
-                    <a href="#" onclick="destroySession('DestroySession')"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
+                    <a href="#" id="destroySession"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
                 </div>
 
                 <div class="modal" id="DestroySession">
@@ -191,7 +199,7 @@ export async function renderInteface() {
                         <div class="modal-footer">
                             <button class="button" onclick="closeModal('DestroySession')">Cerrar</button>
 
-                            <button class="button button-danger" onclick="endSession()">Cerrar sesión</button>
+                            <button class="button button-danger" id="endSession">Cerrar sesión</button>
                         </div>
                     </div>
                 </div>
@@ -200,6 +208,13 @@ export async function renderInteface() {
                 document.getElementById("goToBusiness")?.addEventListener("click", e => renderBusiness())
 
                 document.getElementById("goToUsers")?.addEventListener("click", e => renderUsers())
+
+                document.getElementById("destroySession")?.addEventListener("click", e => {
+                    destroySession('DestroySession')
+                })
+
+                document.getElementById("endSession")?.addEventListener("click", e => endSession()
+                )
 
                 const menu = document.querySelector(".menu")
                 const items = menu?.querySelectorAll(".menu_item")
@@ -220,4 +235,7 @@ export async function renderInteface() {
         })
 }
 
-checkTokenValidation()
+login()
+setTimeout(() => {
+    checkTokenValidation()
+}, 100)

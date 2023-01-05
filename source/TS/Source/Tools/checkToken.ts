@@ -11,9 +11,11 @@ Verify current session
  */
 
 export function checkTokenValidation(): void {
-    let app: InterfaceElement = UI.App.app;
-    app ? null : true
-    if (!UI.accessToken) app.style.display = "none"
-    else if (UI.accessToken == "undefined") console.error("Key is undefined")
-    else UI.login.style.display = "none", renderInteface()
+    const AccessToken = UI.accessToken
+    const app: InterfaceElement = UI.App.app
+    const login: InterfaceElement = UI.login
+
+    if (!AccessToken) app.style.display = "none"
+    else if (AccessToken === "undefined") console.error("Unespected error #00l01")
+    else login.style.display = "none", renderInteface()
 }
