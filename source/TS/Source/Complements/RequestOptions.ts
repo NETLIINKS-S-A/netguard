@@ -1,4 +1,4 @@
-import { UI } from "../Sections/AppElements.js"
+import { UI } from "../Tools/AppElements.js"
 
 let requestHeader = new Headers()
 requestHeader.append("Authorization", `Bearer ${UI.accessToken}`)

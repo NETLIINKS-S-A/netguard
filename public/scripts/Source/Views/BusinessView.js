@@ -1,5 +1,5 @@
-import { DTROptions } from '../Tools/RequestOptions.js';
-import { UI } from '../Sections/AppElements.js';
+import { DTROptions } from '../Complements/RequestOptions.js';
+import { UI } from '../Tools/AppElements.js';
 /* =================================
 Render Business Interface and Data
 ==================================== */

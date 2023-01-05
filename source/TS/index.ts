@@ -1,7 +1,7 @@
-import { UI } from './Source/Sections/AppElements.js'
-import { checkTokenValidation } from './Source/Tools/checkToken.js'
-import { InterfaceElement } from './Source/Tools/types.js'
-import { DTROptions } from './Source/Tools/RequestOptions.js'
+import { UI } from './Source/Tools/AppElements'
+import { checkSessionValidity } from './Source/Complements/checkToken.js'
+import { InterfaceElement } from './Source/Complements/types.js'
+import { DTROptions } from './Source/Complements/RequestOptions.js'
 // Importing views
 import { renderBusiness } from './Source/Views/BusinessView.js'
 import { renderUsers } from './Source/Views/UsersView.js'
@@ -204,11 +204,11 @@ export async function renderInteface() {
                     </div>
                 </div>
                 `
-
+                // Render business section
                 document.getElementById("goToBusiness")?.addEventListener("click", e => renderBusiness())
-
+                // Render users section
                 document.getElementById("goToUsers")?.addEventListener("click", e => renderUsers())
-
+                // Destroy current session
                 document.getElementById("destroySession")?.addEventListener("click", e => {
                     destroySession('DestroySession')
                 })
@@ -218,7 +218,8 @@ export async function renderInteface() {
 
                 const menu = document.querySelector(".menu")
                 const items = menu?.querySelectorAll(".menu_item")
-                const icons = menu?.querySelectorAll(".fa-regular")
+                // reserved for optional style
+                // const icons = menu?.querySelectorAll(".fa-regular")
 
                 items?.forEach((item)=> {
                     item.addEventListener("click", () => {
@@ -237,5 +238,5 @@ export async function renderInteface() {
 
 login()
 setTimeout(() => {
-    checkTokenValidation()
+    checkSessionValidity()
 }, 100)

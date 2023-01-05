@@ -1,4 +1,4 @@
-import { InterfaceElement } from "../Tools/types.js"
+import { InterfaceElement } from "./types.js"
 
 export class Modal {
     id: any

@@ -1,5 +1,5 @@
-import { Modal } from "../Classes/classes.js"
-import { checkTokenValidation } from "../Tools/checkToken.js"
+import { Modal } from "../Complements/classes.js"
+import { checkSessionValidity } from "../Complements/checkToken.js"
 
 export function destroySession(id: any) {
     const show = new Modal(id)
@@ -11,5 +11,5 @@ export function destroySession(id: any) {
  */
 export function endSession() {
     localStorage.removeItem("access_token")
-    checkTokenValidation()
+    checkSessionValidity()
 }

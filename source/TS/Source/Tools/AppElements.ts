@@ -1,4 +1,4 @@
-import { UIType } from "../Tools/types.js"
+import { UIType } from "../Complements/types.js"
 
 export const UI: UIType = {
     App: {

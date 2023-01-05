@@ -1,4 +1,4 @@
-import { UI } from "../Sections/AppElements.js";
+import { UI } from "../Tools/AppElements.js";
 import { renderInteface } from "../../index.js";
 /* ===========================
 Verify current session
@@ -7,7 +7,7 @@ Verify current session
  * @function checkCurrentSesssion()
  * @description checks the existense or validity of a token and show interface
  */
-export function checkTokenValidation() {
+export function checkSessionValidity() {
     const AccessToken = UI.accessToken;
     const app = UI.App.app;
     const login = UI.login;
