@@ -765,6 +765,26 @@ table .tbody tr:hover td,
 .app .toolbox_spotlight {
   display: flex;
 }
+.app_month {
+  display: block;
+  color: #A3A3A3;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.app_day {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+  color: #324255;
+}
+.app_time {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #E2E8F0;
+}
 
 @media screen and (max-width: 1024px) {
   .app_sidebar {
@@ -898,6 +918,20 @@ table .tbody tr:hover td,
 @media screen and (prefers-color-scheme: dark) {
   html, body {
     background-color: #1E293B;
+  }
+  .app_month {
+    display: block;
+    color: #F5F5F5;
+  }
+  .app_day {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    color: #94A2B8;
+  }
+  .app_time {
+    display: block;
+    color: #94A2B8;
   }
   .alert {
     background-color: #404040;

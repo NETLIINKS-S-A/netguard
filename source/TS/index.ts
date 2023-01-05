@@ -2,7 +2,9 @@ import { UI } from './Source/Sections/AppElements.js'
 import { checkTokenValidation } from './Source/Tools/checkToken.js'
 import { InterfaceElement } from './Source/Tools/types.js'
 import { DTROptions } from './Source/Tools/RequestOptions.js'
+// Importing views
 import { renderBusiness } from './Source/Views/BusinessView.js'
+import { renderUsers } from './Source/Views/UsersView.js'
 
 // KEYBINDINGS
 window.addEventListener("keyup", (e): void => {
@@ -14,6 +16,25 @@ window.addEventListener("keyup", (e): void => {
 /* ===========================
 Document date
 ============================== */
+function renderAppDate() {
+    const appMonth: InterfaceElement = document.getElementById("appMonth")
+    const appDay: InterfaceElement = document.getElementById("appDay")
+    const dt = new Date()
+    const month = dt.getMonth()
+    const day = dt.getDay()
+    const date =dt.getDate()
+
+    const months = [
+        "Enero", "Febrero", "Marzo",
+        "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre",
+        "Octubre", "Noviembre", "Diciembre"
+    ]
+
+    appMonth.innerHTML = months[0]
+}
+
+renderAppDate();
 
 /* ===========================
 Render login

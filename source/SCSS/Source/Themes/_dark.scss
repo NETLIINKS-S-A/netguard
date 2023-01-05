@@ -3,6 +3,26 @@
         background-color: $slategray-900;
     }
 
+    .app {
+        // date and time
+        &_month {
+            display: block;
+            color: $neutral-200;
+        }
+
+        &_day {
+            display: block;
+            font-size: 28px;
+            font-weight: $black;
+            color: $slategray-500;
+        }
+
+        &_time {
+            display: block;
+            color: $slategray-500;
+        }
+    }
+
     @import './components/alerts';
     @import './components/buttons';
     @import './components/fonts';

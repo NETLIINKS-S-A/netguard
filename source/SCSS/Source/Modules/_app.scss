@@ -80,6 +80,30 @@
             display: flex;
         }
     }
+
+    // date and time
+    &_month {
+        display: block;
+        color: $neutral-500;
+        text-transform: uppercase;
+        font-weight: $bold;
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    &_day {
+        display: block;
+        font-size: 28px;
+        font-weight: $black;
+        color: $slategray-800;
+    }
+
+    &_time {
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        color: $slategray-300;
+    }
 }
 
 @media screen and (max-width: 1024px) {
