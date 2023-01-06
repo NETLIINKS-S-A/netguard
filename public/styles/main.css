@@ -410,6 +410,7 @@ img {
   transition: 0.2s all ease;
 }
 .modal_dialog {
+  display: block;
   position: relative;
   margin: 0 auto;
   border-radius: 8px;
@@ -434,15 +435,15 @@ img {
 .modal_body form {
   display: block;
 }
-.modal_body form .form-group {
+.modal_body form .form_group {
   display: flex;
 }
-.modal_body form .input-group {
+.modal_body form .input_group {
   display: block;
   width: 100%;
 }
-.modal_body form .input-group + * {
-  margin-left: 10px;
+.modal_body form .input_group + * {
+  margin-right: 10px;
 }
 .modal_footer {
   display: flex;
@@ -450,11 +451,11 @@ img {
   justify-content: flex-end;
   margin-top: 24px;
 }
-.modal_footer .button {
+.modal_footer .btn {
   margin-left: 10px;
 }
 
-.open .modal-dialog {
+.open .modal_dialog {
   opacity: 1;
   transform: rotateY(0);
 }
