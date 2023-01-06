@@ -1,5 +1,7 @@
-import { checkTokenValidation, login } from "./Views/Login/Login.js"
+import { login } from "./Views/Login/Login.js"
+import { checkTokenValidation } from "./Views/Login/TokenValidator.js"
 import { UI } from "./DomElements.js"
+import { renderAppDate } from "./Views/AppView/AppDate.js"
 
 // Login
 const form = UI.Login?.form
@@ -17,3 +19,4 @@ form?.addEventListener("submit", (e: SubmitEvent) => {
 })
 
 checkTokenValidation()
+renderAppDate();
