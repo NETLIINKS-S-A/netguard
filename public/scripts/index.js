@@ -17,3 +17,10 @@ form?.addEventListener("submit", (e) => {
 });
 checkTokenValidation();
 renderAppDate();
+// Keybindings
+window.addEventListener("keyup", (e) => {
+    const spotlight = document.getElementById("spotlight");
+    let key = e.code;
+    if (e.altKey && key == "KeyS")
+        spotlight?.focus();
+});

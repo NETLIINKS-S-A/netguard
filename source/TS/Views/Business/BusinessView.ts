@@ -13,7 +13,7 @@ export async function renderBusiness() {
                 <tr>
                     <th>Nombre</th>
                     <th>ID</th>
-                    <th>Estado</th>
+                    <th>Creado por</th>
                     <th></th>
                 </tr>
             </thead>
@@ -44,6 +44,7 @@ export async function renderBusiness() {
     const tableBody: InterfaceElement = document.querySelector("#tableBody")
 
     search?.addEventListener("keyup", (): void => {
+        // @ts-ignore
         const filteredDatas = searchData.filter(filteredData => `${filteredData.name}`.includes(search.value))
 
         let filteredDataResult = filteredDatas.length
@@ -97,7 +98,7 @@ export async function renderBusiness() {
                     <tr>
                         <td>${item.name}</td>
                         <td>${item.id}</td>
-                        <td>${item.name}</td>
+                        <td>${item.createdBy}</td>
                         <td>
                             <button class="btn btn_table" onclick="editBusiness()">
                                 <i class="fa-solid fa-pencil"></i>
