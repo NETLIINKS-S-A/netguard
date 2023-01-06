@@ -11,8 +11,9 @@
     padding: 30px 30px;
     background-color: rgba($slategray-900, 0.6);
     transition: 0.2s all ease;
-  
+
     &_dialog {
+        display: block;
         position: relative;
         margin: 0 auto;
         border-radius: 8px;
@@ -39,16 +40,16 @@
         form {
             display: block;
 
-            .form-group {
+            .form_group {
                 display: flex;
             }
 
-            .input-group {
+            .input_group {
                 display: block;
                 width: 100%;
 
                 & + * {
-                    margin-left: 10px
+                    margin-right: 10px
                 }
             }
         }
@@ -60,14 +61,14 @@
         justify-content: flex-end;
         margin-top: 24px;
 
-        .button {
+        .btn {
             margin-left: 10px;
         }
     }
 }
   
 // Add open with the dialog is display
-.open .modal-dialog {
+.open .modal_dialog {
     opacity: 1;
     transform: rotateY(0);
 }
