@@ -3,6 +3,7 @@ import { UI } from "../../DomElements.js"
 import { InterfaceElement } from "../../Types.js"
 import { renderBusiness } from "../Business/BusinessView.js"
 import { renderUsers } from "../Users/UsersView.js"
+import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
 
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
@@ -84,21 +85,21 @@ export async function renderAppInterface() {
                     <br>
                     <a href="https://www.netliinks.com"><i class="fa-solid fa-browser"></i> <div>Visita nuestra web</div></a>
                     <br>
-                    <a href="#" id="destroySession"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
+                    <a href="#" id="openLogOut"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
                 </div>
 
-                <div class="modal" id="DestroySession">
-                    <div class="modal-dialog modal-body">
-                        <h2 class="modal-title">Cerrar sesión</h2>
+                <div class="modal" id="logOutModal">
+                    <div class="modal_dialog modal_body">
+                        <h2 class="modal_title">Cerrar sesión</h2>
 
-                        <div class="modal-content">
+                        <div class="modal_content">
                             <p>${data.username} ¿Deseas cerrar sesión?</p>
                         </div>
 
-                        <div class="modal-footer">
-                            <button class="button" onclick="closeModal('DestroySession')">Cerrar</button>
+                        <div class="modal_footer">
+                            <button class="btn" id="dismissLogOut">Cerrar</button>
 
-                            <button class="button button-danger" id="endSession">Cerrar sesión</button>
+                            <button class="btn btn_danger" id="logOut">Cerrar sesión</button>
                         </div>
                     </div>
                 </div>
@@ -107,6 +108,14 @@ export async function renderAppInterface() {
                 document.getElementById("goToBusiness")?.addEventListener("click", (e) => renderBusiness())
 
                 document.getElementById("goToUsers")?.addEventListener("click", (e) => renderUsers())
+
+                // Close session functions
+                document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"))
+
+                document.getElementById("logOut")?.addEventListener("click", (e) => logOut())
+
+                document.getElementById("dismissLogOut")?.addEventListener("click", (e) => dismissLogOut("logOutModal"))
+                // End close session functions
 
                 const menu = document.querySelector(".menu")
                 const items = menu?.querySelectorAll(".menu_item")

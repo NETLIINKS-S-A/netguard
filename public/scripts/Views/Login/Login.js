@@ -1,5 +1,5 @@
 import { UI } from "../../DomElements.js";
-import { renderAppInterface } from "../AppView/AppView.js";
+import { checkTokenValidation } from "./TokenValidator.js";
 /**
  * @function login
  */
@@ -28,32 +28,7 @@ export function login(mail, password) {
             else
                 login.style.display = "none",
                     checkTokenValidation(),
-                    renderAppInterface();
+                    window.location.reload();
         }).catch((error) => console.error("Error: " + error));
     }
-}
-export function checkTokenValidation() {
-    const AccessToken = UI.accessToken;
-    const app = UI.App.app;
-    const login = UI.Login?.login;
-    if (!AccessToken)
-        app.style.display = "none";
-    else if (AccessToken === "undefined")
-        console.error("Error: access token is undefined");
-    else if (AccessToken == null)
-        console.error("Error: access token is null");
-    else
-        app.style.display = "block",
-            login.style.display = "none",
-            renderAppInterface();
-    // if (!AccessToken)
-    //     app.style.display = "none"
-    // else if (AccessToken === "undefined")
-    //     app.style.display = "none"
-    // else if (AccessToken)
-    //     app.style.display = "block",
-    //     renderAppInterface(),
-    //     console.log("rendered")
-    // else
-    //     login.style.display = "none"
 }

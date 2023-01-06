@@ -1,5 +1,7 @@
-import { checkTokenValidation, login } from "./Views/Login/Login.js";
+import { login } from "./Views/Login/Login.js";
+import { checkTokenValidation } from "./Views/Login/TokenValidator.js";
 import { UI } from "./DomElements.js";
+import { renderAppDate } from "./Views/AppView/AppDate.js";
 // Login
 const form = UI.Login?.form;
 const mail = UI.Login?.mail;
@@ -14,3 +16,11 @@ form?.addEventListener("submit", (e) => {
         login(mail.value, password.value);
 });
 checkTokenValidation();
+renderAppDate();
+// Keybindings
+window.addEventListener("keyup", (e) => {
+    const spotlight = document.getElementById("spotlight");
+    let key = e.code;
+    if (e.altKey && key == "KeyS")
+        spotlight?.focus();
+});

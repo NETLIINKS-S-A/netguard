@@ -1,11 +1,13 @@
-import { checkTokenValidation, login } from "./Views/Login/Login.js"
+import { login } from "./Views/Login/Login.js"
+import { checkTokenValidation } from "./Views/Login/TokenValidator.js"
 import { UI } from "./DomElements.js"
+import { renderAppDate } from "./Views/AppView/AppDate.js"
 
 // Login
 const form = UI.Login?.form
 const mail = UI.Login?.mail
 const password = UI.Login?.password
-form?.addEventListener("submit", (e: SubmitEvent) => {
+form?.addEventListener("submit", (e: SubmitEvent): void => {
     e.preventDefault()
 
     if (mail?.value === "")
@@ -17,3 +19,12 @@ form?.addEventListener("submit", (e: SubmitEvent) => {
 })
 
 checkTokenValidation()
+renderAppDate();
+
+// Keybindings
+window.addEventListener("keyup", (e): void => {
+    const spotlight = document.getElementById("spotlight")
+    let key = e.code
+
+    if (e.altKey && key == "KeyS") spotlight?.focus()
+})
