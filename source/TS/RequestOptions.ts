@@ -1,6 +1,6 @@
-import { UI } from "../Tools/AppElements.js"
+import { UI } from "./DomElements.js";
 
-let requestHeader = new Headers()
+let requestHeader: Headers = new Headers()
 requestHeader.append("Authorization", `Bearer ${UI.accessToken}`)
 requestHeader.append("Cookie", "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF")
 

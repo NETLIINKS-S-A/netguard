@@ -8,7 +8,13 @@ export type UIType = {
         tools?: InterfaceElement | null
     },
 
-    login?: InterfaceElement | null,
+    Login?: {
+        login: InterfaceElement,
+        mail: InterfaceElement,
+        password: InterfaceElement,
+        form: InterfaceElement
+    }
+
     UserAgent?: string,
     accessToken?: string | null,
     tableRows: number

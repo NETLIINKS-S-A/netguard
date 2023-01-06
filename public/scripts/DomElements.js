@@ -1,6 +1,4 @@
-import { UIType } from "../Complements/types.js"
-
-export const UI: UIType = {
+export const UI = {
     App: {
         app: document.getElementById("app"),
         wrapper: document.getElementById("appWrapper"),
@@ -8,9 +6,13 @@ export const UI: UIType = {
         date: document.getElementById("appDate"),
         tools: document.getElementById("appTools")
     },
-
-    login: document.getElementById("login"),
+    Login: {
+        login: document.getElementById("login"),
+        mail: document.getElementById("userEmail"),
+        password: document.getElementById("userPassword"),
+        form: document.getElementById("loginForm")
+    },
     UserAgent: navigator.userAgent,
-    accessToken: localStorage.getItem("access_token"),
+    accessToken: localStorage.getItem("accessToken"),
     tableRows: 8
-}
+};
