@@ -1,5 +1,4 @@
 import { UI } from "../../DomElements.js";
-import { renderAppInterface } from "../AppView/AppView.js";
 import { checkTokenValidation } from "./TokenValidator.js";
 /**
  * @function login
@@ -29,7 +28,7 @@ export function login(mail, password) {
             else
                 login.style.display = "none",
                     checkTokenValidation(),
-                    renderAppInterface();
+                    window.location.reload();
         }).catch((error) => console.error("Error: " + error));
     }
 }

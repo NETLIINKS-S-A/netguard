@@ -35,7 +35,7 @@ export function login<T>(mail: T, password: T) {
                 else
                     login.style.display = "none",
                     checkTokenValidation(),
-                    renderAppInterface()
+                    window.location.reload()
             }).catch((error) => console.error("Error: " + error))
     }
 }
