@@ -4,6 +4,8 @@ import { InterfaceElement } from "../../Types.js"
 import { renderBusiness } from "../Business/BusinessView.js"
 import { renderUsers } from "../Users/UsersView.js"
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
+import { checkTokenValidation } from "../Login/TokenValidator.js"
+import { login } from "../Login/Login"
 
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
@@ -16,7 +18,7 @@ export async function renderAppInterface() {
         .then((response : Response) => response.json())
         .then((data) => {
             if (data.error)
-                console.log("error")
+                logOut()
             else {
                 app.style.display = "flex"
                 wrapper.style.display = "block"

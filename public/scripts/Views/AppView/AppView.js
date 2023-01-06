@@ -13,7 +13,7 @@ export async function renderAppInterface() {
         .then((response) => response.json())
         .then((data) => {
         if (data.error)
-            console.log("error");
+            logOut();
         else {
             app.style.display = "flex";
             wrapper.style.display = "block";
