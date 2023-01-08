@@ -1,6 +1,6 @@
 import { UI } from "../../DomElements.js"
 import { DTROptions } from "../../RequestOptions.js"
-import { InterfaceElement } from "../../Types"
+import { UIElement } from "../../Types/GeneralTypes.js"
 
 export async function renderBusiness() {
     const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full"
@@ -40,8 +40,8 @@ export async function renderBusiness() {
         return await response.json()
     }
 
-    const search: InterfaceElement = document.querySelector("#spotlight")
-    const tableBody: InterfaceElement = document.querySelector("#tableBody")
+    const search: UIElement = document.querySelector("#spotlight")
+    const tableBody: UIElement = document.querySelector("#tableBody")
 
     search?.addEventListener("keyup", (): void => {
         // @ts-ignore
@@ -80,7 +80,7 @@ export async function renderBusiness() {
         searchData = data
 
         // pagination
-        const pagination: InterfaceElement = document.getElementById("paginationCounter")
+        const pagination: UIElement = document.getElementById("paginationCounter")
         let currentPage: number = 1
 
         function displayFilteredItems(items: any, wrapper: any, rowsPerPage: any, page: any) {

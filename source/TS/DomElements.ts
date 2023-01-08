@@ -1,4 +1,4 @@
-import { UIType } from "./Types.js"
+import { UIType } from "./Types/GeneralTypes.js"
 
 export const UI: UIType = {
     App: {

@@ -1,6 +1,6 @@
 import { DTROptions } from "../../RequestOptions.js"
 import { UI } from "../../DomElements.js"
-import { InterfaceElement } from "../../Types.js"
+import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderBusiness } from "../Business/BusinessView.js"
 import { renderUsers } from "../Users/UsersView.js"
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
@@ -10,9 +10,9 @@ import { login } from "../Login/Login"
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
     const app = UI.App.app
-    const sidebar: InterfaceElement = document.getElementById("appSidebar")
-    const content: InterfaceElement = UI.App?.app
-    const wrapper: InterfaceElement = UI.App?.wrapper
+    const sidebar: UIElement = document.getElementById("appSidebar")
+    const content: UIElement = UI.App?.app
+    const wrapper: UIElement = UI.App?.wrapper
 
     await fetch(url, DTROptions)
         .then((response : Response) => response.json())
