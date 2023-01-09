@@ -1,5 +1,5 @@
 // @filename: BusinessEditor.ts
-import { Modal } from "../../Classes";
+import { Modal } from "../../Classes.js";
 import { getData, updateData } from "../../RequestOptions.js";
 import { renderBusiness } from "./BusinessView.js";
 let entityURL;
