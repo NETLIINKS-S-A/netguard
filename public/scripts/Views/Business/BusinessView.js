@@ -120,6 +120,9 @@ export async function renderBusiness() {
     // pagination
     const pagination = document.getElementById("paginationCounter");
     let currentPage = 1;
+    /* ******************************************
+    DISPLAY TABLE DATA AND FILTERED TABLE DATA
+    ******************************************** */
     function displayFilteredItems(items, wrapper, rowsPerPage, page) {
         wrapper.innerHTML = "";
         page--;
@@ -142,6 +145,9 @@ export async function renderBusiness() {
                 </tr>`;
             wrapper.appendChild(itemElement);
         }
+        /* ********************************
+        BUSINESS EDITOR
+        ******************************** */
         // Open editor
         const openEditorButtons = document.querySelectorAll("tr td button");
         openEditorButtons.forEach((openEditorButton) => {
@@ -166,7 +172,10 @@ export async function renderBusiness() {
             displayFilteredItems(tableData, tableBody, tableRows, currentPage);
         });
     } // End displayFilteredItems
-    // Pagination
+    /* ********************************
+    PAGINATION
+    ******************************** */
+    // calculate pagination items
     function setupPagination(items, wrapper, rowsPerPage) {
         wrapper.innerHTML = "";
         let pageCount = Math.ceil(items.length / rowsPerPage);
@@ -190,6 +199,7 @@ export async function renderBusiness() {
         });
         return button;
     }
+    // Display data and pagination
     displayFilteredItems(tableData, tableBody, tableRows, currentPage);
     setupPagination(tableData, pagination, tableRows);
 }

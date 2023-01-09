@@ -134,6 +134,9 @@ export async function renderBusiness() {
     const pagination: UIElement = document.getElementById("paginationCounter")
     let currentPage: number = 1
 
+    /* ******************************************
+    DISPLAY TABLE DATA AND FILTERED TABLE DATA
+    ******************************************** */
     function displayFilteredItems(items: any, wrapper: any, rowsPerPage: any, page: any) {
         wrapper.innerHTML = ""
         page--
@@ -159,6 +162,9 @@ export async function renderBusiness() {
             wrapper.appendChild(itemElement)
         }
 
+        /* ********************************
+        BUSINESS EDITOR
+        ******************************** */
         // Open editor
         const openEditorButtons: UIElement = document.querySelectorAll("tr td button")
         openEditorButtons.forEach((openEditorButton: UIElement) => {
@@ -187,7 +193,10 @@ export async function renderBusiness() {
         })
     } // End displayFilteredItems
 
-    // Pagination
+    /* ********************************
+    PAGINATION
+    ******************************** */
+    // calculate pagination items
     function setupPagination(items: any, wrapper: any, rowsPerPage: any) {
         wrapper.innerHTML = ""
         let pageCount = Math.ceil(items.length / rowsPerPage)
@@ -217,6 +226,7 @@ export async function renderBusiness() {
         return button
     }
 
+    // Display data and pagination
     displayFilteredItems(tableData, tableBody, tableRows, currentPage)
     setupPagination(tableData, pagination, tableRows)
 }
