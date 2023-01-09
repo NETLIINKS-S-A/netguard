@@ -2,7 +2,7 @@
 import { UI } from "../../DomElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
-import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js"
+import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessFunctions.js"
 import { getData } from "../../RequestOptions.js"
 
 let tableRows = UI.tableRows // number of rows to show on tables
