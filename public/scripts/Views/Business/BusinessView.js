@@ -1,5 +1,5 @@
 // @filename: BusinessView.ts
-import { UI } from "../../DOMElements.js";
+import { UI } from "../../DomElements.js";
 import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessFunctions.js";
 import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
