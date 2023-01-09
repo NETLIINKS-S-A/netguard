@@ -1,10 +1,11 @@
+// @filename: AppDate.ts
 import { shortMonths, shortDays } from "../../DTNames.js";
-import { InterfaceElement } from "../../Types.js";
+import { UIElement } from "../../Types/GeneralTypes.js";
 
 export function renderAppDate() {
     // DOM elements
-    const appMonth: InterfaceElement = document.getElementById("appMonth")
-    const appDay: InterfaceElement = document.getElementById("appDay")
+    const appMonth: UIElement = document.getElementById("appMonth")
+    const appDay: UIElement = document.getElementById("appDay")
 
     // timing functions
     const dt: Date = new Date()
@@ -27,7 +28,7 @@ export function renderAppDate() {
 }
 
 function renderAppTime() {
-    const appTime: InterfaceElement = document.getElementById("appTime")
+    const appTime: UIElement = document.getElementById("appTime")
     const dt: Date = new Date()
 
     // hours

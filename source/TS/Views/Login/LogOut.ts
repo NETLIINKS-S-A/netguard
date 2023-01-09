@@ -1,7 +1,10 @@
+// @filename: LogOut.ts
+// TODO: Change this filename to Logout.ts
 import { Modal } from "../../Classes.js";
+import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js";
 import { checkTokenValidation } from "./TokenValidator.js";
 
-export function openLogOut(id: any) {
+export function openLogOut(id: FNPHTMLElement ) {
     const show: Modal = new Modal(id)
     show.open()
 }

@@ -1,3 +1,5 @@
+// @filename: LogOut.ts
+// TODO: Change this filename to Logout.ts
 import { Modal } from "../../Classes.js";
 import { checkTokenValidation } from "./TokenValidator.js";
 export function openLogOut(id) {

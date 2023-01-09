@@ -15,4 +15,10 @@ img {
         margin-bottom: 10px;
         color: $slategray-700
     }
+
+    &_group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
 }

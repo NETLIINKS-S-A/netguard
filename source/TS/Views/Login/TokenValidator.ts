@@ -1,11 +1,12 @@
+// @filename: TokenValidator.ts
 import { UI } from "../../DomElements.js"
-import { InterfaceElement } from "../../Types.js"
+import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderAppInterface } from "../AppView/AppView.js"
 
 export function checkTokenValidation(): void {
     const AccessToken = UI.accessToken
-    const app: InterfaceElement = UI.App.app
-    const login: InterfaceElement = UI.Login?.login
+    const app: UIElement = UI.App.app
+    const login: UIElement = UI.Login?.login
 
     if (!AccessToken)
         app.style.display = "none"

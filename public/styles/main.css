@@ -112,6 +112,21 @@ html, body {
   border: 1px solid #CCD5E1;
   color: #94A2B8;
 }
+.btn_primary {
+  background-color: #5CBC4F;
+  border-color: #3DA139;
+  color: #FFF;
+}
+.btn_primary:hover {
+  background-color: #8BD679;
+  border: 1px solid #5CBC4F;
+  color: #FFF;
+}
+.btn_primary:active {
+  background-color: #3DA139;
+  border: 1px solid #27872B;
+  color: #FFF;
+}
 .btn_success {
   background-color: #5CBC4F;
   border-color: #3DA139;
@@ -266,6 +281,11 @@ img {
   font-weight: 500;
   margin-bottom: 10px;
   color: #475469;
+}
+.form_group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .input {

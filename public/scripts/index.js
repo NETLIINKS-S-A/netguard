@@ -1,3 +1,4 @@
+// @filename: index.ts
 import { login } from "./Views/Login/Login.js";
 import { checkTokenValidation } from "./Views/Login/TokenValidator.js";
 import { UI } from "./DomElements.js";

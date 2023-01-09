@@ -1,8 +1,8 @@
-import { InterfaceElement } from "./Types.js"
+import { UIElement } from "./Types/GeneralTypes.js"
 
 export class Modal {
     id: string
-    modal: InterfaceElement
+    modal: UIElement
 
     constructor(id: string) {
         this.id = id

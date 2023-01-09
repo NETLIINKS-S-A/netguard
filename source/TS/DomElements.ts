@@ -1,4 +1,6 @@
-import { UIType } from "./Types.js"
+// @filename: DomElements.ts
+// TODO: change filename to DOMElements.ts
+import { UIType } from "./Types/GeneralTypes.js"
 
 export const UI: UIType = {
     App: {
@@ -15,7 +17,10 @@ export const UI: UIType = {
         password: document.getElementById("userPassword"),
         form: document.getElementById("loginForm")
     },
+
     UserAgent: navigator.userAgent,
+
     accessToken: localStorage.getItem("accessToken"),
+
     tableRows: 8
 }
