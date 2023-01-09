@@ -42,19 +42,19 @@
     }
 
     &_primary {
-        background-color: $green-500;
-        border-color: $green-600;
+        background-color: $primary-500;
+        border-color: $primary-600;
         color: $white;
 
         &:hover {
-            background-color: $green-400;
-            border: 1px solid $green-500;
+            background-color: $primary-400;
+            border: 1px solid $primary-500;
             color: $white;
         }
 
         &:active {
-            background-color: $green-600;
-            border: 1px solid $green-700;
+            background-color: $primary-600;
+            border: 1px solid $primary-700;
             color: $white;
         }
     }

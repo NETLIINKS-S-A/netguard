@@ -113,18 +113,18 @@ html, body {
   color: #94A2B8;
 }
 .btn_primary {
-  background-color: #5CBC4F;
-  border-color: #3DA139;
+  background-color: #54B3A4;
+  border-color: #3D9993;
   color: #FFF;
 }
 .btn_primary:hover {
-  background-color: #8BD679;
-  border: 1px solid #5CBC4F;
+  background-color: #7ED1BC;
+  border: 1px solid #54B3A4;
   color: #FFF;
 }
 .btn_primary:active {
-  background-color: #3DA139;
-  border: 1px solid #27872B;
+  background-color: #3D9993;
+  border: 1px solid #2A7E80;
   color: #FFF;
 }
 .btn_success {
