@@ -41,6 +41,24 @@
         color: $slategray-500;
     }
 
+    &_primary {
+        background-color: $green-500;
+        border-color: $green-600;
+        color: $white;
+
+        &:hover {
+            background-color: $green-400;
+            border: 1px solid $green-500;
+            color: $white;
+        }
+
+        &:active {
+            background-color: $green-600;
+            border: 1px solid $green-700;
+            color: $white;
+        }
+    }
+
     // SUCCESS BUTTON
     &_success {
         background-color: $green-500;

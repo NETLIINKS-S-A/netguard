@@ -5,12 +5,13 @@ import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
 import { closeBusinessEditor, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js"
 import { getData } from "../../RequestOptions.js"
 
-let tableRows = UI.tableRows
+let tableRows = UI.tableRows // number of rows to show on tables
 let UIApp = UI.App
 
 export async function renderBusiness() {
     const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full"
 
+    // BusinesView interface
     const appContent = UIApp?.content
     appContent.innerHTML = `
         <h1 class="app_title">Empresas</h1>
@@ -40,35 +41,36 @@ export async function renderBusiness() {
             <div class="modal_dialog modal_body">
                 <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
 
-                <form>
-                    <div class="form_group">
-                        <div class="input_group">
-                            <label for="businessName" class="form_label">Nombre</label>
-                            <input class="input" id="businessName" placeholder="Nombre">
-                        </div>
-
-                        <div class="input_group">
-                            <label for="ruc" class="form_label">RUC</label>
-                            <input type="number" class="input" id="ruc" placeholder="0321854965">
-                        </div>
-                    </div>
-
-                    <br>
-
-                    <div class="input-group">
-                        <label for="estado" class="form_label">Estado</label>
-                        <select>
-                            <option value="">--Please choose an option--</option>
-                            <option value="dog">Dog</option>
-                        </select>
+                <form autocomplete="off" id="businessEditorForm">
+                    <div class="input_group">
+                        <label for="businessName" class="form_label">Nombre</label>
+                        <input class="input" id="businessName" placeholder="Nombre">
                     </div>
                 </form>
 
-                <div class="form-container" id="FormContainer">
-                </div>
-
                 <div class="modal_footer">
                     <button class="btn" id="closeEditor">Cerrar</button>
+                    <button class="btn btn_primary" id="updateData">Guardar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================
+            ADD NEW BUSINESS
+        ========================= -->
+        <div class="modal" id="createBusiness">
+            <div class="modal_dialog modal_body">
+                <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
+
+                <form autocomplete="off" id="createBusinessForm">
+                    <div class="input_group">
+                        <label for="businessName" class="form_label">Nombre</label>
+                        <input class="input" id="businessName" placeholder="Nombre">
+                    </div>
+                </form>
+
+                <div class="modal_footer">
+                    <button class="btn" id="closeCreateBusinessForm">Cerrar</button>
                     <button class="btn btn_primary" id="updateData">Guardar</button>
                 </div>
             </div>
@@ -88,12 +90,6 @@ export async function renderBusiness() {
         </div>`
 
     let tableData: [] = []
-
-    // async function getData() {
-    //     const response : Response = await fetch(url, DTROptions)
-    //     return await response.json()
-    // }
-
     const search: UIElement = document.querySelector("#spotlight")
     const tableBody: UIElement = document.querySelector("#tableBody")
 
@@ -107,6 +103,7 @@ export async function renderBusiness() {
         setupPagination(filteredDatas, pagination, tableRows)
     })
 
+    // Table placeholder
     tableBody.innerHTML = `
         <tr>
             <td>Cargando...</td>
@@ -130,8 +127,8 @@ export async function renderBusiness() {
         </tr>
     `
 
-    const data = await getData(url);
-    tableData = data
+    // const data = await getData(url);
+    tableData = await getData(url)
 
     // pagination
     const pagination: UIElement = document.getElementById("paginationCounter")
@@ -150,7 +147,7 @@ export async function renderBusiness() {
             let itemElement = document.createElement("tr")
             itemElement.innerHTML = `
                 <tr>
-                    <td id="businessNameItem">${item.name}</td>
+                    <td>${item.name}</td>
                     <td>${item.id}</td>
                     <td>${item.createdBy}</td>
                     <td>
@@ -176,10 +173,17 @@ export async function renderBusiness() {
         closeEditor.addEventListener("click", () => closeBusinessEditor("editBusiness"))
 
         // updateData
-
         const updateData: UIElement = document.getElementById("updateData")
         updateData.addEventListener("click" ,() => {
             updateBusinessData("editBusiness")
+        })
+
+        // updateData on Submit
+        const businessEditorForm = document.getElementById("businessEditorForm")
+        businessEditorForm?.addEventListener("submit", (e) => {
+            e.preventDefault()
+            updateBusinessData("editBusiness")
+            displayFilteredItems(tableData, tableBody, tableRows, currentPage)
         })
     } // End displayFilteredItems
 
