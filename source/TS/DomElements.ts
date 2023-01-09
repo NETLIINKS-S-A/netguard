@@ -1,5 +1,5 @@
 // @filename: DOMElements.ts
-import { UIType } from "./Types/GeneralTypes"
+import { UIType } from "./Types/GeneralTypes.js"
 
 export const UI: UIType = {
     App: {
