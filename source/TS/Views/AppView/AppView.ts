@@ -1,11 +1,10 @@
+// @filename: AppView.ts
 import { DTROptions } from "../../RequestOptions.js"
 import { UI } from "../../DomElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderBusiness } from "../Business/BusinessView.js"
 import { renderUsers } from "../Users/UsersView.js"
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
-import { checkTokenValidation } from "../Login/TokenValidator.js"
-import { login } from "../Login/Login"
 
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"

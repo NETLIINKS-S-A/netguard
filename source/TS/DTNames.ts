@@ -1,4 +1,4 @@
-export const months = [
+export const months: string[] = [
     "Enero", "Febrero", "Marzo",
     "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre",
@@ -6,13 +6,13 @@ export const months = [
 ]
 
 // Array of week day's names
-export const days = [
+export const days: string[] = [
     "Domingo", "Lunes", "Martes",
     "Miércoles", "Jueves", "Viernes",
     "Sàbado"
 ]
 
-export const shortMonths = [
+export const shortMonths: string[] = [
     "Ene", "Feb", "Mar",
     "Abr", "May", "Jun",
     "Jul", "Ago", "Sep",
@@ -20,7 +20,7 @@ export const shortMonths = [
 ]
 
 // Array of week day's names
-export const shortDays = [
+export const shortDays: string[] = [
     "Dom", "Lun", "Mar",
     "Mié", "Jue", "Vie",
     "Sáb"

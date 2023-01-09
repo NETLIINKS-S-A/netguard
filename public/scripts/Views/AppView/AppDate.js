@@ -1,3 +1,4 @@
+// @filename: AppDate.ts
 import { shortMonths, shortDays } from "../../DTNames.js";
 export function renderAppDate() {
     // DOM elements
