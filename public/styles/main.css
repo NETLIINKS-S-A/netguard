@@ -1074,8 +1074,8 @@ table .tbody tr td:first-child,
     color: #94A2B8;
   }
 
-  .label {
-    color: #FAFAFA;
+  .form_label {
+    color: #CCD5E1;
   }
 
   .input {
