@@ -278,8 +278,9 @@ img {
 }
 .form_label {
   display: block;
+  font-size: 12px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #475469;
 }
 .form_group {
