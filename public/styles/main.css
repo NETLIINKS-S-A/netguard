@@ -267,6 +267,11 @@ img {
   margin-bottom: 10px;
   color: #475469;
 }
+.form_group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
 
 .input {
   display: inline-block;
