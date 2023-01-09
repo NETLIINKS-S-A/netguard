@@ -1,6 +1,6 @@
 // @filename: BusinessView.ts
 import { UI } from "../../DomElements.js";
-import { closeBusinessEditor, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js";
+import { closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js";
 import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
@@ -158,7 +158,7 @@ export async function renderBusiness() {
         });
         // CloseEditor
         const closeEditor = document.getElementById("closeEditor");
-        closeEditor.addEventListener("click", () => closeBusinessEditor("editBusiness"));
+        closeEditor.addEventListener("click", () => closeBusinessModal("editBusiness"));
         // updateData
         const updateData = document.getElementById("updateData");
         updateData.addEventListener("click", () => {

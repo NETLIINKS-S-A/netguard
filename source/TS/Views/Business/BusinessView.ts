@@ -2,7 +2,7 @@
 import { UI } from "../../DomElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
-import { closeBusinessEditor, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js"
+import { closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js"
 import { getData } from "../../RequestOptions.js"
 
 let tableRows = UI.tableRows // number of rows to show on tables
@@ -176,7 +176,7 @@ export async function renderBusiness() {
 
         // CloseEditor
         const closeEditor: UIElement = document.getElementById("closeEditor")
-        closeEditor.addEventListener("click", () => closeBusinessEditor("editBusiness"))
+        closeEditor.addEventListener("click", () => closeBusinessModal("editBusiness"))
 
         // updateData
         const updateData: UIElement = document.getElementById("updateData")

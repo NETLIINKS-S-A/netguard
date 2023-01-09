@@ -3,7 +3,7 @@ import { Modal } from "../../Classes.js";
 import { getData, updateData } from "../../RequestOptions.js";
 import { renderBusiness } from "./BusinessView.js";
 let entityURL;
-export function closeBusinessEditor(id) {
+export function closeBusinessModal(id) {
     let editor = new Modal(id);
     editor.close();
 }
@@ -23,10 +23,10 @@ export function updateBusinessData(id) {
     });
     // preventing rename with a empty value
     if (businessName.value === "" || businessName.value.trim() === "")
-        closeBusinessEditor(id);
+        closeBusinessModal(id);
     else {
         updateData(entityURL, raw);
-        closeBusinessEditor(id);
+        closeBusinessModal(id);
         setTimeout(() => {
             renderBusiness();
         }, 100);

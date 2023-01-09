@@ -6,7 +6,7 @@ import { renderBusiness } from "./BusinessView.js";
 
 let entityURL: string;
 
-export function closeBusinessEditor(id: string): void {
+export function closeBusinessModal(id: string): void {
     let editor = new Modal(id)
     editor.close()
 }
@@ -30,10 +30,10 @@ export function updateBusinessData(id: string) : void {
     });
 
     // preventing rename with a empty value
-    if (businessName.value === "" || businessName.value.trim() === "") closeBusinessEditor(id)
+    if (businessName.value === "" || businessName.value.trim() === "") closeBusinessModal(id)
     else {
         updateData(entityURL, raw)
-        closeBusinessEditor(id)
+        closeBusinessModal(id)
         setTimeout(() => {
             renderBusiness()
         }, 100)
