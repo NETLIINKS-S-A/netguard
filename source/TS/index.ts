@@ -1,7 +1,7 @@
 // @filename: index.ts
 import { login } from "./Views/Login/Login.js"
 import { checkTokenValidation } from "./Views/Login/TokenValidator.js"
-import { UI } from "./DomElements.js"
+import { UI } from "./DOMElements.js"
 import { renderAppDate } from "./Views/AppView/AppDate.js"
 
 // Login

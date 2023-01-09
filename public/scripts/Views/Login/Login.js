@@ -1,5 +1,5 @@
 // @filename: Login
-import { UI } from "../../DomElements.js";
+import { UI } from "../../DOMElements.js";
 import { checkTokenValidation } from "./TokenValidator.js";
 /**
  * @function login
