@@ -1,5 +1,5 @@
 // @filename: UsersView.ts
-import { UI } from "../../DomElements.js";
+import { UI } from "../../DOMElements.js";
 export async function renderUsers() {
     const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full";
     const appContent = UI.App?.content;

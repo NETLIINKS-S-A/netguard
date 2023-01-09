@@ -1,5 +1,5 @@
 // @filename: RequestOptions.ts
-import { UI } from "./DomElements.js";
+import { UI } from "./DOMElements.js";
 let requestHeader = new Headers();
 requestHeader.append("Authorization", `Bearer ${UI.accessToken}`);
 requestHeader.append("Content-Type", "application/json");

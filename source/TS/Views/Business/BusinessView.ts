@@ -1,5 +1,5 @@
 // @filename: BusinessView.ts
-import { UI } from "../../DomElements.js"
+import { UI } from "../../DOMElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
 import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js"
