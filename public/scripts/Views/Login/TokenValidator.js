@@ -1,5 +1,5 @@
 // @filename: TokenValidator.ts
-import { UI } from "../../DOMElements.js";
+import { UI } from "../../DomElements.js";
 import { renderAppInterface } from "../AppView/AppView.js";
 export function checkTokenValidation() {
     const AccessToken = UI.accessToken;

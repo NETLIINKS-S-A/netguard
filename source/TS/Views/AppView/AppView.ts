@@ -1,5 +1,5 @@
 // @filename: AppView.ts
-import { UI } from '../../DOMElements.js'
+import { UI } from "../../DomElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderBusiness } from "../Business/BusinessView.js"
 import { renderUsers } from "../Users/UsersView.js"
