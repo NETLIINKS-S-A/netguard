@@ -32,5 +32,7 @@ export function updateBusinessData(id) {
         }, 100);
     }
 }
-export function createNewBusiness(id) {
+export function addNewBusiness(id) {
+    let editor = new Modal(id);
+    editor.open();
 }

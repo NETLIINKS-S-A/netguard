@@ -40,5 +40,7 @@ export function updateBusinessData(id: string) : void {
     }
 }
 
-export function createNewBusiness(id: string): void {
+export function addNewBusiness(id: string): void {
+    let editor = new Modal(id)
+    editor.open()
 }

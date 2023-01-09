@@ -1,6 +1,6 @@
 // @filename: BusinessView.ts
 import { UI } from "../../DomElements.js";
-import { closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js";
+import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessEditor.js";
 import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
@@ -53,9 +53,9 @@ export async function renderBusiness() {
         <!-- =========================
             ADD NEW BUSINESS
         ========================= -->
-        <div class="modal" id="createBusiness">
+        <div class="modal" id="addBusiness">
             <div class="modal_dialog modal_body">
-                <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
+                <h2 class="modal_title">Crear nueva empresa</h2>
 
                 <form autocomplete="off" id="createBusinessForm">
                     <div class="input_group">
@@ -76,7 +76,7 @@ export async function renderBusiness() {
     toolbox.innerHTML = `
         <div class="toolbox">
             <button class="btn btn_icon"><i class="fa-solid fa-arrow-rotate-right"></i></button>
-            <button class="btn btn_icon"><i class="fa-solid fa-plus"></i></button>
+            <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
             <div class="toolbox_spotlight">
                 <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="spotlight">
                 <label class="btn btn_icon spotlight_label" for="spotlight"><i class="fa-solid fa-filter"></i></label>
@@ -167,6 +167,29 @@ export async function renderBusiness() {
         // updateData on Submit
         const businessEditorForm = document.getElementById("businessEditorForm");
         businessEditorForm?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            updateBusinessData("editBusiness");
+            displayFilteredItems(tableData, tableBody, tableRows, currentPage);
+        });
+        /* ********************************
+        ADD NEW BUSINESS
+        ******************************** */
+        // Open editor
+        const openAddNewBusiness = document.getElementById("addNewBusiness");
+        openAddNewBusiness.addEventListener("click", () => {
+            addNewBusiness("addBusiness");
+        });
+        // CloseEditor
+        const closeAddBusiness = document.getElementById("closeEditor");
+        closeAddBusiness.addEventListener("click", () => closeBusinessModal("editBusiness"));
+        // write new business
+        const writeBusiness = document.getElementById("updateData");
+        writeBusiness.addEventListener("click", () => {
+            updateBusinessData("editBusiness");
+        });
+        // updateData on Submit
+        const newBusinessForm = document.getElementById("businessEditorForm");
+        newBusinessForm?.addEventListener("submit", (e) => {
             e.preventDefault();
             updateBusinessData("editBusiness");
             displayFilteredItems(tableData, tableBody, tableRows, currentPage);
