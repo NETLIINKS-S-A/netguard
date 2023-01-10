@@ -1,0 +1,1 @@
+sass ./Source/SCSS/main.scss ./public/styles/main.css -w
