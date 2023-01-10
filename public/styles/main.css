@@ -635,9 +635,9 @@ table tbody tr:hover td button,
 table .tbody tr:hover td button,
 .table tbody tr:hover td button,
 .table .tbody tr:hover td button {
-  background-color: #5CBC4F !important;
+  background-color: #54B3A4 !important;
   color: #FFF;
-  border-color: #3DA139;
+  border-color: #3D9993;
 }
 
 @media screen and (max-width: 1024px) {

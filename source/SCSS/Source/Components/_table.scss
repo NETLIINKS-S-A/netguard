@@ -71,9 +71,9 @@ table,
                 transition: 0.2s all ease-in-out;
 
                 & button {
-                    background-color: $green-500 !important;
+                    background-color: $primary-500 !important;
                     color: $white;
-                    border-color: $green-600;
+                    border-color: $primary-600;
                 }
             }
         }
