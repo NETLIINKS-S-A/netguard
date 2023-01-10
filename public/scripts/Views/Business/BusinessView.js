@@ -45,7 +45,7 @@ export async function renderBusiness() {
 
                 <div class="modal_footer">
                     <button class="btn" id="closeEditor">Cerrar</button>
-                    <button class="btn btn_primary" id="updateData">Guardar</button>
+                    <button class="btn btn_success" id="updateData">Guardar</button>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@ export async function renderBusiness() {
 
                 <div class="modal_footer">
                     <button class="btn" id="closeAddNewBusinessModal">Cerrar</button>
-                    <button class="btn btn_primary" id="saveNewBusiness">Guardar</button>
+                    <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
                 </div>
             </div>
         </div>
