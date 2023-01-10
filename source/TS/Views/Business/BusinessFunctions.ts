@@ -6,11 +6,15 @@ import { renderBusiness } from "./BusinessView.js";
 
 let entityURL: string;
 
+// Close editor
+//
 export function closeBusinessModal(id: string): void {
     let editor = new Modal(id)
     editor.close()
 }
 
+// Open editor
+//
 export async function openBusinessEditor(entity: string, url: string, id: string): Promise<void> {
     let editor = new Modal(id)
     editor.open()
@@ -22,6 +26,8 @@ export async function openBusinessEditor(entity: string, url: string, id: string
     entityName.innerHTML = data._instanceName
 }
 
+// Update data
+//
 export function updateBusinessData(id: string) : void {
     const businessName: UIElement = document.getElementById("businessName")
     // get input data
@@ -35,7 +41,8 @@ export function updateBusinessData(id: string) : void {
         updateData(entityURL, raw)
         closeBusinessModal(id)
         setTimeout(() => {
-            renderBusiness()
+            renderBusiness() // reload changes
+            console.clear() // clear if some change fail
         }, 100)
     }
 }
@@ -43,4 +50,10 @@ export function updateBusinessData(id: string) : void {
 export function addNewBusiness(id: string): void {
     let editor = new Modal(id)
     editor.open()
+    console.info("this function is under construction")
+}
+
+export function saveNewBusiness(id: string): void {
+    console.info("this function is under construction")
+    closeBusinessModal(id)
 }

@@ -1,6 +1,6 @@
 // @filename: BusinessView.ts
 import { UI } from "../../DOMElements.js";
-import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessFunctions.js";
+import { saveNewBusiness, addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessFunctions.js";
 import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
@@ -53,7 +53,7 @@ export async function renderBusiness() {
         <!-- =========================
             ADD NEW BUSINESS
         ========================= -->
-        <div class="modal" id="addBusiness">
+        <div class="modal" id="addNewBusinessModal">
             <div class="modal_dialog modal_body">
                 <h2 class="modal_title">Crear nueva empresa</h2>
 
@@ -65,8 +65,8 @@ export async function renderBusiness() {
                 </form>
 
                 <div class="modal_footer">
-                    <button class="btn" id="closeCreateBusinessForm">Cerrar</button>
-                    <button class="btn btn_primary" id="updateData">Guardar</button>
+                    <button class="btn" id="closeAddNewBusinessModal">Cerrar</button>
+                    <button class="btn btn_primary" id="saveNewBusiness">Guardar</button>
                 </div>
             </div>
         </div>
@@ -145,47 +145,49 @@ export async function renderBusiness() {
                 </tr>`;
             wrapper.appendChild(itemElement);
         }
+        const businessModalObjs = {
+            add: {
+                open: document.getElementById("addNewBusiness"),
+                close: document.getElementById("closeAddNewBusinessModal"),
+                save: document.getElementById("saveNewBusiness")
+            },
+            edit: {
+                open: document.querySelectorAll("tr td button"),
+                close: document.getElementById("closeEditor"),
+                update: document.getElementById("updateData"),
+            }
+        };
         /* ********************************
-        BUSINESS EDITOR
+        ADD NEW BUSINESS
+        ******************************** */
+        // Open modal
+        businessModalObjs.add.open?.addEventListener("click", () => addNewBusiness("addNewBusinessModal"));
+        // Close modal
+        businessModalObjs.add.close?.addEventListener("click", () => closeBusinessModal("addNewBusinessModal"));
+        // Save new business
+        businessModalObjs.add.save?.addEventListener("click", () => {
+            saveNewBusiness("addNewBusinessModal");
+        });
+        /* ********************************
+        EDIT BUSINESS
         ******************************** */
         // Open editor
-        const openEditorButtons = document.querySelectorAll("tr td button");
-        openEditorButtons.forEach((openEditorButton) => {
+        businessModalObjs.edit.open?.forEach((openEditorButton) => {
             openEditorButton.addEventListener("click", () => {
                 let entity = openEditorButton.dataset.id;
                 openBusinessEditor(entity, url, "editBusiness");
             });
         });
         // CloseEditor
-        const closeEditor = document.getElementById("closeEditor");
-        closeEditor.addEventListener("click", () => closeBusinessModal("editBusiness"));
+        businessModalObjs.edit.close?.addEventListener("click", () => closeBusinessModal("editBusiness"));
         // updateData
-        const updateData = document.getElementById("updateData");
-        updateData.addEventListener("click", () => {
-            updateBusinessData("editBusiness");
-        });
+        businessModalObjs.edit.update?.addEventListener("click", () => updateBusinessData("editBusiness"));
         // updateData on Submit
         const businessEditorForm = document.getElementById("businessEditorForm");
         businessEditorForm?.addEventListener("submit", (e) => {
             e.preventDefault();
             updateBusinessData("editBusiness");
             displayFilteredItems(tableData, tableBody, tableRows, currentPage);
-        });
-        /* ********************************
-        ADD NEW BUSINESS
-        ******************************** */
-        // Open editor
-        const openAddNewBusiness = document.getElementById("addNewBusiness");
-        openAddNewBusiness.addEventListener("click", () => {
-            addNewBusiness("addBusiness");
-        });
-        // CloseEditor
-        const closeAddBusiness = document.getElementById("closeEditor");
-        closeAddBusiness.addEventListener("click", () => closeBusinessModal("editBusiness"));
-        // write new business
-        const writeBusiness = document.getElementById("updateData");
-        writeBusiness.addEventListener("click", () => {
-            updateBusinessData("editBusiness");
         });
         // updateData on Submit
         const newBusinessForm = document.getElementById("businessEditorForm");
