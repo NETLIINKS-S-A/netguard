@@ -1,1 +1,1 @@
-sass ./Source/SCSS/main.scss ./public/styles/main.css -w
+sass ./source/SCSS/main.scss ./public/styles/main.css -w

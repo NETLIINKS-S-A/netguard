@@ -14,8 +14,8 @@ export async function renderBusiness() {
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>ID</th>
-                    <th>Creado por</th>
+                    <th>RUC</th>
+                    <th>Estado</th>
                     <th></th>
                 </tr>
             </thead>
@@ -75,7 +75,6 @@ export async function renderBusiness() {
     const toolbox = UIApp?.tools;
     toolbox.innerHTML = `
         <div class="toolbox">
-            <button class="btn btn_icon"><i class="fa-solid fa-arrow-rotate-right"></i></button>
             <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
             <div class="toolbox_spotlight">
                 <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="spotlight">

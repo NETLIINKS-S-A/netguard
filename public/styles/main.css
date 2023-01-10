@@ -631,6 +631,14 @@ table .tbody tr:hover td,
   color: #475469;
   transition: 0.2s all ease-in-out;
 }
+table tbody tr:hover td button,
+table .tbody tr:hover td button,
+.table tbody tr:hover td button,
+.table .tbody tr:hover td button {
+  background-color: #5CBC4F !important;
+  color: #FFF;
+  border-color: #3DA139;
+}
 
 @media screen and (max-width: 1024px) {
   table,
