@@ -11,17 +11,19 @@ export function closeBusinessModal(id) {
 }
 // Open editor
 //
-export async function openBusinessEditor(entity, url, id) {
+export async function openBusinessEditor(entity, url, id, rucInput) {
     let editor = new Modal(id);
     editor.open();
     entityURL = `https://backend.netliinks.com:443/rest/entities/Business/${entity}`;
     let data = await getData(entityURL);
     const entityName = document.getElementById("entityName");
     entityName.innerHTML = data._instanceName;
+    // Clear rucInput in case there is written information
+    clearRucIinput(rucInput);
 }
 // Update data
 //
-export function updateBusinessData(id) {
+export function updateBusinessData(id, rucInput) {
     const businessName = document.getElementById("businessName");
     // get input data
     let raw = JSON.stringify({
@@ -35,9 +37,16 @@ export function updateBusinessData(id) {
         closeBusinessModal(id);
         setTimeout(() => {
             renderBusiness(); // reload changes
-            console.clear(); // clear if some change fail
+            // Clear rucInput in case there is written information
+            clearRucIinput(rucInput);
+            // console.clear() // clear if some change fail
         }, 100);
     }
+}
+function clearRucIinput(ruc) {
+    ruc?.forEach((r) => {
+        r.value = "";
+    });
 }
 export function addNewBusiness(id) {
     let editor = new Modal(id);
@@ -47,4 +56,17 @@ export function addNewBusiness(id) {
 export function saveNewBusiness(id) {
     console.info("this function is under construction");
     closeBusinessModal(id);
+}
+// HANDLE INSERTED NUMBER
+export function handleInput(e) {
+    const input = e.target;
+    if (input?.nextElementSibling && input?.value)
+        input.nextElementSibling.focus();
+}
+// HANDLE CLIPBOARD DATA
+export function handlePaste(e, inputs) {
+    const paste = e.clipboardData.getData("text");
+    inputs?.forEach((input, i) => {
+        input.value = paste[i];
+    });
 }

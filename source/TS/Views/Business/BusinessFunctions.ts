@@ -15,7 +15,7 @@ export function closeBusinessModal(id: string): void {
 
 // Open editor
 //
-export async function openBusinessEditor(entity: string, url: string, id: string): Promise<void> {
+export async function openBusinessEditor(entity: string, url: string, id: string, rucInput: UIElement): Promise<void> {
     let editor = new Modal(id)
     editor.open()
 
@@ -24,11 +24,14 @@ export async function openBusinessEditor(entity: string, url: string, id: string
 
     const entityName: UIElement = document.getElementById("entityName")
     entityName.innerHTML = data._instanceName
+
+    // Clear rucInput in case there is written information
+    clearRucIinput(rucInput)
 }
 
 // Update data
 //
-export function updateBusinessData(id: string) : void {
+export function updateBusinessData(id: string, rucInput: any) : void {
     const businessName: UIElement = document.getElementById("businessName")
     // get input data
     let raw = JSON.stringify({
@@ -42,9 +45,18 @@ export function updateBusinessData(id: string) : void {
         closeBusinessModal(id)
         setTimeout(() => {
             renderBusiness() // reload changes
-            console.clear() // clear if some change fail
+
+            // Clear rucInput in case there is written information
+            clearRucIinput(rucInput)
+            // console.clear() // clear if some change fail
         }, 100)
     }
+}
+
+function clearRucIinput(ruc: any): void {
+    ruc?.forEach((r: any) => {
+        r.value = ""
+    })
 }
 
 export function addNewBusiness(id: string): void {
@@ -56,4 +68,19 @@ export function addNewBusiness(id: string): void {
 export function saveNewBusiness(id: string): void {
     console.info("this function is under construction")
     closeBusinessModal(id)
+}
+
+// HANDLE INSERTED NUMBER
+export function handleInput(e: any): void {
+    const input = e.target
+    if (input?.nextElementSibling && input?.value)
+        input.nextElementSibling.focus()
+}
+
+// HANDLE CLIPBOARD DATA
+export function handlePaste(e: any, inputs: UIElement): void {
+    const paste = e.clipboardData.getData("text")
+    inputs?.forEach((input: any, i: number) => {
+        input.value = paste[i]
+    })
 }

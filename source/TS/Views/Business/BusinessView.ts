@@ -2,7 +2,7 @@
 import { UI } from "../../DOMElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
-import { saveNewBusiness, addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessFunctions.js"
+import { saveNewBusiness, addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData, handleInput, handlePaste } from "./BusinessFunctions.js"
 import { getData } from "../../RequestOptions.js"
 
 let tableRows = UI.tableRows // number of rows to show on tables
@@ -38,7 +38,7 @@ export async function renderBusiness() {
                    EDITOR
         ========================= -->
         <div class="modal" id="editBusiness">
-            <div class="modal_dialog modal_body">
+            <div class="modal_dialog modal_body" style="max-width: 450px !important">
                 <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
 
                 <form autocomplete="off" id="businessEditorForm">
@@ -46,10 +46,26 @@ export async function renderBusiness() {
                         <label for="businessName" class="form_label">Nombre</label>
                         <input class="input" id="businessName" placeholder="Nombre">
                     </div>
+
+                    <div class="input_group">
+                        <div class="rucInputs">
+                            <label for="n1" class="form_label">RUC</label>
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                        </div>
+                    </div>
                 </form>
 
                 <div class="modal_footer">
-                    <button class="btn" id="closeEditor">Cerrar</button>
+                    <button class="btn" id="closeEditor">Cancelar</button>
                     <button class="btn btn_success" id="updateData">Guardar</button>
                 </div>
             </div>
@@ -70,7 +86,7 @@ export async function renderBusiness() {
                 </form>
 
                 <div class="modal_footer">
-                    <button class="btn" id="closeAddNewBusinessModal">Cerrar</button>
+                    <button class="btn" id="closeAddNewBusinessModal">Cancelar</button>
                     <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
                 </div>
             </div>
@@ -194,27 +210,48 @@ export async function renderBusiness() {
         businessModalObjs.edit.open?.forEach((openEditorButton: UIElement) => {
             openEditorButton.addEventListener("click", () => {
                 let entity: string = openEditorButton.dataset.id
-                openBusinessEditor(entity, url, "editBusiness")
+                openBusinessEditor(entity, url, "editBusiness", rucInputs)
             })
         })
         // CloseEditor
         businessModalObjs.edit.close?.addEventListener("click", () => closeBusinessModal("editBusiness"))
         // updateData
-        businessModalObjs.edit.update?.addEventListener("click" ,() => updateBusinessData("editBusiness"))
+        businessModalObjs.edit.update?.addEventListener("click" ,() => updateBusinessData("editBusiness", rucInputs))
         // updateData on Submit
 
         const businessEditorForm = document.getElementById("businessEditorForm")
         businessEditorForm?.addEventListener("submit", (e) => {
             e.preventDefault()
-            updateBusinessData("editBusiness")
+            updateBusinessData("editBusiness", rucInputs)
             displayFilteredItems(tableData, tableBody, tableRows, currentPage)
+        })
+
+        /* ********************************
+        RUC MULTI-INPUT
+        ******************************** */
+        const rucInputs: UIElement = businessEditorForm?.querySelectorAll(".rucInputs input")
+        let rucValue: [] = [] // save data here
+
+        rucInputs[0].addEventListener("paste", (e: EventTarget): void => {
+            handlePaste(e, rucInputs)
+        })
+        businessEditorForm?.addEventListener("input", (e): void => handleInput(e))
+
+        businessEditorForm?.addEventListener("submit", (e): void => {
+            e.preventDefault()
+            rucInputs?.forEach((rucInput: any, i: number) => {
+                // @ts-ignore
+                rucValue.push(rucInput.value)
+            })
+
+            console.log(rucValue)
         })
 
         // updateData on Submit
         const newBusinessForm = document.getElementById("businessEditorForm")
         newBusinessForm?.addEventListener("submit", (e) => {
             e.preventDefault()
-            updateBusinessData("editBusiness")
+            updateBusinessData("editBusiness", rucInputs)
             displayFilteredItems(tableData, tableBody, tableRows, currentPage)
         })
     } // End displayFilteredItems

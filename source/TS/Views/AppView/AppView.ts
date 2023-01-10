@@ -97,7 +97,7 @@ export async function renderAppInterface() {
                     </div>
 
                     <div class="modal_footer">
-                        <button class="btn" id="dismissLogOut">Cerrar</button>
+                        <button class="btn" id="dismissLogOut">Cancelar</button>
 
                         <button class="btn btn_danger" id="logOut">Cerrar sesión</button>
                     </div>
