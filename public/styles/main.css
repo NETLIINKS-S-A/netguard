@@ -302,8 +302,17 @@ img {
   color: #324255;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
+.input:focus {
+  border-color: #2877FF !important;
+}
+.input_block {
+  width: 37px !important;
+  height: 37px;
+  text-align: center;
+  font-size: 18px;
+}
 .input::placeholder {
-  color: #64738C;
+  color: #CCD5E1;
 }
 .input_group {
   margin-top: 20px;
@@ -318,6 +327,7 @@ img {
   width: auto;
   padding: 9px 12px;
   border-width: 1px !important;
+  border-color: #2877FF !important;
 }
 .input_spotlight:focus + .spotlight_label {
   width: 0;
@@ -426,8 +436,8 @@ img {
   z-index: 1010;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 30px 30px;
-  background-color: rgba(30, 41, 59, 0.6);
+  padding: 16px;
+  background-color: rgba(30, 41, 59, 0.8);
   transition: 0.2s all ease;
 }
 .modal_dialog {
@@ -630,6 +640,14 @@ table .tbody tr:hover td,
 .table .tbody tr:hover td {
   color: #475469;
   transition: 0.2s all ease-in-out;
+}
+table tbody tr:hover td button,
+table .tbody tr:hover td button,
+.table tbody tr:hover td button,
+.table .tbody tr:hover td button {
+  background-color: #54B3A4 !important;
+  color: #FFF;
+  border-color: #3D9993;
 }
 
 @media screen and (max-width: 1024px) {

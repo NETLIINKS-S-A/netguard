@@ -1,6 +1,6 @@
 // @filename: BusinessView.ts
-import { UI } from "../../DomElements.js";
-import { addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData } from "./BusinessFunctions.js";
+import { UI } from "../../DOMElements.js";
+import { saveNewBusiness, addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData, handleInput, handlePaste } from "./BusinessFunctions.js";
 import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
@@ -14,8 +14,8 @@ export async function renderBusiness() {
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>ID</th>
-                    <th>Creado por</th>
+                    <th>RUC</th>
+                    <th>Estado</th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,7 +33,7 @@ export async function renderBusiness() {
                    EDITOR
         ========================= -->
         <div class="modal" id="editBusiness">
-            <div class="modal_dialog modal_body">
+            <div class="modal_dialog modal_body" style="max-width: 450px !important">
                 <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
 
                 <form autocomplete="off" id="businessEditorForm">
@@ -41,11 +41,27 @@ export async function renderBusiness() {
                         <label for="businessName" class="form_label">Nombre</label>
                         <input class="input" id="businessName" placeholder="Nombre">
                     </div>
+
+                    <div class="input_group">
+                        <div class="rucInputs">
+                            <label for="n1" class="form_label">RUC</label>
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
+                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                        </div>
+                    </div>
                 </form>
 
                 <div class="modal_footer">
-                    <button class="btn" id="closeEditor">Cerrar</button>
-                    <button class="btn btn_primary" id="updateData">Guardar</button>
+                    <button class="btn" id="closeEditor">Cancelar</button>
+                    <button class="btn btn_success" id="updateData">Guardar</button>
                 </div>
             </div>
         </div>
@@ -53,7 +69,7 @@ export async function renderBusiness() {
         <!-- =========================
             ADD NEW BUSINESS
         ========================= -->
-        <div class="modal" id="addBusiness">
+        <div class="modal" id="addNewBusinessModal">
             <div class="modal_dialog modal_body">
                 <h2 class="modal_title">Crear nueva empresa</h2>
 
@@ -65,8 +81,8 @@ export async function renderBusiness() {
                 </form>
 
                 <div class="modal_footer">
-                    <button class="btn" id="closeCreateBusinessForm">Cerrar</button>
-                    <button class="btn btn_primary" id="updateData">Guardar</button>
+                    <button class="btn" id="closeAddNewBusinessModal">Cancelar</button>
+                    <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
                 </div>
             </div>
         </div>
@@ -75,7 +91,6 @@ export async function renderBusiness() {
     const toolbox = UIApp?.tools;
     toolbox.innerHTML = `
         <div class="toolbox">
-            <button class="btn btn_icon"><i class="fa-solid fa-arrow-rotate-right"></i></button>
             <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
             <div class="toolbox_spotlight">
                 <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="spotlight">
@@ -145,53 +160,72 @@ export async function renderBusiness() {
                 </tr>`;
             wrapper.appendChild(itemElement);
         }
+        const businessModalObjs = {
+            add: {
+                open: document.getElementById("addNewBusiness"),
+                close: document.getElementById("closeAddNewBusinessModal"),
+                save: document.getElementById("saveNewBusiness")
+            },
+            edit: {
+                open: document.querySelectorAll("tr td button"),
+                close: document.getElementById("closeEditor"),
+                update: document.getElementById("updateData"),
+            }
+        };
         /* ********************************
-        BUSINESS EDITOR
+        ADD NEW BUSINESS
+        ******************************** */
+        // Open modal
+        businessModalObjs.add.open?.addEventListener("click", () => addNewBusiness("addNewBusinessModal"));
+        // Close modal
+        businessModalObjs.add.close?.addEventListener("click", () => closeBusinessModal("addNewBusinessModal"));
+        // Save new business
+        businessModalObjs.add.save?.addEventListener("click", () => {
+            saveNewBusiness("addNewBusinessModal");
+        });
+        /* ********************************
+        EDIT BUSINESS
         ******************************** */
         // Open editor
-        const openEditorButtons = document.querySelectorAll("tr td button");
-        openEditorButtons.forEach((openEditorButton) => {
+        businessModalObjs.edit.open?.forEach((openEditorButton) => {
             openEditorButton.addEventListener("click", () => {
                 let entity = openEditorButton.dataset.id;
-                openBusinessEditor(entity, url, "editBusiness");
+                openBusinessEditor(entity, url, "editBusiness", rucInputs);
             });
         });
         // CloseEditor
-        const closeEditor = document.getElementById("closeEditor");
-        closeEditor.addEventListener("click", () => closeBusinessModal("editBusiness"));
+        businessModalObjs.edit.close?.addEventListener("click", () => closeBusinessModal("editBusiness"));
         // updateData
-        const updateData = document.getElementById("updateData");
-        updateData.addEventListener("click", () => {
-            updateBusinessData("editBusiness");
-        });
+        businessModalObjs.edit.update?.addEventListener("click", () => updateBusinessData("editBusiness", rucInputs));
         // updateData on Submit
         const businessEditorForm = document.getElementById("businessEditorForm");
         businessEditorForm?.addEventListener("submit", (e) => {
             e.preventDefault();
-            updateBusinessData("editBusiness");
+            updateBusinessData("editBusiness", rucInputs);
             displayFilteredItems(tableData, tableBody, tableRows, currentPage);
         });
         /* ********************************
-        ADD NEW BUSINESS
+        RUC MULTI-INPUT
         ******************************** */
-        // Open editor
-        const openAddNewBusiness = document.getElementById("addNewBusiness");
-        openAddNewBusiness.addEventListener("click", () => {
-            addNewBusiness("addBusiness");
+        const rucInputs = businessEditorForm?.querySelectorAll(".rucInputs input");
+        let rucValue = []; // save data here
+        rucInputs[0].addEventListener("paste", (e) => {
+            handlePaste(e, rucInputs);
         });
-        // CloseEditor
-        const closeAddBusiness = document.getElementById("closeEditor");
-        closeAddBusiness.addEventListener("click", () => closeBusinessModal("editBusiness"));
-        // write new business
-        const writeBusiness = document.getElementById("updateData");
-        writeBusiness.addEventListener("click", () => {
-            updateBusinessData("editBusiness");
+        businessEditorForm?.addEventListener("input", (e) => handleInput(e));
+        businessEditorForm?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            rucInputs?.forEach((rucInput, i) => {
+                // @ts-ignore
+                rucValue.push(rucInput.value);
+            });
+            console.log(rucValue);
         });
         // updateData on Submit
         const newBusinessForm = document.getElementById("businessEditorForm");
         newBusinessForm?.addEventListener("submit", (e) => {
             e.preventDefault();
-            updateBusinessData("editBusiness");
+            updateBusinessData("editBusiness", rucInputs);
             displayFilteredItems(tableData, tableBody, tableRows, currentPage);
         });
     } // End displayFilteredItems

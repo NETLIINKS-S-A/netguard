@@ -8,8 +8,8 @@
     z-index: 1010;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 30px 30px;
-    background-color: rgba($slategray-900, 0.6);
+    padding: 16px;
+    background-color: rgba($slategray-900, 0.8);
     transition: 0.2s all ease;
 
     &_dialog {

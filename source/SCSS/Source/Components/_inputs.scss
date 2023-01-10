@@ -15,8 +15,19 @@
     color: $slategray-800;
     box-shadow: $input-shadow;
 
+    &:focus {
+        border-color: $blue-500 !important;
+    }
+
+    &_block {
+        width: 37px !important;
+        height: 37px;
+        text-align: center;
+        font-size: 18px;
+    }
+
     &::placeholder {
-        color: $slategray-600;
+        color: $slategray-400;
     }
 
     &_group {
@@ -33,6 +44,7 @@
             width: auto;
             padding: 9px 12px;
             border-width: 1px !important;
+            border-color: $blue-500 !important;
 
             & + .spotlight_label {
                 width: 0;

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input[type=text] {
+            display: inline-block;
+            width: 100%;
+            max-width: 32px;
+            height: 32px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bolder;
+            border: 2px solid #E5E7EA;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px -4px rgba(0,0,0,0.3);
+            outline: none;
+            color: #333;
+        }
+
+        input[type=text]:focus {
+            border-color: blue;
+        }
+
+        input[type=text]::placeholder {
+            color: #E5E7EA;
+        }
+
+        .inputs {
+            display: block;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form name="rucNumber" id="rucname">
+            <div class="inputs">
+                <input type="text" name="n1" maxlength="1" data-ruc="n1" placeholder="0">
+                <input type="text" name="n2" maxlength="1" data-ruc="n2" placeholder="0">
+                <input type="text" name="n3" maxlength="1" data-ruc="n3" placeholder="0">
+                <input type="text" name="n4" maxlength="1" data-ruc="n4" placeholder="0">
+                <input type="text" name="n5" maxlength="1" data-ruc="n5" placeholder="0">
+                <input type="text" name="n6" maxlength="1" data-ruc="n6" placeholder="0">
+                <input type="text" name="n7" maxlength="1" data-ruc="n7" placeholder="0">
+                <input type="text" name="n8" maxlength="1" data-ruc="n8" placeholder="0">
+                <input type="text" name="n9" maxlength="1" data-ruc="n9" placeholder="0">
+                <input type="text" name="n10" maxlength="1" data-ruc="n10" placeholder="0">
+            </div>
+
+            <input type="submit" value="submit">
+            <div id="rsult"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('#rucname')
+        const inputs = form?.querySelectorAll('.inputs input')
+        const result = document.getElementById("rsult")
+        let value = []
+
+        function handleInput(e) {
+            // check for data that was inputted and if there is a next input, focus it
+            const input = e.target
+            if (input.nextElementSibling && input.value) input.nextElementSibling.focus()
+        }
+
+        function handlePaste(e) {
+            const paste = e.clipboardData.getData("text")
+            // loop over each input, and populate with the index of that string
+            inputs.forEach((input, i) => input.value = paste[i])
+        }
+
+        inputs[0].addEventListener('paste', handlePaste)
+
+        form.addEventListener('input', (e) => {
+            handleInput(e)
+        })
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            inputs.forEach((input, i) => {
+                value.push(input.value)
+            })
+            console.log(value)
+        })
+    </script>
+</body>
+</html>

@@ -69,6 +69,12 @@ table,
             &:hover td {
                 color: $slategray-700;
                 transition: 0.2s all ease-in-out;
+
+                & button {
+                    background-color: $primary-500 !important;
+                    color: $white;
+                    border-color: $primary-600;
+                }
             }
         }
     }
