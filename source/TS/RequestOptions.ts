@@ -1,5 +1,5 @@
 // @filename: RequestOptions.ts
-import { UI } from "./DomElements.js";
+import { UI } from "./DOMElements.js";
 
 let requestHeader: Headers = new Headers()
 requestHeader.append("Authorization", `Bearer ${UI.accessToken}`)
@@ -28,8 +28,3 @@ export async function updateData(url: string, raw: any) {
     await fetch(url, PostRequestOption)
             .then(Response => Response.json())
 }
-
-// fetch("https://backend.netliinks.com:443/rest/entities/Business/ab47dc9a-d05d-4e9e-65c5-089a6f0a7418", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
