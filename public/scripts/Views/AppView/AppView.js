@@ -1,6 +1,6 @@
 // @filename: AppView.ts
-import { UI } from "../../DOMElements.js";
-import { renderBusiness } from "../Business/BusinessView.js";
+import { UI } from "../../lib.dom.js";
+import { renderCustomers } from "../CustomerView/CustomerView.js";
 import { renderUsers } from "../Users/UsersView.js";
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js";
 import { getData } from "../../RequestOptions.js";
@@ -99,7 +99,7 @@ export async function renderAppInterface() {
             </div>
             `;
             // render functions
-            document.getElementById("goToBusiness")?.addEventListener("click", (e) => renderBusiness());
+            document.getElementById("goToBusiness")?.addEventListener("click", (e) => renderCustomers());
             document.getElementById("goToUsers")?.addEventListener("click", (e) => renderUsers());
             // Close session functions
             document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"));
@@ -114,7 +114,7 @@ export async function renderAppInterface() {
                 item.classList.add("menu_item-isActive");
             }));
         }
-        renderBusiness();
+        renderCustomers();
     }
     renderInterface(data);
 }

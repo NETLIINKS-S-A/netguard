@@ -1,12 +1,14 @@
-// @filename: BusinessView.ts
+// @filename: BinnacleView.ts
 import { UI } from "../../DOMElements.js";
-import { getData } from "../../RequestOptions.js";
+// import { UI } from "../../DOMElements.js"
+// import { UIElement } from "../../Types/GeneralTypes.js"
+// import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
+// import { closeBusinessModal, MultiInput, NewBusiness, BusinessEditor } from "./BusinessFunctions.js"
+// import { getData } from "../../RequestOptions.js"
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
 export async function renderBusiness() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Customer?fetchPlan=full";
-    let tableData = [];
-    const search = document.querySelector("#spotlight");
+    const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full";
     // BusinesView interface
     const appContent = UIApp?.content;
     appContent.innerHTML = `
@@ -114,44 +116,4 @@ export async function renderBusiness() {
                 <label class="btn btn_icon spotlight_label" for="spotlight"><i class="fa-solid fa-filter"></i></label>
             </div>
         </div>`;
-    const tableBody = document.querySelector("#tableBody");
-    // Table placeholder
-    tableBody.innerHTML = `
-        <tr>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-        </tr>
-
-        <tr>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-        </tr>
-
-        <tr>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-        </tr>`;
-    await search?.addEventListener("keyup", () => {
-        // @ts-ignore
-        const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(search.value.toLowerCase()));
-        let filteredDataResult = filteredDatas.length;
-        if (filteredDataResult >= tableRows)
-            filteredDataResult = tableRows;
-        displayFilteredItems(filteredDatas, tableBody, filteredDataResult, currentPage);
-        setupPagination(filteredDatas, pagination, tableRows);
-    });
-    // const data = await getData(url);
-    tableData = await getData(url);
-    // pagination
-    const pagination = document.getElementById("paginationCounter");
-    let currentPage = 1;
-    // Display data and pagination
-    displayFilteredItems(tableData, tableBody, tableRows, currentPage);
-    setupPagination(tableData, pagination, tableRows);
 }

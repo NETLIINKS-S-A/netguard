@@ -1,6 +1,6 @@
 // @filename: BusinessView.ts
-import { UI } from "../../DOMElements.js";
-import { getData } from "../../RequestOptions.js";
+import { UI } from "../../DOMElements";
+import { getData } from "../../RequestOptions";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
 export async function renderBusiness() {
