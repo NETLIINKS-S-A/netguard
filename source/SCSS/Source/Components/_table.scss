@@ -68,7 +68,7 @@ table,
             }
 
             &:hover td {
-                background-color: $yellow-100;
+                background-color: $slategray-300;
                 color: $slategray-700;
                 transition: 0.2s all ease-in-out;
 
@@ -115,7 +115,6 @@ table,
         tbody,
         .tbody {
             tr {
-                border: 1px solid red;
                 &:last-child {
                     td {
                         &:last-child { border-bottom-right-radius: 5px; }

@@ -39,11 +39,12 @@ table, .table {
 
             &:hover td {
                 color: $slategray-100;
-                background-color: $slategray-900;
+                background-color: $slategray-800;
                 transition: 0.2s all ease-in-out;
 
                 .btn {
                     background-color: $primary-500 !important;
+                    border-color: $slategray-700;
                 }
             }
         }

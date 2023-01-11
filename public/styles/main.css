@@ -522,12 +522,12 @@ img {
   color: #475469;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
-.pagination .active {
+.pagination .isActive {
   border: 1px solid #2877FF;
   background-color: #FFF;
   color: #1D5BDB;
 }
-.pagination .active:hover {
+.pagination .isActive:hover {
   border: 1px solid #2877FF;
   background-color: #D3EAFF;
   color: #1D5BDB;
@@ -645,7 +645,7 @@ table tbody tr:hover td,
 table .tbody tr:hover td,
 .table tbody tr:hover td,
 .table .tbody tr:hover td {
-  background-color: #FFF8CC;
+  background-color: #E2E8F0;
   color: #475469;
   transition: 0.2s all ease-in-out;
 }
@@ -696,12 +696,6 @@ table .thead th,
 .table .thead th {
     padding: 15px 20px;
     text-transform: uppercase;
-  }
-  table tbody tr,
-table .tbody tr,
-.table tbody tr,
-.table .tbody tr {
-    border: 1px solid red;
   }
   table tbody tr:last-child td:last-child,
 table .tbody tr:last-child td:last-child,
@@ -1256,12 +1250,12 @@ table .tbody tr td:first-child,
     border-color: #475469;
     color: #F1F5F9;
   }
-  .pagination .active {
+  .pagination .isActive {
     border: 1px solid #5D9FFF;
     background-color: #1E293B;
     color: #5D9FFF;
   }
-  .pagination .active:hover {
+  .pagination .isActive:hover {
     border: 1px solid #7EB7FF;
     background-color: #324255;
     color: #7EB7FF;
@@ -1321,13 +1315,14 @@ table .tbody tr td:first-child, .table tbody tr td:first-child,
 table .tbody tr:hover td, .table tbody tr:hover td,
 .table .tbody tr:hover td {
     color: #F7FBFC;
-    background-color: #1E293B;
+    background-color: #324255;
     transition: 0.2s all ease-in-out;
   }
   table tbody tr:hover td .btn,
 table .tbody tr:hover td .btn, .table tbody tr:hover td .btn,
 .table .tbody tr:hover td .btn {
     background-color: #54B3A4 !important;
+    border-color: #475469;
   }
 }
 
