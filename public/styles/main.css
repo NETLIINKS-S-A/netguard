@@ -604,13 +604,14 @@ table tbody tr,
 table .tbody tr,
 .table tbody tr,
 .table .tbody tr {
+  border: 1px solid #E2E8F0;
   background-color: inherit;
 }
 table tbody tr:nth-child(even),
 table .tbody tr:nth-child(even),
 .table tbody tr:nth-child(even),
 .table .tbody tr:nth-child(even) {
-  background-color: #F1F5F9;
+  background-color: #F7FBFC;
 }
 table tbody tr:last-child td:last-child,
 table .tbody tr:last-child td:last-child,
@@ -644,6 +645,7 @@ table tbody tr:hover td,
 table .tbody tr:hover td,
 .table tbody tr:hover td,
 .table .tbody tr:hover td {
+  background-color: #FFF8CC;
   color: #475469;
   transition: 0.2s all ease-in-out;
 }
@@ -699,7 +701,7 @@ table .thead th,
 table .tbody tr,
 .table tbody tr,
 .table .tbody tr {
-    border-bottom: 1px solid #E2E8F0;
+    border: 1px solid red;
   }
   table tbody tr:last-child td:last-child,
 table .tbody tr:last-child td:last-child,
@@ -1280,12 +1282,13 @@ table .tbody tr td:first-child,
 table .tbody, .table tbody,
 .table .tbody {
     background-color: inherit;
-    border: 1px solid #475469;
+    border: 1px solid #324255;
   }
   table tbody tr,
 table .tbody tr, .table tbody tr,
 .table .tbody tr {
     background-color: inherit;
+    border: 1px solid #64738C;
   }
   table tbody tr:nth-child(even),
 table .tbody tr:nth-child(even), .table tbody tr:nth-child(even),
@@ -1318,7 +1321,13 @@ table .tbody tr td:first-child, .table tbody tr td:first-child,
 table .tbody tr:hover td, .table tbody tr:hover td,
 .table .tbody tr:hover td {
     color: #F7FBFC;
+    background-color: #1E293B;
     transition: 0.2s all ease-in-out;
+  }
+  table tbody tr:hover td .btn,
+table .tbody tr:hover td .btn, .table tbody tr:hover td .btn,
+.table .tbody tr:hover td .btn {
+    background-color: #54B3A4 !important;
   }
 }
 

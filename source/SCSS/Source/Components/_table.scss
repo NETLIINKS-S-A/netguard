@@ -6,7 +6,7 @@ table,
     appearance: none;
     box-shadow: $box-shadow;
     border-radius: 10px;
-    background-color: $white; // Controls table background
+    background-color: $white;
     overflow: hidden;
     
     thead,
@@ -39,10 +39,11 @@ table,
         border: 1px solid $slategray-300;
         
         tr {
+            border: 1px solid $slategray-300;
             background-color: inherit;
             
             &:nth-child(even) {
-                background-color: $slategray-200;
+                background-color: $slategray-100;
             }
             
             // Define el radio de los últimos datos de las tablas
@@ -67,6 +68,7 @@ table,
             }
 
             &:hover td {
+                background-color: $yellow-100;
                 color: $slategray-700;
                 transition: 0.2s all ease-in-out;
 
@@ -113,8 +115,7 @@ table,
         tbody,
         .tbody {
             tr {
-                border-bottom: 1px solid $slategray-300;
-                // Define el radio de los últimos datos de las tablas
+                border: 1px solid red;
                 &:last-child {
                     td {
                         &:last-child { border-bottom-right-radius: 5px; }

@@ -8,10 +8,11 @@ table, .table {
     tbody,
     .tbody {
         background-color: inherit;
-        border: 1px solid $slategray-700;
+        border: 1px solid $slategray-800;
 
         tr {
             background-color: inherit;
+            border: 1px solid $slategray-600;
 
             &:nth-child(even) {
                 background-color: $slategray-700;
@@ -38,7 +39,12 @@ table, .table {
 
             &:hover td {
                 color: $slategray-100;
+                background-color: $slategray-900;
                 transition: 0.2s all ease-in-out;
+
+                .btn {
+                    background-color: $primary-500 !important;
+                }
             }
         }
     }

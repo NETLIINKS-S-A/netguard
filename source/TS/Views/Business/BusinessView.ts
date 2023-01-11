@@ -9,7 +9,7 @@ let tableRows = UI.tableRows // number of rows to show on tables
 let UIApp = UI.App
 
 export async function renderBusiness() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full"
+    const url = "https://backend.netliinks.com:443/rest/entities/Customer?fetchPlan=full"
 
     // BusinesView interface
     const appContent = UIApp?.content
@@ -124,9 +124,9 @@ export async function renderBusiness() {
     const search: UIElement = document.querySelector("#spotlight")
     const tableBody: UIElement = document.querySelector("#tableBody")
 
-    search?.addEventListener("keyup", (): void => {
+    await search?.addEventListener("keyup", (): void => {
         // @ts-ignore
-        const filteredDatas = tableData.filter(filteredData => `${filteredData.name}`.includes(search.value))
+        const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(search.value.toLowerCase()))
 
         let filteredDataResult = filteredDatas.length
 
@@ -160,6 +160,7 @@ export async function renderBusiness() {
 
     // const data = await getData(url);
     tableData = await getData(url)
+    console.log(tableData)
 
     // pagination
     const pagination: UIElement = document.getElementById("paginationCounter")
@@ -182,7 +183,7 @@ export async function renderBusiness() {
             itemElement.innerHTML = `
                 <tr>
                     <td>${item.name}</td>
-                    <td class="monospace">${item.id}</td>
+                    <td class="monospace">${item.ruc}</td>
                     <td>${item.createdBy}</td>
                     <td>
                         <button class="btn btn_table-editor" data-id="${item.id}">
@@ -310,7 +311,7 @@ export async function renderBusiness() {
             currentPage = page
             displayFilteredItems(items, tableBody, tableRows, currentPage)
 
-            let currentButton: UIElement = document.querySelector('pagination button.active')
+            let currentButton: UIElement = document.querySelector('.pagination button.active')
             currentButton.classList.remove("active")
             button.classList.add("active")
         })

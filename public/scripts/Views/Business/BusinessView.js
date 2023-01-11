@@ -5,7 +5,7 @@ import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
 export async function renderBusiness() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full";
+    const url = "https://backend.netliinks.com:443/rest/entities/Customer?fetchPlan=full";
     // BusinesView interface
     const appContent = UIApp?.content;
     appContent.innerHTML = `
@@ -116,9 +116,9 @@ export async function renderBusiness() {
     let tableData = [];
     const search = document.querySelector("#spotlight");
     const tableBody = document.querySelector("#tableBody");
-    search?.addEventListener("keyup", () => {
+    await search?.addEventListener("keyup", () => {
         // @ts-ignore
-        const filteredDatas = tableData.filter(filteredData => `${filteredData.name}`.includes(search.value));
+        const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(search.value.toLowerCase()));
         let filteredDataResult = filteredDatas.length;
         displayFilteredItems(filteredDatas, tableBody, filteredDataResult, currentPage);
         setupPagination(filteredDatas, pagination, tableRows);
@@ -148,6 +148,7 @@ export async function renderBusiness() {
     `;
     // const data = await getData(url);
     tableData = await getData(url);
+    console.log(tableData);
     // pagination
     const pagination = document.getElementById("paginationCounter");
     let currentPage = 1;
@@ -166,7 +167,7 @@ export async function renderBusiness() {
             itemElement.innerHTML = `
                 <tr>
                     <td>${item.name}</td>
-                    <td>${item.id}</td>
+                    <td class="monospace">${item.ruc}</td>
                     <td>${item.createdBy}</td>
                     <td>
                         <button class="btn btn_table-editor" data-id="${item.id}">
@@ -230,9 +231,7 @@ export async function renderBusiness() {
         const multiInputFirstElems = document.querySelectorAll("[firstMultiInput]");
         const multiInputFuncs = new MultiInput;
         let rucValue = []; // save data here
-        console.log(multiInputFirstElems);
         multiInputFirstElems?.forEach((input, i) => {
-            console.log(input);
             input.addEventListener("paste", (e) => {
                 multiInputFuncs.handlePaste(e, multiInputElems);
             });
@@ -281,7 +280,7 @@ export async function renderBusiness() {
         button.addEventListener("click", () => {
             currentPage = page;
             displayFilteredItems(items, tableBody, tableRows, currentPage);
-            let currentButton = document.querySelector('pagination button.active');
+            let currentButton = document.querySelector('.pagination button.active');
             currentButton.classList.remove("active");
             button.classList.add("active");
         });

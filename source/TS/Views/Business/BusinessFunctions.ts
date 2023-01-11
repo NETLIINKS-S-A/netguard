@@ -16,7 +16,7 @@ export class BusinessEditor {
         let editor = new Modal(id)
         editor.open()
 
-        entityURL = `https://backend.netliinks.com:443/rest/entities/Business/${entity}`
+        entityURL = `https://backend.netliinks.com:443/rest/entities/Customer/${entity}`
         let data = await getData(entityURL)
 
         // write entity name on top of modal
