@@ -43,6 +43,10 @@ function paginationButton(page: FNPHTMLElement, items: [], currentPage: number, 
     button.addEventListener("click", () => {
         currentPage = page
         displayData(items, tableBody, rowsPerPage, currentPage)
+
+        let currentButton: UIElement = document.querySelector('.pagination button.active')
+        currentButton.classList.remove("active")
+        button.classList.add("active")
     })
 
     return button

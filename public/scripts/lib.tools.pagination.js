@@ -30,6 +30,9 @@ function paginationButton(page, items, currentPage, tableBody, rowsPerPage, disp
     button.addEventListener("click", () => {
         currentPage = page;
         displayData(items, tableBody, rowsPerPage, currentPage);
+        let currentButton = document.querySelector('.pagination button.active');
+        currentButton.classList.remove("active");
+        button.classList.add("active");
     });
     return button;
 }
