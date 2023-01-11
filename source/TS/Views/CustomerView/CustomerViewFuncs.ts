@@ -2,7 +2,7 @@
 import { Modal } from "../../Classes"
 import { getData, updateData } from "../../RequestOptions"
 import { UIElement } from "../../Types/GeneralTypes"
-import { renderBusiness } from "./CustomerView";
+import { renderCustomers } from "./CustomerView.js";
 
 let entityURL: string;
 // Close editor
@@ -45,7 +45,7 @@ export class BusinessEditor {
             closeBusinessModal(modalID)
             setTimeout(() => {
                 clearRucIinput(rucInput)
-                renderBusiness() // reload changes
+                renderCustomers() // reload changes
             }, 1000)
         }
     }
