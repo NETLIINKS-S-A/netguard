@@ -14,9 +14,13 @@ export class BusinessEditor {
         editor.open();
         entityURL = `https://backend.netliinks.com:443/rest/entities/Customer/${entity}`;
         let data = await getData(entityURL);
-        // write entity name on top of modal
+        // Write business data on modal window
         const entityName = document.getElementById("entityName");
-        entityName.innerHTML = data._instanceName;
+        const businessName = document.getElementById("businessName");
+        entityName.innerHTML = data.name;
+        businessName.value = data.name;
+        const rucValue = data.ruc;
+        console.log(rucValue);
         // clear multi-input in cas there is written information
         clearRucIinput(rucInput);
     }

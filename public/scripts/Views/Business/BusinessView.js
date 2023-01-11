@@ -120,6 +120,8 @@ export async function renderBusiness() {
         // @ts-ignore
         const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(search.value.toLowerCase()));
         let filteredDataResult = filteredDatas.length;
+        if (filteredDataResult >= tableRows)
+            filteredDataResult = tableRows;
         displayFilteredItems(filteredDatas, tableBody, filteredDataResult, currentPage);
         setupPagination(filteredDatas, pagination, tableRows);
     });

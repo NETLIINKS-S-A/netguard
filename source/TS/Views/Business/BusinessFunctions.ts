@@ -19,9 +19,14 @@ export class BusinessEditor {
         entityURL = `https://backend.netliinks.com:443/rest/entities/Customer/${entity}`
         let data = await getData(entityURL)
 
-        // write entity name on top of modal
+        // Write business data on modal window
         const entityName: UIElement = document.getElementById("entityName")
-        entityName.innerHTML = data._instanceName
+        const businessName: UIElement = document.getElementById("businessName")
+
+        entityName.innerHTML = data.name
+        businessName.value = data.name
+        const rucValue = data.ruc
+        console.log(rucValue)
 
         // clear multi-input in cas there is written information
         clearRucIinput(rucInput)

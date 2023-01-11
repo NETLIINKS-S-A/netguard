@@ -130,6 +130,8 @@ export async function renderBusiness() {
 
         let filteredDataResult = filteredDatas.length
 
+        if (filteredDataResult >= tableRows) filteredDataResult = tableRows
+
         displayFilteredItems(filteredDatas, tableBody, filteredDataResult, currentPage)
         setupPagination(filteredDatas, pagination, tableRows)
     })
