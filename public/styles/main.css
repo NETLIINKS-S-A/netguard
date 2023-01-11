@@ -439,6 +439,8 @@ img {
   padding: 16px;
   background-color: rgba(30, 41, 59, 0.8);
   transition: 0.2s all ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .modal_dialog {
   display: block;

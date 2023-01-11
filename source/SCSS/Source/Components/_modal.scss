@@ -11,6 +11,8 @@
     padding: 16px;
     background-color: rgba($slategray-900, 0.8);
     transition: 0.2s all ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     &_dialog {
         display: block;

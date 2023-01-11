@@ -5,9 +5,7 @@ import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderBusiness } from "./BusinessView.js";
 
 let entityURL: string;
-
 // Close editor
-//
 export function closeBusinessModal(id: string): void {
     let editor = new Modal(id)
     editor.close()
@@ -30,7 +28,6 @@ export async function openBusinessEditor(entity: string, url: string, id: string
 }
 
 // Update data
-//
 export function updateBusinessData(id: string, rucInput: any) : void {
     const businessName: UIElement = document.getElementById("businessName")
     // get input data
@@ -53,34 +50,47 @@ export function updateBusinessData(id: string, rucInput: any) : void {
     }
 }
 
+export class MultiInput {
+    clearInputs(inputs: HTMLElement | any): void {
+        inputs?.forEach((r: any) => {
+            r.value = ""
+        })
+    }
+
+    handleInput(e: any): void {
+        const input = e.target
+        if (input?.nextElementSibling && input?.value)
+            input.nextElementSibling.focus()
+    }
+
+    handlePaste(e: any, inputs: UIElement): void {
+        const paste = e.clipboardData.getData("text")
+        inputs?.forEach((input: any, i: number) => {
+            input.value = paste[i]
+        })
+    }
+}
+
+export class NewBusiness {
+    open(id: string): void {
+        let editorWindow = new Modal(id)
+        editorWindow.open()
+        console.info("this function is under construction")
+    }
+
+    add(id: string): void {
+        closeBusinessModal(id)
+    }
+
+    clearInputs(inputs: UIElement): void {
+        inputs?.forEach((input: any) => {
+            input.value = ""
+        })
+    }
+}
+
 function clearRucIinput(ruc: any): void {
     ruc?.forEach((r: any) => {
         r.value = ""
-    })
-}
-
-export function addNewBusiness(id: string): void {
-    let editor = new Modal(id)
-    editor.open()
-    console.info("this function is under construction")
-}
-
-export function saveNewBusiness(id: string): void {
-    console.info("this function is under construction")
-    closeBusinessModal(id)
-}
-
-// HANDLE INSERTED NUMBER
-export function handleInput(e: any): void {
-    const input = e.target
-    if (input?.nextElementSibling && input?.value)
-        input.nextElementSibling.focus()
-}
-
-// HANDLE CLIPBOARD DATA
-export function handlePaste(e: any, inputs: UIElement): void {
-    const paste = e.clipboardData.getData("text")
-    inputs?.forEach((input: any, i: number) => {
-        input.value = paste[i]
     })
 }
