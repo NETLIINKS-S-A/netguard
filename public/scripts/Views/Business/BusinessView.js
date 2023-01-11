@@ -150,7 +150,6 @@ export async function renderBusiness() {
     `;
     // const data = await getData(url);
     tableData = await getData(url);
-    console.log(tableData);
     // pagination
     const pagination = document.getElementById("paginationCounter");
     let currentPage = 1;
@@ -212,7 +211,7 @@ export async function renderBusiness() {
         businessModalObjs.edit.open?.forEach((openEditorButton) => {
             openEditorButton.addEventListener("click", () => {
                 let entity = openEditorButton.dataset.id;
-                businessEditor.open(entity, url, "editBusiness", multiInputElems);
+                businessEditor.open(entity, "editBusiness", multiInputElems);
             });
         });
         // CloseEditor

@@ -9,7 +9,7 @@ export function closeBusinessModal(id) {
     editor.close();
 }
 export class BusinessEditor {
-    async open(entity, url, id, rucInput) {
+    async open(entity, id, rucInput) {
         let editor = new Modal(id);
         editor.open();
         entityURL = `https://backend.netliinks.com:443/rest/entities/Customer/${entity}`;
@@ -20,7 +20,6 @@ export class BusinessEditor {
         entityName.innerHTML = data.name;
         businessName.value = data.name;
         const rucValue = data.ruc;
-        console.log(rucValue);
         // clear multi-input in cas there is written information
         clearRucIinput(rucInput);
     }
@@ -37,9 +36,9 @@ export class BusinessEditor {
             updateData(entityURL, raw);
             closeBusinessModal(modalID);
             setTimeout(() => {
-                renderBusiness(); // reload changes
                 clearRucIinput(rucInput);
-            }, 100);
+                renderBusiness(); // reload changes
+            }, 1000);
         }
     }
 }

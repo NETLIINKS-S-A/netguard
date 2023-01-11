@@ -162,7 +162,6 @@ export async function renderBusiness() {
 
     // const data = await getData(url);
     tableData = await getData(url)
-    console.log(tableData)
 
     // pagination
     const pagination: UIElement = document.getElementById("paginationCounter")
@@ -232,7 +231,7 @@ export async function renderBusiness() {
         businessModalObjs.edit.open?.forEach((openEditorButton: UIElement) => {
             openEditorButton.addEventListener("click", () => {
                 let entity: string = openEditorButton.dataset.id
-                businessEditor.open(entity, url, "editBusiness", multiInputElems)
+                businessEditor.open(entity, "editBusiness", multiInputElems)
             })
         })
         // CloseEditor
