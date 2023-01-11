@@ -1,6 +1,6 @@
 // @filename: BusinessView.ts
 import { UI } from "../../DOMElements.js";
-import { closeBusinessModal, openBusinessEditor, updateBusinessData, MultiInput, NewBusiness } from "./BusinessFunctions.js";
+import { closeBusinessModal, MultiInput, NewBusiness, BusinessEditor } from "./BusinessFunctions.js";
 import { getData } from "../../RequestOptions.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
@@ -201,32 +201,26 @@ export async function renderBusiness() {
         businessModalObjs.add.save?.addEventListener("click", () => {
             newBusiness.add("addNewBusinessModal");
         });
-        // NEW business on Submit
-        const newBusinessForm = document.getElementById("businessEditorForm");
-        newBusinessForm?.addEventListener("submit", (e) => {
-            e.preventDefault();
-            updateBusinessData("editBusiness", multiInputElems);
-            displayFilteredItems(tableData, tableBody, tableRows, currentPage);
-        });
         /* ********************************
         EDIT BUSINESS
         ******************************** */
+        const businessEditor = new BusinessEditor();
         // Open editor
         businessModalObjs.edit.open?.forEach((openEditorButton) => {
             openEditorButton.addEventListener("click", () => {
                 let entity = openEditorButton.dataset.id;
-                openBusinessEditor(entity, url, "editBusiness", multiInputElems);
+                businessEditor.open(entity, url, "editBusiness", multiInputElems);
             });
         });
         // CloseEditor
         businessModalObjs.edit.close?.addEventListener("click", () => closeBusinessModal("editBusiness"));
         // updateData
-        businessModalObjs.edit.update?.addEventListener("click", () => updateBusinessData("editBusiness", multiInputElems));
+        businessModalObjs.edit.update?.addEventListener("click", () => businessEditor.update("editBusiness", multiInputElems));
         // updateData on Submit
         const businessEditorForm = document.getElementById("businessEditorForm");
         businessEditorForm?.addEventListener("submit", (e) => {
             e.preventDefault();
-            updateBusinessData("editBusiness", multiInputElems);
+            businessEditor.update("editBusiness", multiInputElems);
             displayFilteredItems(tableData, tableBody, tableRows, currentPage);
         });
         /* ********************************

@@ -8,37 +8,35 @@ export function closeBusinessModal(id) {
     let editor = new Modal(id);
     editor.close();
 }
-// Open editor
-//
-export async function openBusinessEditor(entity, url, id, rucInput) {
-    let editor = new Modal(id);
-    editor.open();
-    entityURL = `https://backend.netliinks.com:443/rest/entities/Business/${entity}`;
-    let data = await getData(entityURL);
-    const entityName = document.getElementById("entityName");
-    entityName.innerHTML = data._instanceName;
-    // Clear rucInput in case there is written information
-    clearRucIinput(rucInput);
-}
-// Update data
-export function updateBusinessData(id, rucInput) {
-    const businessName = document.getElementById("businessName");
-    // get input data
-    let raw = JSON.stringify({
-        "name": businessName.value
-    });
-    // preventing rename with a empty value
-    if (businessName.value === "" || businessName.value.trim() === "")
-        closeBusinessModal(id);
-    else {
-        updateData(entityURL, raw);
-        closeBusinessModal(id);
-        setTimeout(() => {
-            renderBusiness(); // reload changes
-            // Clear rucInput in case there is written information
-            clearRucIinput(rucInput);
-            // console.clear() // clear if some change fail
-        }, 100);
+export class BusinessEditor {
+    async open(entity, url, id, rucInput) {
+        let editor = new Modal(id);
+        editor.open();
+        entityURL = `https://backend.netliinks.com:443/rest/entities/Business/${entity}`;
+        let data = await getData(entityURL);
+        // write entity name on top of modal
+        const entityName = document.getElementById("entityName");
+        entityName.innerHTML = data._instanceName;
+        // clear multi-input in cas there is written information
+        clearRucIinput(rucInput);
+    }
+    async update(modalID, rucInput) {
+        const businessName = document.getElementById("businessName");
+        // get inputData
+        let raw = JSON.stringify({
+            "name": businessName.value
+        });
+        // preventing rename with a empty value
+        if (businessName.value === "" || businessName.value.trim() === "")
+            closeBusinessModal(modalID);
+        else {
+            updateData(entityURL, raw);
+            closeBusinessModal(modalID);
+            setTimeout(() => {
+                renderBusiness(); // reload changes
+                clearRucIinput(rucInput);
+            }, 100);
+        }
     }
 }
 export class MultiInput {
