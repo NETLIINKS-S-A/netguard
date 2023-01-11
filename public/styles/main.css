@@ -265,6 +265,10 @@ a, .link {
   color: #CCD5E1;
 }
 
+.monospace {
+  font-family: monospace !important;
+}
+
 button,
 input,
 textarea,
@@ -658,7 +662,7 @@ table .tbody tr:hover td button,
     border-collapse: collapse;
     width: 100%;
     margin-top: 25px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   table thead,
 table .thead,
@@ -691,6 +695,12 @@ table .thead th,
     padding: 15px 20px;
     text-transform: uppercase;
   }
+  table tbody tr,
+table .tbody tr,
+.table tbody tr,
+.table .tbody tr {
+    border-bottom: 1px solid #E2E8F0;
+  }
   table tbody tr:last-child td:last-child,
 table .tbody tr:last-child td:last-child,
 .table tbody tr:last-child td:last-child,
@@ -702,6 +712,12 @@ table .tbody tr:last-child td:first-child,
 .table tbody tr:last-child td:first-child,
 .table .tbody tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
+  }
+  table tbody tr .monospace,
+table .tbody tr .monospace,
+.table tbody tr .monospace,
+.table .tbody tr .monospace {
+    font-size: 12px;
   }
   table tbody tr td,
 table .tbody tr td,

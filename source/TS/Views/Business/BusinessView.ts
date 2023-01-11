@@ -182,7 +182,7 @@ export async function renderBusiness() {
             itemElement.innerHTML = `
                 <tr>
                     <td>${item.name}</td>
-                    <td>${item.id}</td>
+                    <td class="monospace">${item.id}</td>
                     <td>${item.createdBy}</td>
                     <td>
                         <button class="btn btn_table-editor" data-id="${item.id}">
@@ -253,9 +253,7 @@ export async function renderBusiness() {
         const multiInputFuncs: MultiInput = new MultiInput;
         let rucValue: [] = [] // save data here
 
-        console.log(multiInputFirstElems)
         multiInputFirstElems?.forEach((input: UIElement, i: number) => {
-            console.log(input)
             input.addEventListener("paste", (e: SubmitEvent): void => {
                 multiInputFuncs.handlePaste(e, multiInputElems)
             })
