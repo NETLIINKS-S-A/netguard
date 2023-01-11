@@ -1,8 +1,8 @@
 // @filename: BusinessEditor.ts
-import { Modal } from "../../Classes.js"
-import { getData, updateData } from "../../RequestOptions.js"
-import { UIElement } from "../../Types/GeneralTypes.js"
-import { renderBusiness } from "./BusinessView.js";
+import { Modal } from "../../Classes"
+import { getData, updateData } from "../../RequestOptions"
+import { UIElement } from "../../Types/GeneralTypes"
+import { renderBusiness } from "./CustomerView";
 
 let entityURL: string;
 // Close editor
@@ -12,7 +12,7 @@ export function closeBusinessModal(id: string): void {
 }
 
 export class BusinessEditor {
-    async open(entity: string, url: string, id: string, rucInput: UIElement): Promise<void> {
+    async open(entity: string, id: string, rucInput: UIElement): Promise<void> {
         let editor = new Modal(id)
         editor.open()
 
@@ -26,7 +26,6 @@ export class BusinessEditor {
         entityName.innerHTML = data.name
         businessName.value = data.name
         const rucValue = data.ruc
-        console.log(rucValue)
 
         // clear multi-input in cas there is written information
         clearRucIinput(rucInput)
@@ -45,9 +44,9 @@ export class BusinessEditor {
             updateData(entityURL, raw)
             closeBusinessModal(modalID)
             setTimeout(() => {
-                renderBusiness() // reload changes
                 clearRucIinput(rucInput)
-            }, 100)
+                renderBusiness() // reload changes
+            }, 1000)
         }
     }
 }

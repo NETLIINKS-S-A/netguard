@@ -1,12 +1,13 @@
-// @filename: BusinessView.ts
-import { UI } from "../../DOMElements.js";
+// @filename: CustomerView.ts
+import { UI } from "../../lib.dom.js";
 import { getData } from "../../RequestOptions.js";
+import { displayCustomerData } from "./CustomerRenderData.js";
+import { setupPagination } from "../../lib.tools.pagination.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
-export async function renderBusiness() {
+export async function renderCustomers() {
     const url = "https://backend.netliinks.com:443/rest/entities/Customer?fetchPlan=full";
     let tableData = [];
-    const search = document.querySelector("#spotlight");
     // BusinesView interface
     const appContent = UIApp?.content;
     appContent.innerHTML = `
@@ -107,51 +108,53 @@ export async function renderBusiness() {
     // Add tools
     const toolbox = UIApp?.tools;
     toolbox.innerHTML = `
-        <div class="toolbox">
-            <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
-            <div class="toolbox_spotlight">
-                <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="spotlight">
-                <label class="btn btn_icon spotlight_label" for="spotlight"><i class="fa-solid fa-filter"></i></label>
-            </div>
-        </div>`;
+    <div class="toolbox">
+        <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
+        <div class="toolbox_spotlight">
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="searcher">
+            <label class="btn btn_icon spotlight_label" for="searcher"><i class="fa-solid fa-filter"></i></label>
+        </div>
+    </div>`;
+    // HTML ELEMENTS
     const tableBody = document.querySelector("#tableBody");
-    // Table placeholder
-    tableBody.innerHTML = `
-        <tr>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-        </tr>
-
-        <tr>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-        </tr>
-
-        <tr>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-            <td>Cargando...</td>
-        </tr>`;
-    await search?.addEventListener("keyup", () => {
+    const searchElement = document.querySelector("#searcher");
+    const paginationElement = document.getElementById("paginationCounter");
+    let currentPage = 1;
+    // search data on real-time
+    await searchElement?.addEventListener("keyup", () => {
+        console.log("HOLA");
         // @ts-ignore
-        const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(search.value.toLowerCase()));
+        const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(searchElement.value.toLowerCase()));
         let filteredDataResult = filteredDatas.length;
         if (filteredDataResult >= tableRows)
             filteredDataResult = tableRows;
-        displayFilteredItems(filteredDatas, tableBody, filteredDataResult, currentPage);
-        setupPagination(filteredDatas, pagination, tableRows);
+        displayCustomerData(filteredDatas, tableBody, filteredDataResult, currentPage, paginationElement);
     });
+    // Table placeholder
+    tableBody.innerHTML = `
+    <tr>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+    </tr>
+
+    <tr>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+    </tr>
+
+    <tr>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+        <td>Cargando...</td>
+    </tr>`;
     // const data = await getData(url);
     tableData = await getData(url);
-    // pagination
-    const pagination = document.getElementById("paginationCounter");
-    let currentPage = 1;
     // Display data and pagination
-    displayFilteredItems(tableData, tableBody, tableRows, currentPage);
-    setupPagination(tableData, pagination, tableRows);
+    displayCustomerData(tableData, tableBody, tableRows, currentPage, paginationElement);
+    setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayCustomerData);
 }

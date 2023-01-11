@@ -1,7 +1,7 @@
 // @filename: BusinessEditor.ts
-import { Modal } from "../../Classes.js";
-import { getData, updateData } from "../../RequestOptions.js";
-import { renderBusiness } from "./BusinessView.js";
+import { Modal } from "../../Classes";
+import { getData, updateData } from "../../RequestOptions";
+import { renderBusiness } from "./BusinessView";
 let entityURL;
 // Close editor
 export function closeBusinessModal(id) {
