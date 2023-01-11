@@ -9,6 +9,7 @@ const mail = UI.Login?.mail;
 const password = UI.Login?.password;
 form?.addEventListener("submit", (e) => {
     e.preventDefault();
+    // TODO: make modals for this errors
     if (mail?.value === "")
         alert("El campo email está vacío");
     else if (password.value === "")

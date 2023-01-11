@@ -6,16 +6,14 @@ import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js";
 import { getData } from "../../RequestOptions.js";
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
-    const app = UI.App.app;
     const sidebar = document.getElementById("appSidebar");
     const content = UI.App?.app;
     const wrapper = UI.App?.wrapper;
     let data = await getData(url);
     async function renderInterface(interfaceData) {
         if (interfaceData.error)
-            logOut();
+            logOut(); // if any error, close session (in case access token fails)
         else {
-            app.style.display = "flex";
             wrapper.style.display = "block";
             content.style.display = "flex";
             sidebar.style.display = "flex";
@@ -100,6 +98,7 @@ export async function renderAppInterface() {
                 </div>
             </div>
             `;
+            // render functions
             document.getElementById("goToBusiness")?.addEventListener("click", (e) => renderBusiness());
             document.getElementById("goToUsers")?.addEventListener("click", (e) => renderUsers());
             // Close session functions
@@ -110,14 +109,10 @@ export async function renderAppInterface() {
             const menu = document.querySelector(".menu");
             const items = menu?.querySelectorAll(".menu_item");
             // const icons = menu?.querySelectorAll(".fa-regular")
-            items?.forEach(item => {
-                item.addEventListener("click", () => {
-                    items.forEach(item => {
-                        item.classList.remove("menu_item-isActive");
-                    });
-                    item.classList.add("menu_item-isActive");
-                });
-            });
+            items?.forEach(item => item.addEventListener("click", () => {
+                items.forEach(item => item.classList.remove("menu_item-isActive"));
+                item.classList.add("menu_item-isActive");
+            }));
         }
         renderBusiness();
     }

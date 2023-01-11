@@ -4,7 +4,6 @@ import { getData, updateData } from "../../RequestOptions.js";
 import { renderBusiness } from "./BusinessView.js";
 let entityURL;
 // Close editor
-//
 export function closeBusinessModal(id) {
     let editor = new Modal(id);
     editor.close();
@@ -22,7 +21,6 @@ export async function openBusinessEditor(entity, url, id, rucInput) {
     clearRucIinput(rucInput);
 }
 // Update data
-//
 export function updateBusinessData(id, rucInput) {
     const businessName = document.getElementById("businessName");
     // get input data
@@ -43,30 +41,41 @@ export function updateBusinessData(id, rucInput) {
         }, 100);
     }
 }
+export class MultiInput {
+    clearInputs(inputs) {
+        inputs?.forEach((r) => {
+            r.value = "";
+        });
+    }
+    handleInput(e) {
+        const input = e.target;
+        if (input?.nextElementSibling && input?.value)
+            input.nextElementSibling.focus();
+    }
+    handlePaste(e, inputs) {
+        const paste = e.clipboardData.getData("text");
+        inputs?.forEach((input, i) => {
+            input.value = paste[i];
+        });
+    }
+}
+export class NewBusiness {
+    open(id) {
+        let editorWindow = new Modal(id);
+        editorWindow.open();
+        console.info("this function is under construction");
+    }
+    add(id) {
+        closeBusinessModal(id);
+    }
+    clearInputs(inputs) {
+        inputs?.forEach((input) => {
+            input.value = "";
+        });
+    }
+}
 function clearRucIinput(ruc) {
     ruc?.forEach((r) => {
         r.value = "";
-    });
-}
-export function addNewBusiness(id) {
-    let editor = new Modal(id);
-    editor.open();
-    console.info("this function is under construction");
-}
-export function saveNewBusiness(id) {
-    console.info("this function is under construction");
-    closeBusinessModal(id);
-}
-// HANDLE INSERTED NUMBER
-export function handleInput(e) {
-    const input = e.target;
-    if (input?.nextElementSibling && input?.value)
-        input.nextElementSibling.focus();
-}
-// HANDLE CLIPBOARD DATA
-export function handlePaste(e, inputs) {
-    const paste = e.clipboardData.getData("text");
-    inputs?.forEach((input, i) => {
-        input.value = paste[i];
     });
 }

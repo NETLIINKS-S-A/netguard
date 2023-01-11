@@ -2,7 +2,7 @@
 import { UI } from "../../DOMElements.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
-import { saveNewBusiness, addNewBusiness, closeBusinessModal, openBusinessEditor, updateBusinessData, handleInput, handlePaste } from "./BusinessFunctions.js"
+import { closeBusinessModal, openBusinessEditor, updateBusinessData, MultiInput, NewBusiness } from "./BusinessFunctions.js"
 import { getData } from "../../RequestOptions.js"
 
 let tableRows = UI.tableRows // number of rows to show on tables
@@ -50,16 +50,16 @@ export async function renderBusiness() {
                     <div class="input_group">
                         <div class="rucInputs">
                             <label for="n1" class="form_label">RUC</label>
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
-                            <input type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                            <input multiInput firstMultiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
                         </div>
                     </div>
                 </form>
@@ -75,13 +75,29 @@ export async function renderBusiness() {
             ADD NEW BUSINESS
         ========================= -->
         <div class="modal" id="addNewBusinessModal">
-            <div class="modal_dialog modal_body">
+            <div class="modal_dialog modal_body" style="max-width: 450px !important">
                 <h2 class="modal_title">Crear nueva empresa</h2>
 
                 <form autocomplete="off" id="createBusinessForm">
                     <div class="input_group">
                         <label for="businessName" class="form_label">Nombre</label>
                         <input class="input" id="businessName" placeholder="Nombre">
+                    </div>
+
+                    <div class="input_group">
+                        <div class="rucInputs">
+                            <label for="n1" class="form_label">RUC</label>
+                            <input multiInput firstMultiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
+                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                        </div>
                     </div>
                 </form>
 
@@ -181,7 +197,8 @@ export async function renderBusiness() {
             add: {
                 open: document.getElementById("addNewBusiness"),
                 close: document.getElementById("closeAddNewBusinessModal"),
-                save: document.getElementById("saveNewBusiness")
+                save: document.getElementById("saveNewBusiness"),
+                form: document.getElementById("createBusinessForm")
             },
 
             edit: {
@@ -194,13 +211,22 @@ export async function renderBusiness() {
         /* ********************************
         ADD NEW BUSINESS
         ******************************** */
+        let newBusiness: NewBusiness = new NewBusiness()
         // Open modal
-        businessModalObjs.add.open?.addEventListener("click", () => addNewBusiness("addNewBusinessModal"))
+        businessModalObjs.add.open?.addEventListener("click", () => newBusiness.open("addNewBusinessModal"))
         // Close modal
         businessModalObjs.add.close?.addEventListener("click", () => closeBusinessModal("addNewBusinessModal"))
         // Save new business
         businessModalObjs.add.save?.addEventListener("click", () => {
-            saveNewBusiness("addNewBusinessModal")
+            newBusiness.add("addNewBusinessModal")
+        })
+
+        // NEW business on Submit
+        const newBusinessForm = document.getElementById("businessEditorForm")
+        newBusinessForm?.addEventListener("submit", (e) => {
+            e.preventDefault()
+            updateBusinessData("editBusiness", multiInputElems)
+            displayFilteredItems(tableData, tableBody, tableRows, currentPage)
         })
 
         /* ********************************
@@ -210,49 +236,61 @@ export async function renderBusiness() {
         businessModalObjs.edit.open?.forEach((openEditorButton: UIElement) => {
             openEditorButton.addEventListener("click", () => {
                 let entity: string = openEditorButton.dataset.id
-                openBusinessEditor(entity, url, "editBusiness", rucInputs)
+                openBusinessEditor(entity, url, "editBusiness", multiInputElems)
             })
         })
         // CloseEditor
         businessModalObjs.edit.close?.addEventListener("click", () => closeBusinessModal("editBusiness"))
         // updateData
-        businessModalObjs.edit.update?.addEventListener("click" ,() => updateBusinessData("editBusiness", rucInputs))
+        businessModalObjs.edit.update?.addEventListener("click" ,() => updateBusinessData("editBusiness", multiInputElems))
         // updateData on Submit
 
         const businessEditorForm = document.getElementById("businessEditorForm")
         businessEditorForm?.addEventListener("submit", (e) => {
             e.preventDefault()
-            updateBusinessData("editBusiness", rucInputs)
+            updateBusinessData("editBusiness", multiInputElems)
             displayFilteredItems(tableData, tableBody, tableRows, currentPage)
         })
 
         /* ********************************
         RUC MULTI-INPUT
         ******************************** */
-        const rucInputs: UIElement = businessEditorForm?.querySelectorAll(".rucInputs input")
+        const multiInputElems: UIElement = document.querySelectorAll("[multiInput]")
+        const multiInputFirstElems: UIElement = document.querySelectorAll("[firstMultiInput]")
+        const multiInputFuncs: MultiInput = new MultiInput;
         let rucValue: [] = [] // save data here
 
-        rucInputs[0].addEventListener("paste", (e: EventTarget): void => {
-            handlePaste(e, rucInputs)
-        })
-        businessEditorForm?.addEventListener("input", (e): void => handleInput(e))
-
-        businessEditorForm?.addEventListener("submit", (e): void => {
-            e.preventDefault()
-            rucInputs?.forEach((rucInput: any, i: number) => {
-                // @ts-ignore
-                rucValue.push(rucInput.value)
+        console.log(multiInputFirstElems)
+        multiInputFirstElems?.forEach((input: UIElement, i: number) => {
+            console.log(input)
+            input.addEventListener("paste", (e: SubmitEvent): void => {
+                multiInputFuncs.handlePaste(e, multiInputElems)
             })
+        })
+        // multiInputFirstElems?.forEach((item: UIElement, i: number) => {
+        //     item[i].addEventListener("paste", (e: SubmitEvent): void => multiInputFuncs.handlePaste(e, multiInputElems))
+        // })
 
-            console.log(rucValue)
+        multiInputElems[0].addEventListener("paste", (e: SubmitEvent): void => multiInputFuncs.handlePaste(e, multiInputElems))
+        multiInputElems[10].addEventListener("paste", (e: SubmitEvent): void => multiInputFuncs.handlePaste(e, multiInputElems))
+
+        // RUC FROM NEW BUSINESS
+        //
+        // Change to next input when write a value
+        businessEditorForm?.addEventListener("input", (ev: Event): void => multiInputFuncs.handleInput(ev))
+        // save data on rucValue
+        businessEditorForm?.addEventListener("submit", (e: SubmitEvent): void => {
+            e.preventDefault()
+            // @ts-ignore
+            multiInputElems?.forEach((rucInput: any, i: number) => rucValue.push(rucInput.value))
         })
 
-        // updateData on Submit
-        const newBusinessForm = document.getElementById("businessEditorForm")
-        newBusinessForm?.addEventListener("submit", (e) => {
+        // RUC FROM NEW BUSINESS
+        businessModalObjs.add.form?.addEventListener("input", (e): void => multiInputFuncs.handleInput(e))
+        businessModalObjs.add.form?.addEventListener("submit", (e): void => {
             e.preventDefault()
-            updateBusinessData("editBusiness", rucInputs)
-            displayFilteredItems(tableData, tableBody, tableRows, currentPage)
+            // @ts-ignore
+            multiInputElems?.forEach((rucInput: any, i: number) => rucValue.push(rucInput.value))
         })
     } // End displayFilteredItems
 
