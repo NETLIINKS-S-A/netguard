@@ -1,14 +1,14 @@
 .input {
-    background-color: $slategray-800;
-    border-color: $slategray-700;
-    color: $slategray-100;
+    background-color: $gray-800;
+    border-color: $gray-700;
+    color: $gray-100;
 
     &::placeholder {
-        color: $slategray-500;
+        color: $gray-500;
     }
 
     &:focus {
-        border-color: $blue-500;
-        background-color: $slategray-700;
+        border-color: $blue-200;
+        background-color: $gray-800;
     }
 }

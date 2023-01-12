@@ -1,25 +1,25 @@
 .dark {
-    html, body {
-        background-color: $slategray-900;
+    &, html, body {
+        background-color: $gray-900;
     }
 
     .app {
         // date and time
         &_month {
             display: block;
-            color: $neutral-200;
+            color: $gray-200;
         }
 
         &_day {
             display: block;
             font-size: 28px;
             font-weight: $black;
-            color: $slategray-500;
+            color: $gray-500;
         }
 
         &_time {
             display: block;
-            color: $slategray-500;
+            color: $gray-500;
         }
     }
 

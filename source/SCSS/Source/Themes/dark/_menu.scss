@@ -1,18 +1,18 @@
 .menu {
     &_brandname {
-        color: $slategray-100;
+        color: $gray-100;
     }
 
     &_username {
-        color: $slategray-400;
+        color: $gray-400;
     }
 
     &_item {
-        color: $slategray-500;
+        color: $gray-500;
 
         &:hover {
-            background-color: rgba($slategray-900, 0.2);
-            color: $slategray-300;
+            background-color: rgba($gray-900, 0.2);
+            color: $gray-300;
         }
 
         &_name {
@@ -20,10 +20,10 @@
         }
 
         &-isActive {
-            background-color: rgba($slategray-900, 0.5);
+            background-color: rgba($gray-900, 0.5);
 
             .menu_item_name {
-                color: $slategray-100 !important;
+                color: $gray-100 !important;
             }
         }
     }

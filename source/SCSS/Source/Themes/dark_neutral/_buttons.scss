@@ -1,18 +1,18 @@
 // Buttons dark-mode
 .btn {
-    background-color: $gray-800;
-    border-color: $gray-700;
-    color: $gray-100;
+    background-color: $neutral-800;
+    border-color: $neutral-700;
+    color: $neutral-100;
 
     &:hover {
-        background-color: $gray-600;
-        border-color: $gray-500;
-        color: $gray-400;
+        background-color: $neutral-600;
+        border-color: $neutral-500;
+        color: $neutral-400;
     }
 
     &:active {
-        background-color: $gray-700;
-        border-color: $gray-600;
+        background-color: $neutral-700;
+        border-color: $neutral-600;
     }
 
     // Status
@@ -85,19 +85,19 @@
     }
 
     &_table {
-        color: $gray-100;
-        background-color: $gray-800;
-        border-color: $gray-600;
+        color: $neutral-100;
+        background-color: $neutral-800;
+        border-color: $neutral-600;
 
         &:hover {
-            background-color: $gray-600;
-            border-color: $gray-500;
-            color: $gray-400;
+            background-color: $neutral-600;
+            border-color: $neutral-500;
+            color: $neutral-400;
         }
 
         &:active {
-            background-color: $gray-700;
-            border-color: $gray-600;
+            background-color: $neutral-700;
+            border-color: $neutral-600;
         }
     }
 }
