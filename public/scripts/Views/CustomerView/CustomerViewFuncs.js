@@ -1,14 +1,14 @@
 // @filename: BusinessEditor.ts
-import { Modal } from "../../Classes";
-import { getData, updateData } from "../../RequestOptions";
-import { renderBusiness } from "./CustomerView";
+import { Modal } from "../../Classes.js";
+import { getData, updateData } from "../../RequestOptions.js";
+import { renderCustomers } from "./CustomerView.js";
 let entityURL;
 // Close editor
 export function closeBusinessModal(id) {
     let editor = new Modal(id);
     editor.close();
 }
-export class BusinessEditor {
+export class CustomerEditor {
     async open(entity, id, rucInput) {
         let editor = new Modal(id);
         editor.open();
@@ -23,7 +23,7 @@ export class BusinessEditor {
         // clear multi-input in cas there is written information
         clearRucIinput(rucInput);
     }
-    async update(modalID, rucInput) {
+    async update(modalID) {
         const businessName = document.getElementById("businessName");
         // get inputData
         let raw = JSON.stringify({
@@ -36,8 +36,7 @@ export class BusinessEditor {
             updateData(entityURL, raw);
             closeBusinessModal(modalID);
             setTimeout(() => {
-                clearRucIinput(rucInput);
-                renderBusiness(); // reload changes
+                renderCustomers(); // reload changes
             }, 1000);
         }
     }

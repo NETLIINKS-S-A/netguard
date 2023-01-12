@@ -1,8 +1,8 @@
 // @filename: BusinessEditor.ts
-import { Modal } from "../../Classes"
-import { getData, updateData } from "../../RequestOptions"
+import { Modal } from "../../Classes.js"
+import { getData, updateData } from "../../RequestOptions.js"
 import { UIElement } from "../../Types/GeneralTypes"
-import { renderBusiness } from "./CustomerView";
+import { renderCustomers } from "./CustomerView.js";
 
 let entityURL: string;
 // Close editor
@@ -11,7 +11,7 @@ export function closeBusinessModal(id: string): void {
     editor.close()
 }
 
-export class BusinessEditor {
+export class CustomerEditor {
     async open(entity: string, id: string, rucInput: UIElement): Promise<void> {
         let editor = new Modal(id)
         editor.open()
@@ -31,7 +31,7 @@ export class BusinessEditor {
         clearRucIinput(rucInput)
     }
 
-    async update(modalID: string, rucInput: any): Promise<void> {
+    async update(modalID: string,): Promise<void> {
         const businessName: UIElement = document.getElementById("businessName")
         // get inputData
         let raw = JSON.stringify({
@@ -44,8 +44,7 @@ export class BusinessEditor {
             updateData(entityURL, raw)
             closeBusinessModal(modalID)
             setTimeout(() => {
-                clearRucIinput(rucInput)
-                renderBusiness() // reload changes
+                renderCustomers() // reload changes
             }, 1000)
         }
     }

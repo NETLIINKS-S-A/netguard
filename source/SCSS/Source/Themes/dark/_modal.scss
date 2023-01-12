@@ -1,0 +1,13 @@
+.modal {
+    background-color: rgba($gray-900, 0.8);
+
+    &_dialog {
+        background-color: $gray-800;
+        border: 1px solid $gray-700;
+    }
+}
+
+.open .modal_dialog {
+    opacity: 1;
+    transform: rotateY(0);
+}

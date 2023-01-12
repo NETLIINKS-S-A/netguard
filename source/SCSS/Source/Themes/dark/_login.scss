@@ -1,0 +1,39 @@
+.login {
+    background-image: url("../pictures/login_background-dark.png");
+    
+    &_window {
+        border: 1px solid $gray-700;
+        box-shadow: $box-shadow;
+        background-color: $gray-800;
+    }
+
+    &_showcase {
+        .text {
+            h4 { color: $white; }
+
+            p { color: $gray-500;}
+        }
+    }
+
+    &_body {
+        h1 {
+            color: $white;
+        }
+
+        p {
+            color: $gray-500;
+        }
+    }
+
+    &_footer {
+        .icon_banner {
+            .fa_duotone {
+                color: $gray-500;
+            }
+        }
+
+        p {
+            color: $gray-500;
+        }
+    }
+}

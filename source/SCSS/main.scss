@@ -11,7 +11,9 @@
 @import './Source/Components/menu';
 @import './Source/Components/modal';
 @import './Source/Components/pagination';
+@import './Source/Components/states';
 @import './Source/Components/table';
+@import './Source/Components/toggle';
 
 // VIEWS
 @import './Source/Modules/date';
@@ -20,3 +22,5 @@
 
 // DARK MODE
 @import './Source/Themes/dark';
+@import './Source/Themes/dark_slategray';
+@import './Source/Themes/dark_neutral';

@@ -38,11 +38,15 @@ function paginationButton(page: FNPHTMLElement, items: [], currentPage: number, 
     const button : UIElement = document.createElement("button")
     button.innerText = page
 
-    if (currentPage == page) button.classList.add("active")
+    if (currentPage == page) button.classList.add("isActive")
 
     button.addEventListener("click", () => {
         currentPage = page
         displayData(items, tableBody, rowsPerPage, currentPage)
+
+        let currentButton: UIElement = document.querySelector('.pagination button.isActive')
+        currentButton.classList.remove("isActive")
+        button.classList.add("isActive")
     })
 
     return button
