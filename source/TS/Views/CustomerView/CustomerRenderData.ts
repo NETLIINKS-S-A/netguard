@@ -1,7 +1,10 @@
-// @filename: CustomerPagination.ts
+// @filename: CustomerRenderData.ts
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
+import { UIElement } from "../../Types/GeneralTypes.js"
+import { CustomerEditor, MultiInput, closeBusinessModal } from "./CustomerViewFuncs.js"
+
 /**
  *
  * @param items - The saved data and filtered data (tableData)
@@ -12,11 +15,6 @@ DISPLAY TABLE DATA AND FILTERED TABLE DATA
 export async function displayCustomerData(items: any, tableBody: any, rowsPerPage: number, page: number, paginationElement?: any): Promise<void> {
     tableBody.innerHTML = ""
     page--
-    console.log("Hola")
-    console.log(items)
-    console.log(tableBody)
-    console.log(rowsPerPage)
-    console.log(page)
 
     let start = rowsPerPage * page
     let end = start + rowsPerPage
@@ -37,63 +35,29 @@ export async function displayCustomerData(items: any, tableBody: any, rowsPerPag
         </tr>`
         // write datas on table
         tableBody.appendChild(itemElement)
-        console.log("Hola")
     }
+
+    // CUSTOMER EDITOR ================================================
+    // elements
+    const editorButtonElements: UIElement = document.querySelectorAll("tr td button")
+    const closeEditorButtonElement : UIElement = document.getElementById("closeEditor")
+    const updateCustomerEntityElement : UIElement = document.getElementById("updateCutomerEntity")
+
+    // functions
+    const customerEditor: CustomerEditor = new CustomerEditor()
+    editorButtonElements.forEach((btn: UIElement) => {
+        btn.addEventListener("click", () => {
+            let entity: string = btn.dataset.id
+            customerEditor.open(entity, "editBusiness", MultiInput)
+        })
+    })
+    closeEditorButtonElement.addEventListener("click", () => closeBusinessModal("editBusiness"))
+    updateCustomerEntityElement.addEventListener("click", () => {
+        customerEditor.update("editBusiness")
+    })
+
+    // CUSTOMER CREATOR ================================================
 }
-
-//     function setupPagination(items: any, wrapper: any, rowsPerPage: any) {
-//         wrapper.innerHTML = ""
-//         let pageCount = Math.ceil(items.length / rowsPerPage)
-
-//         for (let i = 1; i < pageCount + 1; i++) {
-//             let btn: UIElement = paginationButton(i, items)
-//             wrapper.appendChild(btn)
-//         }
-//     }
-
-//     // Create and add pagination buttons
-//     function paginationButton(page: FNPHTMLElement, items: FNPHTMLElement) {
-//         let button: UIElement = document.createElement("button")
-//         button.innerText = page
-
-//         if (currentPage == page) button.classList.add("active")
-
-//         button.addEventListener("click", () => {
-//             currentPage = page
-//             displayFilteredItems(items, tableBody, tableRows, currentPage)
-
-//             let currentButton: UIElement = document.querySelector('.pagination button.active')
-//             currentButton.classList.remove("active")
-//             button.classList.add("active")
-//         })
-
-//         return button
-//     }
-
-// function displayFilteredItems(items: any, wrapper: any, rowsPerPage: any, page: any) {
-//         wrapper.innerHTML = ""
-//         page--
-
-//         let start = rowsPerPage * page
-//         let end = start + rowsPerPage
-//         let paginatedItems = items.slice(start, end)
-
-//         for (let i = 0; i < paginatedItems.length; i++) {
-//             let item = paginatedItems[i]
-//             let itemElement = document.createElement("tr")
-//             itemElement.innerHTML = `
-//                 <tr>
-//                     <td>${item.name}</td>
-//                     <td class="monospace">${item.ruc}</td>
-//                     <td>${item.createdBy}</td>
-//                     <td>
-//                         <button class="btn btn_table-editor" data-id="${item.id}">
-//                             <i class="fa-solid fa-pencil"></i>
-//                         </button>
-//                     </td>
-//                 </tr>`
-//             wrapper.appendChild(itemElement)
-//         }
 
 //         const businessModalObjs = {
 //             add: {
@@ -103,11 +67,6 @@ export async function displayCustomerData(items: any, tableBody: any, rowsPerPag
 //                 form: document.getElementById("createBusinessForm")
 //             },
 
-//             edit: {
-//                 open: document.querySelectorAll("tr td button"),
-//                 close: document.getElementById("closeEditor"),
-//                 update: document.getElementById("updateData"),
-//             }
 //         }
 
 //         /* ********************************
@@ -123,29 +82,9 @@ export async function displayCustomerData(items: any, tableBody: any, rowsPerPag
 //             newBusiness.add("addNewBusinessModal")
 //         })
 
-//         /* ********************************
-//         EDIT BUSINESS
-//         ******************************** */
-//         const businessEditor: BusinessEditor = new BusinessEditor()
-//         // Open editor
-//         businessModalObjs.edit.open?.forEach((openEditorButton: UIElement) => {
-//             openEditorButton.addEventListener("click", () => {
-//                 let entity: string = openEditorButton.dataset.id
-//                 businessEditor.open(entity, "editBusiness", multiInputElems)
-//             })
-//         })
-//         // CloseEditor
-//         businessModalObjs.edit.close?.addEventListener("click", () => closeBusinessModal("editBusiness"))
 //         // updateData
 //         businessModalObjs.edit.update?.addEventListener("click" ,() => businessEditor.update("editBusiness", multiInputElems))
 //         // updateData on Submit
-
-//         const businessEditorForm = document.getElementById("businessEditorForm")
-//         businessEditorForm?.addEventListener("submit", (e) => {
-//             e.preventDefault()
-//             businessEditor.update("editBusiness", multiInputElems)
-//             displayFilteredItems(tableData, tableBody, tableRows, currentPage)
-//         })
 
 //         /* ********************************
 //         RUC MULTI-INPUT
@@ -186,36 +125,3 @@ export async function displayCustomerData(items: any, tableBody: any, rowsPerPag
 //             multiInputElems?.forEach((rucInput: any, i: number) => rucValue.push(rucInput.value))
 //         })
 //     } // End displayFilteredItems
-
-//     /* ********************************
-//     PAGINATION
-//     ******************************** */
-//     // calculate pagination items
-//     function setupPagination(items: any, wrapper: any, rowsPerPage: any) {
-//         wrapper.innerHTML = ""
-//         let pageCount = Math.ceil(items.length / rowsPerPage)
-
-//         for (let i = 1; i < pageCount + 1; i++) {
-//             let btn: UIElement = paginationButton(i, items)
-//             wrapper.appendChild(btn)
-//         }
-//     }
-
-//     // Create and add pagination buttons
-//     function paginationButton(page: FNPHTMLElement, items: FNPHTMLElement) {
-//         let button: UIElement = document.createElement("button")
-//         button.innerText = page
-
-//         if (currentPage == page) button.classList.add("active")
-
-//         button.addEventListener("click", () => {
-//             currentPage = page
-//             displayFilteredItems(items, tableBody, tableRows, currentPage)
-
-//             let currentButton: UIElement = document.querySelector('.pagination button.active')
-//             currentButton.classList.remove("active")
-//             button.classList.add("active")
-//         })
-
-//         return button
-//     }

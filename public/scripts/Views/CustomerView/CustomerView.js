@@ -34,7 +34,7 @@ export async function renderCustomers() {
         <!-- =========================
                    EDITOR
         ========================= -->
-        <div class="modal" id="editBusiness">
+        <div class="modal open" id="editBusiness" style="display: block">
             <div class="modal_dialog modal_body" style="max-width: 450px !important">
                 <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
 
@@ -45,25 +45,24 @@ export async function renderCustomers() {
                     </div>
 
                     <div class="input_group">
-                        <div class="rucInputs">
-                            <label for="n1" class="form_label">RUC</label>
-                            <input multiInput firstMultiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                    </div>
+
+                    <div class="form_group">
+                        <div class="input_group customerStatus">
+                            <label for="customerStatus" class="form_label">Estado: inactivo</label>
+                            <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
+                        </div>
+
+                        <div class="input_group">
+                            <label for="vehicularEntrance" class="form_label">Ingreso vehicular: no</label>
+                            <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
                         </div>
                     </div>
                 </form>
 
                 <div class="modal_footer">
                     <button class="btn" id="closeEditor">Cancelar</button>
-                    <button class="btn btn_success" id="updateData">Guardar</button>
+                    <button class="btn btn_success" id="updateCutomerEntity">Guardar</button>
                 </div>
             </div>
         </div>
