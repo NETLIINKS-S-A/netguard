@@ -16,19 +16,19 @@ export async function displayUserData(items: any, tableBody: any, rowsPerPage: n
     tableBody.innerHTML = ""
     page--
 
-    let start = rowsPerPage * page
-    let end = start + rowsPerPage
-    let paginatedItems = items.slice(start, end)
+    let start: number = rowsPerPage * page
+    let end: number = start + rowsPerPage
+    let paginatedItems: any = items.slice(start, end)
     console.log(items[0].userType)
 
     for (let i = 0; i < paginatedItems.length; i++) {
         let user = paginatedItems[i]
         let itemElement = document.createElement("tr")
         itemElement.innerHTML = `<tr>
-            <td>${user.firstName} ${user.lastName}</td>
+            <td>${user?.firstName} ${user?.lastName}</td>
             <td class="monospace">${user.email}</td>
             <td class="userState"><i>${user.state._instanceName}</i></td>
-            <td>${user.citadel.description}</td>
+            <td>${user.citadel?.description}</td>
             <td>${user.userType}</td>
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>

@@ -6,7 +6,7 @@
  * @param currentPage - Actual page (1)
  * @param tableBody - the table body
  */
-export function setupPagination(items, wrapper, rowsPerPage, currentPage, dataType, tableBody, displayFunc) {
+export function setupPagination(items, wrapper, rowsPerPage, currentPage, tableBody, displayFunc) {
     wrapper.innerHTML = "";
     let pageCount = Math.ceil(items.length / rowsPerPage);
     for (let i = 1; i < pageCount + 1; i++) {

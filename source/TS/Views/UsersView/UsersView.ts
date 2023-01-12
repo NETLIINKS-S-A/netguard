@@ -161,6 +161,8 @@ export async function renderUsers() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
+        <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
+        <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
 
     <tr>
@@ -168,14 +170,15 @@ export async function renderUsers() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
+        <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
+        <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`
         // const data = await getData(url);
         tableData = await getData(url)
-        let dataType = "CUSTOMER"
 
-        displayUserData(tableData, tableBody, tableRows, currentPage, paginationElement)
-        setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayUserData, dataType)
         // Display data and pagination
+        displayUserData(tableData, tableBody, tableRows, currentPage, paginationElement)
+        setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayUserData)
 
         // Customer Status
         const toggleStatus: UIElement = document.getElementById("customerStatus")
@@ -193,4 +196,6 @@ export async function renderUsers() {
             if (toggleVehicularEntrace?.checked == true) customerVehicularEntranceLabel.innerHTML = "si"
             else customerVehicularEntranceLabel.innerHTML = "no"
         })
+
+        console.log(tableData)
 }

@@ -31,10 +31,10 @@ export class UserEditor {
         });
         // preventing rename with a empty value
         if (businessName.value === "" || businessName.value.trim() === "")
-            closeBusinessModal(modalID);
+            alert("Debe completar todos los campos");
         else {
             updateData(entityURL, raw);
-            closeBusinessModal(modalID);
+            closeUserModal(modalID);
             setTimeout(() => {
                 renderUsers(); // reload changes
             }, 1000);
@@ -66,7 +66,7 @@ export class newUser {
         console.info("this function is under construction");
     }
     add(id) {
-        closeBusinessModal(id);
+        closeUserModal(id);
     }
     clearInputs(inputs) {
         inputs?.forEach((input) => {

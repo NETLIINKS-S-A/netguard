@@ -15,7 +15,6 @@ export function setupPagination(
     wrapper: UIElement,
     rowsPerPage: number,
     currentPage: number,
-    dataType?: string,
     tableBody?: UIElement,
     displayFunc?: any): void {
         wrapper.innerHTML = ""
