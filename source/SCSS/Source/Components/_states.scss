@@ -1,0 +1,19 @@
+@mixin userState {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: $bold;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    color: $white;
+    border-radius: 20px;
+}
+
+.user_active {
+    @include userState();
+    background-color: $green-500;
+}
+
+.user_inactive {
+    @include userState();
+    background-color: $red-600;
+}

@@ -549,6 +549,28 @@ img {
   font-size: 20px;
 }
 
+.user_active {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: #FFF;
+  border-radius: 20px;
+  background-color: #5CBC4F;
+}
+
+.user_inactive {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: #FFF;
+  border-radius: 20px;
+  background-color: #DB312E;
+}
+
 table,
 .table {
   border-collapse: collapse;

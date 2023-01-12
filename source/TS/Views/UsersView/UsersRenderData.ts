@@ -1,9 +1,9 @@
-// @filename: CustomerRenderData.ts
+// @filename: UsersRenderData.ts
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { UIElement } from "../../Types/GeneralTypes.js"
-import { CustomerEditor, MultiInput, closeBusinessModal } from "./CustomerViewFuncs.js"
+import { UserEditor, MultiInput, closeUserModal } from "./UsersViewFuncs.js"
 
 /**
  *
@@ -12,29 +12,38 @@ import { CustomerEditor, MultiInput, closeBusinessModal } from "./CustomerViewFu
  * @param rowsPerPage - The quantity rows show per page (tableRows)
  * @param page - The current page
  */
-export async function displayCustomerData(items: any, tableBody: any, rowsPerPage: number, page: number, paginationElement?: any): Promise<void> {
+export async function displayUserData(items: any, tableBody: any, rowsPerPage: number, page: number, paginationElement?: any): Promise<void> {
     tableBody.innerHTML = ""
     page--
 
     let start = rowsPerPage * page
     let end = start + rowsPerPage
     let paginatedItems = items.slice(start, end)
+    console.log(items[0].userType)
 
     for (let i = 0; i < paginatedItems.length; i++) {
-        let customer = paginatedItems[i]
+        let user = paginatedItems[i]
         let itemElement = document.createElement("tr")
         itemElement.innerHTML = `<tr>
-            <td>${customer.name}</td>
-            <td class="monospace">${customer.ruc}</td>
-            <td>${customer.createdBy}</td>
-            <td>
-                <button class="btn btn_table-editor" data-id="${customer.id}">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
+            <td>${user.firstName} ${user.lastName}</td>
+            <td class="monospace">${user.email}</td>
+            <td class="userState"><i>${user.state._instanceName}</i></td>
+            <td>${user.citadel.description}</td>
+            <td>${user.userType}</td>
+            <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
+            <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`
+
         // write datas on table
         tableBody.appendChild(itemElement)
+
+        // states
+        const states: UIElement = document.querySelectorAll(".userState i")
+        states?.forEach((userState: UIElement) => {
+            if (userState.innerText == "Enabled") userState.classList.add("user_active"), userState.innerText = "Activo"
+            else if (userState.innerText == "Disabled") userState.classList.add("user_inactive"), userState.innerText = "Inactivo"
+        })
     }
 
     // CUSTOMER EDITOR ================================================
@@ -44,16 +53,16 @@ export async function displayCustomerData(items: any, tableBody: any, rowsPerPag
     const updateCustomerEntityElement : UIElement = document.getElementById("updateCutomerEntity")
 
     // functions
-    const customerEditor: CustomerEditor = new CustomerEditor()
+    const userEditor: UserEditor = new UserEditor()
     editorButtonElements.forEach((btn: UIElement) => {
         btn.addEventListener("click", () => {
             let entity: string = btn.dataset.id
-            customerEditor.open(entity, "editBusiness", MultiInput)
+            userEditor.open(entity, "editBusiness", MultiInput)
         })
     })
-    closeEditorButtonElement.addEventListener("click", () => closeBusinessModal("editBusiness"))
+    closeEditorButtonElement.addEventListener("click", () => closeUserModal("editBusiness"))
     updateCustomerEntityElement.addEventListener("click", () => {
-        customerEditor.update("editBusiness")
+        userEditor.update("editBusiness")
     })
 
     // CUSTOMER CREATOR ================================================

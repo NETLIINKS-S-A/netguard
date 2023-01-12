@@ -1,23 +1,26 @@
-// @filename: CustomerView.ts
+// @filename: UsersView.ts
 import { UI } from "../../lib.dom.js";
 import { getData } from "../../RequestOptions.js";
-import { displayCustomerData } from "./CustomerRenderData.js";
 import { setupPagination } from "../../lib.tools.pagination.js";
+import { displayUserData } from "./UsersRenderData.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
-export async function renderCustomers() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Customer?fetchPlan=full";
+export async function renderUsers() {
+    const url = "https://backend.netliinks.com:443/rest/entities/User?fetchPlan=full";
     let tableData = [];
     // BusinesView interface
     const appContent = UIApp?.content;
     appContent.innerHTML = `
-        <h1 class="app_title">Empresas</h1>
+        <h1 class="app_title">Clientes</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>RUC</th>
+                    <th>ID</th>
                     <th>Estado</th>
+                    <th>Ciudadela</th>
+                    <th>Tipo</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -130,7 +133,7 @@ export async function renderCustomers() {
         let filteredDataResult = filteredDatas.length;
         if (filteredDataResult >= tableRows)
             filteredDataResult = tableRows;
-        displayCustomerData(filteredDatas, tableBody, filteredDataResult, currentPage, paginationElement);
+        displayUserData(filteredDatas, tableBody, filteredDataResult, currentPage, paginationElement);
     });
     // Table placeholder
     tableBody.innerHTML = `
@@ -139,6 +142,8 @@ export async function renderCustomers() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
+        <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
+        <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
 
     <tr>
@@ -156,9 +161,10 @@ export async function renderCustomers() {
     </tr>`;
     // const data = await getData(url);
     tableData = await getData(url);
+    let dataType = "CUSTOMER";
+    displayUserData(tableData, tableBody, tableRows, currentPage, paginationElement);
+    setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayUserData, dataType);
     // Display data and pagination
-    displayCustomerData(tableData, tableBody, tableRows, currentPage, paginationElement);
-    setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayCustomerData);
     // Customer Status
     const toggleStatus = document.getElementById("customerStatus");
     const customerStatusLabel = document.getElementById("customerStatusLabel");
