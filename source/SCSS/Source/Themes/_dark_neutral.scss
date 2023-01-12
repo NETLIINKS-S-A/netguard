@@ -1,0 +1,38 @@
+.dark_neutral {
+    &, html, body {
+        background-color: $neutral-900;
+    }
+
+    .app {
+        // date and time
+        &_month {
+            display: block;
+            color: $neutral-200;
+        }
+
+        &_day {
+            display: block;
+            font-size: 28px;
+            font-weight: $black;
+            color: $neutral-500;
+        }
+
+        &_time {
+            display: block;
+            color: $neutral-500;
+        }
+    }
+
+    @import './dark_neutral/alerts';
+    @import './dark_neutral/buttons';
+    @import './dark_neutral/fonts';
+    @import './dark_neutral/form';
+    @import './dark_neutral/inputs';
+    @import './dark_neutral/login';
+    @import './dark_neutral/menu';
+    @import './dark_neutral/modal';
+    @import './dark_neutral/pagination';
+    @import './dark_neutral/sidebar';
+    @import './dark_neutral/table';
+    @import './dark_neutral/toggle';
+}

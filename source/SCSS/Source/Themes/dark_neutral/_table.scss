@@ -1,0 +1,57 @@
+table, .table {
+    background-color: $neutral-800; // Controls table background
+
+    thead, .thead {
+        background-color: $primary-600;
+    }
+
+    tbody,
+    .tbody {
+        background-color: inherit;
+        border: 1px solid $neutral-800;
+
+        tr {
+            background-color: inherit;
+            border: 1px solid $neutral-600;
+
+            &:nth-child(even) {
+                background-color: $neutral-700;
+            }
+
+            // Define el radio de los últimos datos de las tablas
+            &:last-child {
+                td {
+                    &:last-child { border-bottom-right-radius: 10px; }
+
+                    &:first-child { border-bottom-left-radius: 10px; }
+                }
+            }
+
+            td {
+                color: $neutral-400;
+
+                &:first-child {
+                    font-weight: $medium;
+                    color: $neutral-100;
+                    padding-left: 20px;
+                }
+            }
+
+            &:hover td {
+                color: $neutral-100;
+                background-color: $neutral-800;
+                transition: 0.2s all ease-in-out;
+
+                .btn_table-editor {
+                    background-color: $primary-500 !important;
+                    border-color: $neutral-700;
+                }
+
+                .btn_table-delete {
+                    background-color: $red-500 !important;
+                    border-color: $red-700;
+                }
+            }
+        }
+    }
+}

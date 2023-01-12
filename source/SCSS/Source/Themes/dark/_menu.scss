@@ -1,0 +1,30 @@
+.menu {
+    &_brandname {
+        color: $gray-100;
+    }
+
+    &_username {
+        color: $gray-400;
+    }
+
+    &_item {
+        color: $gray-500;
+
+        &:hover {
+            background-color: rgba($gray-900, 0.2);
+            color: $gray-300;
+        }
+
+        &_name {
+            display: inline-block;
+        }
+
+        &-isActive {
+            background-color: rgba($gray-900, 0.5);
+
+            .menu_item_name {
+                color: $gray-100 !important;
+            }
+        }
+    }
+}

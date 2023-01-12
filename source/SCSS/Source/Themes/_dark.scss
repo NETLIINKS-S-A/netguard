@@ -1,38 +1,38 @@
-@media screen and (prefers-color-scheme: dark) {
-    html, body {
-        background-color: $slategray-900;
+.dark {
+    &, html, body {
+        background-color: $gray-900;
     }
 
     .app {
         // date and time
         &_month {
             display: block;
-            color: $neutral-200;
+            color: $gray-200;
         }
 
         &_day {
             display: block;
             font-size: 28px;
             font-weight: $black;
-            color: $slategray-500;
+            color: $gray-500;
         }
 
         &_time {
             display: block;
-            color: $slategray-500;
+            color: $gray-500;
         }
     }
 
-    @import './components/alerts';
-    @import './components/buttons';
-    @import './components/fonts';
-    @import './components/form';
-    @import './components/inputs';
-    @import './components/login';
-    @import './components/menu';
-    @import './components/modal';
-    @import './components/pagination';
-    @import './components/sidebar';
-    @import './components/table';
-    @import './components/toggle';
+    @import './dark/alerts';
+    @import './dark/buttons';
+    @import './dark/fonts';
+    @import './dark/form';
+    @import './dark/inputs';
+    @import './dark/login';
+    @import './dark/menu';
+    @import './dark/modal';
+    @import './dark/pagination';
+    @import './dark/sidebar';
+    @import './dark/table';
+    @import './dark/toggle';
 }
