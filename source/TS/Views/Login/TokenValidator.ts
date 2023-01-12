@@ -1,5 +1,5 @@
 // @filename: TokenValidator.ts
-import { UI } from "../../DOMElements.js"
+import { UI } from "../../lib.dom.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderAppInterface } from "../AppView/AppView.js"
 

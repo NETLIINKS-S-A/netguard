@@ -2,7 +2,7 @@
 import { UI } from "../../lib.dom.js"
 import { UIElement } from "../../Types/GeneralTypes.js"
 import { renderCustomers } from "../CustomerView/CustomerView.js"
-import { renderUsers } from "../Users/UsersView.js"
+import { renderUsers } from "../UsersView/UsersView.js"
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
 import { getData } from "../../RequestOptions.js"
 
@@ -121,7 +121,7 @@ export async function renderAppInterface() {
                 }))
         }
 
-        renderCustomers()
+        renderUsers()
     }
 
     renderInterface(data)

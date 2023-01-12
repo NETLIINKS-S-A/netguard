@@ -26,10 +26,13 @@ function paginationButton(page, items, currentPage, tableBody, rowsPerPage, disp
     const button = document.createElement("button");
     button.innerText = page;
     if (currentPage == page)
-        button.classList.add("active");
+        button.classList.add("isActive");
     button.addEventListener("click", () => {
         currentPage = page;
         displayData(items, tableBody, rowsPerPage, currentPage);
+        let currentButton = document.querySelector('.pagination button.isActive');
+        currentButton.classList.remove("isActive");
+        button.classList.add("isActive");
     });
     return button;
 }

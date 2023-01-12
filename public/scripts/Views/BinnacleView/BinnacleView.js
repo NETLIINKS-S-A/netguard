@@ -1,5 +1,5 @@
 // @filename: BinnacleView.ts
-import { UI } from "../../DOMElements.js";
+import { UI } from "../../lib.dom.js";
 // import { UI } from "../../DOMElements.js"
 // import { UIElement } from "../../Types/GeneralTypes.js"
 // import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"

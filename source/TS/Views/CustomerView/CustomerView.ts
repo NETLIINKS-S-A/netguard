@@ -49,25 +49,26 @@ export async function renderCustomers() {
                     </div>
 
                     <div class="input_group">
-                        <div class="rucInputs">
-                            <label for="n1" class="form_label">RUC</label>
-                            <input multiInput firstMultiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                        <label class="form_label">RUC</label>
+                        <input type="text" class="input" id="rucInputElement" maxlength="10">
+                    </div>
+
+                    <div class="form_group">
+                        <div class="input_group customerStatus">
+                            <label for="customerStatus" class="form_label">Estado: <span id="customerStatusLabel">inactivo</span></label>
+                            <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
+                        </div>
+
+                        <div class="input_group">
+                            <label for="vehicularEntrance" class="form_label">Ingreso vehicular: <span id="customerVehicularEntranceLabel">no</span></label>
+                            <input type="checkbox" name="vehicularEntrance" id="vehicularEntrance" class="toggle">
                         </div>
                     </div>
                 </form>
 
                 <div class="modal_footer">
                     <button class="btn" id="closeEditor">Cancelar</button>
-                    <button class="btn btn_success" id="updateData">Guardar</button>
+                    <button class="btn btn_success" id="updateCutomerEntity">Guardar</button>
                 </div>
             </div>
         </div>
@@ -86,20 +87,22 @@ export async function renderCustomers() {
                     </div>
 
                     <div class="input_group">
-                        <div class="rucInputs">
-                            <label for="n1" class="form_label">RUC</label>
-                            <input multiInput firstMultiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n1" id="n1">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n2">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n3">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n4">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n5">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n6">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n7">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n8">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n9">
-                            <input multiInput type="text" maxlength="1" placeholder="0" class="input input_block" name="n10">
+                        <label class="form_label">RUC</label>
+                        <input type="text" class="input" id="rucInputElement" maxlength="10">
+                    </div>
+
+                    <div class="form_group">
+                        <div class="input_group customerStatus">
+                            <label for="customerStatus" class="form_label">Estado: <span id="customerStatusLabel">inactivo</span></label>
+                            <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
+                        </div>
+
+                        <div class="input_group">
+                            <label for="vehicularEntrance" class="form_label">Ingreso vehicular: <span id="customerVehicularEntranceLabel">no</span></label>
+                            <input type="checkbox" name="vehicularEntrance" id="vehicularEntrance" class="toggle">
                         </div>
                     </div>
+
                 </form>
 
                 <div class="modal_footer">
@@ -129,7 +132,6 @@ export async function renderCustomers() {
 
     // search data on real-time
     await searchElement?.addEventListener("keyup", (): void => {
-        console.log("HOLA")
         // @ts-ignore
         const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(searchElement.value.toLowerCase()))
 
@@ -168,4 +170,21 @@ export async function renderCustomers() {
         // Display data and pagination
         displayCustomerData(tableData, tableBody, tableRows, currentPage, paginationElement)
         setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayCustomerData)
+
+        // Customer Status
+        const toggleStatus: UIElement = document.getElementById("customerStatus")
+        const customerStatusLabel: UIElement = document.getElementById("customerStatusLabel")
+
+        toggleStatus.addEventListener("click", () => {
+            if (toggleStatus?.checked == true) customerStatusLabel.innerHTML = "activo"
+            else customerStatusLabel.innerHTML = "inactivo"
+        })
+
+        // Vehicular Entrance
+        const toggleVehicularEntrace: UIElement = document.getElementById("vehicularEntrance")
+        const customerVehicularEntranceLabel: UIElement = document.getElementById("customerVehicularEntranceLabel")
+        toggleVehicularEntrace.addEventListener("click", () => {
+            if (toggleVehicularEntrace?.checked == true) customerVehicularEntranceLabel.innerHTML = "si"
+            else customerVehicularEntranceLabel.innerHTML = "no"
+        })
 }
