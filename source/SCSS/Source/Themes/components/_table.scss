@@ -42,9 +42,14 @@ table, .table {
                 background-color: $slategray-800;
                 transition: 0.2s all ease-in-out;
 
-                .btn {
+                .btn_table-editor {
                     background-color: $primary-500 !important;
                     border-color: $slategray-700;
+                }
+
+                .btn_table-delete {
+                    background-color: $red-500 !important;
+                    border-color: $red-700;
                 }
             }
         }
