@@ -1,11 +1,12 @@
-# Plataforma de administración
+# Netguard platform
 
-**Reportar errores de la plataforma:** <br>
+**Reporting bugs:** <br>
 https://github.com/NETLIINKS-S-A/mainPlatform/issues
 
-**Acceso a la plataforma:** <br>
+**Platform access:** <br>
 https://netliinks-s-a.github.io/mainPlatform/
 
+<br>
 
 # ✨ New Themes
 
