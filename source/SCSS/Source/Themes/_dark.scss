@@ -1,4 +1,4 @@
-@media screen and (prefers-color-scheme: dark) {
+.dark {
     html, body {
         background-color: $slategray-900;
     }
@@ -23,16 +23,16 @@
         }
     }
 
-    @import './components/alerts';
-    @import './components/buttons';
-    @import './components/fonts';
-    @import './components/form';
-    @import './components/inputs';
-    @import './components/login';
-    @import './components/menu';
-    @import './components/modal';
-    @import './components/pagination';
-    @import './components/sidebar';
-    @import './components/table';
-    @import './components/toggle';
+    @import './dark/alerts';
+    @import './dark/buttons';
+    @import './dark/fonts';
+    @import './dark/form';
+    @import './dark/inputs';
+    @import './dark/login';
+    @import './dark/menu';
+    @import './dark/modal';
+    @import './dark/pagination';
+    @import './dark/sidebar';
+    @import './dark/table';
+    @import './dark/toggle';
 }

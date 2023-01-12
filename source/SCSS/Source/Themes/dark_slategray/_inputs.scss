@@ -1,0 +1,14 @@
+.input {
+    background-color: $slategray-800;
+    border-color: $slategray-700;
+    color: $slategray-100;
+
+    &::placeholder {
+        color: $slategray-500;
+    }
+
+    &:focus {
+        border-color: $blue-500;
+        background-color: $slategray-700;
+    }
+}
