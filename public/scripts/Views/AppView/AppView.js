@@ -1,9 +1,9 @@
 // @filename: AppView.ts
 import { UI } from "../../lib.dom.js";
 import { renderCustomers } from "../CustomerView/CustomerView.js";
-import { renderUsers } from "../UsersView/UsersView.js";
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js";
 import { getData } from "../../RequestOptions.js";
+import { renderGuards } from "../GuardsView/GuardsView.js";
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
     const sidebar = document.getElementById("appSidebar");
@@ -100,7 +100,7 @@ export async function renderAppInterface() {
             `;
             // render functions
             document.getElementById("goToBusiness")?.addEventListener("click", (e) => renderCustomers());
-            document.getElementById("goToUsers")?.addEventListener("click", (e) => renderUsers());
+            document.getElementById("goToUsers")?.addEventListener("click", (e) => renderGuards());
             // Close session functions
             document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"));
             document.getElementById("logOut")?.addEventListener("click", (e) => logOut());
@@ -114,7 +114,7 @@ export async function renderAppInterface() {
                 item.classList.add("menu_item-isActive");
             }));
         }
-        renderUsers();
+        renderGuards();
     }
     renderInterface(data);
 }
