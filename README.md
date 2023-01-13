@@ -9,6 +9,7 @@ https://netliinks-s-a.github.io/mainPlatform/
 <br>
 
 # ✨ New Themes
+> The option to change themes will be added after finishing the platform preferences view
 
 ## Dark
 `class="dark"`
