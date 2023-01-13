@@ -5,6 +5,7 @@ import { renderCustomers } from "../CustomerView/CustomerView.js"
 import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
 import { getData } from "../../RequestOptions.js"
 import { renderGuards } from "../GuardsView/GuardsView.js";
+import { renderUsers } from "../UsersView/UsersView.js"
 
 export async function renderAppInterface() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
@@ -121,7 +122,7 @@ export async function renderAppInterface() {
                 }))
         }
 
-        renderGuards()
+        renderUsers()
     }
 
     renderInterface(data)
