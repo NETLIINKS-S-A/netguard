@@ -7,7 +7,11 @@ let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
 export async function renderUsers() {
     const url = "https://backend.netliinks.com:443/rest/entities/User?fetchPlan=full";
-    let tableData = [];
+    let GET_DATA = await getData(url);
+    let arrayUsers = GET_DATA
+        // @ts-ignore
+        .filter(data => `${data.userType}`
+        .includes("CUSTOMER"));
     // BusinesView interface
     const appContent = UIApp?.content;
     appContent.innerHTML = `
@@ -129,7 +133,7 @@ export async function renderUsers() {
     // search data on real-time
     await searchElement?.addEventListener("keyup", () => {
         // @ts-ignore
-        const filteredDatas = tableData.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(searchElement.value.toLowerCase()));
+        const filteredDatas = arrayUsers.filter(filteredData => `${filteredData.name.toLowerCase()}`.includes(searchElement.value.toLowerCase()));
         let filteredDataResult = filteredDatas.length;
         if (filteredDataResult >= tableRows)
             filteredDataResult = tableRows;
@@ -163,11 +167,10 @@ export async function renderUsers() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`;
-    // const data = await getData(url);
-    tableData = await getData(url);
     // Display data and pagination
-    displayUserData(tableData, tableBody, tableRows, currentPage, paginationElement);
-    setupPagination(tableData, paginationElement, tableRows, currentPage, tableBody, displayUserData);
+    displayUserData(arrayUsers, tableBody, tableRows, currentPage, paginationElement);
+    // @ts-ignore
+    setupPagination(arrayUsers, paginationElement, tableRows, currentPage, tableBody, displayUserData);
     // Customer Status
     const toggleStatus = document.getElementById("customerStatus");
     const customerStatusLabel = document.getElementById("customerStatusLabel");
@@ -186,5 +189,5 @@ export async function renderUsers() {
         else
             customerVehicularEntranceLabel.innerHTML = "no";
     });
-    console.log(tableData);
+    console.log(arrayUsers);
 }
