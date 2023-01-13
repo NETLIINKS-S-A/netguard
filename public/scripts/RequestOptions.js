@@ -23,3 +23,7 @@ export async function updateData(url, raw) {
     await fetch(url, PostRequestOption)
         .then(Response => Response.json());
 }
+export async function getEntitiesData(entities) {
+    const url = `https://backend.netliinks.com:443/rest/entities/${entities}?fetchPlan=full`;
+    return await getData(url);
+}

@@ -1,4 +1,4 @@
-@mixin userState {
+@mixin State {
     font-size: 10px;
     font-style: normal;
     font-weight: $bold;
@@ -9,11 +9,11 @@
 }
 
 .user_active {
-    @include userState();
+    @include State();
     background-color: $green-500;
 }
 
 .user_inactive {
-    @include userState();
-    background-color: $red-600;
+    @include State();
+    background-color: $neutral-500;
 }
