@@ -33,3 +33,8 @@ export async function getEntitiesData(entities: string): Promise<void> {
     const url = `https://backend.netliinks.com:443/rest/entities/${entities}?fetchPlan=full`;
     return await getData(url);
 }
+
+export async function getEntityData(entity: string, entities: string): Promise<void> {
+    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}`;
+    return await getData(url);
+}

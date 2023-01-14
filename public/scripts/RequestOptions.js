@@ -27,3 +27,7 @@ export async function getEntitiesData(entities) {
     const url = `https://backend.netliinks.com:443/rest/entities/${entities}?fetchPlan=full`;
     return await getData(url);
 }
+export async function getEntityData(entity, entities) {
+    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}`;
+    return await getData(url);
+}
