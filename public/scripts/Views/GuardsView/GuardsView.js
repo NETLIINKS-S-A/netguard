@@ -24,7 +24,6 @@ export async function renderGuards() {
                 <th>ID</th>
                 <th>Estado</th>
                 <th>Ciudadela</th>
-                <th>Tipo</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -131,17 +130,21 @@ export async function renderGuards() {
     // search data
     await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter(guard => `${guard.name.toLowerCase()}`
-            .includes(searchInput.value.toLowerCase()));
-        let filterResult = arrayData.length;
-        if (filterResult >= tableRows)
-            filterResult = tableRows;
-        displayGuardData(arrayData, tableBody, filterResult, currentPage, paginationCounter);
+        const arrayData = arrayGuards.filter(guard => `${guard.firstName}
+                                                      ${guard.lastName}
+                                                      ${guard.description}
+                                                      `.toLowerCase()
+            .includes(searchInput.value
+            .toLowerCase()));
+        let filteredResult = arrayData.length;
+        if (filteredResult >= tableRows)
+            filteredResult = tableRows;
+        displayGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
+        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
     });
     // write table template
     tableBody.innerHTML = `
     <tr>
-        <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>

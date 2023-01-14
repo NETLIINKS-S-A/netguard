@@ -29,7 +29,6 @@ export async function displayUserData(items: any, tableBody: any, rowsPerPage: n
             <td class="monospace">${user.email}</td>
             <td class="userState"><i>${user.state._instanceName}</i></td>
             <td>${user.citadel?.description}</td>
-            <td>${user.userType}</td>
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>

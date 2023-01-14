@@ -1,5 +1,26 @@
+.sidebar {
+    width: 100%;
+    position: relative;
+
+    &_bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    &_brand {
+        padding: 15px 20px 0px 20px;
+    }
+}
+
 .menu {
     display: block;
+    position: relative;
+
+    &, &_links, &_logout {
+        padding: 15px;
+    }
 
     &_brandicon {
         display: none;
@@ -23,88 +44,60 @@
     }
 
     &_item {
-        display: inline-block;
-        margin-bottom: 5px;
-        padding: 8px;
-        width: 100%;
-        color: $slategray-500;
-        border-radius: 5px;
-        transition: 0.3s all ease;
-        cursor: pointer;
+        display: block;
+        margin: 5px 0;
+        font-size: 12px;
 
-        &:hover {
-            background-color: rgba($slategray-500, 0.2);
-            color: $slategray-700;
+        &_label {
+            color: $slategray-600;
+            border-radius: 5px;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            transition: 0.2s all ease-in-out;
         }
 
-        &_name {
-            display: inline-block;
-        }
-
-        &_icon {
-            $icon-size: 18px;
-            display: flex;
-            align-items: center;
-            height: $icon-size;
-            width: $icon-size;
-            margin-right: 5px;
-            float: left;
-        }
-
+        // STATES
+        // menu item
         &-isActive {
-            background-color: rgba($slategray-500, 0.2);
-            color: $slategray-700;
+            .menu_item_label {
+                background-color: $slategray-300;
+                border-color: $slategray-400;
+                color: $slategray-900;
+            }
         }
-    }
-}
 
-@media screen and (max-width: 1024px) {
-    .menu {
-        &_brandname {
+        // toggles
+        &_toggle &s {
             display: none;
         }
 
-        &_brandicon {
+        // sub-items
+        &s {
+            margin-left: 8px;
+            border-left: 1px dashed $slategray-500;
+
+            .menu_item {
+                margin-left: 8px;
+            }
+        }
+
+        &_toggle-isActive &s {
             display: block;
-            height: 30px;
-            margin: 0 auto 10px auto;
         }
+    }
 
-        &_username {
-            font-size: 12px;
-            text-align: center;
-        }
+    &_link_item {
+        display: block;
+        text-decoration: none;
+        font-size: 12px;
+        color: $slategray-600;
 
-        &_item {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            margin-bottom: 5px;
-            padding: 18px 9px 9px 9px;
-
-            &_icon {
-                $icon-size: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: $icon-size;
-                width: $icon-size;
-                margin: auto;
-            }
-
-            &_name {
-                display: block;
-                text-align: center;
-                font-size: 10px;
-            }
-
-            .fa-regular {
-                display: inline-block;
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
+        &_label {
+            color: $slategray-600;
+            border-radius: 5px;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            transition: 0.2s all ease-in-out;
         }
     }
 }
-
-// @media screen and (max-width: 420px) {}
