@@ -18,62 +18,145 @@ export async function renderAppInterface() {
             wrapper.style.display = "block";
             content.style.display = "flex";
             sidebar.style.display = "flex";
-            sidebar.innerHTML += `<div class="menu">
+            sidebar.innerHTML += `<div class="sidebar">
                 <img class="menu_brandicon" src="./public/pictures/icon_login-light.png" alt="NETLIINKS LOGO">
                 <span class="menu_brandname">NETGUARD</span>
                 <span class="menu_username">${interfaceData.username}</span>
 
-                <div class="menu_item" id="goToStadistics">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-chart-line"></i>
+                <div class="menu">
+                    <div class="menu_item menu_item-isActive">
+                        <div class="menu_item_label">
+                            <i class="fa-regular fa-chart-line"></i>
+                            <span>Estadísticas</span>
+                        </div>
                     </div>
-                    <div class="menu_item_name">Estadísticas</div>
+
+                    <div class="menu_item" id="customers-view">
+                        <div class="menu_item_label">
+                            <i class="fa-regular fa-building"></i>
+                            <span>Empresas</span>
+                        </div>
+                    </div>
+
+                    <div class="menu_item_toggle">
+                        <div class="menu_item">
+                            <div class="menu_item_label">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Usuarios</span>
+                            </div>
+                        </div>
+
+                        <div class="menu_items">
+                            <div class="menu_item" id="clients-view">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-user-group"></i>
+                                    <span>Clientes</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label" id="guards-view">
+                                    <i class="fa-regular fa-user-police"></i>
+                                    <span>Guardias</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu_item_toggle">
+                        <div class="menu_item">
+                            <div class="menu_item_label">
+                                <i class="fa-regular fa-up-from-bracket"></i>
+                                <span>Importar</span>
+                            </div>
+                        </div>
+
+                        <div class="menu_items">
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-user-group"></i>
+                                    <span>Clientes</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-user-police"></i>
+                                    <span>Guardias</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu_item_toggle">
+                        <div class="menu_item">
+                            <div class="menu_item_label">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Bitácora</span>
+                            </div>
+                        </div>
+
+                        <div class="menu_items">
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-circle-exclamation"></i>
+                                    <span>Eventos</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-laptop"></i>
+                                    <span>Plataforma</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-user"></i>
+                                    <span>Visitas</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-note"></i>
+                                    <span>Notas</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>Marcaciones</span>
+                                </div>
+                            </div>
+
+                            <div class="menu_item">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-car"></i>
+                                    <span>Vehicular</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu_item">
+                        <div class="menu_item_label">
+                            <i class="fa-regular fa-buildings"></i>
+                            <span>Ciudadela</span>
+                        </div>
+                    </div>
+
+                    <div class="menu_item">
+                        <div class="menu_item_label">
+                            <i class="fa-regular fa-user-group"></i>
+                            <span>Adminsitración</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="menu_item menu_item-isActive" id="goToBusiness">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-building"></i>
-                    </div>
-                    <div class="menu_item_name">Empresas</div>
-                </div>
-
-                <div class="menu_item" id="goToUsers">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-user-group"></i>
-                    </div>
-                    <div class="menu_item_name">Usuarios</div>
-                </div>
-
-                <div class="menu_item" onclick="renderBinnacle()">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-book"></i>
-                    </div>
-                    <div class="menu_item_name">Bitácora</div>
-                </div>
-
-                <div class="menu_item" onclick="renderImportInterface()">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-up-from-bracket"></i>
-                    </div>
-                    <div class="menu_item_name">Importar</div>
-                </div>
-
-                <div class="menu_item" onclick="renderCitadelsData()">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-buildings"></i>
-                    </div>
-                    <div class="menu_item_name">Ciudadela</div>
-                </div>
-
-                <div class="menu_item" onclick="renderAdminsData()">
-                    <div class="menu_item_icon">
-                        <i class="fa-regular fa-user-group"></i>
-                    </div>
-                    <div class="menu_item_name">Administración</div>
-                </div>
-            </div>
-
-            <div class="options">
+            <div class="menu_links">
                 <a href="https://www.netliinks.com"><i class="fa-regular fa-circle-question"></i> <div>Soporte</div></a>
                 <a href="https://www.netliinks.com"><i class="fa-regular fa-sparkles"></i> <div>Versión 2.0.0</div></a>
                 <a href="https://www.netliinks.com"><i class="fa-regular fa-newspaper"></i> <div>Notas de la versión</div></a>
@@ -100,22 +183,30 @@ export async function renderAppInterface() {
             </div>
             `;
             // render functions
-            document.getElementById("goToBusiness")?.addEventListener("click", (e) => renderCustomers());
-            document.getElementById("goToUsers")?.addEventListener("click", (e) => renderGuards());
+            document.getElementById("customers-view")?.addEventListener("click", (e) => renderCustomers());
+            document.getElementById("clients-view")?.addEventListener("click", (e) => renderUsers());
+            document.getElementById("guards-view")?.addEventListener("click", (e) => renderGuards());
             // Close session functions
             document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"));
             document.getElementById("logOut")?.addEventListener("click", (e) => logOut());
             document.getElementById("dismissLogOut")?.addEventListener("click", (e) => dismissLogOut("logOutModal"));
             // End close session functions
-            const menu = document.querySelector(".menu");
-            const items = menu?.querySelectorAll(".menu_item");
-            // const icons = menu?.querySelectorAll(".fa-regular")
-            items?.forEach(item => item.addEventListener("click", () => {
-                items.forEach(item => item.classList.remove("menu_item-isActive"));
-                item.classList.add("menu_item-isActive");
-            }));
+            const menuItems = document.querySelectorAll('.menu_item');
+            const menuItemToggle = document.querySelectorAll('.menu_item_toggle');
+            menuItems?.forEach((menuItem) => {
+                menuItem.addEventListener('click', () => {
+                    menuItems.forEach((menuItem) => menuItem.classList.remove("menu_item-isActive"));
+                    menuItemToggle?.forEach((IT) => IT?.classList.remove("menu_item_toggle-isActive"));
+                    menuItem.classList.add("menu_item-isActive");
+                });
+            });
+            menuItemToggle?.forEach((itemToggle) => {
+                itemToggle?.addEventListener("click", () => {
+                    itemToggle?.classList.add("menu_item_toggle-isActive");
+                });
+            });
         }
-        renderUsers();
+        renderCustomers();
     }
     renderInterface(data);
 }

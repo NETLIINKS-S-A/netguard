@@ -23,37 +23,50 @@
     }
 
     &_item {
-        display: inline-block;
-        margin-bottom: 5px;
-        padding: 8px;
-        width: 100%;
-        color: $slategray-500;
-        border-radius: 5px;
-        transition: 0.3s all ease;
-        cursor: pointer;
+        display: block;
+        margin: 5px 0;
+        font-size: 12px;
 
-        &:hover {
-            background-color: rgba($slategray-500, 0.2);
-            color: $slategray-700;
+        &_label {
+            color: $slategray-600;
+            border-radius: 5px;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            transition: 0.2s all ease-in-out;
         }
 
-        &_name {
-            display: inline-block;
-        }
-
-        &_icon {
-            $icon-size: 18px;
-            display: flex;
-            align-items: center;
-            height: $icon-size;
-            width: $icon-size;
-            margin-right: 5px;
-            float: left;
-        }
-
+        // STATES
+        // menu item
         &-isActive {
-            background-color: rgba($slategray-500, 0.2);
-            color: $slategray-700;
+            .menu_item_label {
+                background-color: $slategray-300;
+                border-color: $slategray-400;
+                color: $slategray-900;
+            }
+
+            // .menu_item .menu_item_label {
+            //     background-color: transparent;
+            //     border-color: transparent;
+            // }
+        }
+
+        // toggles
+        &_toggle &s {
+            display: none;
+        }
+
+        // sub-items
+        &s {
+            margin-left: 8px;
+            border-left: 1px dashed $slategray-500;
+
+            .menu_item {
+                margin-left: 8px;
+            }
+        }
+
+        &_toggle-isActive &s {
+            display: block;
         }
     }
 }
