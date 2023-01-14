@@ -27,7 +27,7 @@ export async function renderAppInterface() {
 
                 <div class="sidebar_menu">
                     <div class="menu">
-                        <div class="menu_item menu_item-isActive">
+                        <div class="menu_item menu_item-isActive" id="stadistics-view">
                             <div class="menu_item_label">
                                 <i class="fa-regular fa-chart-line"></i>
                                 <span>Estadísticas</span>
@@ -75,14 +75,14 @@ export async function renderAppInterface() {
                             </div>
 
                             <div class="menu_items">
-                                <div class="menu_item">
+                                <div class="menu_item" id="import-clients">
                                     <div class="menu_item_label">
-                                        <i class="fa-regular fa-user-group"></i>
+                                        <i class="fa-regular fa-user"></i>
                                         <span>Clientes</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="import-guards">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-user-police"></i>
                                         <span>Guardias</span>
@@ -100,28 +100,28 @@ export async function renderAppInterface() {
                             </div>
 
                             <div class="menu_items">
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-events">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-circle-exclamation"></i>
                                         <span>Eventos</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-platform">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-laptop"></i>
                                         <span>Plataforma</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-visits">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-user"></i>
                                         <span>Visitas</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-notes">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-note"></i>
                                         <span>Notas</span>
@@ -129,13 +129,13 @@ export async function renderAppInterface() {
                                 </div>
 
                                 <div class="menu_item">
-                                    <div class="menu_item_label">
+                                    <div class="menu_item_label" id="binnacle-markings">
                                         <i class="fa-regular fa-calendar"></i>
                                         <span>Marcaciones</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-vehicular">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-car"></i>
                                         <span>Vehicular</span>
@@ -218,12 +218,21 @@ export async function renderAppInterface() {
                         <button class="btn btn_danger" id="logOut">Cerrar sesión</button>
                     </div>
                 </div>
-            </div>
-            `;
+            </div>`;
             // render functions
+            document.getElementById("stadistics-view")?.addEventListener("click", (e) => renderBlankPage("Estadísticas"));
             document.getElementById("customers-view")?.addEventListener("click", (e) => renderCustomers());
             document.getElementById("clients-view")?.addEventListener("click", (e) => renderUsers());
             document.getElementById("guards-view")?.addEventListener("click", (e) => renderGuards());
+            document.getElementById("import-clients")?.addEventListener("click", (e) => renderBlankPage("Importar clientes"));
+            document.getElementById("import-guards")?.addEventListener("click", (e) => renderBlankPage("Importar guardias"));
+            // binnacle
+            document.getElementById("binnacle-events")?.addEventListener("click", (e) => renderBlankPage("Eventos"));
+            document.getElementById("binnacle-platform")?.addEventListener("click", (e) => renderBlankPage("Plataforma"));
+            document.getElementById("binnacle-visits")?.addEventListener("click", (e) => renderBlankPage("Visitas"));
+            document.getElementById("binnacle-notes")?.addEventListener("click", (e) => renderBlankPage("Notas"));
+            document.getElementById("binnacle-markings")?.addEventListener("click", (e) => renderBlankPage("Marcaciones"));
+            document.getElementById("binnacle-vehicular")?.addEventListener("click", (e) => renderBlankPage("Vehicular"));
             // Close session functions
             document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"));
             document.getElementById("logOut")?.addEventListener("click", (e) => logOut());
@@ -244,7 +253,15 @@ export async function renderAppInterface() {
                 });
             });
         }
-        renderCustomers();
+        renderBlankPage("Estadísticas");
     }
     renderInterface(data);
+}
+function renderBlankPage(name) {
+    let UIApp = UI.App;
+    UIApp.content.innerHTML = `
+    <h1 class="app_title">${name}</h1>
+    <div class="container">
+        <p class="message">Lo sentimos, ${name.toLowerCase()} aún está en desarrollo.</p>
+    </div>`;
 }

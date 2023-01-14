@@ -1,26 +1,26 @@
 // @filename: AppView.ts
-import { UI } from "../../lib.dom.js"
-import { UIElement } from "../../Types/GeneralTypes.js"
-import { renderCustomers } from "../CustomerView/CustomerView.js"
-import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js"
+import { UI } from "../../lib.dom.js";
+import { UIElement } from "../../Types/GeneralTypes.js";
+import { renderCustomers } from "../CustomerView/CustomerView.js";
+import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js";
 import { getData } from "../../RequestOptions.js"
 import { renderGuards } from "../GuardsView/GuardsView.js";
-import { renderUsers } from "../UsersView/UsersView.js"
+import { renderUsers } from "../UsersView/UsersView.js";
 
 export async function renderAppInterface() {
-    const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
-    const sidebar: UIElement = document.getElementById("appSidebar")
-    const content: UIElement = UI.App?.app
-    const wrapper: UIElement = UI.App?.wrapper
+    const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
+    const sidebar: UIElement = document.getElementById("appSidebar");
+    const content: UIElement = UI.App?.app;
+    const wrapper: UIElement = UI.App?.wrapper;
 
     let data = await getData(url)
 
     async function renderInterface(interfaceData: any): Promise<void> {
         if (interfaceData.error) logOut() // if any error, close session (in case access token fails)
         else {
-            wrapper.style.display = "block"
-            content.style.display = "flex"
-            sidebar.style.display = "flex"
+            wrapper.style.display = "block";
+            content.style.display = "flex";
+            sidebar.style.display = "flex";
 
             sidebar.innerHTML += `<div class="sidebar">
                 <div class="sidebar_brand">
@@ -31,7 +31,7 @@ export async function renderAppInterface() {
 
                 <div class="sidebar_menu">
                     <div class="menu">
-                        <div class="menu_item menu_item-isActive">
+                        <div class="menu_item menu_item-isActive" id="stadistics-view">
                             <div class="menu_item_label">
                                 <i class="fa-regular fa-chart-line"></i>
                                 <span>Estadísticas</span>
@@ -79,14 +79,14 @@ export async function renderAppInterface() {
                             </div>
 
                             <div class="menu_items">
-                                <div class="menu_item">
+                                <div class="menu_item" id="import-clients">
                                     <div class="menu_item_label">
-                                        <i class="fa-regular fa-user-group"></i>
+                                        <i class="fa-regular fa-user"></i>
                                         <span>Clientes</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="import-guards">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-user-police"></i>
                                         <span>Guardias</span>
@@ -104,28 +104,28 @@ export async function renderAppInterface() {
                             </div>
 
                             <div class="menu_items">
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-events">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-circle-exclamation"></i>
                                         <span>Eventos</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-platform">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-laptop"></i>
                                         <span>Plataforma</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-visits">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-user"></i>
                                         <span>Visitas</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-notes">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-note"></i>
                                         <span>Notas</span>
@@ -133,13 +133,13 @@ export async function renderAppInterface() {
                                 </div>
 
                                 <div class="menu_item">
-                                    <div class="menu_item_label">
+                                    <div class="menu_item_label" id="binnacle-markings">
                                         <i class="fa-regular fa-calendar"></i>
                                         <span>Marcaciones</span>
                                     </div>
                                 </div>
 
-                                <div class="menu_item">
+                                <div class="menu_item" id="binnacle-vehicular">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-car"></i>
                                         <span>Vehicular</span>
@@ -222,20 +222,30 @@ export async function renderAppInterface() {
                         <button class="btn btn_danger" id="logOut">Cerrar sesión</button>
                     </div>
                 </div>
-            </div>
-            `
+            </div>`;
             // render functions
-            document.getElementById("customers-view")?.addEventListener("click", (e) => renderCustomers())
-            document.getElementById("clients-view")?.addEventListener("click", (e) => renderUsers())
-            document.getElementById("guards-view")?.addEventListener("click", (e) => renderGuards())
+            document.getElementById("stadistics-view")?.addEventListener("click", (e) => renderBlankPage("Estadísticas"));
+            document.getElementById("customers-view")?.addEventListener("click", (e) => renderCustomers());
+            document.getElementById("clients-view")?.addEventListener("click", (e) => renderUsers());
+            document.getElementById("guards-view")?.addEventListener("click", (e) => renderGuards());
+            document.getElementById("import-clients")?.addEventListener("click", (e) => renderBlankPage("Importar clientes"));
+            document.getElementById("import-guards")?.addEventListener("click", (e) => renderBlankPage("Importar guardias"));
+            // binnacle
+            document.getElementById("binnacle-events")?.addEventListener("click", (e) => renderBlankPage("Eventos"));
+            document.getElementById("binnacle-platform")?.addEventListener("click", (e) => renderBlankPage("Plataforma"));
+            document.getElementById("binnacle-visits")?.addEventListener("click", (e) => renderBlankPage("Visitas"));
+            document.getElementById("binnacle-notes")?.addEventListener("click", (e) => renderBlankPage("Notas"));
+            document.getElementById("binnacle-markings")?.addEventListener("click", (e) => renderBlankPage("Marcaciones"));
+            document.getElementById("binnacle-vehicular")?.addEventListener("click", (e) => renderBlankPage("Vehicular"));
+
             // Close session functions
-            document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"))
-            document.getElementById("logOut")?.addEventListener("click", (e) => logOut())
-            document.getElementById("dismissLogOut")?.addEventListener("click", (e) => dismissLogOut("logOutModal"))
+            document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"));
+            document.getElementById("logOut")?.addEventListener("click", (e) => logOut());
+            document.getElementById("dismissLogOut")?.addEventListener("click", (e) => dismissLogOut("logOutModal"));
             // End close session functions
 
             const menuItems: UIElement = document.querySelectorAll('.menu_item');
-            const menuItemToggle: UIElement = document.querySelectorAll('.menu_item_toggle')
+            const menuItemToggle: UIElement = document.querySelectorAll('.menu_item_toggle');
 
             menuItems?.forEach((menuItem: any) => {
                 menuItem.addEventListener('click', (): void => {
@@ -248,12 +258,21 @@ export async function renderAppInterface() {
             menuItemToggle?.forEach((itemToggle: any) => {
                 itemToggle?.addEventListener("click", (): void => {
                     itemToggle?.classList.add("menu_item_toggle-isActive");
-                })
-            })
+                });
+            });
         }
 
-        renderCustomers()
+        renderBlankPage("Estadísticas");
     }
 
-    renderInterface(data)
+    renderInterface(data);
+}
+
+function renderBlankPage(name: string): void {
+    let UIApp = UI.App;
+    UIApp.content.innerHTML = `
+    <h1 class="app_title">${name}</h1>
+    <div class="container">
+        <p class="message">Lo sentimos, ${name.toLowerCase()} aún está en desarrollo.</p>
+    </div>`;
 }
