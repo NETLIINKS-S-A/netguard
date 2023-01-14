@@ -14,7 +14,6 @@ export async function displayGuardData(items, tableBody, rowsPerPage, page, pagi
             <td class="monospace">${guard.email}</td>
             <td class="guard_state"><i>${guard.state._instanceName}</i></td>
             <td>${guard.citadel?.description}</td>
-            <td>${guard.userType}</td>
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>
