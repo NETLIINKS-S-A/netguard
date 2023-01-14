@@ -362,33 +362,34 @@ img {
   color: #475469;
 }
 .menu_item {
-  display: inline-block;
-  margin-bottom: 5px;
-  padding: 8px;
-  width: 100%;
-  color: #94A2B8;
+  display: block;
+  margin: 5px 0;
+  font-size: 12px;
+}
+.menu_item_label {
+  color: #64738C;
   border-radius: 5px;
-  transition: 0.3s all ease;
-  cursor: pointer;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  transition: 0.2s all ease-in-out;
 }
-.menu_item:hover {
-  background-color: rgba(148, 162, 184, 0.2);
-  color: #475469;
+.menu_item-isActive .menu_item_label {
+  background-color: #E2E8F0;
+  border-color: #CCD5E1;
+  color: #1E293B;
 }
-.menu_item_name {
-  display: inline-block;
+.menu_item_toggle .menu_items {
+  display: none;
 }
-.menu_item_icon {
-  display: flex;
-  align-items: center;
-  height: 18px;
-  width: 18px;
-  margin-right: 5px;
-  float: left;
+.menu_items {
+  margin-left: 8px;
+  border-left: 1px dashed #94A2B8;
 }
-.menu_item-isActive {
-  background-color: rgba(148, 162, 184, 0.2);
-  color: #475469;
+.menu_items .menu_item {
+  margin-left: 8px;
+}
+.menu_item_toggle-isActive .menu_items {
+  display: block;
 }
 
 @media screen and (max-width: 1024px) {
@@ -690,72 +691,72 @@ table .tbody tr:hover td .btn_table-delete,
 
 @media screen and (max-width: 1024px) {
   table,
-.table {
+  .table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 25px;
     border-radius: 10px;
   }
   table thead,
-table .thead,
-.table thead,
-.table .thead {
+  table .thead,
+  .table thead,
+  .table .thead {
     background-color: #94A2B8;
   }
   table thead tr,
-table .thead tr,
-.table thead tr,
-.table .thead tr {
+  table .thead tr,
+  .table thead tr,
+  .table .thead tr {
     background-color: inherit;
   }
   table thead tr th:last-child,
-table .thead tr th:last-child,
-.table thead tr th:last-child,
-.table .thead tr th:last-child {
+  table .thead tr th:last-child,
+  .table thead tr th:last-child,
+  .table .thead tr th:last-child {
     border-top-right-radius: 10px;
   }
   table thead tr th:first-child,
-table .thead tr th:first-child,
-.table thead tr th:first-child,
-.table .thead tr th:first-child {
+  table .thead tr th:first-child,
+  .table thead tr th:first-child,
+  .table .thead tr th:first-child {
     border-top-left-radius: 10px;
   }
   table thead th,
-table .thead th,
-.table thead th,
-.table .thead th {
+  table .thead th,
+  .table thead th,
+  .table .thead th {
     padding: 15px 20px;
     text-transform: uppercase;
   }
   table tbody tr:last-child td:last-child,
-table .tbody tr:last-child td:last-child,
-.table tbody tr:last-child td:last-child,
-.table .tbody tr:last-child td:last-child {
+  table .tbody tr:last-child td:last-child,
+  .table tbody tr:last-child td:last-child,
+  .table .tbody tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
   }
   table tbody tr:last-child td:first-child,
-table .tbody tr:last-child td:first-child,
-.table tbody tr:last-child td:first-child,
-.table .tbody tr:last-child td:first-child {
+  table .tbody tr:last-child td:first-child,
+  .table tbody tr:last-child td:first-child,
+  .table .tbody tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
   table tbody tr .monospace,
-table .tbody tr .monospace,
-.table tbody tr .monospace,
-.table .tbody tr .monospace {
+  table .tbody tr .monospace,
+  .table tbody tr .monospace,
+  .table .tbody tr .monospace {
     font-size: 12px;
   }
   table tbody tr td,
-table .tbody tr td,
-.table tbody tr td,
-.table .tbody tr td {
+  table .tbody tr td,
+  .table tbody tr td,
+  .table .tbody tr td {
     padding: 10px;
     padding-left: 20px;
   }
   table tbody tr td:first-child,
-table .tbody tr td:first-child,
-.table tbody tr td:first-child,
-.table .tbody tr td:first-child {
+  table .tbody tr td:first-child,
+  .table tbody tr td:first-child,
+  .table .tbody tr td:first-child {
     padding-left: 20px;
   }
 }
@@ -831,10 +832,8 @@ table .tbody tr td:first-child,
   overflow: auto;
   resize: horizontal;
   background-color: #F1F5F9;
-  -ms-overflow-style: none;
-  /* ms windows */
-  scrollbar-width: none;
-  /* firefox */
+  -ms-overflow-style: none; /* ms windows */
+  scrollbar-width: none; /* firefox */
 }
 .app_sidebar::-webkit-scrollbar {
   display: none;
@@ -932,7 +931,6 @@ table .tbody tr td:first-child,
   .app_sidebar .options a_name {
     display: block;
   }
-
   .app_content {
     padding: 15px 10px;
   }
