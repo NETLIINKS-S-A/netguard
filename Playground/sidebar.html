@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <style>
+        *, *::after, *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Helvetica neue', sans-serif;
+        }
+
+        .sidebar {
+            display: block;
+            height: 100vh;
+            background-color: #eee;
+            padding: 10px;
+            width: 200px;
+        }
+
+        .sidebar_item {
+            display: block;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .sidebar_item:hover {
+            background-color: blue;
+            color: white;
+        }
+
+        .sidebar_items {
+            display: none;
+            padding: 0 0 0 20px;
+        }
+
+        .sidebar_item_toggle { display: block; }
+
+        .sidebar_item_toggle_title {
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* STATUS */
+        .sidebar_item_toggle-isActive .sidebar_items {
+            display: block;
+        }
+
+        .sidebar_item-isActive {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar_item sidebar_item-isActive">Item</div>
+
+        <div class="sidebar_item_toggle">
+            <span class="sidebar_item_toggle_title sidebar_item">Item</span>
+            <div class="sidebar_items">
+                <div class="sidebar_item">subitem</div>
+                <div class="sidebar_item">subitem</div>
+                <div class="sidebar_item">subitem</div>
+            </div>
+
+        </div>
+
+        <div class="sidebar_item">Item</div>
+
+        <div class="sidebar_item_toggle">
+            <span class="sidebar_item_toggle_title sidebar_item">Item</span>
+            <div class="sidebar_items">
+                <div class="sidebar_item">subitem</div>
+                <div class="sidebar_item">subitem</div>
+                <div class="sidebar_item">subitem</div>
+            </div>
+
+        </div>
+    </aside>
+
+    <script>
+        const sidebarItems = document.querySelectorAll('.sidebar_item');
+        const sidebarToggleItems = document.querySelectorAll('.sidebar_item_toggle');
+
+        // controls sidebar items
+        sidebarItems.forEach(sidebarItem => {
+            sidebarItem.addEventListener('click', () => {
+                sidebarItems.forEach(sidebarItem => sidebarItem.classList.remove('sidebar_item-isActive'));
+                sidebarToggleItems.forEach(sidebarToggleItem => {sidebarToggleItem.classList.remove('sidebar_item_toggle-isActive');});
+                sidebarItem.classList.add('sidebar_item-isActive');
+            });
+        })
+
+        // controls sidebar toggle items
+        sidebarToggleItems.forEach(sidebarToggleItem => {
+            sidebarToggleItem.addEventListener('click', () => {
+                sidebarToggleItem.classList.add('sidebar_item_toggle-isActive');
+            })
+        })
+    </script>
+</body>
+</html>
