@@ -23,152 +23,190 @@ export async function renderAppInterface() {
             sidebar.style.display = "flex"
 
             sidebar.innerHTML += `<div class="sidebar">
-                <img class="menu_brandicon" src="./public/pictures/icon_login-light.png" alt="NETLIINKS LOGO">
-                <span class="menu_brandname">NETGUARD</span>
-                <span class="menu_username">${interfaceData.username}</span>
+                <div class="sidebar_brand">
+                    <img class="menu_brandicon" src="./public/pictures/icon_login-light.png" alt="NETLIINKS LOGO">
+                    <span class="menu_brandname">NETGUARD</span>
+                    <span class="menu_username">${interfaceData.username}</span>
+                </div>
 
-                <div class="menu">
-                    <div class="menu_item menu_item-isActive">
-                        <div class="menu_item_label">
-                            <i class="fa-regular fa-chart-line"></i>
-                            <span>Estadísticas</span>
-                        </div>
-                    </div>
-
-                    <div class="menu_item" id="customers-view">
-                        <div class="menu_item_label">
-                            <i class="fa-regular fa-building"></i>
-                            <span>Empresas</span>
-                        </div>
-                    </div>
-
-                    <div class="menu_item_toggle">
-                        <div class="menu_item">
+                <div class="sidebar_menu">
+                    <div class="menu">
+                        <div class="menu_item menu_item-isActive">
                             <div class="menu_item_label">
-                                <i class="fa-regular fa-user"></i>
-                                <span>Usuarios</span>
+                                <i class="fa-regular fa-chart-line"></i>
+                                <span>Estadísticas</span>
                             </div>
                         </div>
 
-                        <div class="menu_items">
-                            <div class="menu_item" id="clients-view">
-                                <div class="menu_item_label">
-                                    <i class="fa-regular fa-user-group"></i>
-                                    <span>Clientes</span>
-                                </div>
-                            </div>
-
-                            <div class="menu_item">
-                                <div class="menu_item_label" id="guards-view">
-                                    <i class="fa-regular fa-user-police"></i>
-                                    <span>Guardias</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="menu_item_toggle">
-                        <div class="menu_item">
+                        <div class="menu_item" id="customers-view">
                             <div class="menu_item_label">
-                                <i class="fa-regular fa-up-from-bracket"></i>
-                                <span>Importar</span>
+                                <i class="fa-regular fa-building"></i>
+                                <span>Empresas</span>
                             </div>
                         </div>
 
-                        <div class="menu_items">
-                            <div class="menu_item">
-                                <div class="menu_item_label">
-                                    <i class="fa-regular fa-user-group"></i>
-                                    <span>Clientes</span>
-                                </div>
-                            </div>
-
-                            <div class="menu_item">
-                                <div class="menu_item_label">
-                                    <i class="fa-regular fa-user-police"></i>
-                                    <span>Guardias</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="menu_item_toggle">
-                        <div class="menu_item">
-                            <div class="menu_item_label">
-                                <i class="fa-regular fa-user"></i>
-                                <span>Bitácora</span>
-                            </div>
-                        </div>
-
-                        <div class="menu_items">
-                            <div class="menu_item">
-                                <div class="menu_item_label">
-                                    <i class="fa-regular fa-circle-exclamation"></i>
-                                    <span>Eventos</span>
-                                </div>
-                            </div>
-
-                            <div class="menu_item">
-                                <div class="menu_item_label">
-                                    <i class="fa-regular fa-laptop"></i>
-                                    <span>Plataforma</span>
-                                </div>
-                            </div>
-
+                        <div class="menu_item_toggle">
                             <div class="menu_item">
                                 <div class="menu_item_label">
                                     <i class="fa-regular fa-user"></i>
-                                    <span>Visitas</span>
+                                    <span>Usuarios</span>
                                 </div>
                             </div>
 
+                            <div class="menu_items">
+                                <div class="menu_item" id="clients-view">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-user-group"></i>
+                                        <span>Clientes</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label" id="guards-view">
+                                        <i class="fa-regular fa-user-police"></i>
+                                        <span>Guardias</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu_item_toggle">
                             <div class="menu_item">
                                 <div class="menu_item_label">
-                                    <i class="fa-regular fa-note"></i>
-                                    <span>Notas</span>
+                                    <i class="fa-regular fa-up-from-bracket"></i>
+                                    <span>Importar</span>
                                 </div>
                             </div>
 
+                            <div class="menu_items">
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-user-group"></i>
+                                        <span>Clientes</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-user-police"></i>
+                                        <span>Guardias</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu_item_toggle">
                             <div class="menu_item">
                                 <div class="menu_item_label">
-                                    <i class="fa-regular fa-calendar"></i>
-                                    <span>Marcaciones</span>
+                                    <i class="fa-regular fa-user"></i>
+                                    <span>Bitácora</span>
                                 </div>
                             </div>
 
-                            <div class="menu_item">
-                                <div class="menu_item_label">
-                                    <i class="fa-regular fa-car"></i>
-                                    <span>Vehicular</span>
+                            <div class="menu_items">
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-circle-exclamation"></i>
+                                        <span>Eventos</span>
+                                    </div>
                                 </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-laptop"></i>
+                                        <span>Plataforma</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-user"></i>
+                                        <span>Visitas</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-note"></i>
+                                        <span>Notas</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <span>Marcaciones</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label">
+                                        <i class="fa-regular fa-car"></i>
+                                        <span>Vehicular</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu_item">
+                            <div class="menu_item_label">
+                                <i class="fa-regular fa-buildings"></i>
+                                <span>Ciudadela</span>
+                            </div>
+                        </div>
+
+                        <div class="menu_item">
+                            <div class="menu_item_label">
+                                <i class="fa-regular fa-user-group"></i>
+                                <span>Adminsitración</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="menu_item">
-                        <div class="menu_item_label">
-                            <i class="fa-regular fa-buildings"></i>
-                            <span>Ciudadela</span>
-                        </div>
-                    </div>
+                    <div class="sidebar_bottom">
+                        <hr>
+                        <div class="menu_links">
+                            <a href="#" class="menu_link_item">
+                                <div class="menu_link_item_label">
+                                    <i class="fa-regular fa-circle-question"></i>
+                                    <span>Soporte</span>
+                                </div>
+                            </a>
 
-                    <div class="menu_item">
-                        <div class="menu_item_label">
-                            <i class="fa-regular fa-user-group"></i>
-                            <span>Adminsitración</span>
+                            <a href="https://www.netliinks.com" class="menu_link_item">
+                                <div class="menu_link_item_label">
+                                    <i class="fa-regular fa-sparkles"></i>
+                                    <span>Versión 2.0</span>
+                                </div>
+                            </a>
+
+                            <a href="#" class="menu_link_item">
+                                <div class="menu_link_item_label">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                    <span>Notas de la versión</span>
+                                </div>
+                            </a>
+                            <br>
+                            <a href="#" class="menu_link_item">
+                                <div class="menu_link_item_label">
+                                    <i class="fa-regular fa-browser"></i>
+                                    <span>Visita nuestra web</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <hr>
+
+                        <div class="menu_logout">
+                            <a href="#" class="menu_link_item" id="openLogOut">
+                                <div class="menu_link_item_label">
+                                    <i class="fa-regular fa-up-from-bracket"></i>
+                                    <span>Salir</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-
-            <div class="menu_links">
-                <a href="https://www.netliinks.com"><i class="fa-regular fa-circle-question"></i> <div>Soporte</div></a>
-                <a href="https://www.netliinks.com"><i class="fa-regular fa-sparkles"></i> <div>Versión 2.0.0</div></a>
-                <a href="https://www.netliinks.com"><i class="fa-regular fa-newspaper"></i> <div>Notas de la versión</div></a>
-                <br>
-                <a href="https://www.netliinks.com"><i class="fa-solid fa-browser"></i> <div>Visita nuestra web</div></a>
-                <br>
-                <a href="#" id="openLogOut"><i class="fa-solid fa-arrow-right-from-bracket"></i> <div>salir</div></a>
-            </div>
 
             <div class="modal" id="logOutModal">
                 <div class="modal_dialog modal_body">

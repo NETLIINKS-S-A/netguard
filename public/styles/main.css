@@ -340,8 +340,26 @@ img {
   display: none;
 }
 
+.sidebar {
+  width: 100%;
+  position: relative;
+}
+.sidebar_bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+.sidebar_brand {
+  padding: 15px 20px 0px 20px;
+}
+
 .menu {
   display: block;
+  position: relative;
+}
+.menu, .menu_links, .menu_logout {
+  padding: 15px;
 }
 .menu_brandicon {
   display: none;
@@ -391,46 +409,20 @@ img {
 .menu_item_toggle-isActive .menu_items {
   display: block;
 }
-
-@media screen and (max-width: 1024px) {
-  .menu_brandname {
-    display: none;
-  }
-  .menu_brandicon {
-    display: block;
-    height: 30px;
-    margin: 0 auto 10px auto;
-  }
-  .menu_username {
-    font-size: 12px;
-    text-align: center;
-  }
-  .menu_item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 5px;
-    padding: 18px 9px 9px 9px;
-  }
-  .menu_item_icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-    width: 20px;
-    margin: auto;
-  }
-  .menu_item_name {
-    display: block;
-    text-align: center;
-    font-size: 10px;
-  }
-  .menu_item .fa-regular {
-    display: inline-block;
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
+.menu_link_item {
+  display: block;
+  text-decoration: none;
+  font-size: 12px;
+  color: #64738C;
 }
+.menu_link_item_label {
+  color: #64738C;
+  border-radius: 5px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  transition: 0.2s all ease-in-out;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -822,21 +814,30 @@ table .tbody tr:hover td .btn_table-delete,
 .app_sidebar {
   display: block;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
   width: 200px;
-  max-width: 500px;
+  max-width: 200px;
   min-width: 200px;
   overflow: auto;
   resize: horizontal;
-  background-color: #F1F5F9;
+  background-color: #F7FBFC;
+  border-right: 1px solid #E2E8F0;
   -ms-overflow-style: none; /* ms windows */
   scrollbar-width: none; /* firefox */
 }
 .app_sidebar::-webkit-scrollbar {
   display: none;
+}
+.app_sidebar .sidebar_menu {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.app_sidebar .sidebar_menu hr {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1.5px solid #E2E8F0;
 }
 .app .options span, .app .options a {
   color: #94A2B8;

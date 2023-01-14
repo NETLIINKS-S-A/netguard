@@ -1,5 +1,26 @@
+.sidebar {
+    width: 100%;
+    position: relative;
+
+    &_bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    &_brand {
+        padding: 15px 20px 0px 20px;
+    }
+}
+
 .menu {
     display: block;
+    position: relative;
+
+    &, &_links, &_logout {
+        padding: 15px;
+    }
 
     &_brandicon {
         display: none;
@@ -43,11 +64,6 @@
                 border-color: $slategray-400;
                 color: $slategray-900;
             }
-
-            // .menu_item .menu_item_label {
-            //     background-color: transparent;
-            //     border-color: transparent;
-            // }
         }
 
         // toggles
@@ -69,55 +85,19 @@
             display: block;
         }
     }
-}
 
-@media screen and (max-width: 1024px) {
-    .menu {
-        &_brandname {
-            display: none;
-        }
+    &_link_item {
+        display: block;
+        text-decoration: none;
+        font-size: 12px;
+        color: $slategray-600;
 
-        &_brandicon {
-            display: block;
-            height: 30px;
-            margin: 0 auto 10px auto;
-        }
-
-        &_username {
-            font-size: 12px;
-            text-align: center;
-        }
-
-        &_item {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            margin-bottom: 5px;
-            padding: 18px 9px 9px 9px;
-
-            &_icon {
-                $icon-size: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: $icon-size;
-                width: $icon-size;
-                margin: auto;
-            }
-
-            &_name {
-                display: block;
-                text-align: center;
-                font-size: 10px;
-            }
-
-            .fa-regular {
-                display: inline-block;
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
+        &_label {
+            color: $slategray-600;
+            border-radius: 5px;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            transition: 0.2s all ease-in-out;
         }
     }
 }
-
-// @media screen and (max-width: 420px) {}
