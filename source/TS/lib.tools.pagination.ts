@@ -35,19 +35,19 @@ export function setupPagination(
  * @returns button
  */
 function paginationButton(page: FNPHTMLElement, items: [], currentPage: number, tableBody: UIElement, rowsPerPage: number, displayData: any): void {
-    const button: UIElement = document.createElement("button")
-    button.innerText = page
+    const button: UIElement = document.createElement("button");
+    button.innerText = page;
 
-    if (currentPage == page) button.classList.add("isActive")
+    if (currentPage == page) button.classList.add("isActive");
 
     button.addEventListener("click", () => {
-        currentPage = page
-        displayData(items, tableBody, rowsPerPage, currentPage)
+        currentPage = page;
+        displayData(items, tableBody, rowsPerPage, currentPage);
 
-        let currentButton: UIElement = document.querySelector('.pagination button.isActive')
-        currentButton.classList.remove("isActive")
-        button.classList.add("isActive")
+        let currentButton: UIElement = document.querySelector('.pagination button.isActive');
+        currentButton.classList.remove("isActive");
+        button.classList.add("isActive");
     })
 
-    return button
+    return button;
 }
