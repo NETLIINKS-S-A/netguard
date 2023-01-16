@@ -14,13 +14,17 @@ export async function getData(url) {
     return await response.json();
 }
 export async function updateData(url, raw) {
-    let PostRequestOption = {
-        method: 'PUT',
-        headers: requestHeader,
-        body: raw,
-        redirect: 'follow'
+    const fetchData = {
+        url: url,
+        PostRequestOption: {
+            method: 'PUT',
+            headers: requestHeader,
+            body: raw,
+            redirect: 'follow'
+        }
     };
-    await fetch(url, PostRequestOption)
+    let controller = new AbortController();
+    await fetch(fetchData, { cache: "force-cache", mode: "same-origin", signal: controller.signal })
         .then(Response => Response.json());
 }
 export async function getEntitiesData(entities) {

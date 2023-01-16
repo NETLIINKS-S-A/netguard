@@ -4,44 +4,10 @@
     align-items: center;
     justify-content: space-between;
 
-    @mixin UIBase {
-        display: block;
-        height: 100vh;
-    }
-
-    &_sidebar {
-        display: block;
-        height: 100vh;
-        width: 200px;
-        max-width: 200px;
-        min-width: 200px;
-        overflow: auto;
-        resize: horizontal;
-        background-color: $slategray-100;
-        border-right: 1px solid $slategray-300;
-
-        // hide scrollbars
-        -ms-overflow-style: none; /* ms windows */
-        scrollbar-width: none; /* firefox */
-
-        &::-webkit-scrollbar { display: none; }
-
-        .sidebar_menu {
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-
-            hr {
-                border: {
-                    top: 0;
-                    right: 0;
-                    left: 0;
-                    bottom: 1.5px solid $slategray-300;
-                }
-            }
+        @mixin UIBase {
+            display: block;
+            height: 100vh;
         }
-    }
 
     .options {
         span, a {
@@ -64,10 +30,13 @@
     }
 
     &_wrapper {
-        @include UIBase();
+        display: flex;
+        flex-direction: column;
         padding: 15px 40px;
         overflow-y: scroll;
         width: 90%;
+        position: relative;
+        height: 100vh;
     }
 
     &_header {
@@ -122,35 +91,134 @@
 
 @media screen and (max-width: 1024px) {
     .app_sidebar {
-        display: block;
-        padding: 12px;
-        max-width: 89px !important;
-        min-width: 89px !important;
-        .options {
-            a {
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                margin-bottom: 2px;
-                padding: 18px 9px 9px 9px;
-                text-align: center;
-                font-size: 10px;
+        width: fit-content;
+        max-width: fit-content;
+        min-width: fit-content;
 
+        .menu, .sidebar { width: fit-content; }
+        .menu_brandicon {
+            display: block;
+            height: 34px;
+            width: 23px;
+            background-image: url('../pictures/icon_login-light.png');
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto;
+        }
+
+        .menu_brandname { display: none; }
+        .menu_username { display: none; }
+        .menu_item {
+            display: block;
+            width: fit-content;
+            margin-bottom: 10px;
+
+            &_label {
+                width: 50px;
                 i {
-                    $icon-size: 20px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: $icon-size;
-                    width: $icon-size;
-                    margin: auto;
-                    display: inline-block;
+                    display: block;
                     font-size: 22px;
-                    margin-bottom: 8px;
+                    text-align: center;
                 }
 
-                &_name {
+                span {
+                    display: none;
+                    padding: 5px 10px;
+                    position: absolute;
+                    left: 70px;
+                    transform: translateY(-22px);
+                    font-size: 10px;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    background-color: $slategray-600;
+                    border-radius: 4px;
+                    color: $slategray-200;
+                    z-index: 200;
+                    box-shadow: $input-shadow;
+                    transition: 0.3s all ease-in-out
+                }
+
+                // show item name when hover
+                &:hover span {
                     display: block;
+                }
+            }
+        }
+
+        .sidebar_bottom {
+            .menu_links, .menu_logout {
+                display: block;
+                width: fit-content;
+                .menu_link_item {
+                    display: block;
+                    width: 100%;
+                }
+
+                .menu_link_item_label {
+                    i {
+                        display: block;
+                        font-size: 22px;
+                        text-align: center;
+                    }
+
+                    span {
+                        display: none;
+                        padding: 5px 10px;
+                        font-size: 10px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        position: absolute;
+                        border-radius: 8px;
+                        left: 70px;
+                        transform: translateY(-22px);
+                        height: fit-content;
+                        background-color: $slategray-600;
+                        color: $slategray-100;
+                        transition: 0.3s all ease-in-out;
+                    }
+
+                    // show item name when hover
+                    &:hover span {
+                        display: block;
+                    }
+
+                    a {
+                        background-color: red;
+                    }
+                }
+            }
+        }
+
+        // submenus
+        .menu_items {
+            left: 75px;
+            margin: 0;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            border: {
+                width: 0;
+                radius: 5px;
+            }
+
+            background-color: $slategray-200;
+
+            .menu_item {
+                margin: 5px 0 0 0;
+
+                &_label {
+                    display: block;
+                    i {
+                        font-size: 16px;
+                    }
+                }
+
+                &-isActive {
+                    .menu_item_label {
+                        color: $slategray-700;
+                    }
                 }
             }
         }

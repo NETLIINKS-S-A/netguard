@@ -16,6 +16,7 @@ export async function renderAppInterface() {
     let data = await getData(url)
 
     async function renderInterface(interfaceData: any): Promise<void> {
+        console.log(interfaceData)
         if (interfaceData.error) logOut() // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = "block";
@@ -23,14 +24,15 @@ export async function renderAppInterface() {
             sidebar.style.display = "flex";
 
             sidebar.innerHTML += `<div class="sidebar">
-                <div class="sidebar_brand">
-                    <img class="menu_brandicon" src="./public/pictures/icon_login-light.png" alt="NETLIINKS LOGO">
-                    <span class="menu_brandname">NETGUARD</span>
-                    <span class="menu_username">${interfaceData.username}</span>
-                </div>
 
                 <div class="sidebar_menu">
+
                     <div class="menu">
+                        <div class="sidebar_brand">
+                            <span class="menu_brandicon" alt="netliinks"></span>
+                            <span class="menu_brandname">NETGUARD</span>
+                            <span class="menu_username">${interfaceData.username}</span>
+                    </div>
                         <div class="menu_item menu_item-isActive" id="stadistics-view">
                             <div class="menu_item_label">
                                 <i class="fa-regular fa-chart-line"></i>
@@ -98,7 +100,7 @@ export async function renderAppInterface() {
                         <div class="menu_item_toggle">
                             <div class="menu_item">
                                 <div class="menu_item_label">
-                                    <i class="fa-regular fa-user"></i>
+                                    <i class="fa-regular fa-book"></i>
                                     <span>Bitácora</span>
                                 </div>
                             </div>

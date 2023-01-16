@@ -18,15 +18,19 @@ export async function getData(url: RequestInfo) {
 }
 
 export async function updateData(url: string, raw: any) {
-    let PostRequestOption: {} = {
-      method: 'PUT',
-      headers: requestHeader,
-      body: raw,
-      redirect: 'follow'
+    const fetchData: any = {
+        url: url,
+        PostRequestOption: {
+          method: 'PUT',
+          headers: requestHeader,
+          body: raw,
+          redirect: 'follow'
+        }
     }
 
-    await fetch(url, PostRequestOption)
-            .then(Response => Response.json())
+    let controller = new AbortController();
+    await fetch(fetchData, { cache: "force-cache", mode: "same-origin", signal: controller.signal })
+            .then(Response => Response.json());
 }
 
 export async function getEntitiesData(entities: string): Promise<void> {

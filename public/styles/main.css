@@ -342,21 +342,19 @@ img {
 
 .sidebar {
   width: 100%;
-  position: relative;
+  overflow-y: scroll;
 }
 .sidebar_bottom {
-  position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
 }
 .sidebar_brand {
-  padding: 15px 20px 0px 20px;
+  margin-bottom: 15px;
 }
 
 .menu {
   display: block;
-  position: relative;
 }
 .menu, .menu_links, .menu_logout {
   padding: 15px;
@@ -373,7 +371,6 @@ img {
 }
 .menu_username {
   display: block;
-  margin-bottom: 20px;
   text-transform: capitalize;
   font-size: 14px;
   font-weight: 500;
@@ -382,7 +379,7 @@ img {
 .menu_item {
   display: block;
   margin: 5px 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 .menu_item_label {
   color: #64738C;
@@ -412,7 +409,7 @@ img {
 .menu_link_item {
   display: block;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
   color: #64738C;
 }
 .menu_link_item_label {
@@ -421,6 +418,37 @@ img {
   padding: 8px 10px;
   border: 1px solid transparent;
   transition: 0.2s all ease-in-out;
+}
+
+.app_sidebar {
+  display: block;
+  height: 100vh;
+  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
+  overflow: auto;
+  resize: horizontal;
+  background-color: #F7FBFC;
+  border-right: 1px solid #E2E8F0;
+  -ms-overflow-style: none; /* ms windows */
+  scrollbar-width: none; /* firefox */
+}
+.app_sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar_menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+}
+.sidebar_menu hr {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1.5px solid #E2E8F0;
 }
 
 .modal {
@@ -811,34 +839,6 @@ table .tbody tr:hover td .btn_table-delete,
   align-items: center;
   justify-content: space-between;
 }
-.app_sidebar {
-  display: block;
-  height: 100vh;
-  width: 200px;
-  max-width: 200px;
-  min-width: 200px;
-  overflow: auto;
-  resize: horizontal;
-  background-color: #F7FBFC;
-  border-right: 1px solid #E2E8F0;
-  -ms-overflow-style: none; /* ms windows */
-  scrollbar-width: none; /* firefox */
-}
-.app_sidebar::-webkit-scrollbar {
-  display: none;
-}
-.app_sidebar .sidebar_menu {
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.app_sidebar .sidebar_menu hr {
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  border-bottom: 1.5px solid #E2E8F0;
-}
 .app .options span, .app .options a {
   color: #94A2B8;
   cursor: pointer;
@@ -856,11 +856,13 @@ table .tbody tr:hover td .btn_table-delete,
   margin-bottom: 10px;
 }
 .app_wrapper {
-  display: block;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   padding: 15px 40px;
   overflow-y: scroll;
   width: 90%;
+  position: relative;
+  height: 100vh;
 }
 .app_header {
   display: flex;
@@ -904,33 +906,115 @@ table .tbody tr:hover td .btn_table-delete,
 
 @media screen and (max-width: 1024px) {
   .app_sidebar {
+    width: fit-content;
+    max-width: fit-content;
+    min-width: fit-content;
+  }
+  .app_sidebar .menu, .app_sidebar .sidebar {
+    width: fit-content;
+  }
+  .app_sidebar .menu_brandicon {
     display: block;
-    padding: 12px;
-    max-width: 89px !important;
-    min-width: 89px !important;
+    height: 34px;
+    width: 23px;
+    background-image: url("../pictures/icon_login-light.png");
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
   }
-  .app_sidebar .options a {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 2px;
-    padding: 18px 9px 9px 9px;
-    text-align: center;
-    font-size: 10px;
+  .app_sidebar .menu_brandname {
+    display: none;
   }
-  .app_sidebar .options a i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-    width: 20px;
-    margin: auto;
-    display: inline-block;
+  .app_sidebar .menu_username {
+    display: none;
+  }
+  .app_sidebar .menu_item {
+    display: block;
+    width: fit-content;
+    margin-bottom: 10px;
+  }
+  .app_sidebar .menu_item_label {
+    width: 50px;
+  }
+  .app_sidebar .menu_item_label i {
+    display: block;
     font-size: 22px;
-    margin-bottom: 8px;
+    text-align: center;
   }
-  .app_sidebar .options a_name {
+  .app_sidebar .menu_item_label span {
+    display: none;
+    padding: 5px 10px;
+    position: absolute;
+    left: 70px;
+    transform: translateY(-22px);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #64738C;
+    border-radius: 4px;
+    color: #F1F5F9;
+    z-index: 200;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    transition: 0.3s all ease-in-out;
+  }
+  .app_sidebar .menu_item_label:hover span {
     display: block;
+  }
+  .app_sidebar .sidebar_bottom .menu_links, .app_sidebar .sidebar_bottom .menu_logout {
+    display: block;
+    width: fit-content;
+  }
+  .app_sidebar .sidebar_bottom .menu_links .menu_link_item, .app_sidebar .sidebar_bottom .menu_logout .menu_link_item {
+    display: block;
+    width: 100%;
+  }
+  .app_sidebar .sidebar_bottom .menu_links .menu_link_item_label i, .app_sidebar .sidebar_bottom .menu_logout .menu_link_item_label i {
+    display: block;
+    font-size: 22px;
+    text-align: center;
+  }
+  .app_sidebar .sidebar_bottom .menu_links .menu_link_item_label span, .app_sidebar .sidebar_bottom .menu_logout .menu_link_item_label span {
+    display: none;
+    padding: 5px 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    border-radius: 8px;
+    left: 70px;
+    transform: translateY(-22px);
+    height: fit-content;
+    background-color: #64738C;
+    color: #F7FBFC;
+    transition: 0.3s all ease-in-out;
+  }
+  .app_sidebar .sidebar_bottom .menu_links .menu_link_item_label:hover span, .app_sidebar .sidebar_bottom .menu_logout .menu_link_item_label:hover span {
+    display: block;
+  }
+  .app_sidebar .sidebar_bottom .menu_links .menu_link_item_label a, .app_sidebar .sidebar_bottom .menu_logout .menu_link_item_label a {
+    background-color: red;
+  }
+  .app_sidebar .menu_items {
+    left: 75px;
+    margin: 0;
+    border-width: 0;
+    border-radius: 5px;
+    background-color: #F1F5F9;
+  }
+  .app_sidebar .menu_items:first-child {
+    margin-top: 0;
+  }
+  .app_sidebar .menu_items .menu_item {
+    margin: 5px 0 0 0;
+  }
+  .app_sidebar .menu_items .menu_item_label {
+    display: block;
+  }
+  .app_sidebar .menu_items .menu_item_label i {
+    font-size: 16px;
+  }
+  .app_sidebar .menu_items .menu_item-isActive .menu_item_label {
+    color: #475469;
   }
   .app_content {
     padding: 15px 10px;

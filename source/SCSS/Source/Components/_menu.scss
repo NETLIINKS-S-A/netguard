@@ -1,22 +1,20 @@
 .sidebar {
     width: 100%;
-    position: relative;
+    overflow-y: scroll;
 
     &_bottom {
-        position: absolute;
         bottom: 0;
         right: 0;
         width: 100%;
     }
 
     &_brand {
-        padding: 15px 20px 0px 20px;
+        margin-bottom: 15px;
     }
 }
 
 .menu {
     display: block;
-    position: relative;
 
     &, &_links, &_logout {
         padding: 15px;
@@ -36,7 +34,6 @@
 
     &_username {
         display: block;
-        margin-bottom: 20px;
         text-transform: capitalize;
         font-size: 14px;
         font-weight: $medium;
@@ -46,7 +43,7 @@
     &_item {
         display: block;
         margin: 5px 0;
-        font-size: 12px;
+        font-size: 14px;
 
         &_label {
             color: $slategray-600;
@@ -89,7 +86,7 @@
     &_link_item {
         display: block;
         text-decoration: none;
-        font-size: 12px;
+        font-size: 14px;
         color: $slategray-600;
 
         &_label {
@@ -98,6 +95,41 @@
             padding: 8px 10px;
             border: 1px solid transparent;
             transition: 0.2s all ease-in-out;
+        }
+    }
+}
+
+.app_sidebar {
+    display: block;
+    height: 100vh;
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+    overflow: auto;
+    resize: horizontal;
+    background-color: $slategray-100;
+    border-right: 1px solid $slategray-300;
+
+    // hide scrollbars
+    -ms-overflow-style: none; /* ms windows */
+    scrollbar-width: none; /* firefox */
+
+    &::-webkit-scrollbar { display: none; }
+}
+
+.sidebar_menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+
+    hr {
+        border: {
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 1.5px solid $slategray-300;
         }
     }
 }
