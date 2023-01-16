@@ -12,10 +12,11 @@ const appTools = UIApp?.tools;
 let currentPage: number = 1;
 
 export async function usersView() {
-    let GET_DATA = await getEntitiesData('User');
-    let arrayUsers = GET_DATA
-        // @ts-ignore
-        .filter((data) => `${data.userType}`.includes('CUSTOMER'));
+    let GET_DATA: any = await getEntitiesData('User');
+    let notSuper: any = GET_DATA
+        .filter((data: any) => data.isSuper === false)
+    let arrayUsers: any = notSuper
+        .filter((data: any) => `${data.userType}`.includes('CUSTOMER'));
 
     // BusinesView interface
     app.innerHTML = `

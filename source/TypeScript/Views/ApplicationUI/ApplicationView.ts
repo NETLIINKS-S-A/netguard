@@ -10,6 +10,8 @@ import { usersView } from '../Users/Users/UsersView.js';
 import { guardsView } from '../Users/Guards/GuardsView.js';
 import { emergencyUserView } from '../Users/Emergency/EmergencyUserView.js';
 import { eventView } from '../Binnacle/Events/EventView.js';
+import { platformView } from '../Binnacle/Platform/PlatformView.js';
+import { administratorsView } from '../Users/Administrators/AdministratorView.js';
 
 export async function applicationView() {
     const url =
@@ -129,7 +131,7 @@ export async function applicationView() {
                                 <div class="menu_item" id="binnacle-platform">
                                     <div class="menu_item_label">
                                         <i class="fa-regular fa-laptop"></i>
-                                        <span>Plataforma</span>
+                                        <span>Accesos</span>
                                     </div>
                                 </div>
 
@@ -166,14 +168,14 @@ export async function applicationView() {
                             </div>
                         </div>
 
-                        <div class="menu_item">
+                        <div class="menu_item" id="citadels-view">
                             <div class="menu_item_label">
                                 <i class="fa-regular fa-buildings"></i>
                                 <span>Ciudadela</span>
                             </div>
                         </div>
 
-                        <div class="menu_item">
+                        <div class="menu_item" id="administrators-view">
                             <div class="menu_item_label">
                                 <i class="fa-regular fa-user-group"></i>
                                 <span>Adminsitración</span>
@@ -287,7 +289,7 @@ export async function applicationView() {
             document
                 .getElementById('binnacle-platform')
                 ?.addEventListener('click', (e) =>
-                    renderBlankPage('Plataforma')
+                    platformView()
                 );
             // visits
             document
@@ -297,6 +299,9 @@ export async function applicationView() {
             document
                 .getElementById('binnacle-notes')
                 ?.addEventListener('click', (e) => renderBlankPage('Notas'));
+
+            // Administrators
+            document.getElementById('administrators-view')?.addEventListener('click', () => administratorsView())
 
             // PENDING: this functions are not implemented yet
             /*
@@ -350,7 +355,7 @@ export async function applicationView() {
             });
         }
 
-        eventView();
+        platformView();
     }
 
     renderInterface(data);

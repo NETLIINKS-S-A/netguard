@@ -3,7 +3,7 @@ import { UI } from '../../../Libs/lib.dom.js';
 import { getEntitiesData } from '../../../Libs/lib.request.js';
 import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
 import { UIElement } from '../../../Types/GeneralTypes.js';
-import { renderPlatformData } from './PlatformRenderData.js';
+import { renderAdministratorData } from './AdministratorRenderData.js';
 
 const tableRows: number = 22;
 const UIApp = UI.App;
@@ -11,18 +11,18 @@ const app = UIApp?.content;
 const appTools = UIApp?.tools;
 const currentPage: number = 1;
 
-export async function platformView(): Promise<void> {
+export async function administratorsView(): Promise<void> {
     // write application template
-    app.innerHTML = `<h1 class="app_title">Accesos</h1>
+    app.innerHTML = `<h1 class="app_title">Administradores</h1>
     <table>
         <thead>
             <tr>
-                <th>Usuario</th>
-                <th>Dispositivo</th>
-                <th>Plataforma</th>
-                <th>Empresa</th>
-                <th>Fecha</th>
-                <th>Hora</th>
+                <th>Nombre</th>
+                <th>ID</th>
+                <th>Estado</th>
+                <th>Ciudadela</th>
+                <th></th>
+                <th></th>
             </tr>
             <tbody id="table-body">
             </tbody>
@@ -59,16 +59,16 @@ export async function platformView(): Promise<void> {
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
 
-    let GET_DATA = await getEntitiesData('WebAccess');
-    let arrayPlatform: any = GET_DATA;
-    console.log(arrayPlatform)
+    let GET_DATA: any = await getEntitiesData('User');
+    let arrayAdministrators: any = GET_DATA
+        .filter((data: any) => data.isSuper === true)
+    console.log(arrayAdministrators)
 
     await searchInput?.addEventListener('keyup', (): void => {
-        const arrayData = arrayPlatform.filter((events: any) =>
-            `${events.user.username}
-             ${events.userAgent}
-             ${events.system.name}
-             ${events.customer.name}`
+        const arrayData = arrayAdministrators.filter((administrator: any) =>
+            `${administrator.firstName}
+             ${administrator.lastName}
+             ${administrator.description}`
                 .toLowerCase()
                 .includes(searchInput?.value.toLowerCase())
         );
@@ -76,7 +76,7 @@ export async function platformView(): Promise<void> {
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows) filteredResult = tableRows;
 
-        renderPlatformData(
+        renderAdministratorData(
             arrayData,
             tableBody,
             filteredResult,
@@ -90,13 +90,13 @@ export async function platformView(): Promise<void> {
             tableRows,
             currentPage,
             tableBody,
-            renderPlatformData
+            renderAdministratorData
         );
     });
 
     // render data
-    await renderPlatformData(
-        arrayPlatform,
+    await renderAdministratorData(
+        arrayAdministrators,
         tableBody,
         tableRows,
         currentPage,
@@ -104,11 +104,11 @@ export async function platformView(): Promise<void> {
     );
 
     setupPagination(
-        arrayPlatform,
+        arrayAdministrators,
         paginationCounter,
         tableRows,
         currentPage,
         tableBody,
-        renderPlatformData
+        renderAdministratorData
     );
 }

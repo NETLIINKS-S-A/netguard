@@ -2,24 +2,24 @@
 import { UI } from '../../../Libs/lib.dom.js';
 import { getEntitiesData } from '../../../Libs/lib.request.js';
 import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { renderPlatformData } from './PlatformRenderData.js';
+import { renderAdministratorData } from './AdministratorRenderData.js';
 const tableRows = 22;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 const currentPage = 1;
-export async function platformView() {
+export async function administratorsView() {
     // write application template
-    app.innerHTML = `<h1 class="app_title">Accesos</h1>
+    app.innerHTML = `<h1 class="app_title">Administradores</h1>
     <table>
         <thead>
             <tr>
-                <th>Usuario</th>
-                <th>Dispositivo</th>
-                <th>Plataforma</th>
-                <th>Empresa</th>
-                <th>Fecha</th>
-                <th>Hora</th>
+                <th>Nombre</th>
+                <th>ID</th>
+                <th>Estado</th>
+                <th>Ciudadela</th>
+                <th></th>
+                <th></th>
             </tr>
             <tbody id="table-body">
             </tbody>
@@ -51,23 +51,23 @@ export async function platformView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('WebAccess');
-    let arrayPlatform = GET_DATA;
-    console.log(arrayPlatform);
+    let GET_DATA = await getEntitiesData('User');
+    let arrayAdministrators = GET_DATA
+        .filter((data) => data.isSuper === true);
+    console.log(arrayAdministrators);
     await searchInput?.addEventListener('keyup', () => {
-        const arrayData = arrayPlatform.filter((events) => `${events.user.username}
-             ${events.userAgent}
-             ${events.system.name}
-             ${events.customer.name}`
+        const arrayData = arrayAdministrators.filter((administrator) => `${administrator.firstName}
+             ${administrator.lastName}
+             ${administrator.description}`
             .toLowerCase()
             .includes(searchInput?.value.toLowerCase()));
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
-        renderPlatformData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderPlatformData);
+        renderAdministratorData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
+        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderAdministratorData);
     });
     // render data
-    await renderPlatformData(arrayPlatform, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayPlatform, paginationCounter, tableRows, currentPage, tableBody, renderPlatformData);
+    await renderAdministratorData(arrayAdministrators, tableBody, tableRows, currentPage, paginationCounter);
+    setupPagination(arrayAdministrators, paginationCounter, tableRows, currentPage, tableBody, renderAdministratorData);
 }
