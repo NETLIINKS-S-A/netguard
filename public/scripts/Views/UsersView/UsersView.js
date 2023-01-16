@@ -1,19 +1,18 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from "../../RequestOptions.js";
-import { UI } from "../../lib.dom.js";
-import { setupPagination } from "../../lib.tools.pagination.js";
-import { displayUserData } from "./UsersRenderData.js";
+import { getEntitiesData } from '../../RequestOptions.js';
+import { UI } from '../../lib.dom.js';
+import { setupPagination } from '../../lib.tools.pagination.js';
+import { displayUserData } from './UsersRenderData.js';
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function renderUsers() {
-    let GET_DATA = await getEntitiesData("User");
+    let GET_DATA = await getEntitiesData('User');
     let arrayUsers = GET_DATA
         // @ts-ignore
-        .filter(data => `${data.userType}`
-        .includes("CUSTOMER"));
+        .filter((data) => `${data.userType}`.includes('CUSTOMER'));
     // BusinesView interface
     app.innerHTML = `
     <h1 class="app_title">Clientes</h1>
@@ -124,23 +123,36 @@ export async function renderUsers() {
         </div>
     </div>`;
     // HTML ELEMENTS
-    const tableBody = document.querySelector("#tableBody");
-    const searchInput = document.querySelector("#searcher");
-    const paginationCounter = document.getElementById("paginationCounter");
+    const tableBody = document.querySelector('#tableBody');
+    const searchInput = document.querySelector('#searcher');
+    const paginationCounter = document.getElementById('paginationCounter');
     // search data on real-time
-    await searchInput?.addEventListener("keyup", () => {
+    await searchInput?.addEventListener('keyup', () => {
         // @ts-ignore
-        const arrayData = arrayUsers.filter(user => `${user.firstName}
+        const arrayData = arrayUsers.filter((user) =>
+            `${user.firstName}
                                                     ${user.lastName}
                                                     ${user.description}`
-            .toLowerCase()
-            .includes(searchInput.value
-            .toLowerCase()));
+                .toLowerCase()
+                .includes(searchInput.value.toLowerCase())
+        );
         let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows)
-            filteredResult = tableRows;
-        displayUserData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
+        if (filteredResult >= tableRows) filteredResult = tableRows;
+        displayUserData(
+            arrayData,
+            tableBody,
+            filteredResult,
+            currentPage,
+            paginationCounter
+        );
+        setupPagination(
+            arrayData,
+            paginationCounter,
+            tableRows,
+            currentPage,
+            tableBody,
+            displayUserData
+        );
     });
     // Table placeholder
     tableBody.innerHTML = `
@@ -152,26 +164,39 @@ export async function renderUsers() {
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`.repeat(tableRows);
     // Display data and pagination
-    displayUserData(arrayUsers, tableBody, tableRows, currentPage, paginationCounter);
+    displayUserData(
+        arrayUsers,
+        tableBody,
+        tableRows,
+        currentPage,
+        paginationCounter
+    );
     // @ts-ignore
-    setupPagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
+    setupPagination(
+        arrayUsers,
+        paginationCounter,
+        tableRows,
+        currentPage,
+        tableBody,
+        displayUserData
+    );
     // Customer Status
-    const toggleStatus = document.getElementById("customerStatus");
-    const customerStatusLabel = document.getElementById("customerStatusLabel");
-    toggleStatus.addEventListener("click", () => {
+    const toggleStatus = document.getElementById('customerStatus');
+    const customerStatusLabel = document.getElementById('customerStatusLabel');
+    toggleStatus.addEventListener('click', () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = "activo";
-        else
-            customerStatusLabel.innerHTML = "inactivo";
+            customerStatusLabel.innerHTML = 'activo';
+        else customerStatusLabel.innerHTML = 'inactivo';
     });
     // Vehicular Entrance
-    const toggleVehicularEntrace = document.getElementById("vehicularEntrance");
-    const customerVehicularEntranceLabel = document.getElementById("customerVehicularEntranceLabel");
-    toggleVehicularEntrace.addEventListener("click", () => {
+    const toggleVehicularEntrace = document.getElementById('vehicularEntrance');
+    const customerVehicularEntranceLabel = document.getElementById(
+        'customerVehicularEntranceLabel'
+    );
+    toggleVehicularEntrace.addEventListener('click', () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = "si";
-        else
-            customerVehicularEntranceLabel.innerHTML = "no";
+            customerVehicularEntranceLabel.innerHTML = 'si';
+        else customerVehicularEntranceLabel.innerHTML = 'no';
     });
     console.log(arrayUsers);
 }

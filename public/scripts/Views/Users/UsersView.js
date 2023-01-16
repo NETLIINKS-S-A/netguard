@@ -1,7 +1,8 @@
 // @filename: UsersView.ts
-import { UI } from "../../lib.dom.js";
+import { UI } from '../../lib.dom.js';
 export async function renderUsers() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full";
+    const url =
+        'https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full';
     const appContent = UI.App?.content;
     appContent.innerHTML = `
         <h1 class="app_title">Usuarios</h1>

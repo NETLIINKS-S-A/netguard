@@ -9,10 +9,16 @@ DISPLAY TABLE DATA AND FILTERED TABLE DATA
  * @param rowsPerPage - The quantity rows show per page (tableRows)
  * @param page - The current page
  */
-export async function displayCustomerData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = "";
+export async function displayCustomerData(
+    items,
+    tableBody,
+    rowsPerPage,
+    page,
+    paginationElement
+) {
+    tableBody.innerHTML = '';
     page--;
-    console.log("Hola");
+    console.log('Hola');
     console.log(items);
     console.log(tableBody);
     console.log(rowsPerPage);
@@ -22,7 +28,7 @@ export async function displayCustomerData(items, tableBody, rowsPerPage, page, p
     let paginatedItems = items.slice(start, end);
     for (let i = 0; i < paginatedItems.length; i++) {
         let customer = paginatedItems[i];
-        let itemElement = document.createElement("tr");
+        let itemElement = document.createElement('tr');
         itemElement.innerHTML = `<tr>
             <td>${customer.name}</td>
             <td class="monospace">${customer.ruc}</td>
@@ -35,7 +41,7 @@ export async function displayCustomerData(items, tableBody, rowsPerPage, page, p
         </tr>`;
         // write datas on table
         tableBody.appendChild(itemElement);
-        console.log("Hola");
+        console.log('Hola');
     }
 }
 //     function setupPagination(items: any, wrapper: any, rowsPerPage: any) {

@@ -1,4 +1,4 @@
-import { UserEditor, MultiInput, closeUserModal } from "./UsersViewFuncs.js";
+import { UserEditor, MultiInput, closeUserModal } from './UsersViewFuncs.js';
 /**
  *
  * @param items - The saved data and filtered data (tableData)
@@ -6,8 +6,14 @@ import { UserEditor, MultiInput, closeUserModal } from "./UsersViewFuncs.js";
  * @param rowsPerPage - The quantity rows show per page (tableRows)
  * @param page - The current page
  */
-export async function displayUserData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = "";
+export async function displayUserData(
+    items,
+    tableBody,
+    rowsPerPage,
+    page,
+    paginationElement
+) {
+    tableBody.innerHTML = '';
     page--;
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
@@ -15,7 +21,7 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
     console.log(items[0].userType);
     for (let i = 0; i < paginatedItems.length; i++) {
         let user = paginatedItems[i];
-        let itemElement = document.createElement("tr");
+        let itemElement = document.createElement('tr');
         itemElement.innerHTML = `<tr>
             <td>${user?.firstName} ${user?.lastName}</td>
             <td class="monospace">${user.email}</td>
@@ -28,30 +34,36 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
         // write datas on table
         tableBody.appendChild(itemElement);
         // states
-        const states = document.querySelectorAll(".userState i");
+        const states = document.querySelectorAll('.userState i');
         states?.forEach((userState) => {
-            if (userState.innerText == "Enabled")
-                userState.classList.add("user_active"), userState.innerText = "Activo";
-            else if (userState.innerText == "Disabled")
-                userState.classList.add("user_inactive"), userState.innerText = "Inactivo";
+            if (userState.innerText == 'Enabled')
+                userState.classList.add('user_active'),
+                    (userState.innerText = 'Activo');
+            else if (userState.innerText == 'Disabled')
+                userState.classList.add('user_inactive'),
+                    (userState.innerText = 'Inactivo');
         });
     }
     // CUSTOMER EDITOR ================================================
     // elements
-    const editorButtonElements = document.querySelectorAll("tr td button");
-    const closeEditorButtonElement = document.getElementById("closeEditor");
-    const updateCustomerEntityElement = document.getElementById("updateCutomerEntity");
+    const editorButtonElements = document.querySelectorAll('tr td button');
+    const closeEditorButtonElement = document.getElementById('closeEditor');
+    const updateCustomerEntityElement = document.getElementById(
+        'updateCutomerEntity'
+    );
     // functions
     const userEditor = new UserEditor();
     editorButtonElements.forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener('click', () => {
             let entity = btn.dataset.id;
-            userEditor.open(entity, "editBusiness", MultiInput);
+            userEditor.open(entity, 'editBusiness', MultiInput);
         });
     });
-    closeEditorButtonElement.addEventListener("click", () => closeUserModal("editBusiness"));
-    updateCustomerEntityElement.addEventListener("click", () => {
-        userEditor.update("editBusiness");
+    closeEditorButtonElement.addEventListener('click', () =>
+        closeUserModal('editBusiness')
+    );
+    updateCustomerEntityElement.addEventListener('click', () => {
+        userEditor.update('editBusiness');
     });
     // CUSTOMER CREATOR ================================================
 }

@@ -1,19 +1,18 @@
 // @filename: GuardsView.ts
-import { getEntitiesData } from "../../RequestOptions.js";
-import { UI } from "../../lib.dom.js";
-import { setupPagination } from "../../lib.tools.pagination.js";
-import { displayGuardData } from "./GuardsViewFuncs.js";
+import { getEntitiesData } from '../../RequestOptions.js';
+import { UI } from '../../lib.dom.js';
+import { setupPagination } from '../../lib.tools.pagination.js';
+import { displayGuardData } from './GuardsViewFuncs.js';
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function renderGuards() {
-    let GET_DATA = await getEntitiesData("User");
+    let GET_DATA = await getEntitiesData('User');
     let arrayGuards = GET_DATA
         // @ts-ignore
-        .filter(data => `${data.userType}`
-        .includes("GUARD"));
+        .filter((data) => `${data.userType}`.includes('GUARD'));
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -125,22 +124,36 @@ export async function renderGuards() {
     </div>`;
     // get rendered elements
     const tableBody = document.querySelector('#table-body');
-    const searchInput = document.querySelector("#search-input");
-    const paginationCounter = document.getElementById("pagination-counter");
+    const searchInput = document.querySelector('#search-input');
+    const paginationCounter = document.getElementById('pagination-counter');
     // search data
-    await searchInput?.addEventListener("keyup", () => {
+    await searchInput?.addEventListener('keyup', () => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter(guard => `${guard.firstName}
+        const arrayData = arrayGuards.filter((guard) =>
+            `${guard.firstName}
                                                       ${guard.lastName}
                                                       ${guard.description}
-                                                      `.toLowerCase()
-            .includes(searchInput.value
-            .toLowerCase()));
+                                                      `
+                .toLowerCase()
+                .includes(searchInput.value.toLowerCase())
+        );
         let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows)
-            filteredResult = tableRows;
-        displayGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
+        if (filteredResult >= tableRows) filteredResult = tableRows;
+        displayGuardData(
+            arrayData,
+            tableBody,
+            filteredResult,
+            currentPage,
+            paginationCounter
+        );
+        setupPagination(
+            arrayData,
+            paginationCounter,
+            tableRows,
+            currentPage,
+            tableBody,
+            displayGuardData
+        );
     });
     // write table template
     tableBody.innerHTML = `
@@ -153,6 +166,19 @@ export async function renderGuards() {
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `.repeat(tableRows);
-    displayGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
+    displayGuardData(
+        arrayGuards,
+        tableBody,
+        tableRows,
+        currentPage,
+        paginationCounter
+    );
+    setupPagination(
+        arrayGuards,
+        paginationCounter,
+        tableRows,
+        currentPage,
+        tableBody,
+        displayGuardData
+    );
 }

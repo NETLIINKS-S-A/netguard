@@ -1,5 +1,11 @@
-export async function displayGuardData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = "";
+export async function displayGuardData(
+    items,
+    tableBody,
+    rowsPerPage,
+    page,
+    paginationElement
+) {
+    tableBody.innerHTML = '';
     page--;
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
@@ -7,7 +13,7 @@ export async function displayGuardData(items, tableBody, rowsPerPage, page, pagi
     let index;
     for (index = 0; index < arrayGuards.length; index++) {
         let guard = arrayGuards[index];
-        let row = document.createElement("tr");
+        let row = document.createElement('tr');
         row.innerHTML = `
         <tr>
             <td>${guard?.firstName} ${guard?.lastName}</td>
@@ -21,12 +27,14 @@ export async function displayGuardData(items, tableBody, rowsPerPage, page, pagi
         // write data on table
         tableBody.appendChild(row);
         // fix states
-        const states = document.querySelectorAll(".guard_state i");
+        const states = document.querySelectorAll('.guard_state i');
         states?.forEach((state) => {
-            if (state.innerText === "Enabled")
-                state.classList.add("user_active"), state.innerText = "Activo";
-            else if (state.innerText === "Disabled")
-                state.classList.add("user_inactive"), state.innerText = "Inactivo";
+            if (state.innerText === 'Enabled')
+                state.classList.add('user_active'),
+                    (state.innerText = 'Activo');
+            else if (state.innerText === 'Disabled')
+                state.classList.add('user_inactive'),
+                    (state.innerText = 'Inactivo');
         });
     }
     // TODO: editor

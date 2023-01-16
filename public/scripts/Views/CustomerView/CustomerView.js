@@ -1,7 +1,7 @@
-import { UI } from "../../lib.dom.js";
-import { displayCustomerData } from "./CustomerRenderData.js";
-import { setupPagination } from "../../lib.tools.pagination.js";
-import { getEntitiesData } from "../../RequestOptions.js";
+import { UI } from '../../lib.dom.js';
+import { displayCustomerData } from './CustomerRenderData.js';
+import { setupPagination } from '../../lib.tools.pagination.js';
+import { getEntitiesData } from '../../RequestOptions.js';
 const tableRows = UI.tableRows; // number of rows to show on tables
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -9,7 +9,7 @@ const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function renderCustomers() {
     // @ts-ignore
-    let GET_DATA = await getEntitiesData("Customer");
+    let GET_DATA = await getEntitiesData('Customer');
     let arrayCustomers = GET_DATA;
     // Write application template
     app.innerHTML = `
@@ -120,21 +120,36 @@ export async function renderCustomers() {
         </div>
     </div>`;
     // HTML ELEMENTS
-    const tableBody = document.querySelector("#tableBody");
-    const searchInput = document.querySelector("#searcher");
-    const paginationCounter = document.getElementById("paginationCounter");
+    const tableBody = document.querySelector('#tableBody');
+    const searchInput = document.querySelector('#searcher');
+    const paginationCounter = document.getElementById('paginationCounter');
     let currentPage = 1;
     // search data on real-time
-    await searchInput?.addEventListener("keyup", () => {
-        // @ts-ignore
-        const arrayData = arrayCustomers.filter(customer => `${customer.name.toLowerCase()}`.includes(searchInput.value
-            .toLowerCase()));
+    await searchInput?.addEventListener('keyup', () => {
+        const arrayData = arrayCustomers.filter((customer) =>
+            // @ts-ignore
+            `${customer.name.toLowerCase()}`.includes(
+                searchInput.value.toLowerCase()
+            )
+        );
         let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows)
-            filteredResult = tableRows;
-        displayCustomerData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        // @ts-ignore
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayCustomerData);
+        if (filteredResult >= tableRows) filteredResult = tableRows;
+        displayCustomerData(
+            arrayData,
+            tableBody,
+            filteredResult,
+            currentPage,
+            paginationCounter
+        );
+        setupPagination(
+            // @ts-ignore
+            arrayData,
+            paginationCounter,
+            tableRows,
+            currentPage,
+            tableBody,
+            displayCustomerData
+        );
     });
     // Table placeholder
     tableBody.innerHTML = `
@@ -145,24 +160,37 @@ export async function renderCustomers() {
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
     // Display data and pagination
-    displayCustomerData(arrayCustomers, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, displayCustomerData);
+    displayCustomerData(
+        arrayCustomers,
+        tableBody,
+        tableRows,
+        currentPage,
+        paginationCounter
+    );
+    setupPagination(
+        arrayCustomers,
+        paginationCounter,
+        tableRows,
+        currentPage,
+        tableBody,
+        displayCustomerData
+    );
     // Customer Status
-    const toggleStatus = document.getElementById("customerStatus");
-    const customerStatusLabel = document.getElementById("customerStatusLabel");
-    toggleStatus.addEventListener("click", () => {
+    const toggleStatus = document.getElementById('customerStatus');
+    const customerStatusLabel = document.getElementById('customerStatusLabel');
+    toggleStatus.addEventListener('click', () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = "activo";
-        else
-            customerStatusLabel.innerHTML = "inactivo";
+            customerStatusLabel.innerHTML = 'activo';
+        else customerStatusLabel.innerHTML = 'inactivo';
     });
     // Vehicular Entrance
-    const toggleVehicularEntrace = document.getElementById("vehicularEntrance");
-    const customerVehicularEntranceLabel = document.getElementById("customerVehicularEntranceLabel");
-    toggleVehicularEntrace.addEventListener("click", () => {
+    const toggleVehicularEntrace = document.getElementById('vehicularEntrance');
+    const customerVehicularEntranceLabel = document.getElementById(
+        'customerVehicularEntranceLabel'
+    );
+    toggleVehicularEntrace.addEventListener('click', () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = "si";
-        else
-            customerVehicularEntranceLabel.innerHTML = "no";
+            customerVehicularEntranceLabel.innerHTML = 'si';
+        else customerVehicularEntranceLabel.innerHTML = 'no';
     });
 }

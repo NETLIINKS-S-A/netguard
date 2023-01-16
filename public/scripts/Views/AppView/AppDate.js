@@ -1,9 +1,9 @@
 // @filename: AppDate.ts
-import { shortMonths, shortDays } from "../../DTNames.js";
+import { shortMonths, shortDays } from '../../DTNames.js';
 export function renderAppDate() {
     // DOM elements
-    const appMonth = document.getElementById("appMonth");
-    const appDay = document.getElementById("appDay");
+    const appMonth = document.getElementById('appMonth');
+    const appDay = document.getElementById('appDay');
     // timing functions
     const dt = new Date();
     const month = dt.getMonth();
@@ -12,15 +12,15 @@ export function renderAppDate() {
     const monthOfYears = shortMonths[month];
     const dayOfWeeks = shortDays[day];
     // styles
-    appMonth.style.textTransform = "uppercase";
-    appDay.style.textTransform = "uppercase";
+    appMonth.style.textTransform = 'uppercase';
+    appDay.style.textTransform = 'uppercase';
     // render on app
     appMonth.innerHTML = monthOfYears;
     appDay.innerHTML = dayOfWeeks;
     setInterval(renderAppTime, 1000);
 }
 function renderAppTime() {
-    const appTime = document.getElementById("appTime");
+    const appTime = document.getElementById('appTime');
     const dt = new Date();
     // hours
     let hh = dt.getHours();

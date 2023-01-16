@@ -1,5 +1,5 @@
 // @filename: BinnacleView.ts
-import { UI } from "../../lib.dom.js";
+import { UI } from '../../lib.dom.js';
 // import { UI } from "../../DOMElements.js"
 // import { UIElement } from "../../Types/GeneralTypes.js"
 // import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
@@ -8,7 +8,8 @@ import { UI } from "../../lib.dom.js";
 let tableRows = UI.tableRows; // number of rows to show on tables
 let UIApp = UI.App;
 export async function renderBusiness() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full";
+    const url =
+        'https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full';
     // BusinesView interface
     const appContent = UIApp?.content;
     appContent.innerHTML = `

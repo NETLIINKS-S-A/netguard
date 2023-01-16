@@ -1,7 +1,7 @@
 // @filename: BusinessEditor.ts
-import { Modal } from "../../Classes.js";
-import { getData, updateData } from "../../RequestOptions.js";
-import { renderBusiness } from "./BusinessView.js";
+import { Modal } from '../../Classes.js';
+import { getData, updateData } from '../../RequestOptions.js';
+import { renderBusiness } from './BusinessView.js';
 let entityURL;
 // Close editor
 export function closeBusinessModal(id) {
@@ -15,8 +15,8 @@ export class BusinessEditor {
         entityURL = `https://backend.netliinks.com:443/rest/entities/Customer/${entity}`;
         let data = await getData(entityURL);
         // Write business data on modal window
-        const entityName = document.getElementById("entityName");
-        const businessName = document.getElementById("businessName");
+        const entityName = document.getElementById('entityName');
+        const businessName = document.getElementById('businessName');
         entityName.innerHTML = data.name;
         businessName.value = data.name;
         const rucValue = data.ruc;
@@ -24,13 +24,13 @@ export class BusinessEditor {
         clearRucIinput(rucInput);
     }
     async update(modalID, rucInput) {
-        const businessName = document.getElementById("businessName");
+        const businessName = document.getElementById('businessName');
         // get inputData
         let raw = JSON.stringify({
-            "name": businessName.value
+            name: businessName.value,
         });
         // preventing rename with a empty value
-        if (businessName.value === "" || businessName.value.trim() === "")
+        if (businessName.value === '' || businessName.value.trim() === '')
             closeBusinessModal(modalID);
         else {
             updateData(entityURL, raw);
@@ -45,7 +45,7 @@ export class BusinessEditor {
 export class MultiInput {
     clearInputs(inputs) {
         inputs?.forEach((r) => {
-            r.value = "";
+            r.value = '';
         });
     }
     handleInput(e) {
@@ -54,7 +54,7 @@ export class MultiInput {
             input.nextElementSibling.focus();
     }
     handlePaste(e, inputs) {
-        const paste = e.clipboardData.getData("text");
+        const paste = e.clipboardData.getData('text');
         inputs?.forEach((input, i) => {
             input.value = paste[i];
         });
@@ -64,19 +64,19 @@ export class NewBusiness {
     open(id) {
         let editorWindow = new Modal(id);
         editorWindow.open();
-        console.info("this function is under construction");
+        console.info('this function is under construction');
     }
     add(id) {
         closeBusinessModal(id);
     }
     clearInputs(inputs) {
         inputs?.forEach((input) => {
-            input.value = "";
+            input.value = '';
         });
     }
 }
 function clearRucIinput(ruc) {
     ruc?.forEach((r) => {
-        r.value = "";
+        r.value = '';
     });
 }

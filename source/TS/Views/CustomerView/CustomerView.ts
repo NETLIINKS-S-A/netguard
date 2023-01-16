@@ -135,8 +135,8 @@ export async function renderCustomers() {
 
     // search data on real-time
     await searchInput?.addEventListener('keyup', (): void => {
-        // @ts-ignore
         const arrayData = arrayCustomers.filter((customer) =>
+            // @ts-ignore
             `${customer.name.toLowerCase()}`.includes(
                 searchInput.value.toLowerCase()
             )
@@ -152,8 +152,8 @@ export async function renderCustomers() {
             currentPage,
             paginationCounter
         );
-        // @ts-ignore
         setupPagination(
+            // @ts-ignore
             arrayData,
             paginationCounter,
             tableRows,
