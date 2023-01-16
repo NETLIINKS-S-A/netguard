@@ -145,6 +145,8 @@ export async function renderCustomers() {
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows) filteredResult = tableRows;
 
+        // display table data and pagination when
+        // find results
         displayCustomerData(
             arrayData,
             tableBody,

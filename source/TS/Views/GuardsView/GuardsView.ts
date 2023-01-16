@@ -139,9 +139,8 @@ export async function renderGuards() {
         // @ts-ignore
         const arrayData = arrayGuards.filter((guard) =>
             `${guard.firstName}
-                                                      ${guard.lastName}
-                                                      ${guard.description}
-                                                      `
+             ${guard.lastName}
+             ${guard.description}`
                 .toLowerCase()
                 .includes(searchInput.value.toLowerCase())
         );

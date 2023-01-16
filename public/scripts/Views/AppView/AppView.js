@@ -5,6 +5,7 @@ import { logOut, dismissLogOut, openLogOut } from '../Login/LogOut.js';
 import { getData } from '../../RequestOptions.js';
 import { renderGuards } from '../GuardsView/GuardsView.js';
 import { renderUsers } from '../UsersView/UsersView.js';
+import { emergencyUserView } from '../EmergencyUsers/EmergencyUserView.js';
 export async function renderAppInterface() {
     const url =
         'https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full';
@@ -64,6 +65,13 @@ export async function renderAppInterface() {
                                     <div class="menu_item_label" id="guards-view">
                                         <i class="fa-regular fa-user-police"></i>
                                         <span>Guardias</span>
+                                    </div>
+                                </div>
+
+                                <div class="menu_item">
+                                    <div class="menu_item_label" id="emergency-view">
+                                        <i class="fa-regular fa-siren-on"></i>
+                                        <span>Emergencia</span>
                                     </div>
                                 </div>
                             </div>
@@ -131,6 +139,8 @@ export async function renderAppInterface() {
                                     </div>
                                 </div>
 
+                                <!-- PENDING: this functions are not implemented yet -->
+                                <!--
                                 <div class="menu_item">
                                     <div class="menu_item_label" id="binnacle-markings">
                                         <i class="fa-regular fa-calendar"></i>
@@ -144,6 +154,7 @@ export async function renderAppInterface() {
                                         <span>Vehicular</span>
                                     </div>
                                 </div>
+                                -->
                             </div>
                         </div>
 
@@ -231,37 +242,53 @@ export async function renderAppInterface() {
             document
                 .getElementById('customers-view')
                 ?.addEventListener('click', (e) => renderCustomers());
+            /* Users */
+            // clients
             document
                 .getElementById('clients-view')
                 ?.addEventListener('click', (e) => renderUsers());
+            // guards
             document
                 .getElementById('guards-view')
                 ?.addEventListener('click', (e) => renderGuards());
+            // emergency
+            document
+                .getElementById('emergency-view')
+                ?.addEventListener('click', (e) => emergencyUserView());
+            /* Import */
+            // clients
             document
                 .getElementById('import-clients')
                 ?.addEventListener('click', (e) =>
                     renderBlankPage('Importar clientes')
                 );
+            // guards
             document
                 .getElementById('import-guards')
                 ?.addEventListener('click', (e) =>
                     renderBlankPage('Importar guardias')
                 );
-            // binnacle
+            /* binnacle */
+            // events
             document
                 .getElementById('binnacle-events')
                 ?.addEventListener('click', (e) => renderBlankPage('Eventos'));
+            // platform
             document
                 .getElementById('binnacle-platform')
                 ?.addEventListener('click', (e) =>
                     renderBlankPage('Plataforma')
                 );
+            // visits
             document
                 .getElementById('binnacle-visits')
                 ?.addEventListener('click', (e) => renderBlankPage('Visitas'));
+            // notes
             document
                 .getElementById('binnacle-notes')
                 ?.addEventListener('click', (e) => renderBlankPage('Notas'));
+            // PENDING: this functions are not implemented yet
+            /*
             document
                 .getElementById('binnacle-markings')
                 ?.addEventListener('click', (e) =>
@@ -272,6 +299,7 @@ export async function renderAppInterface() {
                 ?.addEventListener('click', (e) =>
                     renderBlankPage('Vehicular')
                 );
+            */
             // Close session functions
             document
                 .getElementById('openLogOut')
@@ -305,7 +333,7 @@ export async function renderAppInterface() {
                 });
             });
         }
-        renderBlankPage('Estadísticas');
+        emergencyUserView();
     }
     renderInterface(data);
 }
