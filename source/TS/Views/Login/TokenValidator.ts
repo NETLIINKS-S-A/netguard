@@ -16,6 +16,6 @@ export function checkTokenValidation(): void {
         console.error("Error: access token is null")
     else
         app.style.display = "block",
-        login.style.display = "none",
-        renderAppInterface()
+            login.style.display = "none",
+            renderAppInterface()
 }

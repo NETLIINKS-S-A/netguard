@@ -14,9 +14,9 @@ let currentPage: number = 1;
 export async function renderUsers() {
     let GET_DATA = await getEntitiesData("User")
     let arrayUsers = GET_DATA
-                    // @ts-ignore
-                    .filter(data => `${data.userType}`
-                    .includes("CUSTOMER"));
+        // @ts-ignore
+        .filter(data => `${data.userType}`
+            .includes("CUSTOMER"));
 
     // BusinesView interface
     app.innerHTML = `
@@ -137,12 +137,12 @@ export async function renderUsers() {
     // search data on real-time
     await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
-        const arrayData = arrayUsers.filter(user =>`${user.firstName}
+        const arrayData = arrayUsers.filter(user => `${user.firstName}
                                                     ${user.lastName}
                                                     ${user.description}`
-                                                    .toLowerCase()
-                                                    .includes(searchInput.value
-                                                    .toLowerCase()));
+            .toLowerCase()
+            .includes(searchInput.value
+                .toLowerCase()));
 
         let filteredResult = arrayData.length
         if (filteredResult >= tableRows) filteredResult = tableRows
@@ -161,27 +161,27 @@ export async function renderUsers() {
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`.repeat(tableRows);
 
-        // Display data and pagination
-        displayUserData(arrayUsers, tableBody, tableRows, currentPage, paginationCounter)
-        // @ts-ignore
-        setupPagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData)
+    // Display data and pagination
+    displayUserData(arrayUsers, tableBody, tableRows, currentPage, paginationCounter)
+    // @ts-ignore
+    setupPagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData)
 
-        // Customer Status
-        const toggleStatus: UIElement = document.getElementById("customerStatus")
-        const customerStatusLabel: UIElement = document.getElementById("customerStatusLabel")
+    // Customer Status
+    const toggleStatus: UIElement = document.getElementById("customerStatus")
+    const customerStatusLabel: UIElement = document.getElementById("customerStatusLabel")
 
-        toggleStatus.addEventListener("click", () => {
-            if (toggleStatus?.checked == true) customerStatusLabel.innerHTML = "activo"
-            else customerStatusLabel.innerHTML = "inactivo"
-        })
+    toggleStatus.addEventListener("click", () => {
+        if (toggleStatus?.checked == true) customerStatusLabel.innerHTML = "activo"
+        else customerStatusLabel.innerHTML = "inactivo"
+    })
 
-        // Vehicular Entrance
-        const toggleVehicularEntrace: UIElement = document.getElementById("vehicularEntrance")
-        const customerVehicularEntranceLabel: UIElement = document.getElementById("customerVehicularEntranceLabel")
-        toggleVehicularEntrace.addEventListener("click", () => {
-            if (toggleVehicularEntrace?.checked == true) customerVehicularEntranceLabel.innerHTML = "si"
-            else customerVehicularEntranceLabel.innerHTML = "no"
-        })
+    // Vehicular Entrance
+    const toggleVehicularEntrace: UIElement = document.getElementById("vehicularEntrance")
+    const customerVehicularEntranceLabel: UIElement = document.getElementById("customerVehicularEntranceLabel")
+    toggleVehicularEntrace.addEventListener("click", () => {
+        if (toggleVehicularEntrace?.checked == true) customerVehicularEntranceLabel.innerHTML = "si"
+        else customerVehicularEntranceLabel.innerHTML = "no"
+    })
 
-        console.log(arrayUsers)
+    console.log(arrayUsers)
 }

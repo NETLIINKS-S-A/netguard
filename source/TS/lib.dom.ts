@@ -1,7 +1,7 @@
 // @filename: lib.dom.ts
 import { UIType } from "./Types/GeneralTypes";
 
-export const  UI: UIType = {
+export const UI: UIType = {
     App: {
         app: document.getElementById("app"),
         wrapper: document.getElementById("appWrapper"),

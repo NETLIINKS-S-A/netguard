@@ -40,8 +40,8 @@ export async function displayCustomerData(items: any, tableBody: any, rowsPerPag
     // CUSTOMER EDITOR ================================================
     // elements
     const editorButtonElements: UIElement = document.querySelectorAll("tr td button")
-    const closeEditorButtonElement : UIElement = document.getElementById("closeEditor")
-    const updateCustomerEntityElement : UIElement = document.getElementById("updateCutomerEntity")
+    const closeEditorButtonElement: UIElement = document.getElementById("closeEditor")
+    const updateCustomerEntityElement: UIElement = document.getElementById("updateCutomerEntity")
 
     // functions
     const customerEditor: CustomerEditor = new CustomerEditor()

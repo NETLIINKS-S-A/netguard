@@ -6,15 +6,15 @@ export async function displayGuardData(items: any,
     rowsPerPage: number,
     page: number,
     paginationElement?: any): Promise<void> {
-        tableBody.innerHTML = "";
-        page--;
+    tableBody.innerHTML = "";
+    page--;
 
-        let start: number = rowsPerPage * page;
-        let end: number = start + rowsPerPage;
-        let arrayGuards: [] = items.slice(start, end)
+    let start: number = rowsPerPage * page;
+    let end: number = start + rowsPerPage;
+    let arrayGuards: [] = items.slice(start, end)
 
     let index: number;
-    for(index = 0; index < arrayGuards.length; index++) {
+    for (index = 0; index < arrayGuards.length; index++) {
         let guard: any = arrayGuards[index];
         let row = document.createElement("tr");
         row.innerHTML = `

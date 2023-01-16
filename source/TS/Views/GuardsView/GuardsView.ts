@@ -14,9 +14,9 @@ let currentPage: number = 1;
 export async function renderGuards() {
     let GET_DATA = await getEntitiesData("User")
     let arrayGuards = GET_DATA
-                    // @ts-ignore
-                    .filter(data => `${data.userType}`
-                    .includes("GUARD"));
+        // @ts-ignore
+        .filter(data => `${data.userType}`
+            .includes("GUARD"));
 
     // Write application template
     app.innerHTML = `
@@ -137,15 +137,15 @@ export async function renderGuards() {
     // search data
     await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter(guard =>`${guard.firstName}
+        const arrayData = arrayGuards.filter(guard => `${guard.firstName}
                                                       ${guard.lastName}
                                                       ${guard.description}
                                                       `.toLowerCase()
-                                                       .includes(searchInput.value
-                                                       .toLowerCase()));
+            .includes(searchInput.value
+                .toLowerCase()));
 
         let filteredResult = arrayData.length;
-        if(filteredResult >= tableRows) filteredResult = tableRows;
+        if (filteredResult >= tableRows) filteredResult = tableRows;
         displayGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
         setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
     })

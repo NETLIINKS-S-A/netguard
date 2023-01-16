@@ -17,10 +17,10 @@ export function setupPagination(
     currentPage: number,
     tableBody?: UIElement,
     displayFunc?: any): void {
-        wrapper.innerHTML = ""
+    wrapper.innerHTML = ""
     let pageCount = Math.ceil(items.length / rowsPerPage)
 
-    for ( let i = 1; i < pageCount + 1; i++) {
+    for (let i = 1; i < pageCount + 1; i++) {
         let btn: UIElement = paginationButton(i, items, currentPage, tableBody, rowsPerPage, displayFunc)
         wrapper.appendChild(btn)
     }
@@ -35,7 +35,7 @@ export function setupPagination(
  * @returns button
  */
 function paginationButton(page: FNPHTMLElement, items: [], currentPage: number, tableBody: UIElement, rowsPerPage: number, displayData: any): void {
-    const button : UIElement = document.createElement("button")
+    const button: UIElement = document.createElement("button")
     button.innerText = page
 
     if (currentPage == page) button.classList.add("isActive")
