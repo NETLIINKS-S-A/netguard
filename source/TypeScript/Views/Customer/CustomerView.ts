@@ -1,10 +1,10 @@
 // @filename: CustomerView.ts
-import { UIElement } from "../../Types/GeneralTypes.js";
-import { UI } from "../../Libs/lib.dom.js";
-import { renderCustomerData } from "./CustomerRenderData.js";
+import { UIElement } from '../../Types/GeneralTypes.js';
+import { UI } from '../../Libs/lib.dom.js';
+import { renderCustomerData } from './CustomerRenderData.js';
 // libs
-import { getEntitiesData } from "../../Libs/lib.request.js";
-import { setupPagination } from "../../Libs/lib.tools.pagination.js";
+import { getEntitiesData } from '../../Libs/lib.request.js';
+import { setupPagination } from '../../Libs/lib.tools.pagination.js';
 
 const tableRows: number = UI.tableRows; // number of rows to show on tables
 const UIApp: UIElement = UI.App;

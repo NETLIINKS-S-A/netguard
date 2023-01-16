@@ -1,8 +1,8 @@
-import { UI } from "../../Libs/lib.dom.js";
-import { renderCustomerData } from "./CustomerRenderData.js";
+import { UI } from '../../Libs/lib.dom.js';
+import { renderCustomerData } from './CustomerRenderData.js';
 // libs
-import { getEntitiesData } from "../../Libs/lib.request.js";
-import { setupPagination } from "../../Libs/lib.tools.pagination.js";
+import { getEntitiesData } from '../../Libs/lib.request.js';
+import { setupPagination } from '../../Libs/lib.tools.pagination.js';
 const tableRows = UI.tableRows; // number of rows to show on tables
 const UIApp = UI.App;
 const app = UIApp?.content;

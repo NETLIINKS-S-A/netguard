@@ -1,11 +1,13 @@
-// @filename: AppView.ts
-import { UI } from "../../Libs/lib.dom.js";
-import { logOut, dismissLogOut, openLogOut } from "../Login/Logout.js";
-import { getData } from "../../Libs/lib.request.js";
-import { customerView } from "../Customer/CustomerView.js";
-import { usersView } from "../Users/Users/UsersView.js";
-import { guardsView } from "../Users/Guards/GuardsView.js";
-import { emergencyUserView } from "../Users/Emergency/EmergencyUserView.js";
+import { logOut, dismissLogOut, openLogOut } from '../Login/Logout.js';
+// import libs
+import { UI } from '../../Libs/lib.dom.js';
+import { getData } from '../../Libs/lib.request.js';
+// import views
+import { customerView } from '../Customer/CustomerView.js';
+import { usersView } from '../Users/Users/UsersView.js';
+import { guardsView } from '../Users/Guards/GuardsView.js';
+import { emergencyUserView } from '../Users/Emergency/EmergencyUserView.js';
+import { eventView } from '../Binnacle/Events/EventView.js';
 export async function applicationView() {
     const url = 'https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full';
     const sidebar = document.getElementById('appSidebar');
@@ -317,7 +319,7 @@ export async function applicationView() {
                 });
             });
         }
-        emergencyUserView();
+        eventView();
     }
     renderInterface(data);
 }

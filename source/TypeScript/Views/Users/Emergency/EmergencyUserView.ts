@@ -1,9 +1,9 @@
 // @filename: EmergenctUserView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UIElement } from "../../../Types/GeneralTypes.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
-import { renderEmergencyUserData } from "./EmergencyRenderData.js";
+import { getEntitiesData } from '../../../Libs/lib.request.js';
+import { UIElement } from '../../../Types/GeneralTypes.js';
+import { UI } from '../../../Libs/lib.dom.js';
+import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
+import { renderEmergencyUserData } from './EmergencyRenderData.js';
 
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -68,7 +68,7 @@ export async function emergencyUserView() {
             filteredResult,
             currentPage,
             paginationCounter
-        )
+        );
 
         setupPagination(
             arrayData,
@@ -77,7 +77,7 @@ export async function emergencyUserView() {
             currentPage,
             tableBody,
             renderEmergencyUserData
-        )
+        );
     });
 
     // write table template
@@ -86,7 +86,7 @@ export async function emergencyUserView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
-    </tr>`.repeat(tableRows)
+    </tr>`.repeat(tableRows);
 
     // display data
     await renderEmergencyUserData(
@@ -95,7 +95,7 @@ export async function emergencyUserView() {
         tableRows,
         currentPage,
         paginationCounter
-    )
+    );
 
     setupPagination(
         arrayEmergencyUsers,
@@ -104,5 +104,5 @@ export async function emergencyUserView() {
         currentPage,
         tableBody,
         renderEmergencyUserData
-    )
+    );
 }

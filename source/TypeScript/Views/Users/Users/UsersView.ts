@@ -1,9 +1,9 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UIElement } from "../../../Types/GeneralTypes.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
-import { displayUserData } from "./UsersRenderData.js";
+import { getEntitiesData } from '../../../Libs/lib.request.js';
+import { UIElement } from '../../../Types/GeneralTypes.js';
+import { UI } from '../../../Libs/lib.dom.js';
+import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
+import { displayUserData } from './UsersRenderData.js';
 
 const tableRows = UI.tableRows;
 const UIApp = UI.App;

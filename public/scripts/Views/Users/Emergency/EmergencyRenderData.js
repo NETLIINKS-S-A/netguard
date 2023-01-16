@@ -7,7 +7,7 @@ export async function renderEmergencyUserData(items, tableBody, rowsPerPage, pag
     let index;
     for (index = 0; index < arrayEmergencyUsers.length; index++) {
         let emergencyUser = arrayEmergencyUsers[index];
-        let row = document.createElement("tr");
+        let row = document.createElement('tr');
         row.innerHTML = `
         <tr>
             <td>${emergencyUser?.name}</td>

@@ -1,7 +1,7 @@
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
-import { displayGuardData } from "./GuardsViewFuncs.js"; // TODO: change name to renderGuardData
+import { getEntitiesData } from '../../../Libs/lib.request.js';
+import { UI } from '../../../Libs/lib.dom.js';
+import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
+import { displayGuardData } from './GuardsViewFuncs.js'; // TODO: change name to renderGuardData
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;

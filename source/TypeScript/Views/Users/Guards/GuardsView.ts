@@ -1,9 +1,9 @@
 // @filename: GuardsView.ts
-import { UIElement } from "../../../Types/GeneralTypes.js";
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
-import { displayGuardData } from "./GuardsViewFuncs.js"; // TODO: change name to renderGuardData
+import { UIElement } from '../../../Types/GeneralTypes.js';
+import { getEntitiesData } from '../../../Libs/lib.request.js';
+import { UI } from '../../../Libs/lib.dom.js';
+import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
+import { displayGuardData } from './GuardsViewFuncs.js'; // TODO: change name to renderGuardData
 
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
