@@ -1,6 +1,6 @@
 // @filename: AppView.ts
 import { UIElement } from '../../Types/GeneralTypes.js';
-import { logOut, dismissLogOut, openLogOut } from '../Login/Logout.js';
+import { logout, dismissLogout, openLogout } from '../Login/Logout.js';
 // import libs
 import { UI } from '../../Libs/lib.dom.js';
 import { getData } from '../../Libs/lib.request.js';
@@ -23,7 +23,7 @@ export async function applicationView() {
     async function renderInterface(interfaceData: any): Promise<void> {
         console.log(interfaceData);
         if (interfaceData.error)
-            logOut(); // if any error, close session (in case access token fails)
+            logout(); // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = 'block';
             content.style.display = 'flex';
@@ -315,14 +315,14 @@ export async function applicationView() {
             // Close session functions
             document
                 .getElementById('openLogOut')
-                ?.addEventListener('click', (e) => openLogOut('logOutModal'));
+                ?.addEventListener('click', (e) => openLogout('logOutModal'));
             document
                 .getElementById('logOut')
-                ?.addEventListener('click', (e) => logOut());
+                ?.addEventListener('click', (e) => logout());
             document
                 .getElementById('dismissLogOut')
                 ?.addEventListener('click', (e) =>
-                    dismissLogOut('logOutModal')
+                    dismissLogout('logOutModal')
                 );
             // End close session functions
 
