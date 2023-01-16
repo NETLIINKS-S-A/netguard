@@ -1,4 +1,4 @@
-// @filename: logout.ts
+// @filename: Logout.ts
 import { Modal } from '../../Classes.js';
 import { checkTokenValidation } from './TokenValidator.js';
 export function openLogOut(id) {
