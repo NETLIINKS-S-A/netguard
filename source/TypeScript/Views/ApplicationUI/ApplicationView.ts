@@ -350,7 +350,7 @@ export async function applicationView() {
             });
         }
 
-        eventView();
+        renderBlankPage('Estadísticas');
     }
 
     renderInterface(data);
