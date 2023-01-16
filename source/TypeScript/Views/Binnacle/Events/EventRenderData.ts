@@ -21,7 +21,10 @@ export async function renderEventData(
         let row: UIElement = document.createElement('tr');
         row.innerHTML = `
         <tr>
-            <td>${event}</td>
+            <td>${event.user.firstName} ${event.user.lastName}</td>
+            <td>${event.description}</td>
+            <td>${event.creationDate}</td>
+            <td>${event.creationTime}</td>
         </tr>
         `;
 

@@ -282,7 +282,7 @@ export async function applicationView() {
             // events
             document
                 .getElementById('binnacle-events')
-                ?.addEventListener('click', (e) => renderBlankPage('Eventos'));
+                ?.addEventListener('click', (e) => eventView());
             // platform
             document
                 .getElementById('binnacle-platform')
