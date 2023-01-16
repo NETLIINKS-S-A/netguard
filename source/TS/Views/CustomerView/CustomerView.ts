@@ -1,20 +1,20 @@
 // @filename: CustomerView.ts
-import { UIElement } from "../../Types/GeneralTypes.js";
-import { UI } from "../../lib.dom.js";
-import { displayCustomerData } from "./CustomerRenderData.js";
-import { setupPagination } from "../../lib.tools.pagination.js";
-import { getEntitiesData } from "../../RequestOptions.js";
+import { UIElement } from '../../Types/GeneralTypes.js';
+import { UI } from '../../lib.dom.js';
+import { displayCustomerData } from './CustomerRenderData.js';
+import { setupPagination } from '../../lib.tools.pagination.js';
+import { getEntitiesData } from '../../RequestOptions.js';
 
-const tableRows : number = UI.tableRows; // number of rows to show on tables
-const UIApp     : UIElement = UI.App;
-const app       : UIElement = UIApp?.content;
-const appTools  : UIElement = UIApp?.tools;
-let currentPage : number = 1;
+const tableRows: number = UI.tableRows; // number of rows to show on tables
+const UIApp: UIElement = UI.App;
+const app: UIElement = UIApp?.content;
+const appTools: UIElement = UIApp?.tools;
+let currentPage: number = 1;
 
 export async function renderCustomers() {
     // @ts-ignore
-    let GET_DATA : [] = await getEntitiesData("Customer");
-    let arrayCustomers : [] = GET_DATA;
+    let GET_DATA: [] = await getEntitiesData('Customer');
+    let arrayCustomers: [] = GET_DATA;
 
     // Write application template
     app.innerHTML = `
@@ -116,7 +116,7 @@ export async function renderCustomers() {
     </div>`;
 
     // Add tools
-    const toolbox = UIApp?.tools
+    const toolbox = UIApp?.tools;
     toolbox.innerHTML = `
     <div class="toolbox">
         <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
@@ -127,23 +127,40 @@ export async function renderCustomers() {
     </div>`;
 
     // HTML ELEMENTS
-    const tableBody: UIElement = document.querySelector("#tableBody");
-    const searchInput: UIElement = document.querySelector("#searcher");
-    const paginationCounter: UIElement = document.getElementById("paginationCounter");
+    const tableBody: UIElement = document.querySelector('#tableBody');
+    const searchInput: UIElement = document.querySelector('#searcher');
+    const paginationCounter: UIElement =
+        document.getElementById('paginationCounter');
     let currentPage: number = 1;
 
     // search data on real-time
-    await searchInput?.addEventListener("keyup", (): void => {
+    await searchInput?.addEventListener('keyup', (): void => {
         // @ts-ignore
-        const arrayData = arrayCustomers.filter(customer => `${customer.name.toLowerCase()}`.includes(searchInput.value
-                                                     .toLowerCase()));
+        const arrayData = arrayCustomers.filter((customer) =>
+            `${customer.name.toLowerCase()}`.includes(
+                searchInput.value.toLowerCase()
+            )
+        );
 
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows) filteredResult = tableRows;
 
-        displayCustomerData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
+        displayCustomerData(
+            arrayData,
+            tableBody,
+            filteredResult,
+            currentPage,
+            paginationCounter
+        );
         // @ts-ignore
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayCustomerData);
+        setupPagination(
+            arrayData,
+            paginationCounter,
+            tableRows,
+            currentPage,
+            tableBody,
+            displayCustomerData
+        );
     });
 
     // Table placeholder
@@ -156,23 +173,43 @@ export async function renderCustomers() {
     </tr>`.repeat(tableRows);
 
     // Display data and pagination
-    displayCustomerData(arrayCustomers, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, displayCustomerData);
+    displayCustomerData(
+        arrayCustomers,
+        tableBody,
+        tableRows,
+        currentPage,
+        paginationCounter
+    );
+    setupPagination(
+        arrayCustomers,
+        paginationCounter,
+        tableRows,
+        currentPage,
+        tableBody,
+        displayCustomerData
+    );
 
     // Customer Status
-    const toggleStatus: UIElement = document.getElementById("customerStatus")
-    const customerStatusLabel: UIElement = document.getElementById("customerStatusLabel")
+    const toggleStatus: UIElement = document.getElementById('customerStatus');
+    const customerStatusLabel: UIElement = document.getElementById(
+        'customerStatusLabel'
+    );
 
-    toggleStatus.addEventListener("click", () => {
-        if (toggleStatus?.checked == true) customerStatusLabel.innerHTML = "activo"
-        else customerStatusLabel.innerHTML = "inactivo"
-    })
+    toggleStatus.addEventListener('click', () => {
+        if (toggleStatus?.checked == true)
+            customerStatusLabel.innerHTML = 'activo';
+        else customerStatusLabel.innerHTML = 'inactivo';
+    });
 
     // Vehicular Entrance
-    const toggleVehicularEntrace: UIElement = document.getElementById("vehicularEntrance")
-    const customerVehicularEntranceLabel: UIElement = document.getElementById("customerVehicularEntranceLabel")
-    toggleVehicularEntrace.addEventListener("click", () => {
-        if (toggleVehicularEntrace?.checked == true) customerVehicularEntranceLabel.innerHTML = "si"
-        else customerVehicularEntranceLabel.innerHTML = "no"
-    })
+    const toggleVehicularEntrace: UIElement =
+        document.getElementById('vehicularEntrance');
+    const customerVehicularEntranceLabel: UIElement = document.getElementById(
+        'customerVehicularEntranceLabel'
+    );
+    toggleVehicularEntrace.addEventListener('click', () => {
+        if (toggleVehicularEntrace?.checked == true)
+            customerVehicularEntranceLabel.innerHTML = 'si';
+        else customerVehicularEntranceLabel.innerHTML = 'no';
+    });
 }

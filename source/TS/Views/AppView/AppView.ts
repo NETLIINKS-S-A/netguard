@@ -1,27 +1,29 @@
 // @filename: AppView.ts
-import { UI } from "../../lib.dom.js";
-import { UIElement } from "../../Types/GeneralTypes.js";
-import { renderCustomers } from "../CustomerView/CustomerView.js";
-import { logOut, dismissLogOut, openLogOut } from "../Login/LogOut.js";
-import { getData } from "../../RequestOptions.js"
-import { renderGuards } from "../GuardsView/GuardsView.js";
-import { renderUsers } from "../UsersView/UsersView.js";
+import { UI } from '../../lib.dom.js';
+import { UIElement } from '../../Types/GeneralTypes.js';
+import { renderCustomers } from '../CustomerView/CustomerView.js';
+import { logOut, dismissLogOut, openLogOut } from '../Login/LogOut.js';
+import { getData } from '../../RequestOptions.js';
+import { renderGuards } from '../GuardsView/GuardsView.js';
+import { renderUsers } from '../UsersView/UsersView.js';
 
 export async function renderAppInterface() {
-    const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
-    const sidebar: UIElement = document.getElementById("appSidebar");
+    const url =
+        'https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full';
+    const sidebar: UIElement = document.getElementById('appSidebar');
     const content: UIElement = UI.App?.app;
     const wrapper: UIElement = UI.App?.wrapper;
 
-    let data = await getData(url)
+    let data = await getData(url);
 
     async function renderInterface(interfaceData: any): Promise<void> {
-        console.log(interfaceData)
-        if (interfaceData.error) logOut() // if any error, close session (in case access token fails)
+        console.log(interfaceData);
+        if (interfaceData.error)
+            logOut(); // if any error, close session (in case access token fails)
         else {
-            wrapper.style.display = "block";
-            content.style.display = "flex";
-            sidebar.style.display = "flex";
+            wrapper.style.display = 'block';
+            content.style.display = 'flex';
+            sidebar.style.display = 'flex';
 
             sidebar.innerHTML += `<div class="sidebar">
 
@@ -226,45 +228,95 @@ export async function renderAppInterface() {
                 </div>
             </div>`;
             // render functions
-            document.getElementById("stadistics-view")?.addEventListener("click", (e) => renderBlankPage("Estadísticas"));
-            document.getElementById("customers-view")?.addEventListener("click", (e) => renderCustomers());
-            document.getElementById("clients-view")?.addEventListener("click", (e) => renderUsers());
-            document.getElementById("guards-view")?.addEventListener("click", (e) => renderGuards());
-            document.getElementById("import-clients")?.addEventListener("click", (e) => renderBlankPage("Importar clientes"));
-            document.getElementById("import-guards")?.addEventListener("click", (e) => renderBlankPage("Importar guardias"));
+            document
+                .getElementById('stadistics-view')
+                ?.addEventListener('click', (e) =>
+                    renderBlankPage('Estadísticas')
+                );
+            document
+                .getElementById('customers-view')
+                ?.addEventListener('click', (e) => renderCustomers());
+            document
+                .getElementById('clients-view')
+                ?.addEventListener('click', (e) => renderUsers());
+            document
+                .getElementById('guards-view')
+                ?.addEventListener('click', (e) => renderGuards());
+            document
+                .getElementById('import-clients')
+                ?.addEventListener('click', (e) =>
+                    renderBlankPage('Importar clientes')
+                );
+            document
+                .getElementById('import-guards')
+                ?.addEventListener('click', (e) =>
+                    renderBlankPage('Importar guardias')
+                );
             // binnacle
-            document.getElementById("binnacle-events")?.addEventListener("click", (e) => renderBlankPage("Eventos"));
-            document.getElementById("binnacle-platform")?.addEventListener("click", (e) => renderBlankPage("Plataforma"));
-            document.getElementById("binnacle-visits")?.addEventListener("click", (e) => renderBlankPage("Visitas"));
-            document.getElementById("binnacle-notes")?.addEventListener("click", (e) => renderBlankPage("Notas"));
-            document.getElementById("binnacle-markings")?.addEventListener("click", (e) => renderBlankPage("Marcaciones"));
-            document.getElementById("binnacle-vehicular")?.addEventListener("click", (e) => renderBlankPage("Vehicular"));
+            document
+                .getElementById('binnacle-events')
+                ?.addEventListener('click', (e) => renderBlankPage('Eventos'));
+            document
+                .getElementById('binnacle-platform')
+                ?.addEventListener('click', (e) =>
+                    renderBlankPage('Plataforma')
+                );
+            document
+                .getElementById('binnacle-visits')
+                ?.addEventListener('click', (e) => renderBlankPage('Visitas'));
+            document
+                .getElementById('binnacle-notes')
+                ?.addEventListener('click', (e) => renderBlankPage('Notas'));
+            document
+                .getElementById('binnacle-markings')
+                ?.addEventListener('click', (e) =>
+                    renderBlankPage('Marcaciones')
+                );
+            document
+                .getElementById('binnacle-vehicular')
+                ?.addEventListener('click', (e) =>
+                    renderBlankPage('Vehicular')
+                );
 
             // Close session functions
-            document.getElementById("openLogOut")?.addEventListener("click", (e) => openLogOut("logOutModal"));
-            document.getElementById("logOut")?.addEventListener("click", (e) => logOut());
-            document.getElementById("dismissLogOut")?.addEventListener("click", (e) => dismissLogOut("logOutModal"));
+            document
+                .getElementById('openLogOut')
+                ?.addEventListener('click', (e) => openLogOut('logOutModal'));
+            document
+                .getElementById('logOut')
+                ?.addEventListener('click', (e) => logOut());
+            document
+                .getElementById('dismissLogOut')
+                ?.addEventListener('click', (e) =>
+                    dismissLogOut('logOutModal')
+                );
             // End close session functions
 
-            const menuItems: UIElement = document.querySelectorAll('.menu_item');
-            const menuItemToggle: UIElement = document.querySelectorAll('.menu_item_toggle');
+            const menuItems: UIElement =
+                document.querySelectorAll('.menu_item');
+            const menuItemToggle: UIElement =
+                document.querySelectorAll('.menu_item_toggle');
 
             menuItems?.forEach((menuItem: any) => {
                 menuItem.addEventListener('click', (): void => {
-                    menuItems.forEach((menuItem: any) => menuItem.classList.remove("menu_item-isActive"));
-                    menuItemToggle?.forEach((IT: any) => IT?.classList.remove("menu_item_toggle-isActive"));
-                    menuItem.classList.add("menu_item-isActive");
+                    menuItems.forEach((menuItem: any) =>
+                        menuItem.classList.remove('menu_item-isActive')
+                    );
+                    menuItemToggle?.forEach((IT: any) =>
+                        IT?.classList.remove('menu_item_toggle-isActive')
+                    );
+                    menuItem.classList.add('menu_item-isActive');
                 });
             });
 
             menuItemToggle?.forEach((itemToggle: any) => {
-                itemToggle?.addEventListener("click", (): void => {
-                    itemToggle?.classList.add("menu_item_toggle-isActive");
+                itemToggle?.addEventListener('click', (): void => {
+                    itemToggle?.classList.add('menu_item_toggle-isActive');
                 });
             });
         }
 
-        renderBlankPage("Estadísticas");
+        renderBlankPage('Estadísticas');
     }
 
     renderInterface(data);

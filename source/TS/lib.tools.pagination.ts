@@ -1,6 +1,6 @@
 // @filename: lib.tools.pagination.ts
-import { FNPHTMLElement } from "./Types/FunctionParameterTypes.js";
-import { UIElement } from "./Types/GeneralTypes.js";
+import { FNPHTMLElement } from './Types/FunctionParameterTypes.js';
+import { UIElement } from './Types/GeneralTypes.js';
 
 /**
  *
@@ -16,13 +16,21 @@ export function setupPagination(
     rowsPerPage: number,
     currentPage: number,
     tableBody?: UIElement,
-    displayFunc?: any): void {
-    wrapper.innerHTML = ""
-    let pageCount = Math.ceil(items.length / rowsPerPage)
+    displayFunc?: any
+): void {
+    wrapper.innerHTML = '';
+    let pageCount = Math.ceil(items.length / rowsPerPage);
 
     for (let i = 1; i < pageCount + 1; i++) {
-        let btn: UIElement = paginationButton(i, items, currentPage, tableBody, rowsPerPage, displayFunc)
-        wrapper.appendChild(btn)
+        let btn: UIElement = paginationButton(
+            i,
+            items,
+            currentPage,
+            tableBody,
+            rowsPerPage,
+            displayFunc
+        );
+        wrapper.appendChild(btn);
     }
 }
 
@@ -34,20 +42,29 @@ export function setupPagination(
  * @param tableBody
  * @returns button
  */
-function paginationButton(page: FNPHTMLElement, items: [], currentPage: number, tableBody: UIElement, rowsPerPage: number, displayData: any): void {
-    const button: UIElement = document.createElement("button");
+function paginationButton(
+    page: FNPHTMLElement,
+    items: [],
+    currentPage: number,
+    tableBody: UIElement,
+    rowsPerPage: number,
+    displayData: any
+): void {
+    const button: UIElement = document.createElement('button');
     button.innerText = page;
 
-    if (currentPage == page) button.classList.add("isActive");
+    if (currentPage == page) button.classList.add('isActive');
 
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
         currentPage = page;
         displayData(items, tableBody, rowsPerPage, currentPage);
 
-        let currentButton: UIElement = document.querySelector('.pagination button.isActive');
-        currentButton.classList.remove("isActive");
-        button.classList.add("isActive");
-    })
+        let currentButton: UIElement = document.querySelector(
+            '.pagination button.isActive'
+        );
+        currentButton.classList.remove('isActive');
+        button.classList.add('isActive');
+    });
 
     return button;
 }

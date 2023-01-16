@@ -1,21 +1,21 @@
 // @filename: LogOut.ts
 // TODO: Change this filename to Logout.ts
-import { Modal } from "../../Classes.js";
-import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js";
-import { checkTokenValidation } from "./TokenValidator.js";
+import { Modal } from '../../Classes.js';
+import { FNPHTMLElement } from '../../Types/FunctionParameterTypes.js';
+import { checkTokenValidation } from './TokenValidator.js';
 
 export function openLogOut(id: FNPHTMLElement) {
-    const show: Modal = new Modal(id)
-    show.open()
+    const show: Modal = new Modal(id);
+    show.open();
 }
 
 export function logOut() {
-    localStorage.removeItem("accessToken")
-    checkTokenValidation()
-    window.location.reload()
+    localStorage.removeItem('accessToken');
+    checkTokenValidation();
+    window.location.reload();
 }
 
 export function dismissLogOut(id: any) {
-    const close: Modal = new Modal(id)
-    close.close()
+    const close: Modal = new Modal(id);
+    close.close();
 }

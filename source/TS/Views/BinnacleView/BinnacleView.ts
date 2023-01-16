@@ -1,5 +1,5 @@
 // @filename: BinnacleView.ts
-import { UI } from "../../lib.dom.js"
+import { UI } from '../../lib.dom.js';
 
 // import { UI } from "../../DOMElements.js"
 // import { UIElement } from "../../Types/GeneralTypes.js"
@@ -7,14 +7,15 @@ import { UI } from "../../lib.dom.js"
 // import { closeBusinessModal, MultiInput, NewBusiness, BusinessEditor } from "./BusinessFunctions.js"
 // import { getData } from "../../RequestOptions.js"
 
-let tableRows = UI.tableRows // number of rows to show on tables
-let UIApp = UI.App
+let tableRows = UI.tableRows; // number of rows to show on tables
+let UIApp = UI.App;
 
 export async function renderBusiness() {
-    const url = "https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full"
+    const url =
+        'https://backend.netliinks.com:443/rest/entities/Business?fetchPlan=full';
 
     // BusinesView interface
-    const appContent = UIApp?.content
+    const appContent = UIApp?.content;
     appContent.innerHTML = `
         <h1 class="app_title">Empresas</h1>
         <table class="table">
@@ -109,10 +110,10 @@ export async function renderBusiness() {
                 </div>
             </div>
         </div>
-        `
+        `;
 
     // Add tools
-    const toolbox = UIApp?.tools
+    const toolbox = UIApp?.tools;
     toolbox.innerHTML = `
         <div class="toolbox">
             <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
@@ -120,5 +121,5 @@ export async function renderBusiness() {
                 <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="spotlight">
                 <label class="btn btn_icon spotlight_label" for="spotlight"><i class="fa-solid fa-filter"></i></label>
             </div>
-        </div>`
+        </div>`;
 }

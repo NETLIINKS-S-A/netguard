@@ -1,9 +1,9 @@
 // @filename: GuardsView.ts
-import { getEntitiesData } from "../../RequestOptions.js";
-import { UIElement } from "../../Types/GeneralTypes.js";
-import { UI } from "../../lib.dom.js";
-import { setupPagination } from "../../lib.tools.pagination.js";
-import { displayGuardData } from "./GuardsViewFuncs.js";
+import { getEntitiesData } from '../../RequestOptions.js';
+import { UIElement } from '../../Types/GeneralTypes.js';
+import { UI } from '../../lib.dom.js';
+import { setupPagination } from '../../lib.tools.pagination.js';
+import { displayGuardData } from './GuardsViewFuncs.js';
 
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -12,11 +12,10 @@ const appTools = UIApp?.tools;
 let currentPage: number = 1;
 
 export async function renderGuards() {
-    let GET_DATA = await getEntitiesData("User")
+    let GET_DATA = await getEntitiesData('User');
     let arrayGuards = GET_DATA
         // @ts-ignore
-        .filter(data => `${data.userType}`
-            .includes("GUARD"));
+        .filter((data) => `${data.userType}`.includes('GUARD'));
 
     // Write application template
     app.innerHTML = `
@@ -131,24 +130,40 @@ export async function renderGuards() {
 
     // get rendered elements
     const tableBody: UIElement = document.querySelector('#table-body');
-    const searchInput: UIElement = document.querySelector("#search-input");
-    const paginationCounter: UIElement = document.getElementById("pagination-counter")
+    const searchInput: UIElement = document.querySelector('#search-input');
+    const paginationCounter: UIElement =
+        document.getElementById('pagination-counter');
 
     // search data
-    await searchInput?.addEventListener("keyup", (): void => {
+    await searchInput?.addEventListener('keyup', (): void => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter(guard => `${guard.firstName}
+        const arrayData = arrayGuards.filter((guard) =>
+            `${guard.firstName}
                                                       ${guard.lastName}
                                                       ${guard.description}
-                                                      `.toLowerCase()
-            .includes(searchInput.value
-                .toLowerCase()));
+                                                      `
+                .toLowerCase()
+                .includes(searchInput.value.toLowerCase())
+        );
 
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows) filteredResult = tableRows;
-        displayGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
-    })
+        displayGuardData(
+            arrayData,
+            tableBody,
+            filteredResult,
+            currentPage,
+            paginationCounter
+        );
+        setupPagination(
+            arrayData,
+            paginationCounter,
+            tableRows,
+            currentPage,
+            tableBody,
+            displayGuardData
+        );
+    });
 
     // write table template
     tableBody.innerHTML = `
@@ -162,6 +177,19 @@ export async function renderGuards() {
     </tr>
     `.repeat(tableRows);
 
-    displayGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
+    displayGuardData(
+        arrayGuards,
+        tableBody,
+        tableRows,
+        currentPage,
+        paginationCounter
+    );
+    setupPagination(
+        arrayGuards,
+        paginationCounter,
+        tableRows,
+        currentPage,
+        tableBody,
+        displayGuardData
+    );
 }
