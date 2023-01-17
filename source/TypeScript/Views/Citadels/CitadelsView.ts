@@ -1,9 +1,9 @@
-// @filename: VisitsView.ts
-import { UI } from "../../../Libs/lib.dom.js"
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
-import { renderVisitData } from "./VisitsRenderData.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
-import { getEntitiesData } from "../../../Libs/lib.request.js"
+// @filename: CitadelsView.ts
+import { UI } from "../../Libs/lib.dom.js";
+import { getEntitiesData } from "../../Libs/lib.request.js";
+import { setupPagination } from "../../Libs/lib.tools.pagination.js";
+import { UIElement } from "../../Types/GeneralTypes";
+import { renderCitadelData } from "./CitadelsRenderData.js";
 
 const tableRows: number = UI.tableRows
 const UIApp = UI.App
@@ -11,19 +11,16 @@ const app = UIApp?.content
 const appTools = UIApp?.tools
 const currentPage: number = 1
 
-export async function visitsView(): Promise<void> {
+export async function citadelsView(): Promise<void> {
     // write application template
     app.innerHTML = `
-    <h1>Visitas</h1>
+    <h1>Ciudadelas</h1>
     <table>
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>CI</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Estado</th>
-                <th>Generado por</th>
+                <th>ID</th>
+                <th>Descrición</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -37,8 +34,7 @@ export async function visitsView(): Promise<void> {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-trash"></i></button>
+        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
@@ -55,21 +51,17 @@ export async function visitsView(): Promise<void> {
     <tr>
         <td>Cargando...</td>
         <td>Cargando...</td>
-        <td>Cargando...</td>
-        <td>Cargando...</td>
-        <td>Cargando...</td>
-        <td>Cargando...</td>
-        <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+        <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
+        <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`.repeat(tableRows);
 
-    let GET_DATA: any = await getEntitiesData('Visit');
-    console.log(GET_DATA)
-    let arrayVisits: any = GET_DATA
+    let GET_DATA: any = await getEntitiesData('Citadel');
+    let arrayCitadels: any = GET_DATA
 
     await searchInput?.addEventListener("keyup", (): void => {
-        const arrayData = arrayVisits.filter((visit: any) =>
-            `${visit.name}
-             ${visit.description}`
+        const arrayData = arrayCitadels.filter((citadel: any) =>
+            `${citadel.name}
+             ${citadel.description}`
                 .toLowerCase()
                 .includes(searchInput?.value.toLowerCase())
         )
@@ -77,7 +69,7 @@ export async function visitsView(): Promise<void> {
         let filteredResult = arrayData.length
         if (filteredResult >= tableRows) filteredResult = tableRows
 
-        renderVisitData(
+        renderCitadelData(
             arrayData,
             tableBody,
             filteredResult,
@@ -91,13 +83,13 @@ export async function visitsView(): Promise<void> {
             tableRows,
             currentPage,
             tableBody,
-            renderVisitData
+            renderCitadelData
         )
     })
 
     // render data
-    await renderVisitData(
-        arrayVisits,
+    await renderCitadelData(
+        arrayCitadels,
         tableBody,
         tableRows,
         currentPage,
@@ -105,11 +97,11 @@ export async function visitsView(): Promise<void> {
     )
 
     setupPagination(
-        arrayVisits,
+        arrayCitadels,
         paginationCounter,
         tableRows,
         currentPage,
         tableBody,
-        renderVisitData
+        renderCitadelData
     )
 }

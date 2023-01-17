@@ -12,6 +12,9 @@ import { emergencyUserView } from '../Users/Emergency/EmergencyUserView.js';
 import { eventView } from '../Binnacle/Events/EventView.js';
 import { platformView } from '../Binnacle/Platform/PlatformView.js';
 import { administratorsView } from '../Users/Administrators/AdministratorView.js';
+import { citadelsView } from '../Citadels/CitadelsView.js';
+import { visitsView } from '../Binnacle/Visits/VisitsView.js';
+import { notesView } from '../Binnacle/Notes/NotesView.js';
 
 export async function applicationView() {
     const url =
@@ -21,6 +24,8 @@ export async function applicationView() {
     const wrapper: UIElement = UI.App?.wrapper;
 
     let data = await getData(url);
+
+    console.table(data);
 
     async function renderInterface(interfaceData: any): Promise<void> {
         console.log(interfaceData);
@@ -294,14 +299,17 @@ export async function applicationView() {
             // visits
             document
                 .getElementById('binnacle-visits')
-                ?.addEventListener('click', (e) => renderBlankPage('Visitas'));
+                ?.addEventListener('click', (e) => visitsView());
             // notes
             document
                 .getElementById('binnacle-notes')
-                ?.addEventListener('click', (e) => renderBlankPage('Notas'));
+                ?.addEventListener('click', (e) => notesView());
 
             // Administrators
             document.getElementById('administrators-view')?.addEventListener('click', () => administratorsView())
+
+            // Citadels
+            document.getElementById('citadels-view')?.addEventListener('click', () => citadelsView())
 
             // PENDING: this functions are not implemented yet
             /*
@@ -355,7 +363,7 @@ export async function applicationView() {
             });
         }
 
-        platformView();
+        notesView();
     }
 
     renderInterface(data);

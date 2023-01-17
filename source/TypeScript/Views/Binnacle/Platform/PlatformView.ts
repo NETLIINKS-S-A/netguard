@@ -13,7 +13,8 @@ const currentPage: number = 1;
 
 export async function platformView(): Promise<void> {
     // write application template
-    app.innerHTML = `<h1 class="app_title">Accesos</h1>
+    app.innerHTML = `
+    <h1 class="app_title">Accesos <span class="badge badge_title" id="data-count">Calculando...</span></h1>
     <table>
         <thead>
             <tr>
@@ -35,7 +36,6 @@ export async function platformView(): Promise<void> {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
@@ -61,7 +61,9 @@ export async function platformView(): Promise<void> {
 
     let GET_DATA = await getEntitiesData('WebAccess');
     let arrayPlatform: any = GET_DATA;
-    console.log(arrayPlatform)
+
+    const dataCount: UIElement = document.getElementById("data-count");
+    dataCount.innerHTML = `${arrayPlatform.length} accesos`
 
     await searchInput?.addEventListener('keyup', (): void => {
         const arrayData = arrayPlatform.filter((events: any) =>

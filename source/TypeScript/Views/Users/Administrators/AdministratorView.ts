@@ -5,7 +5,7 @@ import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
 import { UIElement } from '../../../Types/GeneralTypes.js';
 import { renderAdministratorData } from './AdministratorRenderData.js';
 
-const tableRows: number = 22;
+const tableRows: number = UI?.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
@@ -21,11 +21,12 @@ export async function administratorsView(): Promise<void> {
                 <th>ID</th>
                 <th>Estado</th>
                 <th>Ciudadela</th>
-                <th></th>
+                <th>Tipo</th>
                 <th></th>
             </tr>
-            <tbody id="table-body">
-            </tbody>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
     </table>
 
     <div class="pagination">
@@ -35,7 +36,7 @@ export async function administratorsView(): Promise<void> {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
+        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
@@ -62,7 +63,6 @@ export async function administratorsView(): Promise<void> {
     let GET_DATA: any = await getEntitiesData('User');
     let arrayAdministrators: any = GET_DATA
         .filter((data: any) => data.isSuper === true)
-    console.log(arrayAdministrators)
 
     await searchInput?.addEventListener('keyup', (): void => {
         const arrayData = arrayAdministrators.filter((administrator: any) =>
