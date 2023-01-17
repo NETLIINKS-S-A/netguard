@@ -30,7 +30,7 @@ export async function visitsView(): Promise<void> {
         <tbody id="table-body"></tbody>
     </table>
 
-    <div class="pagination">
+    <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
     </div>`;
 
