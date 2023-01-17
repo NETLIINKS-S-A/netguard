@@ -329,7 +329,7 @@ export async function applicationView() {
                 });
             });
         }
-        notesView();
+        renderBlankPage('Estadísticas');
     }
     renderInterface(data);
 }
