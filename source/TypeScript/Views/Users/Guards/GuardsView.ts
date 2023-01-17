@@ -12,10 +12,11 @@ const appTools = UIApp?.tools;
 let currentPage: number = 1;
 
 export async function guardsView() {
-    let GET_DATA = await getEntitiesData('User');
-    let arrayGuards = GET_DATA
-        // @ts-ignore
-        .filter((data) => `${data.userType}`.includes('GUARD'));
+    let GET_DATA: any = await getEntitiesData('User');
+    let notSuper = GET_DATA
+        .filter((data: any) => data.isSuper == false)
+    let arrayGuards: any = notSuper
+        .filter((data: any) => `${data.userType}`.includes('GUARD'));
 
     // Write application template
     app.innerHTML = `

@@ -1,0 +1,43 @@
+// @filename: NotesRenderData.ts
+import { UIElement } from "../../../Types/GeneralTypes.js"
+
+/**
+ * @function renderNotesData
+ * @description render Notes data
+ * @param items - array with datas
+ * @param tableBody - DOM element
+ * @param rowsPerPage - rows quantity
+ * @param page - number of first page
+ * @param paginationElement - DOM element
+ */
+export async function renderNotesData(
+    items: any,
+    tableBody: UIElement,
+    rowsPerPage: number,
+    page: number,
+    paginationElement?: any
+): Promise<void> {
+    tableBody.innerHTML = ''
+    page--
+
+    let start: number = rowsPerPage * page
+    let end: number = start + rowsPerPage
+    let arrayNotes: [] = await items.slice(start, end)
+    let index: number
+
+    for (index = 0; index < arrayNotes.length; index++) {
+        let note: any = arrayNotes[index]
+        let row: UIElement = document.createElement('tr')
+        row.innerHTML = `
+        <tr>
+            <td>${note.title}</td>
+            <td>${note.user.firstName} ${note.user.lastName}</td>
+            <td>${note.creationDate}</td>
+            <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+        </tr>`
+
+        tableBody.appendChild(row)
+
+        console.log(note[index])
+    }
+}

@@ -1,7 +1,7 @@
 {
-  "entryFilePath": "/source/TS/index.ts",
   "alias": {},
   "resolveExtensions": [
     "*.ts"
-  ]
+  ],
+  "entryFilePath": "/source/TypeScript/index.ts"
 }

@@ -1,0 +1,15 @@
+.badge {
+    display: inline;
+    font-size: 10px;
+    font-weight: $bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background-color: transparent;
+
+    &_title {
+        background-color: $blue-500 !important;
+        color: $white !important;
+    }
+}
