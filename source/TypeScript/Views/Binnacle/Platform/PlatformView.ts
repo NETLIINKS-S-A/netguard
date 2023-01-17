@@ -29,7 +29,7 @@ export async function platformView(): Promise<void> {
             </tbody>
     </table>
 
-    <div class="pagination">
+    <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
     </div>`;
 

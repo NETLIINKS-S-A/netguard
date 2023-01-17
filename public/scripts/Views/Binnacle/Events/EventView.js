@@ -24,7 +24,7 @@ export async function eventView() {
             </tbody>
     </table>
 
-    <div class="pagination">
+    <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
     </div>`;
     // write app tools
