@@ -10,7 +10,6 @@ const appTools = UIApp?.tools;
 const currentPage = 1;
 export async function emergencyUserView() {
     let GET_DATA = await getEntitiesData('Contact');
-    console.log(GET_DATA);
     let arrayEmergencyUsers = GET_DATA;
     // write application template
     app.innerHTML = `<h1 class="app_title">Emergencia</h1>

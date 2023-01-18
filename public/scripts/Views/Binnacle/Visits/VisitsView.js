@@ -56,7 +56,6 @@ export async function visitsView() {
         <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
     </tr>`.repeat(tableRows);
     let GET_DATA = await getEntitiesData('Visit');
-    console.log(GET_DATA);
     let arrayVisits = GET_DATA;
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayVisits.filter((visit) => `${visit.name}

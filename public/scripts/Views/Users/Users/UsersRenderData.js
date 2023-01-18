@@ -12,7 +12,6 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
     let paginatedItems = items.slice(start, end);
-    console.log(items[0].userType);
     for (let i = 0; i < paginatedItems.length; i++) {
         let user = paginatedItems[i];
         let itemElement = document.createElement('tr');

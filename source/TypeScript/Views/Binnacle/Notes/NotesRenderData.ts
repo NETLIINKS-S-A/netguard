@@ -37,7 +37,5 @@ export async function renderNotesData(
         </tr>`
 
         tableBody.appendChild(row)
-
-        console.log(note[index])
     }
 }

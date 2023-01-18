@@ -19,9 +19,7 @@ export async function applicationView() {
     const content = UI.App?.app;
     const wrapper = UI.App?.wrapper;
     let data = await getData(url);
-    console.table(data);
     async function renderInterface(interfaceData) {
-        console.log(interfaceData);
         if (interfaceData.error)
             logout(); // if any error, close session (in case access token fails)
         else {

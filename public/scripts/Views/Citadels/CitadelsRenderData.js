@@ -16,6 +16,5 @@ export async function renderCitadelData(items, tableBody, rowsPerPage, page, pag
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
         </tr>`;
         tableBody.appendChild(row);
-        console.log(citadel[index]);
     }
 }

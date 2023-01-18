@@ -31,7 +31,5 @@ export async function renderVisitData(
         </tr>`
 
         tableBody.appendChild(row)
-
-        console.log(visit[index])
     }
 }

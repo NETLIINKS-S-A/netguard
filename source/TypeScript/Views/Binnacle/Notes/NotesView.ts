@@ -58,14 +58,10 @@ export async function notesView(): Promise<void> {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
-        <td>Cargando...</td>
-        <td>Cargando...</td>
-        <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
     </tr>`.repeat(tableRows);
 
     let GET_DATA: any = await getEntitiesData('Note');
-    console.log(GET_DATA)
     let arrayNotes: any = GET_DATA
 
     await searchInput?.addEventListener("keyup", (): void => {

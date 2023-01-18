@@ -217,6 +217,4 @@ export async function usersView() {
             customerVehicularEntranceLabel.innerHTML = 'si';
         else customerVehicularEntranceLabel.innerHTML = 'no';
     });
-
-    console.log(arrayUsers);
 }

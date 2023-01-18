@@ -13,7 +13,6 @@ const currentPage: number = 1;
 
 export async function emergencyUserView() {
     let GET_DATA: void = await getEntitiesData('Contact');
-    console.log(GET_DATA);
     let arrayEmergencyUsers: any = GET_DATA;
 
     // write application template

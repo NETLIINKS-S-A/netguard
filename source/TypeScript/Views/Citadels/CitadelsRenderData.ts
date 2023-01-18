@@ -28,7 +28,5 @@ export async function renderCitadelData(
         </tr>`
 
         tableBody.appendChild(row)
-
-        console.log(citadel[index])
     }
 }

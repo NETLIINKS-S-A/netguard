@@ -63,7 +63,6 @@ export async function visitsView(): Promise<void> {
     </tr>`.repeat(tableRows);
 
     let GET_DATA: any = await getEntitiesData('Visit');
-    console.log(GET_DATA)
     let arrayVisits: any = GET_DATA
 
     await searchInput?.addEventListener("keyup", (): void => {

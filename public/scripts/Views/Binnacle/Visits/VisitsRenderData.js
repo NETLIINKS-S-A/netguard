@@ -19,6 +19,5 @@ export async function renderVisitData(items, tableBody, rowsPerPage, page, pagin
             <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
         </tr>`;
         tableBody.appendChild(row);
-        console.log(visit[index]);
     }
 }
