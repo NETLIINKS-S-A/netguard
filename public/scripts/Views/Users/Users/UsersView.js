@@ -1,19 +1,17 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { displayUserData } from './UsersRenderData.js';
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { UI } from "../../../Libs/lib.dom.js";
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { displayUserData } from "./UsersRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function usersView() {
-    let GET_DATA = await getEntitiesData('User');
-    let notSuper = GET_DATA
-        .filter((data) => data.isSuper === false);
-    let arrayUsers = notSuper
-        .filter((data) => `${data.userType}`.includes('CUSTOMER'));
+    let GET_DATA = await getEntitiesData("User");
+    let notSuper = GET_DATA.filter((data) => data.isSuper === false);
+    let arrayUsers = notSuper.filter((data) => `${data.userType}`.includes("CUSTOMER"));
     // BusinesView interface
     app.innerHTML = `
     <h1 class="app_title">Clientes</h1>
@@ -124,11 +122,11 @@ export async function usersView() {
         </div>
     </div>`;
     // HTML ELEMENTS
-    const tableBody = document.querySelector('#tableBody');
-    const searchInput = document.querySelector('#searcher');
-    const paginationCounter = document.getElementById('paginationCounter');
+    const tableBody = document.querySelector("#tableBody");
+    const searchInput = document.querySelector("#searcher");
+    const paginationCounter = document.getElementById("paginationCounter");
     // search data on real-time
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
         const arrayData = arrayUsers.filter((user) => `${user.firstName}
                                                     ${user.lastName}
@@ -155,21 +153,21 @@ export async function usersView() {
     // @ts-ignore
     setupPagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
     // Customer Status
-    const toggleStatus = document.getElementById('customerStatus');
-    const customerStatusLabel = document.getElementById('customerStatusLabel');
-    toggleStatus.addEventListener('click', () => {
+    const toggleStatus = document.getElementById("customerStatus");
+    const customerStatusLabel = document.getElementById("customerStatusLabel");
+    toggleStatus.addEventListener("click", () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = 'activo';
+            customerStatusLabel.innerHTML = "activo";
         else
-            customerStatusLabel.innerHTML = 'inactivo';
+            customerStatusLabel.innerHTML = "inactivo";
     });
     // Vehicular Entrance
-    const toggleVehicularEntrace = document.getElementById('vehicularEntrance');
-    const customerVehicularEntranceLabel = document.getElementById('customerVehicularEntranceLabel');
-    toggleVehicularEntrace.addEventListener('click', () => {
+    const toggleVehicularEntrace = document.getElementById("vehicularEntrance");
+    const customerVehicularEntranceLabel = document.getElementById("customerVehicularEntranceLabel");
+    toggleVehicularEntrace.addEventListener("click", () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = 'si';
+            customerVehicularEntranceLabel.innerHTML = "si";
         else
-            customerVehicularEntranceLabel.innerHTML = 'no';
+            customerVehicularEntranceLabel.innerHTML = "no";
     });
 }

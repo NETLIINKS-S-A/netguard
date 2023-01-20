@@ -1,8 +1,8 @@
 // @filename: PlatformView.ts
-import { UI } from '../../../Libs/lib.dom.js';
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { renderAdministratorData } from './AdministratorRenderData.js';
+import { UI } from "../../../Libs/lib.dom.js";
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { renderAdministratorData } from "./AdministratorRenderData.js";
 const tableRows = UI?.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -39,9 +39,9 @@ export async function administratorsView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
-    const searchInput = document.querySelector('#search-input');
-    const paginationCounter = document.getElementById('pagination-counter');
+    const tableBody = document.querySelector("#table-body");
+    const searchInput = document.querySelector("#search-input");
+    const paginationCounter = document.getElementById("pagination-counter");
     // write table template
     tableBody.innerHTML = `
     <tr>
@@ -52,10 +52,9 @@ export async function administratorsView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('User');
-    let arrayAdministrators = GET_DATA
-        .filter((data) => data.isSuper === true);
-    await searchInput?.addEventListener('keyup', () => {
+    let GET_DATA = await getEntitiesData("User");
+    let arrayAdministrators = GET_DATA.filter((data) => data.isSuper === true);
+    await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayAdministrators.filter((administrator) => `${administrator.firstName}
              ${administrator.lastName}
              ${administrator.description}`

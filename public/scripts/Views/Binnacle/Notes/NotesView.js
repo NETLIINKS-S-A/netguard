@@ -42,10 +42,10 @@ export async function notesView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
+    const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
-    // write table template
+    // Table body template
     tableBody.innerHTML = `
     <tr>
         <td>Cargando...</td>
@@ -53,7 +53,7 @@ export async function notesView() {
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('Note');
+    let GET_DATA = await getEntitiesData("Note");
     let arrayNotes = GET_DATA;
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayNotes.filter((note) => `${note.name}

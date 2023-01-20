@@ -32,7 +32,7 @@ export async function visitsView(): Promise<void> {
 
     <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
-    </div>`;
+    </div>`
 
     // write app tools
     appTools.innerHTML = `
@@ -43,12 +43,13 @@ export async function visitsView(): Promise<void> {
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
         </div>
-    </div>`;
+    </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector('#table-body');
+    const tableBody: UIElement = document.querySelector("#table-body")
     const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement = document.getElementById("pagination-counter")
+    const paginationCounter: UIElement =
+        document.getElementById("pagination-counter")
 
     // write table template
     tableBody.innerHTML = `
@@ -60,9 +61,9 @@ export async function visitsView(): Promise<void> {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
-    </tr>`.repeat(tableRows);
+    </tr>`.repeat(tableRows)
 
-    let GET_DATA: any = await getEntitiesData('Visit');
+    let GET_DATA: any = await getEntitiesData("Visit")
     let arrayVisits: any = GET_DATA
 
     await searchInput?.addEventListener("keyup", (): void => {

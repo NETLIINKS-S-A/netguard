@@ -1,15 +1,15 @@
 // @filename: EmergenctUserView.ts
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { renderEmergencyUserData } from './EmergencyRenderData.js';
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { UI } from "../../../Libs/lib.dom.js";
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { renderEmergencyUserData } from "./EmergencyRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 const currentPage = 1;
 export async function emergencyUserView() {
-    let GET_DATA = await getEntitiesData('Contact');
+    let GET_DATA = await getEntitiesData("Contact");
     let arrayEmergencyUsers = GET_DATA;
     // write application template
     app.innerHTML = `<h1 class="app_title">Emergencia</h1>
@@ -37,11 +37,11 @@ export async function emergencyUserView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
-    const searchInput = document.querySelector('#search-input');
-    const paginationCounter = document.getElementById('pagination-counter');
+    const tableBody = document.querySelector("#table-body");
+    const searchInput = document.querySelector("#search-input");
+    const paginationCounter = document.getElementById("pagination-counter");
     // search data
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
         const arrayData = arrayEmergencyUsers.filter((emergencyUser) => `${emergencyUser.name}
              ${emergencyUser.phone}`

@@ -1,5 +1,5 @@
 export async function renderAdministratorData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = ' ';
+    tableBody.innerHTML = " ";
     page--;
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
@@ -7,7 +7,7 @@ export async function renderAdministratorData(items, tableBody, rowsPerPage, pag
     let index;
     for (index = 0; index < arrayEvents.length; index++) {
         let administrator = arrayEvents[index];
-        let row = document.createElement('tr');
+        let row = document.createElement("tr");
         row.innerHTML = `
         <tr>
             <td>${administrator?.firstName} ${administrator?.lastName}</td>
@@ -21,26 +21,26 @@ export async function renderAdministratorData(items, tableBody, rowsPerPage, pag
         `;
         tableBody.appendChild(row);
         // fix states
-        const states = document.querySelectorAll('.user_status i');
+        const states = document.querySelectorAll(".user_status i");
         states?.forEach((state) => {
-            if (state.innerText === 'Enabled') {
-                state.classList.add('user_active');
-                state.innerText = 'Activo';
+            if (state.innerText === "Enabled") {
+                state.classList.add("user_active");
+                state.innerText = "Activo";
             }
-            else if (state.innerText === 'Disabled') {
-                state.classList.add('user_inactive');
-                state.innerText = 'Inactivo';
+            else if (state.innerText === "Disabled") {
+                state.classList.add("user_inactive");
+                state.innerText = "Inactivo";
             }
         });
-        const userType = document.querySelectorAll('.table_badge_usertype i');
+        const userType = document.querySelectorAll(".table_badge_usertype i");
         userType?.forEach((type) => {
-            if (type.innerText === 'CUSTOMER') {
-                type.classList.add('user_active');
-                type.innerText = 'Cliente';
+            if (type.innerText === "CUSTOMER") {
+                type.classList.add("user_active");
+                type.innerText = "Cliente";
             }
-            else if (type.innerText === 'GUARD') {
-                type.classList.add('user_inactive');
-                type.innerText = 'Guardia';
+            else if (type.innerText === "GUARD") {
+                type.classList.add("user_inactive");
+                type.innerText = "Guardia";
             }
         });
     }

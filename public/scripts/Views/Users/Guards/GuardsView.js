@@ -1,18 +1,16 @@
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { displayGuardData } from './GuardsViewFuncs.js'; // TODO: change name to renderGuardData
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { UI } from "../../../Libs/lib.dom.js";
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { displayGuardData } from "./GuardsViewFuncs.js"; // TODO: change name to renderGuardData
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function guardsView() {
-    let GET_DATA = await getEntitiesData('User');
-    let notSuper = GET_DATA
-        .filter((data) => data.isSuper == false);
-    let arrayGuards = notSuper
-        .filter((data) => `${data.userType}`.includes('GUARD'));
+    let GET_DATA = await getEntitiesData("User");
+    let notSuper = GET_DATA.filter((data) => data.isSuper == false);
+    let arrayGuards = notSuper.filter((data) => `${data.userType}`.includes("GUARD"));
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -123,11 +121,11 @@ export async function guardsView() {
         </div>
     </div>`;
     // get rendered elements
-    const tableBody = document.querySelector('#table-body');
-    const searchInput = document.querySelector('#search-input');
-    const paginationCounter = document.getElementById('pagination-counter');
+    const tableBody = document.querySelector("#table-body");
+    const searchInput = document.querySelector("#search-input");
+    const paginationCounter = document.getElementById("pagination-counter");
     // search data
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
         const arrayData = arrayGuards.filter((guard) => `${guard.firstName}
              ${guard.lastName}

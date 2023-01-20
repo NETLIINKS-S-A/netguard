@@ -2,8 +2,8 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIElement } from '../../../Types/GeneralTypes.js';
-import { UserEditor, MultiInput, closeUserModal } from './UsersViewFuncs.js';
+import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UserEditor, MultiInput, closeUserModal } from "./UsersViewFuncs.js"
 
 /**
  *
@@ -19,16 +19,16 @@ export async function displayUserData(
     page: number,
     paginationElement?: any
 ): Promise<void> {
-    tableBody.innerHTML = '';
-    page--;
+    tableBody.innerHTML = ""
+    page--
 
-    let start: number = rowsPerPage * page;
-    let end: number = start + rowsPerPage;
-    let paginatedItems: any = items.slice(start, end);
+    let start: number = rowsPerPage * page
+    let end: number = start + rowsPerPage
+    let paginatedItems: any = items.slice(start, end)
 
     for (let i = 0; i < paginatedItems.length; i++) {
-        let user = paginatedItems[i];
-        let itemElement = document.createElement('tr');
+        let user = paginatedItems[i]
+        let itemElement = document.createElement("tr")
         itemElement.innerHTML = `<tr>
             <td>${user?.firstName} ${user?.lastName}</td>
             <td class="monospace">${user.email}</td>
@@ -37,47 +37,47 @@ export async function displayUserData(
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>
-        </tr>`;
+        </tr>`
 
         // write datas on table
-        tableBody.appendChild(itemElement);
+        tableBody.appendChild(itemElement)
 
         // states
-        const states: UIElement = document.querySelectorAll('.userState i');
+        const states: UIElement = document.querySelectorAll(".userState i")
         states?.forEach((userState: UIElement) => {
-            if (userState.innerText == 'Enabled')
-                userState.classList.add('user_active'),
-                    (userState.innerText = 'Activo');
-            else if (userState.innerText == 'Disabled')
-                userState.classList.add('user_inactive'),
-                    (userState.innerText = 'Inactivo');
-        });
+            if (userState.innerText == "Enabled")
+                userState.classList.add("user_active"),
+                    (userState.innerText = "Activo")
+            else if (userState.innerText == "Disabled")
+                userState.classList.add("user_inactive"),
+                    (userState.innerText = "Inactivo")
+        })
     }
 
     // CUSTOMER EDITOR ================================================
     // elements
     const editorButtonElements: UIElement =
-        document.querySelectorAll('tr td button');
+        document.querySelectorAll("tr td button")
     const closeEditorButtonElement: UIElement =
-        document.getElementById('closeEditor');
+        document.getElementById("closeEditor")
     const updateCustomerEntityElement: UIElement = document.getElementById(
-        'updateCutomerEntity'
-    );
+        "updateCutomerEntity"
+    )
 
     // functions
-    const userEditor: UserEditor = new UserEditor();
+    const userEditor: UserEditor = new UserEditor()
     editorButtonElements.forEach((btn: UIElement) => {
-        btn.addEventListener('click', () => {
-            let entity: string = btn.dataset.id;
-            userEditor.open(entity, 'editBusiness', MultiInput);
-        });
-    });
-    closeEditorButtonElement.addEventListener('click', () =>
-        closeUserModal('editBusiness')
-    );
-    updateCustomerEntityElement.addEventListener('click', () => {
-        userEditor.update('editBusiness');
-    });
+        btn.addEventListener("click", () => {
+            let entity: string = btn.dataset.id
+            userEditor.open(entity, "editBusiness", MultiInput)
+        })
+    })
+    closeEditorButtonElement.addEventListener("click", () =>
+        closeUserModal("editBusiness")
+    )
+    updateCustomerEntityElement.addEventListener("click", () => {
+        userEditor.update("editBusiness")
+    })
 
     // CUSTOMER CREATOR ================================================
 }

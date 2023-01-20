@@ -17,7 +17,7 @@ export async function renderNotesData(
     page: number,
     paginationElement?: any
 ): Promise<void> {
-    tableBody.innerHTML = ''
+    tableBody.innerHTML = ""
     page--
 
     let start: number = rowsPerPage * page
@@ -27,7 +27,7 @@ export async function renderNotesData(
 
     for (index = 0; index < arrayNotes.length; index++) {
         let note: any = arrayNotes[index]
-        let row: UIElement = document.createElement('tr')
+        let row: UIElement = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${note.title}</td>

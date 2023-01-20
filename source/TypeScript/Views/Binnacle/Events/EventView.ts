@@ -1,15 +1,15 @@
 // @filename: EventView.ts
-import { UI } from '../../../Libs/lib.dom.js';
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { UIElement } from '../../../Types/GeneralTypes.js';
-import { renderEventData } from './EventRenderData.js';
+import { UI } from "../../../Libs/lib.dom.js"
+import { getEntitiesData } from "../../../Libs/lib.request.js"
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { UIElement } from "../../../Types/GeneralTypes.js"
+import { renderEventData } from "./EventRenderData.js"
 
-const tableRows: number = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-const currentPage: number = 1;
+const tableRows: number = UI.tableRows
+const UIApp = UI.App
+const app = UIApp?.content
+const appTools = UIApp?.tools
+const currentPage: number = 1
 
 export async function eventView(): Promise<void> {
     // write application template
@@ -27,9 +27,9 @@ export async function eventView(): Promise<void> {
             </tbody>
     </table>
 
-    <div class="pagination" style="display: none !important">
+    <div class="pagination" >
         <div id="pagination-counter"></div>
-    </div>`;
+    </div>`
 
     // write app tools
     appTools.innerHTML = `
@@ -39,13 +39,13 @@ export async function eventView(): Promise<void> {
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
         </div>
-    </div>`;
+    </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector('#table-body');
-    const searchInput: UIElement = document.querySelector('#search-input');
+    const tableBody: UIElement = document.querySelector("#table-body")
+    const searchInput: UIElement = document.querySelector("#search-input")
     const paginationCounter: UIElement =
-        document.getElementById('pagination-counter');
+        document.getElementById("pagination-counter")
 
     // write table template
     tableBody.innerHTML = `
@@ -54,25 +54,25 @@ export async function eventView(): Promise<void> {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
-    </tr>`.repeat(tableRows);
+    </tr>`.repeat(tableRows)
 
-    let GET_DATA = await getEntitiesData('Notification');
-    let arrayEvents: any = GET_DATA;
+    let GET_DATA = await getEntitiesData("Notification")
+    let arrayEvents: any = GET_DATA
 
-    const dataCount: UIElement = document.getElementById("data-count");
+    const dataCount: UIElement = document.getElementById("data-count")
     dataCount.innerHTML = `${arrayEvents.length} eventos`
 
-    await searchInput?.addEventListener('keyup', (): void => {
+    await searchInput?.addEventListener("keyup", (): void => {
         const arrayData = arrayEvents.filter((events: any) =>
             `${events.user.firstName}
              ${events.user.lastName}
              ${events.description}`
                 .toLowerCase()
                 .includes(searchInput?.value.toLowerCase())
-        );
+        )
 
-        let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows) filteredResult = tableRows;
+        let filteredResult = arrayData.length
+        if (filteredResult >= tableRows) filteredResult = tableRows
 
         renderEventData(
             arrayData,
@@ -80,7 +80,7 @@ export async function eventView(): Promise<void> {
             filteredResult,
             currentPage,
             paginationCounter
-        );
+        )
 
         setupPagination(
             arrayData,
@@ -89,8 +89,8 @@ export async function eventView(): Promise<void> {
             currentPage,
             tableBody,
             renderEventData
-        );
-    });
+        )
+    })
 
     // render data
     await renderEventData(
@@ -99,7 +99,7 @@ export async function eventView(): Promise<void> {
         tableRows,
         currentPage,
         paginationCounter
-    );
+    )
 
     setupPagination(
         arrayEvents,
@@ -108,5 +108,5 @@ export async function eventView(): Promise<void> {
         currentPage,
         tableBody,
         renderEventData
-    );
+    )
 }

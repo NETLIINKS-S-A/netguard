@@ -1,22 +1,22 @@
 // @filename: GuardsView.ts
-import { UIElement } from '../../../Types/GeneralTypes.js';
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { displayGuardData } from './GuardsViewFuncs.js'; // TODO: change name to renderGuardData
+import { UIElement } from "../../../Types/GeneralTypes.js"
+import { getEntitiesData } from "../../../Libs/lib.request.js"
+import { UI } from "../../../Libs/lib.dom.js"
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { displayGuardData } from "./GuardsViewFuncs.js" // TODO: change name to renderGuardData
 
-const tableRows = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-let currentPage: number = 1;
+const tableRows = UI.tableRows
+const UIApp = UI.App
+const app = UIApp?.content
+const appTools = UIApp?.tools
+let currentPage: number = 1
 
 export async function guardsView() {
-    let GET_DATA: any = await getEntitiesData('User');
-    let notSuper = GET_DATA
-        .filter((data: any) => data.isSuper == false)
-    let arrayGuards: any = notSuper
-        .filter((data: any) => `${data.userType}`.includes('GUARD'));
+    let GET_DATA: any = await getEntitiesData("User")
+    let notSuper = GET_DATA.filter((data: any) => data.isSuper == false)
+    let arrayGuards: any = notSuper.filter((data: any) =>
+        `${data.userType}`.includes("GUARD")
+    )
 
     // Write application template
     app.innerHTML = `
@@ -117,7 +117,7 @@ export async function guardsView() {
                 <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
             </div>
         </div>
-    </div>`;
+    </div>`
 
     // write appTools
     appTools.innerHTML = `
@@ -127,16 +127,16 @@ export async function guardsView() {
             <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
         </div>
-    </div>`;
+    </div>`
 
     // get rendered elements
-    const tableBody: UIElement = document.querySelector('#table-body');
-    const searchInput: UIElement = document.querySelector('#search-input');
+    const tableBody: UIElement = document.querySelector("#table-body")
+    const searchInput: UIElement = document.querySelector("#search-input")
     const paginationCounter: UIElement =
-        document.getElementById('pagination-counter');
+        document.getElementById("pagination-counter")
 
     // search data
-    await searchInput?.addEventListener('keyup', (): void => {
+    await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
         const arrayData = arrayGuards.filter((guard) =>
             `${guard.firstName}
@@ -144,17 +144,17 @@ export async function guardsView() {
              ${guard.description}`
                 .toLowerCase()
                 .includes(searchInput.value.toLowerCase())
-        );
+        )
 
-        let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows) filteredResult = tableRows;
+        let filteredResult = arrayData.length
+        if (filteredResult >= tableRows) filteredResult = tableRows
         displayGuardData(
             arrayData,
             tableBody,
             filteredResult,
             currentPage,
             paginationCounter
-        );
+        )
         setupPagination(
             arrayData,
             paginationCounter,
@@ -162,8 +162,8 @@ export async function guardsView() {
             currentPage,
             tableBody,
             displayGuardData
-        );
-    });
+        )
+    })
 
     // write table template
     tableBody.innerHTML = `
@@ -175,7 +175,7 @@ export async function guardsView() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
-    `.repeat(tableRows);
+    `.repeat(tableRows)
 
     displayGuardData(
         arrayGuards,
@@ -183,7 +183,7 @@ export async function guardsView() {
         tableRows,
         currentPage,
         paginationCounter
-    );
+    )
     setupPagination(
         arrayGuards,
         paginationCounter,
@@ -191,5 +191,5 @@ export async function guardsView() {
         currentPage,
         tableBody,
         displayGuardData
-    );
+    )
 }

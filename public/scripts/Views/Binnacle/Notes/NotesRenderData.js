@@ -8,7 +8,7 @@
  * @param paginationElement - DOM element
  */
 export async function renderNotesData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = '';
+    tableBody.innerHTML = "";
     page--;
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
@@ -16,7 +16,7 @@ export async function renderNotesData(items, tableBody, rowsPerPage, page, pagin
     let index;
     for (index = 0; index < arrayNotes.length; index++) {
         let note = arrayNotes[index];
-        let row = document.createElement('tr');
+        let row = document.createElement("tr");
         row.innerHTML = `
         <tr>
             <td>${note.title}</td>

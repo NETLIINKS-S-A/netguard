@@ -1,5 +1,5 @@
 // @filename: CitadelsRenderData.ts
-import { UIElement } from "../../Types/GeneralTypes.js";
+import { UIElement } from "../../Types/GeneralTypes.js"
 
 export async function renderCitadelData(
     items: any,
@@ -8,7 +8,7 @@ export async function renderCitadelData(
     page: number,
     paginationElement?: any
 ): Promise<void> {
-    tableBody.innerHTML = ''
+    tableBody.innerHTML = ""
     page--
 
     let start: number = rowsPerPage * page
@@ -18,7 +18,7 @@ export async function renderCitadelData(
 
     for (index = 0; index < arrayCitadels.length; index++) {
         let citadel: any = arrayCitadels[index]
-        let row: UIElement = document.createElement('tr')
+        let row: UIElement = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${citadel.name}</td>

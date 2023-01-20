@@ -1,8 +1,8 @@
-import { UI } from '../../Libs/lib.dom.js';
-import { renderCustomerData } from './CustomerRenderData.js';
+import { UI } from "../../Libs/lib.dom.js";
+import { renderCustomerData } from "./CustomerRenderData.js";
 // libs
-import { getEntitiesData } from '../../Libs/lib.request.js';
-import { setupPagination } from '../../Libs/lib.tools.pagination.js';
+import { getEntitiesData } from "../../Libs/lib.request.js";
+import { setupPagination } from "../../Libs/lib.tools.pagination.js";
 const tableRows = UI.tableRows; // number of rows to show on tables
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -10,7 +10,7 @@ const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function customerView() {
     // @ts-ignore
-    let GET_DATA = await getEntitiesData('Customer');
+    let GET_DATA = await getEntitiesData("Customer");
     let arrayCustomers = GET_DATA;
     // Write application template
     app.innerHTML = `
@@ -121,12 +121,12 @@ export async function customerView() {
         </div>
     </div>`;
     // HTML ELEMENTS
-    const tableBody = document.querySelector('#tableBody');
-    const searchInput = document.querySelector('#searcher');
-    const paginationCounter = document.getElementById('paginationCounter');
+    const tableBody = document.querySelector("#tableBody");
+    const searchInput = document.querySelector("#searcher");
+    const paginationCounter = document.getElementById("paginationCounter");
     let currentPage = 1;
     // search data on real-time
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayCustomers.filter((customer) => 
         // @ts-ignore
         `${customer.name.toLowerCase()}`.includes(searchInput.value.toLowerCase()));
@@ -152,21 +152,21 @@ export async function customerView() {
     renderCustomerData(arrayCustomers, tableBody, tableRows, currentPage, paginationCounter);
     setupPagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
     // Customer Status
-    const toggleStatus = document.getElementById('customerStatus');
-    const customerStatusLabel = document.getElementById('customerStatusLabel');
-    toggleStatus.addEventListener('click', () => {
+    const toggleStatus = document.getElementById("customerStatus");
+    const customerStatusLabel = document.getElementById("customerStatusLabel");
+    toggleStatus.addEventListener("click", () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = 'activo';
+            customerStatusLabel.innerHTML = "activo";
         else
-            customerStatusLabel.innerHTML = 'inactivo';
+            customerStatusLabel.innerHTML = "inactivo";
     });
     // Vehicular Entrance
-    const toggleVehicularEntrace = document.getElementById('vehicularEntrance');
-    const customerVehicularEntranceLabel = document.getElementById('customerVehicularEntranceLabel');
-    toggleVehicularEntrace.addEventListener('click', () => {
+    const toggleVehicularEntrace = document.getElementById("vehicularEntrance");
+    const customerVehicularEntranceLabel = document.getElementById("customerVehicularEntranceLabel");
+    toggleVehicularEntrace.addEventListener("click", () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = 'si';
+            customerVehicularEntranceLabel.innerHTML = "si";
         else
-            customerVehicularEntranceLabel.innerHTML = 'no';
+            customerVehicularEntranceLabel.innerHTML = "no";
     });
 }

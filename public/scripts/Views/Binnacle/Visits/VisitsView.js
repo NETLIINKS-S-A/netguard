@@ -41,7 +41,7 @@ export async function visitsView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
+    const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
     // write table template
@@ -55,7 +55,7 @@ export async function visitsView() {
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('Visit');
+    let GET_DATA = await getEntitiesData("Visit");
     let arrayVisits = GET_DATA;
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayVisits.filter((visit) => `${visit.name}

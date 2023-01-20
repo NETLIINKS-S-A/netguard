@@ -1,22 +1,22 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UIElement } from '../../../Types/GeneralTypes.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { displayUserData } from './UsersRenderData.js';
+import { getEntitiesData } from "../../../Libs/lib.request.js"
+import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UI } from "../../../Libs/lib.dom.js"
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { displayUserData } from "./UsersRenderData.js"
 
-const tableRows = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-let currentPage: number = 1;
+const tableRows = UI.tableRows
+const UIApp = UI.App
+const app = UIApp?.content
+const appTools = UIApp?.tools
+let currentPage: number = 1
 
 export async function usersView() {
-    let GET_DATA: any = await getEntitiesData('User');
-    let notSuper: any = GET_DATA
-        .filter((data: any) => data.isSuper === false)
-    let arrayUsers: any = notSuper
-        .filter((data: any) => `${data.userType}`.includes('CUSTOMER'));
+    let GET_DATA: any = await getEntitiesData("User")
+    let notSuper: any = GET_DATA.filter((data: any) => data.isSuper === false)
+    let arrayUsers: any = notSuper.filter((data: any) =>
+        `${data.userType}`.includes("CUSTOMER")
+    )
 
     // BusinesView interface
     app.innerHTML = `
@@ -117,7 +117,7 @@ export async function usersView() {
                 <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
             </div>
         </div>
-    </div>`;
+    </div>`
 
     // Add tools
     appTools.innerHTML = `
@@ -127,16 +127,16 @@ export async function usersView() {
             <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="searcher">
             <label class="btn btn_icon spotlight_label" for="searcher"><i class="fa-solid fa-filter"></i></label>
         </div>
-    </div>`;
+    </div>`
 
     // HTML ELEMENTS
-    const tableBody: UIElement = document.querySelector('#tableBody');
-    const searchInput: UIElement = document.querySelector('#searcher');
+    const tableBody: UIElement = document.querySelector("#tableBody")
+    const searchInput: UIElement = document.querySelector("#searcher")
     const paginationCounter: UIElement =
-        document.getElementById('paginationCounter');
+        document.getElementById("paginationCounter")
 
     // search data on real-time
-    await searchInput?.addEventListener('keyup', (): void => {
+    await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
         const arrayData = arrayUsers.filter((user) =>
             `${user.firstName}
@@ -144,10 +144,10 @@ export async function usersView() {
                                                     ${user.description}`
                 .toLowerCase()
                 .includes(searchInput.value.toLowerCase())
-        );
+        )
 
-        let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows) filteredResult = tableRows;
+        let filteredResult = arrayData.length
+        if (filteredResult >= tableRows) filteredResult = tableRows
 
         displayUserData(
             arrayData,
@@ -155,7 +155,7 @@ export async function usersView() {
             filteredResult,
             currentPage,
             paginationCounter
-        );
+        )
         setupPagination(
             arrayData,
             paginationCounter,
@@ -163,8 +163,8 @@ export async function usersView() {
             currentPage,
             tableBody,
             displayUserData
-        );
-    });
+        )
+    })
 
     // Table placeholder
     tableBody.innerHTML = `
@@ -174,7 +174,7 @@ export async function usersView() {
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
-    </tr>`.repeat(tableRows);
+    </tr>`.repeat(tableRows)
 
     // Display data and pagination
     displayUserData(
@@ -183,7 +183,7 @@ export async function usersView() {
         tableRows,
         currentPage,
         paginationCounter
-    );
+    )
     // @ts-ignore
     setupPagination(
         arrayUsers,
@@ -192,29 +192,29 @@ export async function usersView() {
         currentPage,
         tableBody,
         displayUserData
-    );
+    )
 
     // Customer Status
-    const toggleStatus: UIElement = document.getElementById('customerStatus');
+    const toggleStatus: UIElement = document.getElementById("customerStatus")
     const customerStatusLabel: UIElement = document.getElementById(
-        'customerStatusLabel'
-    );
+        "customerStatusLabel"
+    )
 
-    toggleStatus.addEventListener('click', () => {
+    toggleStatus.addEventListener("click", () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = 'activo';
-        else customerStatusLabel.innerHTML = 'inactivo';
-    });
+            customerStatusLabel.innerHTML = "activo"
+        else customerStatusLabel.innerHTML = "inactivo"
+    })
 
     // Vehicular Entrance
     const toggleVehicularEntrace: UIElement =
-        document.getElementById('vehicularEntrance');
+        document.getElementById("vehicularEntrance")
     const customerVehicularEntranceLabel: UIElement = document.getElementById(
-        'customerVehicularEntranceLabel'
-    );
-    toggleVehicularEntrace.addEventListener('click', () => {
+        "customerVehicularEntranceLabel"
+    )
+    toggleVehicularEntrace.addEventListener("click", () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = 'si';
-        else customerVehicularEntranceLabel.innerHTML = 'no';
-    });
+            customerVehicularEntranceLabel.innerHTML = "si"
+        else customerVehicularEntranceLabel.innerHTML = "no"
+    })
 }

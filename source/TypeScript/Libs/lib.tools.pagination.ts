@@ -1,6 +1,6 @@
 // @filename: lib.tools.pagination.ts
-import { FNPHTMLElement } from '../Types/FunctionParameterTypes.js';
-import { UIElement } from '../Types/GeneralTypes.js';
+import { FNPHTMLElement } from "../Types/FunctionParameterTypes.js"
+import { UIElement } from "../Types/GeneralTypes.js"
 
 /**
  *
@@ -18,20 +18,23 @@ export function setupPagination(
     tableBody?: UIElement,
     displayFunc?: any
 ): void {
-    wrapper.innerHTML = '';
-    let pageCount = Math.ceil(items.length / rowsPerPage);
+    wrapper.innerHTML = ""
+    let pageCount = Math.ceil(items.length / rowsPerPage)
 
+    let btn: UIElement
     for (let i = 1; i < pageCount + 1; i++) {
-        let btn: UIElement = paginationButton(
+        btn = paginationButton(
             i,
             items,
             currentPage,
             tableBody,
             rowsPerPage,
             displayFunc
-        );
-        wrapper.appendChild(btn);
+        )
+        wrapper.appendChild(btn)
     }
+
+    truncatePagination(wrapper)
 }
 
 /**
@@ -50,21 +53,27 @@ function paginationButton(
     rowsPerPage: number,
     displayData: any
 ): void {
-    const button: UIElement = document.createElement('button');
-    button.innerText = page;
+    const button: UIElement = document.createElement("button")
+    button.innerText = page
 
-    if (currentPage == page) button.classList.add('isActive');
+    if (currentPage == page) button.classList.add("isActive")
 
-    button.addEventListener('click', () => {
-        currentPage = page;
-        displayData(items, tableBody, rowsPerPage, currentPage);
+    button.addEventListener("click", () => {
+        currentPage = page
+        displayData(items, tableBody, rowsPerPage, currentPage)
 
         let currentButton: UIElement = document.querySelector(
-            '.pagination button.isActive'
-        );
-        currentButton.classList.remove('isActive');
-        button.classList.add('isActive');
-    });
+            ".pagination button.isActive"
+        )
+        currentButton.classList.remove("isActive")
+        button.classList.add("isActive")
+    })
 
-    return button;
+    return button
+}
+
+async function truncatePagination(w: any): Promise<void> {
+    const paginationWrapper: HTMLElement | any = w
+
+    console.log(paginationWrapper)
 }

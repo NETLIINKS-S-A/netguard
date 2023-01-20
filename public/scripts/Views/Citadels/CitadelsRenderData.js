@@ -1,5 +1,5 @@
 export async function renderCitadelData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = '';
+    tableBody.innerHTML = "";
     page--;
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
@@ -7,7 +7,7 @@ export async function renderCitadelData(items, tableBody, rowsPerPage, page, pag
     let index;
     for (index = 0; index < arrayCitadels.length; index++) {
         let citadel = arrayCitadels[index];
-        let row = document.createElement('tr');
+        let row = document.createElement("tr");
         row.innerHTML = `
         <tr>
             <td>${citadel.name}</td>

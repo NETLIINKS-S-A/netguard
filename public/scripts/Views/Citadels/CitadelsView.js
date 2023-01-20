@@ -37,7 +37,7 @@ export async function citadelsView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
+    const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
     // write table template
@@ -48,7 +48,7 @@ export async function citadelsView() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('Citadel');
+    let GET_DATA = await getEntitiesData("Citadel");
     let arrayCitadels = GET_DATA;
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayCitadels.filter((citadel) => `${citadel.name}

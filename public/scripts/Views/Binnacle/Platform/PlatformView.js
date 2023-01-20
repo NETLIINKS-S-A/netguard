@@ -1,8 +1,8 @@
 // @filename: PlatformView.ts
-import { UI } from '../../../Libs/lib.dom.js';
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { renderPlatformData } from './PlatformRenderData.js';
+import { UI } from "../../../Libs/lib.dom.js";
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { renderPlatformData } from "./PlatformRenderData.js";
 const tableRows = 22;
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -26,7 +26,7 @@ export async function platformView() {
             </tbody>
     </table>
 
-    <div class="pagination">
+    <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
     </div>`;
     // write app tools
@@ -38,9 +38,9 @@ export async function platformView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
-    const searchInput = document.querySelector('#search-input');
-    const paginationCounter = document.getElementById('pagination-counter');
+    const tableBody = document.querySelector("#table-body");
+    const searchInput = document.querySelector("#search-input");
+    const paginationCounter = document.getElementById("pagination-counter");
     // write table template
     tableBody.innerHTML = `
     <tr>
@@ -51,11 +51,11 @@ export async function platformView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('WebAccess');
+    let GET_DATA = await getEntitiesData("WebAccess");
     let arrayPlatform = GET_DATA;
     const dataCount = document.getElementById("data-count");
     dataCount.innerHTML = `${arrayPlatform.length} accesos`;
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayPlatform.filter((events) => `${events.user.username}
              ${events.userAgent}
              ${events.system.name}

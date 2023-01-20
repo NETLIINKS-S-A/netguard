@@ -1,8 +1,8 @@
 // @filename: EventView.ts
-import { UI } from '../../../Libs/lib.dom.js';
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { renderEventData } from './EventRenderData.js';
+import { UI } from "../../../Libs/lib.dom.js";
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { renderEventData } from "./EventRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -24,7 +24,7 @@ export async function eventView() {
             </tbody>
     </table>
 
-    <div class="pagination" style="display: none !important">
+    <div class="pagination" >
         <div id="pagination-counter"></div>
     </div>`;
     // write app tools
@@ -37,9 +37,9 @@ export async function eventView() {
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
-    const searchInput = document.querySelector('#search-input');
-    const paginationCounter = document.getElementById('pagination-counter');
+    const tableBody = document.querySelector("#table-body");
+    const searchInput = document.querySelector("#search-input");
+    const paginationCounter = document.getElementById("pagination-counter");
     // write table template
     tableBody.innerHTML = `
     <tr>
@@ -48,11 +48,11 @@ export async function eventView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('Notification');
+    let GET_DATA = await getEntitiesData("Notification");
     let arrayEvents = GET_DATA;
     const dataCount = document.getElementById("data-count");
     dataCount.innerHTML = `${arrayEvents.length} eventos`;
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayEvents.filter((events) => `${events.user.firstName}
              ${events.user.lastName}
              ${events.description}`

@@ -8,7 +8,7 @@ export async function renderVisitData(
     page: number,
     paginationElement?: any
 ): Promise<void> {
-    tableBody.innerHTML = ''
+    tableBody.innerHTML = ""
     page--
 
     let start: number = rowsPerPage * page
@@ -18,7 +18,7 @@ export async function renderVisitData(
 
     for (index = 0; index < arrayVisits.length; index++) {
         let visit: any = arrayVisits[index]
-        let row: UIElement = document.createElement('tr')
+        let row: UIElement = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${visit.firstName} ${visit.firstLastName}</td>
