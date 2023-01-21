@@ -1,3 +1,9 @@
+.sidebar {
+    hr {
+        border-color: $slategray-700 !important;
+    }
+}
+
 .menu {
     &_brandname {
         color: $gray-100;
@@ -9,6 +15,18 @@
 
     &_item {
         color: $gray-500;
+
+        &-isActive {
+            .menu_item_label {
+                background-color: $slategray-600;
+                border-color: $slategray-500;
+                color: $slategray-100
+            }
+        }
+
+        &_label {
+            color: $slategray-500;
+        }
 
         &:hover {
             background-color: rgba($gray-900, 0.2);

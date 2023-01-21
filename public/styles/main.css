@@ -445,8 +445,10 @@ img {
   resize: horizontal;
   background-color: #F7FBFC;
   border-right: 1px solid #E2E8F0;
-  -ms-overflow-style: none; /* ms windows */
-  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none;
+  /* ms windows */
+  scrollbar-width: none;
+  /* firefox */
 }
 .app_sidebar::-webkit-scrollbar {
   display: none;
@@ -782,72 +784,72 @@ table .tbody tr:hover td .btn_table-delete,
 
 @media screen and (max-width: 1024px) {
   table,
-  .table {
+.table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 25px;
     border-radius: 10px;
   }
   table thead,
-  table .thead,
-  .table thead,
-  .table .thead {
+table .thead,
+.table thead,
+.table .thead {
     background-color: #94A2B8;
   }
   table thead tr,
-  table .thead tr,
-  .table thead tr,
-  .table .thead tr {
+table .thead tr,
+.table thead tr,
+.table .thead tr {
     background-color: inherit;
   }
   table thead tr th:last-child,
-  table .thead tr th:last-child,
-  .table thead tr th:last-child,
-  .table .thead tr th:last-child {
+table .thead tr th:last-child,
+.table thead tr th:last-child,
+.table .thead tr th:last-child {
     border-top-right-radius: 10px;
   }
   table thead tr th:first-child,
-  table .thead tr th:first-child,
-  .table thead tr th:first-child,
-  .table .thead tr th:first-child {
+table .thead tr th:first-child,
+.table thead tr th:first-child,
+.table .thead tr th:first-child {
     border-top-left-radius: 10px;
   }
   table thead th,
-  table .thead th,
-  .table thead th,
-  .table .thead th {
+table .thead th,
+.table thead th,
+.table .thead th {
     padding: 15px 20px;
     text-transform: uppercase;
   }
   table tbody tr:last-child td:last-child,
-  table .tbody tr:last-child td:last-child,
-  .table tbody tr:last-child td:last-child,
-  .table .tbody tr:last-child td:last-child {
+table .tbody tr:last-child td:last-child,
+.table tbody tr:last-child td:last-child,
+.table .tbody tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
   }
   table tbody tr:last-child td:first-child,
-  table .tbody tr:last-child td:first-child,
-  .table tbody tr:last-child td:first-child,
-  .table .tbody tr:last-child td:first-child {
+table .tbody tr:last-child td:first-child,
+.table tbody tr:last-child td:first-child,
+.table .tbody tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
   table tbody tr .monospace,
-  table .tbody tr .monospace,
-  .table tbody tr .monospace,
-  .table .tbody tr .monospace {
+table .tbody tr .monospace,
+.table tbody tr .monospace,
+.table .tbody tr .monospace {
     font-size: 12px;
   }
   table tbody tr td,
-  table .tbody tr td,
-  .table tbody tr td,
-  .table .tbody tr td {
+table .tbody tr td,
+.table tbody tr td,
+.table .tbody tr td {
     padding: 10px;
     padding-left: 20px;
   }
   table tbody tr td:first-child,
-  table .tbody tr td:first-child,
-  .table tbody tr td:first-child,
-  .table .tbody tr td:first-child {
+table .tbody tr td:first-child,
+.table tbody tr td:first-child,
+.table .tbody tr td:first-child {
     padding-left: 20px;
   }
 }
@@ -1087,6 +1089,7 @@ table .tbody tr:hover td .btn_table-delete,
   .app_sidebar .menu_items .menu_item-isActive .menu_item_label {
     color: #475469;
   }
+
   .app_content {
     padding: 15px 10px;
   }
@@ -1402,6 +1405,9 @@ table .tbody tr:hover td .btn_table-delete,
 .dark .login_footer p {
   color: #9AA3AE;
 }
+.dark .sidebar hr {
+  border-color: #475469 !important;
+}
 .dark .menu_brandname {
   color: #F8FAFA;
 }
@@ -1410,6 +1416,14 @@ table .tbody tr:hover td .btn_table-delete,
 }
 .dark .menu_item {
   color: #9AA3AE;
+}
+.dark .menu_item-isActive .menu_item_label {
+  background-color: #64738C;
+  border-color: #94A2B8;
+  color: #F7FBFC;
+}
+.dark .menu_item_label {
+  color: #94A2B8;
 }
 .dark .menu_item:hover {
   background-color: rgba(31, 41, 55, 0.2);

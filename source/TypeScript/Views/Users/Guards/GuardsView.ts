@@ -213,15 +213,12 @@ export async function guardsView() {
             container.innerHTML += `
             <div class="select_option" id="${CNames.id}">${CNames[i].name}</div>`
 
-            // Get first value into select filter
+            // Get first value as default value into select filter
             selectInput.value = CNames[0].name
         }
 
-        select.addEventListener('click', (): void => {
-            UISelector.open(select)
-        })
-
-        // first value
+        // Open options on click
+        select.addEventListener('click', (): void => UISelector.open(select))
 
         selectOPtions.forEach((option: UIElement, i: number) => {
             i++
