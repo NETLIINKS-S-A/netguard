@@ -18,6 +18,8 @@ export async function guardsView() {
         `${data.userType}`.includes("GUARD")
     )
 
+    console.log(GET_DATA)
+
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -39,7 +41,6 @@ export async function guardsView() {
 
     <div class="pagination">
         <div id="pagination-counter"></div>
-        <input type="number" placeholder="${tableRows}" id="paginationLimiter" min="${tableRows}" max="30">
     </div>
 
     <!-- =========================
@@ -122,6 +123,17 @@ export async function guardsView() {
     // write appTools
     appTools.innerHTML = `
     <div class="toolbox">
+        <div class="select">
+            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
+            <div class="select_options" id="select_options">
+                <div class="select_option" id="123">Empresa 1</div>
+                <div class="select_option" id="1234">Empresa 2</div>
+                <div class="select_option" id="12345">Empresa 3</div>
+                <div class="select_option" id="123456">Empresa 4</div>
+                <div class="select_option" id="1234567">Empresa 5</div>
+            </div>
+        </div>
+
         <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
@@ -192,4 +204,34 @@ export async function guardsView() {
         tableBody,
         displayGuardData
     )
+
+    const select: UIElement = document.querySelector(".select")
+    const selectInput: UIElement = document.getElementById('input-select')
+    const selectOptionsContainer: UIElement = document.querySelector('.select_options')
+    const selectOPtions: UIElement = selectOptionsContainer.querySelectorAll('div')
+
+    select.addEventListener('click', (): void => {
+        UISelect.open(select)
+    })
+
+    // first value
+    selectInput.value = selectOPtions[0].innerText
+
+    selectOPtions.forEach((option: any, i: number) => {
+        i++
+        option.addEventListener('click', (): void => {
+            selectInput.value = selectOPtions[i - 1].innerText
+        })
+    })
 }
+
+class UISelectClass {
+    open(el: UIElement): void {
+        el.classList.toggle("select_active")
+
+        // let selectBox: UIElement = document.querySelector(".select_box")
+        // selectBox.value = this.element
+    }
+}
+
+let UISelect: UISelectClass = new UISelectClass()

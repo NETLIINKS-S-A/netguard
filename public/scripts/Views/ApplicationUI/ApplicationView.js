@@ -331,7 +331,7 @@ export async function applicationView() {
                 });
             });
         }
-        eventView();
+        guardsView();
     }
     renderInterface(data);
 }

@@ -122,6 +122,9 @@ export async function usersView() {
     // Add tools
     appTools.innerHTML = `
     <div class="toolbox">
+        <div class="select">
+            <input type="text" placeholder="cargando" readonly>
+        </div>
         <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="searcher">

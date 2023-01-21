@@ -1,0 +1,63 @@
+.select {
+    position: relative;
+    width: 250px;
+    height: 36px;
+    margin-right: 6px !important;
+
+    &::before {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        content: "S";
+        height: 36px;
+        width: 36px;
+        border: 1px solid $slategray-300;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        background-color: red;
+        color: white;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    input {
+        appearance: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        outline: none;
+    }
+
+    &_options {
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        background-color: $white;
+        box-shadow: $input-shadow;
+        overflow: hidden;
+        z-index: 200;
+        border: 1px solid $slategray-300;
+        border-radius: 8px;
+        display: none;
+
+        .select_option {
+            padding: 10px 20px;
+            color: $slategray-800;
+
+            &:hover {
+                background-color: $slategray-200;
+            }
+        }
+    }
+
+    &_active {
+        .select_options {
+            display: block;
+        }
+    }
+}
