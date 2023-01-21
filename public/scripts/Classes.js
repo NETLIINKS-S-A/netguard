@@ -1,6 +1,4 @@
 export class Modal {
-    id;
-    modal;
     constructor(id) {
         this.id = id;
         this.modal = document.getElementById(this.id);

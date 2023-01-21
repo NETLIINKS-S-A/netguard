@@ -445,10 +445,8 @@ img {
   resize: horizontal;
   background-color: #F7FBFC;
   border-right: 1px solid #E2E8F0;
-  -ms-overflow-style: none;
-  /* ms windows */
-  scrollbar-width: none;
-  /* firefox */
+  -ms-overflow-style: none; /* ms windows */
+  scrollbar-width: none; /* firefox */
 }
 .app_sidebar::-webkit-scrollbar {
   display: none;
@@ -626,10 +624,10 @@ img {
   width: 100%;
   background-color: #FFF;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
   z-index: 200;
   border: 1px solid #E2E8F0;
   border-radius: 8px;
+  overflow-y: scroll;
   display: none;
 }
 .select_options .select_option {
@@ -784,72 +782,72 @@ table .tbody tr:hover td .btn_table-delete,
 
 @media screen and (max-width: 1024px) {
   table,
-.table {
+  .table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 25px;
     border-radius: 10px;
   }
   table thead,
-table .thead,
-.table thead,
-.table .thead {
+  table .thead,
+  .table thead,
+  .table .thead {
     background-color: #94A2B8;
   }
   table thead tr,
-table .thead tr,
-.table thead tr,
-.table .thead tr {
+  table .thead tr,
+  .table thead tr,
+  .table .thead tr {
     background-color: inherit;
   }
   table thead tr th:last-child,
-table .thead tr th:last-child,
-.table thead tr th:last-child,
-.table .thead tr th:last-child {
+  table .thead tr th:last-child,
+  .table thead tr th:last-child,
+  .table .thead tr th:last-child {
     border-top-right-radius: 10px;
   }
   table thead tr th:first-child,
-table .thead tr th:first-child,
-.table thead tr th:first-child,
-.table .thead tr th:first-child {
+  table .thead tr th:first-child,
+  .table thead tr th:first-child,
+  .table .thead tr th:first-child {
     border-top-left-radius: 10px;
   }
   table thead th,
-table .thead th,
-.table thead th,
-.table .thead th {
+  table .thead th,
+  .table thead th,
+  .table .thead th {
     padding: 15px 20px;
     text-transform: uppercase;
   }
   table tbody tr:last-child td:last-child,
-table .tbody tr:last-child td:last-child,
-.table tbody tr:last-child td:last-child,
-.table .tbody tr:last-child td:last-child {
+  table .tbody tr:last-child td:last-child,
+  .table tbody tr:last-child td:last-child,
+  .table .tbody tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
   }
   table tbody tr:last-child td:first-child,
-table .tbody tr:last-child td:first-child,
-.table tbody tr:last-child td:first-child,
-.table .tbody tr:last-child td:first-child {
+  table .tbody tr:last-child td:first-child,
+  .table tbody tr:last-child td:first-child,
+  .table .tbody tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
   table tbody tr .monospace,
-table .tbody tr .monospace,
-.table tbody tr .monospace,
-.table .tbody tr .monospace {
+  table .tbody tr .monospace,
+  .table tbody tr .monospace,
+  .table .tbody tr .monospace {
     font-size: 12px;
   }
   table tbody tr td,
-table .tbody tr td,
-.table tbody tr td,
-.table .tbody tr td {
+  table .tbody tr td,
+  .table tbody tr td,
+  .table .tbody tr td {
     padding: 10px;
     padding-left: 20px;
   }
   table tbody tr td:first-child,
-table .tbody tr td:first-child,
-.table tbody tr td:first-child,
-.table .tbody tr td:first-child {
+  table .tbody tr td:first-child,
+  .table tbody tr td:first-child,
+  .table .tbody tr td:first-child {
     padding-left: 20px;
   }
 }
@@ -1089,7 +1087,6 @@ table .tbody tr td:first-child,
   .app_sidebar .menu_items .menu_item-isActive .menu_item_label {
     color: #475469;
   }
-
   .app_content {
     padding: 15px 10px;
   }

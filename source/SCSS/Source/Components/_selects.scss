@@ -39,10 +39,10 @@
         width: 100%;
         background-color: $white;
         box-shadow: $input-shadow;
-        overflow: hidden;
         z-index: 200;
         border: 1px solid $slategray-300;
         border-radius: 8px;
+        overflow-y: scroll;
         display: none;
 
         .select_option {

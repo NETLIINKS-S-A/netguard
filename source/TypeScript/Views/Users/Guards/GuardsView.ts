@@ -4,6 +4,7 @@ import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
 import { displayGuardData } from "./GuardsViewFuncs.js" // TODO: change name to renderGuardData
+import { customerNames } from "../../../Libs/lib.data.js"
 
 const tableRows = UI.tableRows
 const UIApp = UI.App
@@ -17,8 +18,6 @@ export async function guardsView() {
     let arrayGuards: any = notSuper.filter((data: any) =>
         `${data.userType}`.includes("GUARD")
     )
-
-    console.log(GET_DATA)
 
     // Write application template
     app.innerHTML = `
@@ -126,11 +125,7 @@ export async function guardsView() {
         <div class="select">
             <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
             <div class="select_options" id="select_options">
-                <div class="select_option" id="123">Empresa 1</div>
-                <div class="select_option" id="1234">Empresa 2</div>
-                <div class="select_option" id="12345">Empresa 3</div>
-                <div class="select_option" id="123456">Empresa 4</div>
-                <div class="select_option" id="1234567">Empresa 5</div>
+
             </div>
         </div>
 
@@ -208,30 +203,41 @@ export async function guardsView() {
     const select: UIElement = document.querySelector(".select")
     const selectInput: UIElement = document.getElementById('input-select')
     const selectOptionsContainer: UIElement = document.querySelector('.select_options')
-    const selectOPtions: UIElement = selectOptionsContainer.querySelectorAll('div')
+    const selectOPtions: UIElement = selectOptionsContainer.querySelectorAll('.select_option')
 
-    select.addEventListener('click', (): void => {
-        UISelect.open(select)
-    })
+    async function showCustomerNames(container: any): Promise<void> {
+        let CNames = await customerNames
+        container.innerHTML = '' // clear template
+        for (let i = 0; i < CNames.length; i++) {
+            console.log(await CNames[i].name)
+            container.innerHTML += `
+            <div class="select_option" id="${CNames.id}">${CNames[i].name}</div>`
 
-    // first value
-    selectInput.value = selectOPtions[0].innerText
+            // Get first value into select filter
+            selectInput.value = CNames[0].name
+        }
 
-    selectOPtions.forEach((option: any, i: number) => {
-        i++
-        option.addEventListener('click', (): void => {
-            selectInput.value = selectOPtions[i - 1].innerText
+        select.addEventListener('click', (): void => {
+            UISelector.open(select)
         })
-    })
+
+        // first value
+
+        selectOPtions.forEach((option: UIElement, i: number) => {
+            i++
+            option.addEventListener('click', (): void => {
+                selectInput.value = selectOPtions[i - 1].innerText
+            })
+        })
+    }
+
+    showCustomerNames(selectOptionsContainer)
+
+    const UISelector = new UISelect()
 }
 
-class UISelectClass {
-    open(el: UIElement): void {
-        el.classList.toggle("select_active")
-
-        // let selectBox: UIElement = document.querySelector(".select_box")
-        // selectBox.value = this.element
+class UISelect {
+    public open(element: UIElement): void {
+        element.classList.toggle("select_active")
     }
 }
-
-let UISelect: UISelectClass = new UISelectClass()
