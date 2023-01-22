@@ -1,3 +1,4 @@
+// @filename: lib.dom.ts
 export const UI = {
     App: {
         app: document.getElementById("app"),
@@ -8,11 +9,8 @@ export const UI = {
     },
     Login: {
         login: document.getElementById("login"),
-        mail: document.getElementById("userEmail"),
-        password: document.getElementById("userPassword"),
-        form: document.getElementById("loginForm"),
     },
     UserAgent: navigator.userAgent,
-    accessToken: localStorage.getItem("accessToken"),
+    accessToken: localStorage.getItem("access_token"),
     tableRows: 8,
 };

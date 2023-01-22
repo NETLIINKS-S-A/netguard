@@ -1,7 +1,5 @@
 // @filename: lib.dom.ts
-import { UIType } from "../Types/GeneralTypes.js"
-
-export const UI: UIType = {
+export const UI: any = {
     App: {
         app: document.getElementById("app"),
         wrapper: document.getElementById("appWrapper"),
@@ -12,12 +10,9 @@ export const UI: UIType = {
 
     Login: {
         login: document.getElementById("login"),
-        mail: document.getElementById("userEmail"),
-        password: document.getElementById("userPassword"),
-        form: document.getElementById("loginForm"),
     },
 
     UserAgent: navigator.userAgent,
-    accessToken: localStorage.getItem("accessToken"),
+    accessToken: localStorage.getItem("access_token"),
     tableRows: 8,
 }

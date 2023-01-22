@@ -1,6 +1,8 @@
 // @filename: Login
 import { UI } from "../../Libs/lib.dom.js"
-import { checkTokenValidation } from "./TokenValidator.js"
+import { App } from "./TokenValidator.js"
+
+let app: App = new App()
 
 /**
  * @function login
@@ -9,6 +11,7 @@ import { checkTokenValidation } from "./TokenValidator.js"
  */
 export function login<T>(mail: T, password: T) {
     generateToken()
+
     async function generateToken() {
         const url: string = "https://backend.netliinks.com:443/oauth/token"
         const requestOptions = {
@@ -28,14 +31,17 @@ export function login<T>(mail: T, password: T) {
             .then((response: Response) => response.json())
             .then((data) => {
                 const login = UI.Login?.login
-                localStorage.setItem("accessToken", data.access_token)
+                console.log(data.expires_in)
+                app.checkExpirationTime(data.expires_in)
+                localStorage.setItem("access_token", data.access_token)
 
-                if (data.error === "invalid_grant")
+                if (data.error === "invalid_grant") {
                     alert("Credenciales incorrectas")
-                else
-                    (login.style.display = "none"),
-                        checkTokenValidation(),
-                        window.location.reload()
+                } else {
+                    (login.style.display = "none")
+                    app.checkToken()
+                    window.location.reload()
+                }
             })
             .catch((error) => console.error("Error: " + error))
     }

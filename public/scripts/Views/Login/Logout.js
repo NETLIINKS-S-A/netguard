@@ -1,14 +1,15 @@
 // @filename: Logout.ts
 //
 import { Modal } from "../../Classes.js";
-import { checkTokenValidation } from "./TokenValidator.js";
+import { App } from "./TokenValidator.js";
 export function openLogout(id) {
     const show = new Modal(id);
     show.open();
 }
 export function logout() {
-    localStorage.removeItem("accessToken");
-    checkTokenValidation();
+    let app = new App();
+    localStorage.removeItem("access_token");
+    app.checkToken();
     window.location.reload();
 }
 export function dismissLogout(id) {

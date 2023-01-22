@@ -1,6 +1,7 @@
 // @filename: Login
 import { UI } from "../../Libs/lib.dom.js";
-import { checkTokenValidation } from "./TokenValidator.js";
+import { App } from "./TokenValidator.js";
+let app = new App();
 /**
  * @function login
  * @param mail
@@ -25,13 +26,17 @@ export function login(mail, password) {
             .then((response) => response.json())
             .then((data) => {
             const login = UI.Login?.login;
-            localStorage.setItem("accessToken", data.access_token);
-            if (data.error === "invalid_grant")
+            console.log(data.expires_in);
+            app.checkExpirationTime(data.expires_in);
+            localStorage.setItem("access_token", data.access_token);
+            if (data.error === "invalid_grant") {
                 alert("Credenciales incorrectas");
-            else
-                (login.style.display = "none"),
-                    checkTokenValidation(),
-                    window.location.reload();
+            }
+            else {
+                (login.style.display = "none");
+                app.checkToken();
+                window.location.reload();
+            }
         })
             .catch((error) => console.error("Error: " + error));
     }
