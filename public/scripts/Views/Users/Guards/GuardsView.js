@@ -1,7 +1,7 @@
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { UI } from "../../../Libs/lib.dom.js";
 import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
-import { displayGuardData } from "./GuardsViewFuncs.js"; // TODO: change name to renderGuardData
+import { renderGuardData } from "./GuardsRenderData.js";
 import { customerNames } from "../../../Libs/lib.data.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -142,8 +142,8 @@ export async function guardsView() {
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
-        displayGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
+        renderGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
+        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
     });
     // write table template
     tableBody.innerHTML = `
@@ -156,36 +156,29 @@ export async function guardsView() {
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `.repeat(tableRows);
-    displayGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, displayGuardData);
+    renderGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
+    setupPagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
     const select = document.querySelector(".select");
     const selectInput = document.getElementById('input-select');
     const selectOptionsContainer = document.querySelector('.select_options');
-    const selectOPtions = selectOptionsContainer.querySelectorAll('.select_option');
-    async function showCustomerNames(container) {
-        let CNames = await customerNames;
+    async function filterDataByCustomer(container) {
+        let CNames = customerNames;
         container.innerHTML = ''; // clear template
         for (let i = 0; i < CNames.length; i++) {
-            console.log(await CNames[i].name);
             container.innerHTML += `
             <div class="select_option" id="${CNames.id}">${CNames[i].name}</div>`;
             // Get first value as default value into select filter
             selectInput.value = CNames[0].name;
         }
+        const selectOPtions = await selectOptionsContainer.querySelectorAll('div');
         // Open options on click
-        select.addEventListener('click', () => UISelector.open(select));
+        select.addEventListener('click', () => select.classList.toggle("select_active"));
         selectOPtions.forEach((option, i) => {
             i++;
-            option.addEventListener('click', () => {
-                selectInput.value = selectOPtions[i - 1].innerText;
+            option.addEventListener('click', async () => {
+                selectInput.value = await selectOPtions[i - 1].innerHTML;
             });
         });
     }
-    showCustomerNames(selectOptionsContainer);
-    const UISelector = new UISelect();
-}
-class UISelect {
-    open(element) {
-        element.classList.toggle("select_active");
-    }
+    filterDataByCustomer(selectOptionsContainer);
 }

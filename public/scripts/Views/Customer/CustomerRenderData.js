@@ -1,4 +1,4 @@
-import { CustomerEditor, MultiInput, closeBusinessModal, } from "./CustomerViewFuncs.js";
+import { CustomerEditor, closeBusinessModal, } from "./CustomerViewFuncs.js";
 /**
  *
  * @param items - The saved data and filtered data (tableData)
@@ -38,7 +38,7 @@ export async function renderCustomerData(items, tableBody, rowsPerPage, page, pa
     editorButtonElements.forEach((btn) => {
         btn.addEventListener("click", () => {
             let entity = btn.dataset.id;
-            customerEditor.open(entity, "editBusiness", MultiInput);
+            customerEditor.open(entity, "editBusiness");
         });
     });
     closeEditorButtonElement.addEventListener("click", () => closeBusinessModal("editBusiness"));

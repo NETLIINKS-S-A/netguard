@@ -2,7 +2,7 @@
 import { UIElement } from "./Types/GeneralTypes.js"
 
 export class Modal {
-    public id: string
+    private id: string
     public modal: UIElement
 
     public constructor(id: string) {

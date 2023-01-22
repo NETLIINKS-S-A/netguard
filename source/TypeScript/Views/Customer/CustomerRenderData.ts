@@ -5,7 +5,6 @@ DISPLAY TABLE DATA AND FILTERED TABLE DATA
 import { UIElement } from "../../Types/GeneralTypes.js"
 import {
     CustomerEditor,
-    MultiInput,
     closeBusinessModal,
 } from "./CustomerViewFuncs.js"
 
@@ -62,7 +61,7 @@ export async function renderCustomerData(
     editorButtonElements.forEach((btn: UIElement) => {
         btn.addEventListener("click", () => {
             let entity: string = btn.dataset.id
-            customerEditor.open(entity, "editBusiness", MultiInput)
+            customerEditor.open(entity, "editBusiness")
         })
     })
     closeEditorButtonElement.addEventListener("click", () =>

@@ -12,7 +12,7 @@ export function closeBusinessModal(id: string): void {
 }
 
 export class CustomerEditor {
-    async open(entity: string, id: string, rucInput: UIElement): Promise<void> {
+    async open(entity: string, id: string): Promise<void> {
         let editor = new Modal(id)
         editor.open()
 
@@ -26,9 +26,6 @@ export class CustomerEditor {
         entityName.innerHTML = data.name
         businessName.value = data.name
         const rucValue = data.ruc
-
-        // clear multi-input in cas there is written information
-        clearRucIinput(rucInput)
     }
 
     async update(modalID: string): Promise<void> {
@@ -48,27 +45,6 @@ export class CustomerEditor {
                 customerView() // reload changes
             }, 1000)
         }
-    }
-}
-
-export class MultiInput {
-    clearInputs(inputs: HTMLElement | any): void {
-        inputs?.forEach((r: any) => {
-            r.value = ""
-        })
-    }
-
-    handleInput(e: any): void {
-        const input = e.target
-        if (input?.nextElementSibling && input?.value)
-            input.nextElementSibling.focus()
-    }
-
-    handlePaste(e: any, inputs: UIElement): void {
-        const paste = e.clipboardData.getData("text")
-        inputs?.forEach((input: any, i: number) => {
-            input.value = paste[i]
-        })
     }
 }
 

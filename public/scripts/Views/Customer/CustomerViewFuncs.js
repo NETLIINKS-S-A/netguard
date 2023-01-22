@@ -9,7 +9,7 @@ export function closeBusinessModal(id) {
     editor.close();
 }
 export class CustomerEditor {
-    async open(entity, id, rucInput) {
+    async open(entity, id) {
         let editor = new Modal(id);
         editor.open();
         entityURL = `https://backend.netliinks.com:443/rest/entities/Customer/${entity}`;
@@ -20,8 +20,6 @@ export class CustomerEditor {
         entityName.innerHTML = data.name;
         businessName.value = data.name;
         const rucValue = data.ruc;
-        // clear multi-input in cas there is written information
-        clearRucIinput(rucInput);
     }
     async update(modalID) {
         const businessName = document.getElementById("businessName");
@@ -39,24 +37,6 @@ export class CustomerEditor {
                 customerView(); // reload changes
             }, 1000);
         }
-    }
-}
-export class MultiInput {
-    clearInputs(inputs) {
-        inputs?.forEach((r) => {
-            r.value = "";
-        });
-    }
-    handleInput(e) {
-        const input = e.target;
-        if (input?.nextElementSibling && input?.value)
-            input.nextElementSibling.focus();
-    }
-    handlePaste(e, inputs) {
-        const paste = e.clipboardData.getData("text");
-        inputs?.forEach((input, i) => {
-            input.value = paste[i];
-        });
     }
 }
 export class NewBusiness {
