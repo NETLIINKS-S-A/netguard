@@ -1,4 +1,5 @@
 // @filename: GuardsRenderData.ts
+import { Modal } from "../../../Classes.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 import { TableFunctions } from "./GuardsViewFuncs.js"
 
@@ -37,17 +38,24 @@ export async function renderGuardData(
         // fix states
         const states: UIElement = document.querySelectorAll(".guard_state i")
         tableFunctions.renderBadges(states)
-
-        const deleteEntity: UIElement = document.querySelectorAll(".btn_table-delete")
-        deleteEntity.forEach((DE: UIElement) => {
-            DE.addEventListener('click', (): void => {
-                tableFunctions.deleteEntity()
-            })
-        })
     }
 
-    // TODO: editor
-    // TODO: add new
+    const deleteButtons: UIElement =
+        document.querySelectorAll(".btn_table-delete")
+    console.log(deleteButtons)
+    const modalCancelButton = document.getElementById("cancel")
+    let modal = new Modal("delete")
+
+    modalCancelButton?.addEventListener('click', () => {
+        modal.close()
+    })
+
+    await deleteButtons.forEach((btn: UIElement) => {
+        btn.addEventListener('click', (): void => {
+            modal.open()
+            tableFunctions.deleteEntity()
+        })
+    })
 }
 
 let tableFunctions: TableFunctions = new TableFunctions()

@@ -594,7 +594,8 @@ img {
   margin-right: 6px !important;
 }
 .select::before {
-  content: "S";
+  content: "\f0b0";
+  font: normal 900 1em/1 "Font Awesome 6 Pro";
   position: absolute;
   display: flex;
   align-items: center;
@@ -604,7 +605,7 @@ img {
   border: 1px solid #E2E8F0;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  color: white;
+  color: #94A2B8;
   top: 0;
   right: 0;
   z-index: 2;
@@ -618,6 +619,9 @@ img {
   height: 100%;
   cursor: pointer;
   outline: none;
+}
+.select input:active {
+  border-color: #E2E8F0 !important;
 }
 .select_options {
   position: absolute;
@@ -640,6 +644,9 @@ img {
 }
 .select_active .select_options {
   display: block;
+}
+.select_active::before, .select_active input {
+  border-color: #2877FF;
 }
 
 .user_active {

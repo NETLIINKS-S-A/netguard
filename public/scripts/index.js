@@ -1,7 +1,7 @@
 // @filename: index.ts
-import { login } from "./Views/Login/Login.js";
 import { App } from "./Views/Login/TokenValidator.js";
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js";
+import { login } from "./Views/Login/Login.js";
 const app = new App();
 // render login window
 app.render();

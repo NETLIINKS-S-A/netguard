@@ -1,3 +1,5 @@
+// @filename: GuardsRenderData.ts
+import { Modal } from "../../../Classes.js";
 import { TableFunctions } from "./GuardsViewFuncs.js";
 export async function renderGuardData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = "";
@@ -24,14 +26,19 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
         // fix states
         const states = document.querySelectorAll(".guard_state i");
         tableFunctions.renderBadges(states);
-        const deleteEntity = document.querySelectorAll(".btn_table-delete");
-        deleteEntity.forEach((DE) => {
-            DE.addEventListener('click', () => {
-                tableFunctions.deleteEntity();
-            });
-        });
     }
-    // TODO: editor
-    // TODO: add new
+    const deleteButtons = document.querySelectorAll(".btn_table-delete");
+    console.log(deleteButtons);
+    const modalCancelButton = document.getElementById("cancel");
+    let modal = new Modal("delete");
+    modalCancelButton?.addEventListener('click', () => {
+        modal.close();
+    });
+    await deleteButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            modal.open();
+            tableFunctions.deleteEntity();
+        });
+    });
 }
 let tableFunctions = new TableFunctions();
