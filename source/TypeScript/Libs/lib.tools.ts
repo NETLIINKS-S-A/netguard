@@ -2,7 +2,7 @@
 import { FNPHTMLElement } from "../Types/FunctionParameterTypes.js"
 import { UIElement } from "../Types/GeneralTypes.js"
 
-export const color = {
+export const $color = {
     PRIMARY: "#54B3A4",
     primary: {
         p100: "#E0FBED",
@@ -131,6 +131,29 @@ export const color = {
         s700: "#56534F",
         s800: "#44403B",
         s900: "#292524"
+    }
+}
+
+export const $font = {
+    size: {
+        small: "10px",
+        mid: "12px",
+        normal: "14px",
+        large: "16px"
+    },
+
+    weigth: {
+        normal: 400,
+        semibold: 500,
+        bold: 600,
+        extraBold: 700,
+        black: 800
+    },
+
+    cap: {
+        lowercase: "lowercase",
+        normal: "normal",
+        uppercase: "uppercase"
     }
 }
 

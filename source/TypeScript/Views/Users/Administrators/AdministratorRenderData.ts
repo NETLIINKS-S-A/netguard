@@ -1,5 +1,5 @@
 // @filename: AdministratorRenderData.ts
-import { color } from "../../../Libs/lib.tools.colors.js"
+import { $color, $font } from "../../../Libs/lib.tools.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 
 export async function renderAdministratorData(
@@ -34,25 +34,6 @@ export async function renderAdministratorData(
 
         tableBody.appendChild(row)
 
-        const prop: {} = {
-            font: {
-                size: {
-                    small: "10px",
-                    mid: "12px",
-                    normal: "14px",
-                    large: "16px"
-                },
-
-                weigth: {
-                    normal: 400,
-                    semibold: 500,
-                    bold: 600,
-                    extraBold: 700,
-                    black: 800
-                }
-            }
-        }
-
         // fix states
         const states: UIElement = document.querySelectorAll(".user_status i")
         states?.forEach((state: UIElement) => {
@@ -68,23 +49,16 @@ export async function renderAdministratorData(
         // Fix citadels
         const citadels: UIElement = document.querySelectorAll(".citadels")
         citadels?.forEach((citadel: UIElement) => {
-            if (citadel.innerText === "NO APLICA") {
-                citadel.style.fontSize = "12px"
-                citadel.style.fontWeight = "bolder"
-            } else if (citadel.innerText === "No Aplica") {
-                citadel.style.fontSize = "12px"
-                citadel.style.fontWeight = "bolder"
-                citadel.style.color = color.slategray.l500
-            } else {
-                citadel.style.fontSize = "12px"
-                citadel.style.fontWeight = "bolder"
-                citadel.style.textTransform = "uppercase"
-                citadel.style.color = color.BLUE
-            }
+            citadel.style.fontSize = $font.size.mid
+            citadel.style.fontWeight = $font.weigth.bold
+            citadel.style.textTransform = $font.cap.uppercase
+            citadel.style.color = $color.blue.b400
 
-            if (citadel.innerText === "NO APLICA") citadel.style.fontSize = "12px", citadel.style.fontWeight = "bolder"
-            else if (citadel.innerText === "No Aplica") citadel.style.fontSize = "12px", citadel.style.fontWeight = "bolder", citadel.innerText = "NO APLICA"
-            else citadel.style.fontSize = "12px"
+            if (citadel.innerText === "NO APLICA" ||
+                citadel.innerText === "No Aplica" ||
+                citadel.innerText === "N/A") {
+                citadel.style.color = $color.slategray.s500
+            }
         })
     }
 }

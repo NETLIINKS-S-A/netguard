@@ -1,5 +1,5 @@
 // @filename: AdministratorRenderData.ts
-import { color } from "../../../Libs/lib.tools.colors.js";
+import { $color, $font } from "../../../Libs/lib.tools.js";
 export async function renderAdministratorData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = " ";
     page--;
@@ -22,23 +22,6 @@ export async function renderAdministratorData(items, tableBody, rowsPerPage, pag
         </tr>
         `;
         tableBody.appendChild(row);
-        const prop = {
-            font: {
-                size: {
-                    small: "10px",
-                    mid: "12px",
-                    normal: "14px",
-                    large: "16px"
-                },
-                weigth: {
-                    normal: 400,
-                    semibold: 500,
-                    bold: 600,
-                    extraBold: 700,
-                    black: 800
-                }
-            }
-        };
         // fix states
         const states = document.querySelectorAll(".user_status i");
         states?.forEach((state) => {
@@ -54,27 +37,15 @@ export async function renderAdministratorData(items, tableBody, rowsPerPage, pag
         // Fix citadels
         const citadels = document.querySelectorAll(".citadels");
         citadels?.forEach((citadel) => {
-            if (citadel.innerText === "NO APLICA") {
-                citadel.style.fontSize = "12px";
-                citadel.style.fontWeight = "bolder";
+            citadel.style.fontSize = $font.size.mid;
+            citadel.style.fontWeight = $font.weigth.bold;
+            citadel.style.textTransform = $font.cap.uppercase;
+            citadel.style.color = $color.blue.b400;
+            if (citadel.innerText === "NO APLICA" ||
+                citadel.innerText === "No Aplica" ||
+                citadel.innerText === "N/A") {
+                citadel.style.color = $color.slategray.s500;
             }
-            else if (citadel.innerText === "No Aplica") {
-                citadel.style.fontSize = "12px";
-                citadel.style.fontWeight = "bolder";
-                citadel.style.color = color.slategray.l500;
-            }
-            else {
-                citadel.style.fontSize = "12px";
-                citadel.style.fontWeight = "bolder";
-                citadel.style.textTransform = "uppercase";
-                citadel.style.color = color.BLUE;
-            }
-            if (citadel.innerText === "NO APLICA")
-                citadel.style.fontSize = "12px", citadel.style.fontWeight = "bolder";
-            else if (citadel.innerText === "No Aplica")
-                citadel.style.fontSize = "12px", citadel.style.fontWeight = "bolder", citadel.innerText = "NO APLICA";
-            else
-                citadel.style.fontSize = "12px";
         });
     }
 }
