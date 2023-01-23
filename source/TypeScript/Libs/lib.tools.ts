@@ -1,3 +1,7 @@
+// @filename: lib.tools.ts
+import { FNPHTMLElement } from "../Types/FunctionParameterTypes.js"
+import { UIElement } from "../Types/GeneralTypes.js"
+
 export const color = {
     PRIMARY: "#54B3A4",
     primary: {
@@ -11,6 +15,7 @@ export const color = {
         p800: "#1A5E67",
         p900: "#104655"
     },
+
     GREEN: "#5CBC4F",
     green: {
         g100: "#EBFBDE",
@@ -23,6 +28,7 @@ export const color = {
         g800: "#196D23",
         g900: "#0F5A1E"
     },
+
     BLUE: "#2877FF",
     blue: {
         b100: "#D3EAFF",
@@ -35,6 +41,7 @@ export const color = {
         b800: "#0C2F93",
         b900: "#07207A"
     },
+
     YELLOW: "#DDCD30",
     yellow: {
         y100: "#FFF8CC",
@@ -47,6 +54,7 @@ export const color = {
         y800: "#936900",
         y900: "#7A5400"
     },
+
     RED: "#FF523F",
     red: {
         r100: "#FFE8D8",
@@ -59,6 +67,7 @@ export const color = {
         r800: "#931426",
         r900: "#7A0C24"
     },
+
     SLATEGRAY: "#94A2B8",
     slategray: {
         s100: "#F7FBFC",
@@ -71,6 +80,7 @@ export const color = {
         s800: "#324255",
         s900: "#1E293B"
     },
+
     GRAY: "#9AA3AE",
     gray: {
         g100: "#F8FAFA",
@@ -83,6 +93,7 @@ export const color = {
         g800: "#374151",
         g900: "#1F2937"
     },
+
     ZING: "#A1A1AA",
     zing: {
         z100: "#FAFAFA",
@@ -95,6 +106,7 @@ export const color = {
         z800: "#3F3F46",
         z900: "#27272A"
     },
+
     NEUTRAL: "#A3A3A3",
     neutral: {
         n100: "#FAFAFA",
@@ -107,6 +119,7 @@ export const color = {
         n800: "#404040",
         n900: "#272626"
     },
+
     STONE: "#A8A29F",
     stone: {
         s100: "#FAFAF9",
@@ -119,7 +132,8 @@ export const color = {
         s800: "#44403B",
         s900: "#292524"
     }
-};
+}
+
 /**
  *
  * @param items - All db data
@@ -128,16 +142,33 @@ export const color = {
  * @param currentPage - Actual page (1)
  * @param tableBody - the table body
  */
-export function pagination(items, wrapper, rowsPerPage, currentPage, tableBody, displayFunc) {
-    wrapper.innerHTML = "";
-    let pageCount = Math.ceil(items.length / rowsPerPage);
-    let btn;
+export function pagination(
+    items: [],
+    wrapper: UIElement,
+    rowsPerPage: number,
+    currentPage: number,
+    tableBody?: UIElement,
+    displayFunc?: any
+): void {
+    wrapper.innerHTML = ""
+    let pageCount = Math.ceil(items.length / rowsPerPage)
+
+    let btn: UIElement
     for (let i = 1; i < pageCount + 1; i++) {
-        btn = setupButtons(i, items, currentPage, tableBody, rowsPerPage, displayFunc);
-        wrapper.appendChild(btn);
+        btn = setupButtons(
+            i,
+            items,
+            currentPage,
+            tableBody,
+            rowsPerPage,
+            displayFunc
+        )
+        wrapper.appendChild(btn)
     }
-    truncatePagination(wrapper);
+
+    truncatePagination(wrapper)
 }
+
 /**
  *
  * @param page
@@ -146,21 +177,35 @@ export function pagination(items, wrapper, rowsPerPage, currentPage, tableBody, 
  * @param tableBody
  * @returns button
  */
-function setupButtons(page, items, currentPage, tableBody, rowsPerPage, displayData) {
-    const button = document.createElement("button");
-    button.innerText = page;
-    if (currentPage == page)
-        button.classList.add("isActive");
+function setupButtons(
+    page: FNPHTMLElement,
+    items: [],
+    currentPage: number,
+    tableBody: UIElement,
+    rowsPerPage: number,
+    displayData: any
+): void {
+    const button: UIElement = document.createElement("button")
+    button.innerText = page
+
+    if (currentPage == page) button.classList.add("isActive")
+
     button.addEventListener("click", () => {
-        currentPage = page;
-        displayData(items, tableBody, rowsPerPage, currentPage);
-        let currentButton = document.querySelector(".pagination button.isActive");
-        currentButton.classList.remove("isActive");
-        button.classList.add("isActive");
-    });
-    return button;
+        currentPage = page
+        displayData(items, tableBody, rowsPerPage, currentPage)
+
+        let currentButton: UIElement = document.querySelector(
+            ".pagination button.isActive"
+        )
+        currentButton.classList.remove("isActive")
+        button.classList.add("isActive")
+    })
+
+    return button
 }
-async function truncatePagination(w) {
-    const paginationWrapper = w;
-    console.log(paginationWrapper);
+
+async function truncatePagination(w: any): Promise<void> {
+    const paginationWrapper: HTMLElement | any = w
+
+    console.log(paginationWrapper)
 }
