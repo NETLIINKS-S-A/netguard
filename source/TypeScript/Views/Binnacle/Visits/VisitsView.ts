@@ -24,7 +24,7 @@ export async function visitsView(): Promise<void> {
                 <th>Hora</th>
                 <th>Estado</th>
                 <th>Generado por</th>
-                <th></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -41,7 +41,7 @@ export async function visitsView(): Promise<void> {
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-trash"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`
 
@@ -60,7 +60,7 @@ export async function visitsView(): Promise<void> {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
-        <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+        <td><button class="btn btn_table_info"><i class="fa-solid fa-list"></i></button></td>
     </tr>`.repeat(tableRows)
 
     let GET_DATA: any = await getEntitiesData("Visit")

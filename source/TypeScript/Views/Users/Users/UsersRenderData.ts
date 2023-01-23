@@ -32,8 +32,8 @@ export async function displayUserData(
         itemElement.innerHTML = `<tr>
             <td>${user?.firstName} ${user?.lastName}</td>
             <td class="monospace">${user.email}</td>
-            <td class="userState"><i>${user.state._instanceName}</i></td>
-            <td>${user.citadel?.description}</td>
+            <td class="status"><i>${user.state._instanceName}</i></td>
+            <td class="citadels"><i>${user.citadel?.description}</i></td>
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>
@@ -42,15 +42,41 @@ export async function displayUserData(
         // write datas on table
         tableBody.appendChild(itemElement)
 
-        // states
-        const states: UIElement = document.querySelectorAll(".userState i")
-        states?.forEach((userState: UIElement) => {
-            if (userState.innerText == "Enabled")
-                userState.classList.add("user_active"),
-                    (userState.innerText = "Activo")
-            else if (userState.innerText == "Disabled")
-                userState.classList.add("user_inactive"),
-                    (userState.innerText = "Inactivo")
+        // fix states
+        const states: UIElement = document.querySelectorAll(".status i")
+        states?.forEach((state: UIElement) => {
+            if (state.innerText === "ENABLED") {
+                state.classList.add("g")
+                state.innerText = "Activo"
+            } else if (state.innerText === "DISABLED") {
+                state.classList.add("i")
+                state.innerText = "Inactivo"
+            }
+        })
+
+        // Fix citadels
+        const citadels: UIElement = document.querySelectorAll(".citadels i")
+        citadels?.forEach((citadel: UIElement) => {
+            if (citadel.innerText === "NO APLICA") {
+                citadel.innerText = "no aplica"
+            } else if (citadel.innerText === "No Aplica") {
+                citadel.innerText = "no aplica"
+            } else if (citadel.innerText === "N/A") {
+                citadel.innerText = "ninguno"
+            } else if (citadel.innerText === "UNDEFINED") {
+                citadel.innerText = "•••"
+            } else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO" && citadel.innerText != "•••") {
+                citadel.classList.add("b")
+            }
+        })
+
+        // Fix type
+        const types: UIElement = document.querySelectorAll(".type i")
+        types.forEach((type: UIElement) => {
+            if (type.innerText === "CUSTOMER") {
+                type.classList.add("p")
+                type.innerText = "Cliente"
+            }
         })
     }
 

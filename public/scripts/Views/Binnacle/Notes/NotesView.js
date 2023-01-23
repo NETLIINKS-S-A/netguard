@@ -23,7 +23,7 @@ export async function notesView() {
                 <th>Título</th>
                 <th>Autor</th>
                 <th>Fecha</th>
-                <th></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -35,10 +35,16 @@ export async function notesView() {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
+        <div class="select">
+            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
+            <div class="select_options" id="select_options">
+            </div>
+        </div>
+
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
     // get elements
@@ -51,7 +57,7 @@ export async function notesView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
-        <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+        <td><button class="btn btn_table_info"><i class="fa-solid fa-list"></i></button></td>
     </tr>`.repeat(tableRows);
     let GET_DATA = await getEntitiesData("Note");
     let arrayNotes = GET_DATA;

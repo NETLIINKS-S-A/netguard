@@ -17,8 +17,8 @@ export async function citadelsView() {
             <tr>
                 <th>ID</th>
                 <th>Descrición</th>
-                <th></th>
-                <th></th>
+                <th width="45px"></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -33,7 +33,7 @@ export async function citadelsView() {
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
     // get elements

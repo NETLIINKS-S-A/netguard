@@ -51,11 +51,11 @@ export async function guardsView() {
         <div class="select">
             <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
             <div class="select_options" id="select_options">
-
             </div>
         </div>
 
-        <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
+        <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-user-plus"></i></button>
+        <button class="btn btn_icon" id="addNewBusinessAdmin"><i class="fa-solid fa-shield-plus"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>

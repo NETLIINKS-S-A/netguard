@@ -26,7 +26,7 @@ export async function customerView() {
                 <th>Nombre</th>
                 <th>RUC</th>
                 <th>Estado</th>
-                <th></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -122,8 +122,8 @@ export async function customerView() {
     <div class="toolbox">
         <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
         <div class="toolbox_spotlight">
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="searcher">
-            <label class="btn btn_icon spotlight_label" for="searcher"><i class="fa-solid fa-filter"></i></label>
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`
 

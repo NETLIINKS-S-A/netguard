@@ -30,10 +30,15 @@ export async function eventView() {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
+        <div class="select">
+            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
+            <div class="select_options" id="select_options">
+            </div>
+        </div>
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
     // get elements
@@ -50,6 +55,7 @@ export async function eventView() {
     </tr>`.repeat(tableRows);
     let GET_DATA = await getEntitiesData("Notification");
     let arrayEvents = GET_DATA;
+    console.log(arrayEvents);
     const dataCount = document.getElementById("data-count");
     dataCount.innerHTML = `${arrayEvents.length} eventos`;
     await searchInput?.addEventListener("keyup", () => {

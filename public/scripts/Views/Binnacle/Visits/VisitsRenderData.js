@@ -16,7 +16,7 @@ export async function renderVisitData(items, tableBody, rowsPerPage, page, pagin
             <td>${visit.creationTime}</td>
             <td>${visit.visitState.name}</td>
             <td>${visit.user.firstName}</td>
-            <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+            <td><button class="btn btn_table_info"><i class="fa-solid fa-list"></i></button></td>
         </tr>`;
         tableBody.appendChild(row);
     }

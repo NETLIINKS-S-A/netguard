@@ -22,7 +22,7 @@ export async function renderNotesData(items, tableBody, rowsPerPage, page, pagin
             <td>${note.title}</td>
             <td>${note.user.firstName} ${note.user.lastName}</td>
             <td>${note.creationDate}</td>
-            <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+            <td><button class="btn btn_table_info"><i class="fa-solid fa-list"></i></button></td>
         </tr>`;
         tableBody.appendChild(row);
     }

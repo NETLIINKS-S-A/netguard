@@ -67,22 +67,70 @@ table,
                 }
             }
 
-            &:hover td {
-                background-color: $slategray-300;
-                color: $slategray-700;
-                transition: 0.2s all ease-in-out;
+            &:hover {
+                td {
+                    background-color: lighten($slategray-300, 2%);
+                    color: $slategray-700;
+                    transition: 0.2s all ease-in-out;
 
-                .btn_table-editor {
-                    background-color: $primary-500 !important;
-                    border-color: $primary-600;
-                    color: $white;
-                }
+                    .btn_table-editor {
+                        background-color: $primary-500 !important;
+                        border-color: $primary-600;
+                        color: $white;
+                    }
 
-                .btn_table-delete {
-                    background-color: $red-500 !important;
-                    border-color: $red-600;
-                    color: $white;
+                    .btn_table-delete {
+                        background-color: $red-500 !important;
+                        border-color: $red-600;
+                        color: $white;
+                    }
+
+                    .btn_table_info {
+                        background-color: $blue-200 !important;
+                        border-color: $blue-300;
+                        color: $blue-500;
+                    }
                 }
+            }
+
+            .type i, .status i, .citadels i {
+                background-color: $slategray-200;
+                color: $slategray-500;
+                font-weight: $bold;
+                font-size: 12px;
+                letter-spacing: 1px;
+                font-style: normal;
+                text-transform: uppercase;
+                padding: 5px 10px;
+                border-radius: 4px;
+            }
+
+            .citadels {
+                width: fit-content;
+
+                i {
+                    white-space: nowrap;
+                }
+            }
+
+            .g {
+                background-color: $green-500 !important;
+                color: $white !important;
+            }
+
+            .p {
+                background-color: $primary-500 !important;
+                color: $white !important;
+            }
+
+            .b {
+                background-color: $blue-500 !important;
+                color: $white !important;
+            }
+
+            .r {
+                background-color: $red-500 !important;
+                color: $white !important;
             }
         }
     }

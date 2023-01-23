@@ -14,5 +14,5 @@ export const UI: any = {
 
     UserAgent: navigator.userAgent,
     accessToken: localStorage.getItem("access_token"),
-    tableRows: 8,
+    tableRows: 12,
 }

@@ -1,5 +1,3 @@
-// @filename: AdministratorRenderData.ts
-import { $color, $font } from "../../../Libs/lib.tools.js";
 export async function renderAdministratorData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = " ";
     page--;
@@ -14,37 +12,48 @@ export async function renderAdministratorData(items, tableBody, rowsPerPage, pag
         <tr>
             <td>${administrator?.firstName} ${administrator?.lastName}</td>
             <td>${administrator?.email}</td>
-            <td class="table_badge user_status"><i>${administrator?.state.name}</i></td>
-            <td class="citadels">${administrator?.citadel.description}</td>
-            <td class="table_badge table_badge_usertype"><i>${administrator.userType}</i></td>
+            <td class="status"><i>${administrator?.state.name}</i></td>
+            <td class="citadels"><i>${administrator?.citadel.description}</i></td>
+            <td class="type"><i>${administrator.userType}</i></td>
 
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-arrows-rotate"></i></button></td>
         </tr>
         `;
         tableBody.appendChild(row);
         // fix states
-        const states = document.querySelectorAll(".user_status i");
+        const states = document.querySelectorAll(".status i");
         states?.forEach((state) => {
-            if (state.innerText === "Enabled") {
-                state.classList.add("user_active");
+            if (state.innerText === "ENABLED") {
+                state.classList.add("g");
                 state.innerText = "Activo";
             }
-            else if (state.innerText === "Disabled") {
-                state.classList.add("user_inactive");
+            else if (state.innerText === "DISABLED") {
+                state.classList.add("r");
                 state.innerText = "Inactivo";
             }
         });
         // Fix citadels
-        const citadels = document.querySelectorAll(".citadels");
+        const citadels = document.querySelectorAll(".citadels i");
         citadels?.forEach((citadel) => {
-            citadel.style.fontSize = $font.size.mid;
-            citadel.style.fontWeight = $font.weigth.bold;
-            citadel.style.textTransform = $font.cap.uppercase;
-            citadel.style.color = $color.blue.b400;
-            if (citadel.innerText === "NO APLICA" ||
-                citadel.innerText === "No Aplica" ||
-                citadel.innerText === "N/A") {
-                citadel.style.color = $color.slategray.s500;
+            if (citadel.innerText === "NO APLICA") {
+                citadel.innerText = "no aplica";
+            }
+            else if (citadel.innerText === "No Aplica") {
+                citadel.innerText = "no aplica";
+            }
+            else if (citadel.innerText === "N/A") {
+                citadel.innerText = "ninguno";
+            }
+            else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO") {
+                citadel.classList.add("b");
+            }
+        });
+        // Fix type
+        const types = document.querySelectorAll(".type i");
+        types.forEach((type) => {
+            if (type.innerText === "CUSTOMER") {
+                type.classList.add("p");
+                type.innerText = "Cliente";
             }
         });
     }
