@@ -32,10 +32,9 @@ export async function administratorsView() {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
     // get elements
@@ -54,6 +53,7 @@ export async function administratorsView() {
     </tr>`.repeat(tableRows);
     let GET_DATA = await getEntitiesData("User");
     let arrayAdministrators = GET_DATA.filter((data) => data.isSuper === true);
+    console.log(arrayAdministrators);
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayAdministrators.filter((administrator) => `${administrator.firstName}
              ${administrator.lastName}

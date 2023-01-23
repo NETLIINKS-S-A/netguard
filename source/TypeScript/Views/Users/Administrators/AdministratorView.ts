@@ -36,10 +36,9 @@ export async function administratorsView(): Promise<void> {
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`
 
@@ -64,6 +63,8 @@ export async function administratorsView(): Promise<void> {
     let arrayAdministrators: any = GET_DATA.filter(
         (data: any) => data.isSuper === true
     )
+
+    console.log(arrayAdministrators)
 
     await searchInput?.addEventListener("keyup", (): void => {
         const arrayData = arrayAdministrators.filter((administrator: any) =>

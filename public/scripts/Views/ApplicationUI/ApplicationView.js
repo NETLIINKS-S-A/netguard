@@ -172,8 +172,8 @@ export async function applicationView() {
 
                         <div class="menu_item" id="administrators-view">
                             <div class="menu_item_label">
-                                <i class="fa-regular fa-user-group"></i>
-                                <span>Adminsitración</span>
+                                <i class="fa-regular fa-shield"></i>
+                                <span>Administradores</span>
                             </div>
                         </div>
                     </div>

@@ -13,10 +13,10 @@ export async function renderAdministratorData(items, tableBody, rowsPerPage, pag
             <td>${administrator?.firstName} ${administrator?.lastName}</td>
             <td>${administrator?.email}</td>
             <td class="table_badge user_status"><i>${administrator?.state.name}</i></td>
-            <td>${administrator?.citadel.name}</td>
+            <td>${administrator?.citadel.description}</td>
             <td class="table_badge table_badge_usertype"><i>${administrator.userType}</i></td>
 
-            <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
+            <td><button class="btn btn_table-editor"><i class="fa-solid fa-arrows-rotate"></i></button></td>
         </tr>
         `;
         tableBody.appendChild(row);
