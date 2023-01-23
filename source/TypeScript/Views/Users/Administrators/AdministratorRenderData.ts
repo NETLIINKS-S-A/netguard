@@ -1,4 +1,5 @@
 // @filename: AdministratorRenderData.ts
+import { color } from "../../../Libs/lib.tools.colors.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 
 export async function renderAdministratorData(
@@ -24,7 +25,7 @@ export async function renderAdministratorData(
             <td>${administrator?.firstName} ${administrator?.lastName}</td>
             <td>${administrator?.email}</td>
             <td class="table_badge user_status"><i>${administrator?.state.name}</i></td>
-            <td>${administrator?.citadel.description}</td>
+            <td class="citadels">${administrator?.citadel.description}</td>
             <td class="table_badge table_badge_usertype"><i>${administrator.userType}</i></td>
 
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-arrows-rotate"></i></button></td>
@@ -32,6 +33,25 @@ export async function renderAdministratorData(
         `
 
         tableBody.appendChild(row)
+
+        const prop: {} = {
+            font: {
+                size: {
+                    small: "10px",
+                    mid: "12px",
+                    normal: "14px",
+                    large: "16px"
+                },
+
+                weigth: {
+                    normal: 400,
+                    semibold: 500,
+                    bold: 600,
+                    extraBold: 700,
+                    black: 800
+                }
+            }
+        }
 
         // fix states
         const states: UIElement = document.querySelectorAll(".user_status i")
@@ -45,17 +65,26 @@ export async function renderAdministratorData(
             }
         })
 
-        const userType: UIElement = document.querySelectorAll(
-            ".table_badge_usertype i"
-        )
-        userType?.forEach((type: UIElement) => {
-            if (type.innerText === "CUSTOMER") {
-                type.classList.add("user_active")
-                type.innerText = "Cliente"
-            } else if (type.innerText === "GUARD") {
-                type.classList.add("user_inactive")
-                type.innerText = "Guardia"
+        // Fix citadels
+        const citadels: UIElement = document.querySelectorAll(".citadels")
+        citadels?.forEach((citadel: UIElement) => {
+            if (citadel.innerText === "NO APLICA") {
+                citadel.style.fontSize = "12px"
+                citadel.style.fontWeight = "bolder"
+            } else if (citadel.innerText === "No Aplica") {
+                citadel.style.fontSize = "12px"
+                citadel.style.fontWeight = "bolder"
+                citadel.style.color = color.slategray.l500
+            } else {
+                citadel.style.fontSize = "12px"
+                citadel.style.fontWeight = "bolder"
+                citadel.style.textTransform = "uppercase"
+                citadel.style.color = color.BLUE
             }
+
+            if (citadel.innerText === "NO APLICA") citadel.style.fontSize = "12px", citadel.style.fontWeight = "bolder"
+            else if (citadel.innerText === "No Aplica") citadel.style.fontSize = "12px", citadel.style.fontWeight = "bolder", citadel.innerText = "NO APLICA"
+            else citadel.style.fontSize = "12px"
         })
     }
 }

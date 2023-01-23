@@ -2,9 +2,8 @@
 import { UIElement } from "../../../Types/GeneralTypes.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UI } from "../../../Libs/lib.dom.js"
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../../Libs/lib.tools.js"
 import { renderGuardData } from "./GuardsRenderData.js"
-import { customerNames } from "../../../Libs/lib.data.js"
 import { TableFunctions } from "./GuardsViewFuncs.js"
 
 const tableRows = UI.tableRows
@@ -96,7 +95,7 @@ export async function guardsView() {
             currentPage,
             paginationCounter
         )
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -125,7 +124,7 @@ export async function guardsView() {
         currentPage,
         paginationCounter
     )
-    setupPagination(
+    pagination(
         arrayGuards,
         paginationCounter,
         tableRows,

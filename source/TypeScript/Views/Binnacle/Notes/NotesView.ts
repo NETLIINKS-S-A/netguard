@@ -6,7 +6,7 @@
 // Hora
 // --- button ---
 import { UI } from "../../../Libs/lib.dom.js"
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../../Libs/lib.tools.js"
 import { renderNotesData } from "./NotesRenderData.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
@@ -84,7 +84,7 @@ export async function notesView(): Promise<void> {
             paginationCounter
         )
 
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -103,7 +103,7 @@ export async function notesView(): Promise<void> {
         paginationCounter
     )
 
-    setupPagination(
+    pagination(
         arrayNotes,
         paginationCounter,
         tableRows,

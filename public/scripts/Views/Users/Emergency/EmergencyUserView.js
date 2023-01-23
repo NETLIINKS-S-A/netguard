@@ -1,7 +1,7 @@
 // @filename: EmergenctUserView.ts
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderEmergencyUserData } from "./EmergencyRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -51,7 +51,7 @@ export async function emergencyUserView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderEmergencyUserData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderEmergencyUserData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderEmergencyUserData);
     });
     // write table template
     tableBody.innerHTML = `
@@ -62,5 +62,5 @@ export async function emergencyUserView() {
     </tr>`.repeat(tableRows);
     // display data
     await renderEmergencyUserData(arrayEmergencyUsers, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayEmergencyUsers, paginationCounter, tableRows, currentPage, tableBody, renderEmergencyUserData);
+    pagination(arrayEmergencyUsers, paginationCounter, tableRows, currentPage, tableBody, renderEmergencyUserData);
 }

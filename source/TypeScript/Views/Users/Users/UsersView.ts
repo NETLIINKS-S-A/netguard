@@ -2,7 +2,7 @@
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 import { UI } from "../../../Libs/lib.dom.js"
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../../Libs/lib.tools.js"
 import { displayUserData } from "./UsersRenderData.js"
 
 const tableRows = UI.tableRows
@@ -159,7 +159,7 @@ export async function usersView() {
             currentPage,
             paginationCounter
         )
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -188,7 +188,7 @@ export async function usersView() {
         paginationCounter
     )
     // @ts-ignore
-    setupPagination(
+    pagination(
         arrayUsers,
         paginationCounter,
         tableRows,

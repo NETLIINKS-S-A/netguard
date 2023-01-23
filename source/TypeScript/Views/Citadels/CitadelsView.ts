@@ -1,7 +1,7 @@
 // @filename: CitadelsView.ts
 import { UI } from "../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../Libs/lib.request.js"
-import { setupPagination } from "../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../Libs/lib.tools.js"
 import { UIElement } from "../../Types/GeneralTypes"
 import { renderCitadelData } from "./CitadelsRenderData.js"
 
@@ -78,7 +78,7 @@ export async function citadelsView(): Promise<void> {
             paginationCounter
         )
 
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -97,7 +97,7 @@ export async function citadelsView(): Promise<void> {
         paginationCounter
     )
 
-    setupPagination(
+    pagination(
         arrayCitadels,
         paginationCounter,
         tableRows,

@@ -2,7 +2,7 @@
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 import { UI } from "../../../Libs/lib.dom.js"
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../../Libs/lib.tools.js"
 import { renderEmergencyUserData } from "./EmergencyRenderData.js"
 
 const tableRows = UI.tableRows
@@ -69,7 +69,7 @@ export async function emergencyUserView() {
             paginationCounter
         )
 
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -96,7 +96,7 @@ export async function emergencyUserView() {
         paginationCounter
     )
 
-    setupPagination(
+    pagination(
         arrayEmergencyUsers,
         paginationCounter,
         tableRows,

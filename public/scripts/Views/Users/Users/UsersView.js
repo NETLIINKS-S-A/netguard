@@ -1,7 +1,7 @@
 // @filename: UsersView.ts
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { displayUserData } from "./UsersRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -140,7 +140,7 @@ export async function usersView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         displayUserData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
     });
     // Table placeholder
     tableBody.innerHTML = `
@@ -154,7 +154,7 @@ export async function usersView() {
     // Display data and pagination
     displayUserData(arrayUsers, tableBody, tableRows, currentPage, paginationCounter);
     // @ts-ignore
-    setupPagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
+    pagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
     // Customer Status
     const toggleStatus = document.getElementById("customerStatus");
     const customerStatusLabel = document.getElementById("customerStatusLabel");

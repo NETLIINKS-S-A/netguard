@@ -1,7 +1,7 @@
 // @filename: CitadelsView.ts
 import { UI } from "../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../Libs/lib.request.js";
-import { setupPagination } from "../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../Libs/lib.tools.js";
 import { renderCitadelData } from "./CitadelsRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -59,9 +59,9 @@ export async function citadelsView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderCitadelData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
     });
     // render data
     await renderCitadelData(arrayCitadels, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayCitadels, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
+    pagination(arrayCitadels, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
 }

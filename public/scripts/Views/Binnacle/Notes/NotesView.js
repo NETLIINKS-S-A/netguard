@@ -5,7 +5,7 @@
 // Hora
 // --- button ---
 import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderNotesData } from "./NotesRenderData.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 const tableRows = UI.tableRows;
@@ -64,9 +64,9 @@ export async function notesView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderNotesData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderNotesData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderNotesData);
     });
     // render data
     await renderNotesData(arrayNotes, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayNotes, paginationCounter, tableRows, currentPage, tableBody, renderNotesData);
+    pagination(arrayNotes, paginationCounter, tableRows, currentPage, tableBody, renderNotesData);
 }

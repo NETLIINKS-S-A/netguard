@@ -1,7 +1,7 @@
 // @filename: PlatformView.ts
 import { UI } from "../../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderAdministratorData } from "./AdministratorRenderData.js";
 const tableRows = UI?.tableRows;
 const UIApp = UI.App;
@@ -64,9 +64,9 @@ export async function administratorsView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderAdministratorData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderAdministratorData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderAdministratorData);
     });
     // render data
     await renderAdministratorData(arrayAdministrators, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayAdministrators, paginationCounter, tableRows, currentPage, tableBody, renderAdministratorData);
+    pagination(arrayAdministrators, paginationCounter, tableRows, currentPage, tableBody, renderAdministratorData);
 }

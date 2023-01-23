@@ -1,7 +1,7 @@
 // @filename: EventView.ts
 import { UI } from "../../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderEventData } from "./EventRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -62,9 +62,9 @@ export async function eventView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderEventData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderEventData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderEventData);
     });
     // render data
     await renderEventData(arrayEvents, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayEvents, paginationCounter, tableRows, currentPage, tableBody, renderEventData);
+    pagination(arrayEvents, paginationCounter, tableRows, currentPage, tableBody, renderEventData);
 }

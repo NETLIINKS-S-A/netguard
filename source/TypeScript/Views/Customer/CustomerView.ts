@@ -4,7 +4,7 @@ import { UI } from "../../Libs/lib.dom.js"
 import { renderCustomerData } from "./CustomerRenderData.js"
 // libs
 import { getEntitiesData } from "../../Libs/lib.request.js"
-import { setupPagination } from "../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../Libs/lib.tools.js"
 
 const tableRows: number = UI.tableRows // number of rows to show on tables
 const UIApp: UIElement = UI.App
@@ -155,7 +155,7 @@ export async function customerView() {
             currentPage,
             paginationCounter
         )
-        setupPagination(
+        pagination(
             // @ts-ignore
             arrayData,
             paginationCounter,
@@ -183,7 +183,7 @@ export async function customerView() {
         currentPage,
         paginationCounter
     )
-    setupPagination(
+    pagination(
         arrayCustomers,
         paginationCounter,
         tableRows,

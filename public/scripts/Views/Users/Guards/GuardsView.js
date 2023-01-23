@@ -1,6 +1,6 @@
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderGuardData } from "./GuardsRenderData.js";
 import { TableFunctions } from "./GuardsViewFuncs.js";
 const tableRows = UI.tableRows;
@@ -77,7 +77,7 @@ export async function guardsView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
     });
     // write table template
     tableBody.innerHTML = `
@@ -91,7 +91,7 @@ export async function guardsView() {
     </tr>
     `.repeat(tableRows);
     renderGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
+    pagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
     const select = document.querySelector(".select");
     const selectInput = document.getElementById('input-select');
     const selectOptionsContainer = document.querySelector('.select_options');

@@ -1,7 +1,7 @@
 // @filename: PlatformView.ts
 import { UI } from "../../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderPlatformData } from "./PlatformRenderData.js";
 const tableRows = 22;
 const UIApp = UI.App;
@@ -66,9 +66,9 @@ export async function platformView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderPlatformData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderPlatformData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderPlatformData);
     });
     // render data
     await renderPlatformData(arrayPlatform, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayPlatform, paginationCounter, tableRows, currentPage, tableBody, renderPlatformData);
+    pagination(arrayPlatform, paginationCounter, tableRows, currentPage, tableBody, renderPlatformData);
 }

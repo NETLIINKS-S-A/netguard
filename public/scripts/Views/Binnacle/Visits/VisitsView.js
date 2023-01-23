@@ -1,6 +1,6 @@
 // @filename: VisitsView.ts
 import { UI } from "../../../Libs/lib.dom.js";
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../../Libs/lib.tools.js";
 import { renderVisitData } from "./VisitsRenderData.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 const tableRows = UI.tableRows;
@@ -66,9 +66,9 @@ export async function visitsView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderVisitData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderVisitData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderVisitData);
     });
     // render data
     await renderVisitData(arrayVisits, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayVisits, paginationCounter, tableRows, currentPage, tableBody, renderVisitData);
+    pagination(arrayVisits, paginationCounter, tableRows, currentPage, tableBody, renderVisitData);
 }

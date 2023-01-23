@@ -2,7 +2,7 @@ import { UI } from "../../Libs/lib.dom.js";
 import { renderCustomerData } from "./CustomerRenderData.js";
 // libs
 import { getEntitiesData } from "../../Libs/lib.request.js";
-import { setupPagination } from "../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../Libs/lib.tools.js";
 const tableRows = UI.tableRows; // number of rows to show on tables
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -136,7 +136,7 @@ export async function customerView() {
         // display table data and pagination when
         // find results
         renderCustomerData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(
+        pagination(
         // @ts-ignore
         arrayData, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
     });
@@ -150,7 +150,7 @@ export async function customerView() {
     </tr>`.repeat(tableRows);
     // Display data and pagination
     renderCustomerData(arrayCustomers, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
+    pagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
     // Customer Status
     const toggleStatus = document.getElementById("customerStatus");
     const customerStatusLabel = document.getElementById("customerStatusLabel");

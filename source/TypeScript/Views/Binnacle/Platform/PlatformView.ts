@@ -1,7 +1,7 @@
 // @filename: PlatformView.ts
 import { UI } from "../../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { setupPagination } from "../../../Libs/lib.tools.pagination.js"
+import { pagination } from "../../../Libs/lib.tools.js"
 import { UIElement } from "../../../Types/GeneralTypes.js"
 import { renderPlatformData } from "./PlatformRenderData.js"
 
@@ -86,7 +86,7 @@ export async function platformView(): Promise<void> {
             paginationCounter
         )
 
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -105,7 +105,7 @@ export async function platformView(): Promise<void> {
         paginationCounter
     )
 
-    setupPagination(
+    pagination(
         arrayPlatform,
         paginationCounter,
         tableRows,
