@@ -1,5 +1,5 @@
 // @filename: PlatformRenderData.ts
-import { UIElement } from "../../../Types/GeneralTypes.js";
+import { UIElement } from "../../../Types/GeneralTypes.js"
 
 export async function renderPlatformData(
     items: any,
@@ -11,14 +11,14 @@ export async function renderPlatformData(
     tableBody.innerHTML = ""
     page--
 
-    let start: number = rowsPerPage * page;
-    let end: number = start + rowsPerPage;
-    let arrayPlatform: [] = await items.slice(start, end);
-    let index: number;
+    let start: number = rowsPerPage * page
+    let end: number = start + rowsPerPage
+    let arrayPlatform: [] = await items.slice(start, end)
+    let index: number
 
     for (index = 0; index < arrayPlatform.length; index++) {
-        let access: any = arrayPlatform[index];
-        let row: UIElement = document.createElement('tr');
+        let access: any = arrayPlatform[index]
+        let row: UIElement = document.createElement("tr")
 
         const windowsDevice = access.userAgent.includes("Windows NT")
         const linuxDevice = access.userAgent.includes("Linux x86_64")
@@ -47,8 +47,8 @@ export async function renderPlatformData(
             <td>${access.creationDate}</td>
             <td>${access.creationTime}</td>
         </tr>
-        `;
+        `
 
-        tableBody.appendChild(row);
+        tableBody.appendChild(row)
     }
 }

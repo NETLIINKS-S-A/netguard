@@ -1,33 +1,31 @@
-import { logout, dismissLogout, openLogout } from '../Login/Logout.js';
+import { logout, dismissLogout, openLogout } from "../Login/Logout.js";
 // import libs
-import { UI } from '../../Libs/lib.dom.js';
-import { getData } from '../../Libs/lib.request.js';
+import { UI } from "../../Libs/lib.dom.js";
+import { getData } from "../../Libs/lib.request.js";
 // import views
-import { customerView } from '../Customer/CustomerView.js';
-import { usersView } from '../Users/Users/UsersView.js';
-import { guardsView } from '../Users/Guards/GuardsView.js';
-import { emergencyUserView } from '../Users/Emergency/EmergencyUserView.js';
-import { eventView } from '../Binnacle/Events/EventView.js';
-import { platformView } from '../Binnacle/Platform/PlatformView.js';
-import { administratorsView } from '../Users/Administrators/AdministratorView.js';
-import { citadelsView } from '../Citadels/CitadelsView.js';
-import { visitsView } from '../Binnacle/Visits/VisitsView.js';
-import { notesView } from '../Binnacle/Notes/NotesView.js';
+import { customerView } from "../Customer/CustomerView.js";
+import { usersView } from "../Users/Users/UsersView.js";
+import { guardsView } from "../Users/Guards/GuardsView.js";
+import { emergencyUserView } from "../Users/Emergency/EmergencyUserView.js";
+import { eventView } from "../Binnacle/Events/EventView.js";
+import { platformView } from "../Binnacle/Platform/PlatformView.js";
+import { administratorsView } from "../Users/Administrators/AdministratorView.js";
+import { citadelsView } from "../Citadels/CitadelsView.js";
+import { visitsView } from "../Binnacle/Visits/VisitsView.js";
+import { notesView } from "../Binnacle/Notes/NotesView.js";
 export async function applicationView() {
-    const url = 'https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full';
-    const sidebar = document.getElementById('appSidebar');
+    const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
+    const sidebar = document.getElementById("appSidebar");
     const content = UI.App?.app;
     const wrapper = UI.App?.wrapper;
     let data = await getData(url);
-    console.table(data);
     async function renderInterface(interfaceData) {
-        console.log(interfaceData);
         if (interfaceData.error)
             logout(); // if any error, close session (in case access token fails)
         else {
-            wrapper.style.display = 'block';
-            content.style.display = 'flex';
-            sidebar.style.display = 'flex';
+            wrapper.style.display = "block";
+            content.style.display = "flex";
+            sidebar.style.display = "flex";
             sidebar.innerHTML += `<div class="sidebar">
 
                 <div class="sidebar_menu">
@@ -174,8 +172,8 @@ export async function applicationView() {
 
                         <div class="menu_item" id="administrators-view">
                             <div class="menu_item_label">
-                                <i class="fa-regular fa-user-group"></i>
-                                <span>Adminsitración</span>
+                                <i class="fa-regular fa-shield"></i>
+                                <span>Administradores</span>
                             </div>
                         </div>
                     </div>
@@ -242,54 +240,58 @@ export async function applicationView() {
             </div>`;
             // render functions
             document
-                .getElementById('stadistics-view')
-                ?.addEventListener('click', (e) => renderBlankPage('Estadísticas'));
+                .getElementById("stadistics-view")
+                ?.addEventListener("click", (e) => renderBlankPage("Estadísticas"));
             document
-                .getElementById('customers-view')
-                ?.addEventListener('click', (e) => customerView());
+                .getElementById("customers-view")
+                ?.addEventListener("click", (e) => customerView());
             /* Users */
             // clients
             document
-                .getElementById('clients-view')
-                ?.addEventListener('click', (e) => usersView());
+                .getElementById("clients-view")
+                ?.addEventListener("click", (e) => usersView());
             // guards
             document
-                .getElementById('guards-view')
-                ?.addEventListener('click', (e) => guardsView());
+                .getElementById("guards-view")
+                ?.addEventListener("click", (e) => guardsView());
             // emergency
             document
-                .getElementById('emergency-view')
-                ?.addEventListener('click', (e) => emergencyUserView());
+                .getElementById("emergency-view")
+                ?.addEventListener("click", (e) => emergencyUserView());
             /* Import */
             // clients
             document
-                .getElementById('import-clients')
-                ?.addEventListener('click', (e) => renderBlankPage('Importar clientes'));
+                .getElementById("import-clients")
+                ?.addEventListener("click", (e) => renderBlankPage("Importar clientes"));
             // guards
             document
-                .getElementById('import-guards')
-                ?.addEventListener('click', (e) => renderBlankPage('Importar guardias'));
+                .getElementById("import-guards")
+                ?.addEventListener("click", (e) => renderBlankPage("Importar guardias"));
             /* binnacle */
             // events
             document
-                .getElementById('binnacle-events')
-                ?.addEventListener('click', (e) => eventView());
+                .getElementById("binnacle-events")
+                ?.addEventListener("click", (e) => eventView());
             // platform
             document
-                .getElementById('binnacle-platform')
-                ?.addEventListener('click', (e) => platformView());
+                .getElementById("binnacle-platform")
+                ?.addEventListener("click", (e) => platformView());
             // visits
             document
-                .getElementById('binnacle-visits')
-                ?.addEventListener('click', (e) => visitsView());
+                .getElementById("binnacle-visits")
+                ?.addEventListener("click", (e) => visitsView());
             // notes
             document
-                .getElementById('binnacle-notes')
-                ?.addEventListener('click', (e) => notesView());
+                .getElementById("binnacle-notes")
+                ?.addEventListener("click", (e) => notesView());
             // Administrators
-            document.getElementById('administrators-view')?.addEventListener('click', () => administratorsView());
+            document
+                .getElementById("administrators-view")
+                ?.addEventListener("click", () => administratorsView());
             // Citadels
-            document.getElementById('citadels-view')?.addEventListener('click', () => citadelsView());
+            document
+                .getElementById("citadels-view")
+                ?.addEventListener("click", () => citadelsView());
             // PENDING: this functions are not implemented yet
             /*
             document
@@ -305,31 +307,31 @@ export async function applicationView() {
             */
             // Close session functions
             document
-                .getElementById('openLogOut')
-                ?.addEventListener('click', (e) => openLogout('logOutModal'));
+                .getElementById("openLogOut")
+                ?.addEventListener("click", (e) => openLogout("logOutModal"));
             document
-                .getElementById('logOut')
-                ?.addEventListener('click', (e) => logout());
+                .getElementById("logOut")
+                ?.addEventListener("click", (e) => logout());
             document
-                .getElementById('dismissLogOut')
-                ?.addEventListener('click', (e) => dismissLogout('logOutModal'));
+                .getElementById("dismissLogOut")
+                ?.addEventListener("click", (e) => dismissLogout("logOutModal"));
             // End close session functions
-            const menuItems = document.querySelectorAll('.menu_item');
-            const menuItemToggle = document.querySelectorAll('.menu_item_toggle');
+            const menuItems = document.querySelectorAll(".menu_item");
+            const menuItemToggle = document.querySelectorAll(".menu_item_toggle");
             menuItems?.forEach((menuItem) => {
-                menuItem.addEventListener('click', () => {
-                    menuItems.forEach((menuItem) => menuItem.classList.remove('menu_item-isActive'));
-                    menuItemToggle?.forEach((IT) => IT?.classList.remove('menu_item_toggle-isActive'));
-                    menuItem.classList.add('menu_item-isActive');
+                menuItem.addEventListener("click", () => {
+                    menuItems.forEach((menuItem) => menuItem.classList.remove("menu_item-isActive"));
+                    menuItemToggle?.forEach((IT) => IT?.classList.remove("menu_item_toggle-isActive"));
+                    menuItem.classList.add("menu_item-isActive");
                 });
             });
             menuItemToggle?.forEach((itemToggle) => {
-                itemToggle?.addEventListener('click', () => {
-                    itemToggle?.classList.add('menu_item_toggle-isActive');
+                itemToggle?.addEventListener("click", () => {
+                    itemToggle?.classList.add("menu_item_toggle-isActive");
                 });
             });
         }
-        renderBlankPage('Estadísticas');
+        guardsView();
     }
     renderInterface(data);
 }

@@ -1,5 +1,5 @@
 export async function renderEventData(items, tableBody, rowsPerPage, page, paginationElement) {
-    tableBody.innerHTML = ' ';
+    tableBody.innerHTML = " ";
     page--;
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
@@ -7,7 +7,7 @@ export async function renderEventData(items, tableBody, rowsPerPage, page, pagin
     let index;
     for (index = 0; index < arrayEvents.length; index++) {
         let event = arrayEvents[index];
-        let row = document.createElement('tr');
+        let row = document.createElement("tr");
         row.innerHTML = `
         <tr>
             <td>${event.user.firstName} ${event.user.lastName}</td>

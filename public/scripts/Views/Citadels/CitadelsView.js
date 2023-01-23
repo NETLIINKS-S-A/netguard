@@ -1,7 +1,7 @@
 // @filename: CitadelsView.ts
 import { UI } from "../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../Libs/lib.request.js";
-import { setupPagination } from "../../Libs/lib.tools.pagination.js";
+import { pagination } from "../../Libs/lib.tools.js";
 import { renderCitadelData } from "./CitadelsRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -17,8 +17,8 @@ export async function citadelsView() {
             <tr>
                 <th>ID</th>
                 <th>Descrición</th>
-                <th></th>
-                <th></th>
+                <th width="45px"></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -33,11 +33,11 @@ export async function citadelsView() {
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
     // get elements
-    const tableBody = document.querySelector('#table-body');
+    const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
     // write table template
@@ -48,7 +48,7 @@ export async function citadelsView() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>`.repeat(tableRows);
-    let GET_DATA = await getEntitiesData('Citadel');
+    let GET_DATA = await getEntitiesData("Citadel");
     let arrayCitadels = GET_DATA;
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayCitadels.filter((citadel) => `${citadel.name}
@@ -59,9 +59,9 @@ export async function citadelsView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         renderCitadelData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
     });
     // render data
     await renderCitadelData(arrayCitadels, tableBody, tableRows, currentPage, paginationCounter);
-    setupPagination(arrayCitadels, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
+    pagination(arrayCitadels, paginationCounter, tableRows, currentPage, tableBody, renderCitadelData);
 }

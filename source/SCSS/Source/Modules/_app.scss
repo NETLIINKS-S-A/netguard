@@ -34,16 +34,33 @@
         flex-direction: column;
         padding: 15px 40px;
         overflow-y: scroll;
-        width: 90%;
+        width: 100%;
         position: relative;
         height: 100vh;
+        position: relative;
     }
 
     &_header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        width: calc(100% - 200px);
+        height: 75px;
+        background-color: rgba($slategray-200, 0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        position: fixed;
+        right: 0;
+        top: 0;
+        padding: 5px 38px 0 38px;
+        border-bottom: 1px solid $slategray-300;
+    }
+
+    .header_spacing {
+        display: block;
+        height: 100px;
+
+        max-width: 100%;
     }
 
     .toolbox {
@@ -65,20 +82,37 @@
     }
 
     // date and time
-    &_month {
+
+    &_date {
         display: block;
-        color: $neutral-500;
-        text-transform: uppercase;
-        font-weight: $bold;
-        font-size: 12px;
-        letter-spacing: 2px;
+        width: 50px;
+        text-align: center;
+        box-shadow: $input-shadow;
     }
 
-    &_day {
+    &_month {
         display: block;
-        font-size: 28px;
-        font-weight: $black;
-        color: $slategray-800;
+        background-color: $red-500;
+        color: $white;
+        font-size: 10px;
+        letter-spacing: 1px;
+        border: 1px solid $red-600;
+        border-bottom: 0;
+        border-radius: 4px 4px 0 0;
+        padding: 0 2px
+    }
+
+    &_dayDate {
+        display: flex;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        font-weight: bolder;
+        font-size: 22px;
+        border: 1px solid $slategray-400;
+        border-top: 0;
+        border-radius: 0 0 4px 4px;
+        background-color: $white;
     }
 
     &_time {
@@ -91,9 +125,9 @@
 
 @media screen and (max-width: 1024px) {
     .app_sidebar {
-        width: fit-content;
-        max-width: fit-content;
-        min-width: fit-content;
+        width: 80px;
+        max-width: 80px;
+        min-width: 80px;
 
         .menu, .sidebar { width: fit-content; }
         .menu_brandicon {
@@ -224,7 +258,11 @@
         }
     }
 
-    .app_content {
-        padding: 15px 10px;
+    .app_wrapper {
+        padding: 25px 20px;
+    }
+
+    .app_header {
+        width: calc(100% - 80px);
     }
 }

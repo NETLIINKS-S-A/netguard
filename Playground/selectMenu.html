@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Select Menu</title>
+    <link rel="stylesheet" href="../public/icons/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="dropdown">
+        <input type="text" class="text_box" placeholder="Dropdown Menu" readonly>
+        <div class="options">
+            <div onclick="show('html')"><i class="fa-brands fa-html5"></i>HTML</div>
+            <div onclick="show('CSS')"><i class="fa-brands fa-css3"></i>CSS</div>
+            <div onclick="show('JAVASCRIPT')"><i class="fa-brands fa-js"></i>JAVASCRIPT</div>
+            <div onclick="show('Figma')"><i class="fa-brands fa-figma"></i>Figma</div>
+            <div onclick="show('ReactJS')"><i class="fa-brands fa-react"></i>ReactJS</div>
+        </div>
+    </div>
+
+    <script>
+        function show(anything) {
+            document.querySelector('.text_box').value = anything
+        }
+
+        const dropdown = document.querySelector('.dropdown')
+        dropdown.addEventListener('click', () => {
+            dropdown.classList.toggle('dropdown_active')
+        })
+    </script>
+</body>
+</html>

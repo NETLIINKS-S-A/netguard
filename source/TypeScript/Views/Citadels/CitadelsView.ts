@@ -1,9 +1,9 @@
 // @filename: CitadelsView.ts
-import { UI } from "../../Libs/lib.dom.js";
-import { getEntitiesData } from "../../Libs/lib.request.js";
-import { setupPagination } from "../../Libs/lib.tools.pagination.js";
-import { UIElement } from "../../Types/GeneralTypes";
-import { renderCitadelData } from "./CitadelsRenderData.js";
+import { UI } from "../../Libs/lib.dom.js"
+import { getEntitiesData } from "../../Libs/lib.request.js"
+import { pagination } from "../../Libs/lib.tools.js"
+import { UIElement } from "../../Types/GeneralTypes"
+import { renderCitadelData } from "./CitadelsRenderData.js"
 
 const tableRows: number = UI.tableRows
 const UIApp = UI.App
@@ -20,8 +20,8 @@ export async function citadelsView(): Promise<void> {
             <tr>
                 <th>ID</th>
                 <th>Descrición</th>
-                <th></th>
-                <th></th>
+                <th width="45px"></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -29,7 +29,7 @@ export async function citadelsView(): Promise<void> {
 
     <div class="pagination">
         <div id="pagination-counter"></div>
-    </div>`;
+    </div>`
 
     // write app tools
     appTools.innerHTML = `
@@ -37,14 +37,15 @@ export async function citadelsView(): Promise<void> {
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
-    </div>`;
+    </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector('#table-body');
+    const tableBody: UIElement = document.querySelector("#table-body")
     const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement = document.getElementById("pagination-counter")
+    const paginationCounter: UIElement =
+        document.getElementById("pagination-counter")
 
     // write table template
     tableBody.innerHTML = `
@@ -53,9 +54,9 @@ export async function citadelsView(): Promise<void> {
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
-    </tr>`.repeat(tableRows);
+    </tr>`.repeat(tableRows)
 
-    let GET_DATA: any = await getEntitiesData('Citadel');
+    let GET_DATA: any = await getEntitiesData("Citadel")
     let arrayCitadels: any = GET_DATA
 
     await searchInput?.addEventListener("keyup", (): void => {
@@ -77,7 +78,7 @@ export async function citadelsView(): Promise<void> {
             paginationCounter
         )
 
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
@@ -96,7 +97,7 @@ export async function citadelsView(): Promise<void> {
         paginationCounter
     )
 
-    setupPagination(
+    pagination(
         arrayCitadels,
         paginationCounter,
         tableRows,

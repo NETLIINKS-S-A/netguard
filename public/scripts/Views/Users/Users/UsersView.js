@@ -1,19 +1,17 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { displayUserData } from './UsersRenderData.js';
+import { getEntitiesData } from "../../../Libs/lib.request.js";
+import { UI } from "../../../Libs/lib.dom.js";
+import { pagination } from "../../../Libs/lib.tools.js";
+import { displayUserData } from "./UsersRenderData.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function usersView() {
-    let GET_DATA = await getEntitiesData('User');
-    let notSuper = GET_DATA
-        .filter((data) => data.isSuper === false);
-    let arrayUsers = notSuper
-        .filter((data) => `${data.userType}`.includes('CUSTOMER'));
+    let GET_DATA = await getEntitiesData("User");
+    let notSuper = GET_DATA.filter((data) => data.isSuper === false);
+    let arrayUsers = notSuper.filter((data) => `${data.userType}`.includes("CUSTOMER"));
     // BusinesView interface
     app.innerHTML = `
     <h1 class="app_title">Clientes</h1>
@@ -24,8 +22,8 @@ export async function usersView() {
                 <th>ID</th>
                 <th>Estado</th>
                 <th>Ciudadela</th>
-                <th></th>
-                <th></th>
+                <th width="45px"></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -117,18 +115,25 @@ export async function usersView() {
     // Add tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
+        <div class="select">
+            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
+            <div class="select_options" id="select_options">
+            </div>
+        </div>
+
+        <button class="btn btn_icon" id="addNewClient"><i class="fa-solid fa-user-plus"></i></button>
+        <button class="btn btn_icon" id="addNewClientAdmin"><i class="fa-solid fa-shield-plus"></i></button>
         <div class="toolbox_spotlight">
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="searcher">
-            <label class="btn btn_icon spotlight_label" for="searcher"><i class="fa-solid fa-filter"></i></label>
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
     // HTML ELEMENTS
-    const tableBody = document.querySelector('#tableBody');
-    const searchInput = document.querySelector('#searcher');
-    const paginationCounter = document.getElementById('paginationCounter');
+    const tableBody = document.querySelector("#tableBody");
+    const searchInput = document.querySelector("#searcher");
+    const paginationCounter = document.getElementById("paginationCounter");
     // search data on real-time
-    await searchInput?.addEventListener('keyup', () => {
+    await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
         const arrayData = arrayUsers.filter((user) => `${user.firstName}
                                                     ${user.lastName}
@@ -139,7 +144,7 @@ export async function usersView() {
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
         displayUserData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        setupPagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
     });
     // Table placeholder
     tableBody.innerHTML = `
@@ -153,24 +158,23 @@ export async function usersView() {
     // Display data and pagination
     displayUserData(arrayUsers, tableBody, tableRows, currentPage, paginationCounter);
     // @ts-ignore
-    setupPagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
+    pagination(arrayUsers, paginationCounter, tableRows, currentPage, tableBody, displayUserData);
     // Customer Status
-    const toggleStatus = document.getElementById('customerStatus');
-    const customerStatusLabel = document.getElementById('customerStatusLabel');
-    toggleStatus.addEventListener('click', () => {
+    const toggleStatus = document.getElementById("customerStatus");
+    const customerStatusLabel = document.getElementById("customerStatusLabel");
+    toggleStatus.addEventListener("click", () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = 'activo';
+            customerStatusLabel.innerHTML = "activo";
         else
-            customerStatusLabel.innerHTML = 'inactivo';
+            customerStatusLabel.innerHTML = "inactivo";
     });
     // Vehicular Entrance
-    const toggleVehicularEntrace = document.getElementById('vehicularEntrance');
-    const customerVehicularEntranceLabel = document.getElementById('customerVehicularEntranceLabel');
-    toggleVehicularEntrace.addEventListener('click', () => {
+    const toggleVehicularEntrace = document.getElementById("vehicularEntrance");
+    const customerVehicularEntranceLabel = document.getElementById("customerVehicularEntranceLabel");
+    toggleVehicularEntrace.addEventListener("click", () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = 'si';
+            customerVehicularEntranceLabel.innerHTML = "si";
         else
-            customerVehicularEntranceLabel.innerHTML = 'no';
+            customerVehicularEntranceLabel.innerHTML = "no";
     });
-    console.log(arrayUsers);
 }

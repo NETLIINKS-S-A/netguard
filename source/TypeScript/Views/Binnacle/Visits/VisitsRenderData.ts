@@ -8,7 +8,7 @@ export async function renderVisitData(
     page: number,
     paginationElement?: any
 ): Promise<void> {
-    tableBody.innerHTML = ''
+    tableBody.innerHTML = ""
     page--
 
     let start: number = rowsPerPage * page
@@ -18,7 +18,7 @@ export async function renderVisitData(
 
     for (index = 0; index < arrayVisits.length; index++) {
         let visit: any = arrayVisits[index]
-        let row: UIElement = document.createElement('tr')
+        let row: UIElement = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${visit.firstName} ${visit.firstLastName}</td>
@@ -27,11 +27,9 @@ export async function renderVisitData(
             <td>${visit.creationTime}</td>
             <td>${visit.visitState.name}</td>
             <td>${visit.user.firstName}</td>
-            <td><button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button></td>
+            <td><button class="btn btn_table_info"><i class="fa-solid fa-list"></i></button></td>
         </tr>`
 
         tableBody.appendChild(row)
-
-        console.log(visit[index])
     }
 }

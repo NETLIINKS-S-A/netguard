@@ -7,7 +7,7 @@ export async function renderPlatformData(items, tableBody, rowsPerPage, page, pa
     let index;
     for (index = 0; index < arrayPlatform.length; index++) {
         let access = arrayPlatform[index];
-        let row = document.createElement('tr');
+        let row = document.createElement("tr");
         const windowsDevice = access.userAgent.includes("Windows NT");
         const linuxDevice = access.userAgent.includes("Linux x86_64");
         const macOsDevice = access.userAgent.includes("Macintosh");

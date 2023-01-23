@@ -1,20 +1,19 @@
 // @filename: EmergenctUserView.ts
-import { getEntitiesData } from '../../../Libs/lib.request.js';
-import { UIElement } from '../../../Types/GeneralTypes.js';
-import { UI } from '../../../Libs/lib.dom.js';
-import { setupPagination } from '../../../Libs/lib.tools.pagination.js';
-import { renderEmergencyUserData } from './EmergencyRenderData.js';
+import { getEntitiesData } from "../../../Libs/lib.request.js"
+import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UI } from "../../../Libs/lib.dom.js"
+import { pagination } from "../../../Libs/lib.tools.js"
+import { renderEmergencyUserData } from "./EmergencyRenderData.js"
 
-const tableRows = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-const currentPage: number = 1;
+const tableRows = UI.tableRows
+const UIApp = UI.App
+const app = UIApp?.content
+const appTools = UIApp?.tools
+const currentPage: number = 1
 
 export async function emergencyUserView() {
-    let GET_DATA: void = await getEntitiesData('Contact');
-    console.log(GET_DATA);
-    let arrayEmergencyUsers: any = GET_DATA;
+    let GET_DATA: void = await getEntitiesData("Contact")
+    let arrayEmergencyUsers: any = GET_DATA
 
     // write application template
     app.innerHTML = `<h1 class="app_title">Emergencia</h1>
@@ -23,7 +22,7 @@ export async function emergencyUserView() {
             <tr>
                 <th>Nombre</th>
                 <th>Teléfono</th>
-                <th></th>
+                <th width="45px"></th>
             </tr>
             <tbody id="table-body">
             </tbody>
@@ -31,36 +30,43 @@ export async function emergencyUserView() {
 
     <div class="pagination">
         <div id="pagination-counter"></div>
-    </div>`;
+    </div>`
 
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-plus"></i></button>
-        <div class="toolbox_spotlight">
-            <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-filter"></i></label>
+        <div class="select">
+            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
+            <div class="select_options" id="select_options">
+            </div>
         </div>
-    </div>`;
+
+        <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-user-plus"></i></button>
+
+        <div class="toolbox_spotlight">
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+        </div>
+    </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector('#table-body');
-    const searchInput: UIElement = document.querySelector('#search-input');
+    const tableBody: UIElement = document.querySelector("#table-body")
+    const searchInput: UIElement = document.querySelector("#search-input")
     const paginationCounter: UIElement =
-        document.getElementById('pagination-counter');
+        document.getElementById("pagination-counter")
 
     // search data
-    await searchInput?.addEventListener('keyup', (): void => {
+    await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
         const arrayData = arrayEmergencyUsers.filter((emergencyUser) =>
             `${emergencyUser.name}
              ${emergencyUser.phone}`
                 .toLowerCase()
                 .includes(searchInput?.value.toLowerCase())
-        );
+        )
 
-        let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows) filteredResult = tableRows;
+        let filteredResult = arrayData.length
+        if (filteredResult >= tableRows) filteredResult = tableRows
 
         renderEmergencyUserData(
             arrayData,
@@ -68,17 +74,17 @@ export async function emergencyUserView() {
             filteredResult,
             currentPage,
             paginationCounter
-        );
+        )
 
-        setupPagination(
+        pagination(
             arrayData,
             paginationCounter,
             tableRows,
             currentPage,
             tableBody,
             renderEmergencyUserData
-        );
-    });
+        )
+    })
 
     // write table template
     tableBody.innerHTML = `
@@ -86,7 +92,7 @@ export async function emergencyUserView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
-    </tr>`.repeat(tableRows);
+    </tr>`.repeat(tableRows)
 
     // display data
     await renderEmergencyUserData(
@@ -95,14 +101,14 @@ export async function emergencyUserView() {
         tableRows,
         currentPage,
         paginationCounter
-    );
+    )
 
-    setupPagination(
+    pagination(
         arrayEmergencyUsers,
         paginationCounter,
         tableRows,
         currentPage,
         tableBody,
         renderEmergencyUserData
-    );
+    )
 }

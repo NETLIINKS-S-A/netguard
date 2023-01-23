@@ -1,21 +1,21 @@
 // @filename: CustomerView.ts
-import { UIElement } from '../../Types/GeneralTypes.js';
-import { UI } from '../../Libs/lib.dom.js';
-import { renderCustomerData } from './CustomerRenderData.js';
+import { UIElement } from "../../Types/GeneralTypes.js"
+import { UI } from "../../Libs/lib.dom.js"
+import { renderCustomerData } from "./CustomerRenderData.js"
 // libs
-import { getEntitiesData } from '../../Libs/lib.request.js';
-import { setupPagination } from '../../Libs/lib.tools.pagination.js';
+import { getEntitiesData } from "../../Libs/lib.request.js"
+import { pagination } from "../../Libs/lib.tools.js"
 
-const tableRows: number = UI.tableRows; // number of rows to show on tables
-const UIApp: UIElement = UI.App;
-const app: UIElement = UIApp?.content;
-const appTools: UIElement = UIApp?.tools;
-let currentPage: number = 1;
+const tableRows: number = UI.tableRows // number of rows to show on tables
+const UIApp: UIElement = UI.App
+const app: UIElement = UIApp?.content
+const appTools: UIElement = UIApp?.tools
+let currentPage: number = 1
 
 export async function customerView() {
     // @ts-ignore
-    let GET_DATA: [] = await getEntitiesData('Customer');
-    let arrayCustomers: [] = GET_DATA;
+    let GET_DATA: [] = await getEntitiesData("Customer")
+    let arrayCustomers: [] = GET_DATA
 
     // Write application template
     app.innerHTML = `
@@ -26,7 +26,7 @@ export async function customerView() {
                 <th>Nombre</th>
                 <th>RUC</th>
                 <th>Estado</th>
-                <th></th>
+                <th width="45px"></th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -114,37 +114,37 @@ export async function customerView() {
                 <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
             </div>
         </div>
-    </div>`;
+    </div>`
 
     // Add tools
-    const toolbox = UIApp?.tools;
+    const toolbox = UIApp?.tools
     toolbox.innerHTML = `
     <div class="toolbox">
         <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
         <div class="toolbox_spotlight">
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="searcher">
-            <label class="btn btn_icon spotlight_label" for="searcher"><i class="fa-solid fa-filter"></i></label>
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
-    </div>`;
+    </div>`
 
     // HTML ELEMENTS
-    const tableBody: UIElement = document.querySelector('#tableBody');
-    const searchInput: UIElement = document.querySelector('#searcher');
+    const tableBody: UIElement = document.querySelector("#tableBody")
+    const searchInput: UIElement = document.querySelector("#searcher")
     const paginationCounter: UIElement =
-        document.getElementById('paginationCounter');
-    let currentPage: number = 1;
+        document.getElementById("paginationCounter")
+    let currentPage: number = 1
 
     // search data on real-time
-    await searchInput?.addEventListener('keyup', (): void => {
+    await searchInput?.addEventListener("keyup", (): void => {
         const arrayData = arrayCustomers.filter((customer) =>
             // @ts-ignore
             `${customer.name.toLowerCase()}`.includes(
                 searchInput.value.toLowerCase()
             )
-        );
+        )
 
-        let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows) filteredResult = tableRows;
+        let filteredResult = arrayData.length
+        if (filteredResult >= tableRows) filteredResult = tableRows
 
         // display table data and pagination when
         // find results
@@ -154,8 +154,8 @@ export async function customerView() {
             filteredResult,
             currentPage,
             paginationCounter
-        );
-        setupPagination(
+        )
+        pagination(
             // @ts-ignore
             arrayData,
             paginationCounter,
@@ -163,8 +163,8 @@ export async function customerView() {
             currentPage,
             tableBody,
             renderCustomerData
-        );
-    });
+        )
+    })
 
     // Table placeholder
     tableBody.innerHTML = `
@@ -173,7 +173,7 @@ export async function customerView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
-    </tr>`.repeat(tableRows);
+    </tr>`.repeat(tableRows)
 
     // Display data and pagination
     renderCustomerData(
@@ -182,37 +182,37 @@ export async function customerView() {
         tableRows,
         currentPage,
         paginationCounter
-    );
-    setupPagination(
+    )
+    pagination(
         arrayCustomers,
         paginationCounter,
         tableRows,
         currentPage,
         tableBody,
         renderCustomerData
-    );
+    )
 
     // Customer Status
-    const toggleStatus: UIElement = document.getElementById('customerStatus');
+    const toggleStatus: UIElement = document.getElementById("customerStatus")
     const customerStatusLabel: UIElement = document.getElementById(
-        'customerStatusLabel'
-    );
+        "customerStatusLabel"
+    )
 
-    toggleStatus.addEventListener('click', () => {
+    toggleStatus.addEventListener("click", () => {
         if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = 'activo';
-        else customerStatusLabel.innerHTML = 'inactivo';
-    });
+            customerStatusLabel.innerHTML = "activo"
+        else customerStatusLabel.innerHTML = "inactivo"
+    })
 
     // Vehicular Entrance
     const toggleVehicularEntrace: UIElement =
-        document.getElementById('vehicularEntrance');
+        document.getElementById("vehicularEntrance")
     const customerVehicularEntranceLabel: UIElement = document.getElementById(
-        'customerVehicularEntranceLabel'
-    );
-    toggleVehicularEntrace.addEventListener('click', () => {
+        "customerVehicularEntranceLabel"
+    )
+    toggleVehicularEntrace.addEventListener("click", () => {
         if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = 'si';
-        else customerVehicularEntranceLabel.innerHTML = 'no';
-    });
+            customerVehicularEntranceLabel.innerHTML = "si"
+        else customerVehicularEntranceLabel.innerHTML = "no"
+    })
 }

@@ -1,0 +1,71 @@
+.select {
+    position: relative;
+    width: 250px;
+    height: 36px;
+    margin-right: 6px !important;
+
+    &::before {
+        content: "\f0b0";
+        font: normal 900 1em/1 "Font Awesome 6 Pro";
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        width: 36px;
+        border: 1px solid $slategray-300;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        color: $slategray-500;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    input {
+        appearance: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        outline: none;
+
+        &:active {
+            border-color: $slategray-300 !important;
+        }
+    }
+
+    &_options {
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        background-color: $white;
+        box-shadow: $input-shadow;
+        z-index: 200;
+        border: 1px solid $slategray-300;
+        border-radius: 8px;
+        overflow: hidden;
+        display: none;
+
+        .select_option {
+            padding: 10px 20px;
+            color: $slategray-800;
+
+            &:hover {
+                background-color: $slategray-200;
+            }
+        }
+    }
+
+    &_active {
+        .select_options {
+            display: block;
+        }
+
+        &::before, input {
+            border-color: $blue-500;
+        }
+    }
+}

@@ -2,12 +2,11 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIElement } from '../../Types/GeneralTypes.js';
+import { UIElement } from "../../Types/GeneralTypes.js"
 import {
     CustomerEditor,
-    MultiInput,
     closeBusinessModal,
-} from './CustomerViewFuncs.js';
+} from "./CustomerViewFuncs.js"
 
 /**
  *
@@ -23,16 +22,16 @@ export async function renderCustomerData(
     page: number,
     paginationElement?: any
 ): Promise<void> {
-    tableBody.innerHTML = '';
-    page--;
+    tableBody.innerHTML = ""
+    page--
 
-    let start = rowsPerPage * page;
-    let end = start + rowsPerPage;
-    let paginatedItems = items.slice(start, end);
+    let start = rowsPerPage * page
+    let end = start + rowsPerPage
+    let paginatedItems = items.slice(start, end)
 
     for (let i = 0; i < paginatedItems.length; i++) {
-        let customer = paginatedItems[i];
-        let itemElement = document.createElement('tr');
+        let customer = paginatedItems[i]
+        let itemElement = document.createElement("tr")
         itemElement.innerHTML = `<tr>
             <td>${customer.name}</td>
             <td class="monospace">${customer.ruc}</td>
@@ -42,35 +41,35 @@ export async function renderCustomerData(
                     <i class="fa-solid fa-pencil"></i>
                 </button>
             </td>
-        </tr>`;
+        </tr>`
         // write datas on table
-        tableBody.appendChild(itemElement);
+        tableBody.appendChild(itemElement)
     }
 
     // CUSTOMER EDITOR ================================================
     // elements
     const editorButtonElements: UIElement =
-        document.querySelectorAll('tr td button');
+        document.querySelectorAll("tr td button")
     const closeEditorButtonElement: UIElement =
-        document.getElementById('closeEditor');
+        document.getElementById("closeEditor")
     const updateCustomerEntityElement: UIElement = document.getElementById(
-        'updateCutomerEntity'
-    );
+        "updateCutomerEntity"
+    )
 
     // functions
-    const customerEditor: CustomerEditor = new CustomerEditor();
+    const customerEditor: CustomerEditor = new CustomerEditor()
     editorButtonElements.forEach((btn: UIElement) => {
-        btn.addEventListener('click', () => {
-            let entity: string = btn.dataset.id;
-            customerEditor.open(entity, 'editBusiness', MultiInput);
-        });
-    });
-    closeEditorButtonElement.addEventListener('click', () =>
-        closeBusinessModal('editBusiness')
-    );
-    updateCustomerEntityElement.addEventListener('click', () => {
-        customerEditor.update('editBusiness');
-    });
+        btn.addEventListener("click", () => {
+            let entity: string = btn.dataset.id
+            customerEditor.open(entity, "editBusiness")
+        })
+    })
+    closeEditorButtonElement.addEventListener("click", () =>
+        closeBusinessModal("editBusiness")
+    )
+    updateCustomerEntityElement.addEventListener("click", () => {
+        customerEditor.update("editBusiness")
+    })
 
     // CUSTOMER CREATOR ================================================
 }
