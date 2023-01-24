@@ -587,6 +587,101 @@ img {
   font-size: 20px;
 }
 
+.preference_overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.preference_window {
+  display: block;
+  background-color: #FFF;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+}
+.preference_window h1 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 32px;
+  margin-left: 22px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.preference_window h1 i {
+  font-size: 26px;
+  color: #64738C;
+  width: auto;
+  margin: 0 10px 0 0;
+}
+.preference_window h4 {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+.preference_window h4 i {
+  font-size: 18px;
+  color: #64738C;
+  width: auto;
+  margin: 0 10px 0 0;
+}
+.preference_window section {
+  padding: 10px 32px;
+  border-top: 1px solid #E2E8F0;
+}
+.preference_window .pref_button {
+  display: block;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  font-family: "Inter", sans-serif;
+}
+.preference_window .pref_button_group button {
+  display: inline-block;
+  margin-right: 8px;
+}
+.preference_window .aspect_button {
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: 0.2s all ease-in-out;
+}
+.preference_window .aspect_button:hover {
+  background-color: #F7FBFC;
+  border-color: #E2E8F0;
+}
+.preference_window .aspect_button.isActive {
+  background-color: #F7FBFC;
+  border-color: #E2E8F0;
+}
+.preference_window .aspect_button img {
+  display: block;
+  height: 55px;
+}
+.preference_window .aspect_button span {
+  display: block;
+  margin-top: 4px;
+  color: #94A2B8;
+}
+
+.preferences_footer_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 0;
+}
+.preferences_footer_buttons .btn {
+  margin-left: 8px;
+}
+
 .select {
   position: relative;
   width: 250px;
@@ -1578,6 +1673,69 @@ table .tbody tr td:first-child,
   border: 1px solid #7EB7FF;
   background-color: #374151;
   color: #7EB7FF;
+}
+.dark .preference_overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.dark .preference_window {
+  background-color: #324255;
+}
+.dark .preference_window h1 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 32px;
+}
+.dark .preference_window h1 i {
+  color: #CCD5E1;
+}
+.dark .preference_window section {
+  border-top: 1px solid #475469;
+}
+.dark .preference_window h4 i {
+  color: #CCD5E1;
+}
+.dark .preference_window .pref_button {
+  display: block;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  font-family: "Inter", sans-serif;
+}
+.dark .preference_window .pref_button_group button {
+  display: inline-block;
+  margin-right: 8px;
+}
+.dark .preference_window .aspect_button {
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: 0.2s all ease-in-out;
+}
+.dark .preference_window .aspect_button:hover {
+  background-color: #F7FBFC;
+  border-color: #E2E8F0;
+}
+.dark .preference_window .aspect_button.isActive {
+  background-color: #1E293B;
+  border-color: #475469;
+}
+.dark .preference_window .aspect_button img {
+  display: block;
+  height: 55px;
+}
+.dark .preference_window .aspect_button span {
+  display: block;
+  margin-top: 4px;
+  color: #F1F5F9;
+}
+.dark .preferences_footer_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dark .preferences_footer_buttons .btn {
+  margin-left: 8px;
 }
 .dark .select::before {
   border-color: #475469;

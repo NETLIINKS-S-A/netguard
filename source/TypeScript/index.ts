@@ -3,6 +3,7 @@ import { App } from "./Views/Login/TokenValidator.js"
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js"
 import { UIElement } from "./Types/GeneralTypes.js"
 import { login } from "./Views/Login/Login.js"
+import { checkAspectAtStartup } from "./Views/Preferences/Preferences.js"
 
 const app: App = new App()
 // render login window
@@ -22,6 +23,7 @@ loginForm?.addEventListener("submit", (e: SubmitEvent): void => {
 // check token validation at the app start
 app.checkToken()
 renderAppDate()
+checkAspectAtStartup()
 
 // Keybindings
 window.addEventListener("keyup", (e): void => {

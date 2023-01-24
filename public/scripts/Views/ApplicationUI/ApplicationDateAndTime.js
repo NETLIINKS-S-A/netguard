@@ -10,7 +10,6 @@ export function renderAppDate() {
     const month = dt.getMonth();
     const day = dt.getDay();
     const date = dt.getDate();
-    console.log(date);
     // get date names
     const monthOfYears = shortMonths[month];
     const dayOfWeeks = shortDays[day];

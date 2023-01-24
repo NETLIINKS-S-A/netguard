@@ -1,0 +1,109 @@
+.preference_overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.preference_window {
+    display: block;
+    background-color: $white;
+    border-radius:  8px;
+    width: 100%;
+    max-width: 500px;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 32px;
+        margin-left: 22px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        i {
+            font-size: 26px;
+            color: $slategray-600;
+            width: auto;
+            margin: 0 10px 0 0;
+        }
+    }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+
+        i {
+            font-size: 18px;
+            color: $slategray-600;
+            width: auto;
+            margin: 0 10px 0 0;
+        }
+    }
+
+    section {
+        padding: 10px 32px;
+        border-top: 1px solid $slategray-300;
+    }
+
+    .pref_button {
+        display: block;
+        border: none;
+        background-color: transparent;
+        appearance: none;
+        font-family: 'Inter', sans-serif;
+
+        &_group {
+            button {
+                display: inline-block;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .aspect_button {
+        padding: 5px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+            background-color: $slategray-100;
+            border-color:  $slategray-300;
+        }
+
+        &.isActive {
+            background-color: $slategray-100;
+            border-color:  $slategray-300;
+        }
+
+        img {
+            display: block;
+            height: 55px;
+        }
+
+        span {
+            display: block;
+            margin-top: 4px;
+            color: $slategray-500;
+        }
+    }
+}
+
+.preferences_footer_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 0;
+
+    .btn {
+        margin-left: 8px;
+    }
+}

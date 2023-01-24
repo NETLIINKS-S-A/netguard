@@ -2,6 +2,7 @@
 import { App } from "./Views/Login/TokenValidator.js";
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js";
 import { login } from "./Views/Login/Login.js";
+import { checkAspectAtStartup } from "./Views/Preferences/Preferences.js";
 const app = new App();
 // render login window
 app.render();
@@ -22,6 +23,7 @@ loginForm?.addEventListener("submit", (e) => {
 // check token validation at the app start
 app.checkToken();
 renderAppDate();
+checkAspectAtStartup();
 // Keybindings
 window.addEventListener("keyup", (e) => {
     const spotlight = document.getElementById("spotlight");

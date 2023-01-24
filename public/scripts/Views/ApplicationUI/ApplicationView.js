@@ -13,6 +13,7 @@ import { administratorsView } from "../Users/Administrators/AdministratorView.js
 import { citadelsView } from "../Citadels/CitadelsView.js";
 import { visitsView } from "../Binnacle/Visits/VisitsView.js";
 import { notesView } from "../Binnacle/Notes/NotesView.js";
+import { AppPreferences } from "../Preferences/Preferences.js";
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
     const sidebar = document.getElementById("appSidebar");
@@ -213,6 +214,13 @@ export async function applicationView() {
                         <hr>
 
                         <div class="menu_logout">
+                            <div class="menu_item" id="open-preferences">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-gear"></i>
+                                    <span>Preferencias</span>
+                                </div>
+                            </div>
+
                             <a href="#" class="menu_link_item" id="openLogOut">
                                 <div class="menu_link_item_label">
                                     <i class="fa-regular fa-up-from-bracket"></i>
@@ -305,6 +313,10 @@ export async function applicationView() {
                     renderBlankPage('Vehicular')
                 );
             */
+            // Open app preferences
+            document.getElementById("open-preferences")?.addEventListener('click', () => {
+                AppPreferences();
+            });
             // Close session functions
             document
                 .getElementById("openLogOut")
