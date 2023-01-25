@@ -13,7 +13,7 @@ export function AppPreferences() {
                 <section>
                     <h4><i class="fa-solid fa-palette"></i> Aspecto</h4>
                     <br>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>Cambia el aspecto general de la plataforma. <i>Los cambios se guardan localmente</i>.</p>
                     <br>
                     <div class="pref_button_group">
                         <button class="pref_button aspect_button isActive">
@@ -52,7 +52,7 @@ export function AppPreferences() {
                 </section>
 
                 <section>
-                    <h4><i class="fa-solid fa-table"></i> Tabla</h4>
+                    <h4><i class="fa-solid fa-table"></i> Tablas</h4>
                     <br>
                     <p><i class="fa-solid fa-triangle-exclamation"></i> Esta sección está en desarrollo.</p>
                 </section>
