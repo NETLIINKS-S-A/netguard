@@ -29,8 +29,8 @@
             "path": "./Source/TypeScript/Libs"
         }
     ],
-    "typescript.updateImportsOnFileMove.enabled": "always",
     "settings": {
-        "compile-hero.disable-compile-files-on-did-save-code": false
+        "typescript.updateImportsOnFileMove.enabled": "always",
+        "liveServer.settings.multiRootWorkspaceName": "Common",
     },
 }
