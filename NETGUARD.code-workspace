@@ -1,0 +1,36 @@
+{
+    "folders": [
+        {
+            "name": "Common",
+            "path": "."
+        },
+        {
+            "name": "Public",
+            "path": "./public"
+        },
+        {
+            "name": "Source",
+            "path": "./source"
+        },
+        {
+            "name": "Style Components",
+            "path": "./Source/SCSS/Source/Components"
+        },
+        {
+            "name": "Style themes",
+            "path": "./Source/SCSS/Source/Themes"
+        },
+        {
+            "name": "Views.lib",
+            "path": "./Source/TypeScript/Views"
+        },
+        {
+            "name": "scripts.lib",
+            "path": "./Source/TypeScript/Libs"
+        }
+    ],
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "settings": {
+        "compile-hero.disable-compile-files-on-did-save-code": false
+    },
+}
