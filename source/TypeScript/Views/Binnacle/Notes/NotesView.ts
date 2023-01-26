@@ -8,7 +8,7 @@
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { renderNotesData } from "./NotesRenderData.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 
 const tableRows: number = UI.tableRows

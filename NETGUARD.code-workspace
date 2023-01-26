@@ -21,16 +21,40 @@
             "path": "./Source/SCSS/Source/Themes"
         },
         {
-            "name": "Views.lib",
+            "name": "Views Library",
             "path": "./Source/TypeScript/Views"
         },
         {
-            "name": "scripts.lib",
+            "name": "Scripts Library",
             "path": "./Source/TypeScript/Libs"
         }
     ],
     "settings": {
         "typescript.updateImportsOnFileMove.enabled": "always",
         "liveServer.settings.multiRootWorkspaceName": "Common",
+        "search.exclude": {
+            "**/.git/": true
+          },
+          "files.trimTrailingWhitespace": true,
+          "editor.tabSize": 2,
+          "editor.insertSpaces": true,
+          "[typescript]": {
+            "editor.formatOnPaste": true,
+            "editor.formatOnSave": true
+          },
+          "[javascript]": {
+            "editor.formatOnPaste": true,
+            "editor.formatOnSave": true
+          },
+          "editor.rulers": [80],
+          "files.insertFinalNewline": true,
+          "editor.detectIndentation": true,
+          //"editor.wrappingIndent": "none",
+          "editor.formatOnSave": true,
+          "editor.linkedEditing": true,
+          "editor.minimap.enabled": true,
+          "git.alwaysShowStagedChangesResourceGroup": true,
+          "git.autofetch": "all",
+          "workbench.editor.languageDetection": true,
     },
 }

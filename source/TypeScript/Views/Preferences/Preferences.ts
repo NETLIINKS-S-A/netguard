@@ -1,6 +1,6 @@
 // @filename: Preferences.ts
 
-import { UIElement } from "../../Types/GeneralTypes.js"
+import { UIElement } from "../../Libs/lib.types.js"
 
 export function AppPreferences() {
     const content: UIElement = document.getElementsByTagName("body")

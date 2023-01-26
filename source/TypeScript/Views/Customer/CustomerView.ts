@@ -1,5 +1,5 @@
 // @filename: CustomerView.ts
-import { UIElement } from "../../Types/GeneralTypes.js"
+import { UIElement } from "../../Libs/lib.types.js"
 import { UI } from "../../Libs/lib.dom.js"
 import { renderCustomerData } from "./CustomerRenderData.js"
 // libs

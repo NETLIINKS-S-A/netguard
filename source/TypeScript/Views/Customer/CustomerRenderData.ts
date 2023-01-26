@@ -2,7 +2,7 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIElement } from "../../Types/GeneralTypes.js"
+import { UIElement } from "../../Libs/lib.types.js"
 import {
     CustomerEditor,
     closeBusinessModal,

@@ -1,6 +1,6 @@
 // @filename: UsersView.ts
 import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { displayUserData } from "./UsersRenderData.js"

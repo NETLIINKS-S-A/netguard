@@ -1,7 +1,7 @@
 // @filename: UsesViewFuncs.ts
 import { Modal } from "../../../Classes.js"
 import { getData, updateData } from "../../../Libs/lib.request.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 import { usersView as renderUsers } from "./UsersView.js"
 
 let entityURL: string

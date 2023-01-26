@@ -1,6 +1,5 @@
 // @filename: AdministratorRenderData.ts
-import { $color, $font } from "../../../Libs/lib.tools.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 
 export async function renderAdministratorData(
     items: any,

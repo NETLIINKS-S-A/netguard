@@ -1,6 +1,6 @@
 // @filename: TokenValidator.ts
 import { UI } from "../../Libs/lib.dom.js"
-import { UIElement } from "../../Types/GeneralTypes.js"
+import { UIElement } from "../../Libs/lib.types.js"
 import { applicationView } from "../ApplicationUI/ApplicationView.js"
 import { logout } from "./Logout.js"
 

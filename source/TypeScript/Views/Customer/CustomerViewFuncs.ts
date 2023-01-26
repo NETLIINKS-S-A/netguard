@@ -1,7 +1,7 @@
 // @filename: BusinessEditor.ts
 import { Modal } from "../../Classes.js"
 import { getData, updateData } from "../../Libs/lib.request.js"
-import { UIElement } from "../../Types/GeneralTypes.js"
+import { UIElement } from "../../Libs/lib.types.js"
 import { customerView } from "./CustomerView.js"
 
 let entityURL: string

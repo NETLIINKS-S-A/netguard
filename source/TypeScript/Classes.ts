@@ -1,5 +1,5 @@
 // @filename: Classes.ts
-import { UIElement } from "./Types/GeneralTypes.js"
+import { UIElement } from "./Libs/lib.types.js"
 
 export class Modal {
     private id: string

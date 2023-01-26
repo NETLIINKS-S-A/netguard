@@ -2,7 +2,7 @@
 import { UI } from "../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../Libs/lib.request.js"
 import { pagination } from "../../Libs/lib.tools.js"
-import { UIElement } from "../../Types/GeneralTypes"
+import { UIElement } from "../../Libs/lib.types.js"
 import { renderCitadelData } from "./CitadelsRenderData.js"
 
 const tableRows: number = UI.tableRows

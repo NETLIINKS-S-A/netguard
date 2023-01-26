@@ -1,6 +1,6 @@
 // @filename: lib.tools.ts
 import { FNPHTMLElement } from "../Types/FunctionParameterTypes.js"
-import { UIElement } from "../Types/GeneralTypes.js"
+import { UIElement } from "./lib.types.js"
 
 export const $color = {
     PRIMARY: "#54B3A4",

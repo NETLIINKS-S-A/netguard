@@ -1,5 +1,5 @@
 import { customerNames } from "../../../Libs/lib.data.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 
 export class TableFunctions {
     public renderBadges(badges: UIElement): void {

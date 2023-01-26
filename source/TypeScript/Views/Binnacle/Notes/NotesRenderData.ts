@@ -1,5 +1,5 @@
 // @filename: NotesRenderData.ts
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 
 /**
  * @function renderNotesData

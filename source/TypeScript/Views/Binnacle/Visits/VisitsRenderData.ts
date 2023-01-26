@@ -1,5 +1,5 @@
 // @filename: VisitsRenderData.ts
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 
 export async function renderVisitData(
     items: any,

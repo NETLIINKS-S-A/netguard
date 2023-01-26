@@ -1,7 +1,7 @@
 // @filename: index.ts
 import { App } from "./Views/Login/TokenValidator.js"
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js"
-import { UIElement } from "./Types/GeneralTypes.js"
+import { UIElement } from "./Libs/lib.types.js"
 import { login } from "./Views/Login/Login.js"
 import { checkAspectAtStartup } from "./Views/Preferences/Preferences.js"
 

@@ -1,5 +1,5 @@
 // @filename: EmergencyUserRenderData.ts
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIElement } from "../../../Libs/lib.types.js"
 
 export async function renderEmergencyUserData(
     items: any,
