@@ -1,17 +1,33 @@
 // @filename: Preferences.ts
 import { settings } from "../../Libs/lib.types.js";
-const content = document.getElementsByTagName("body");
-let savedTheme = localStorage.getItem("theme");
+import { appStorage } from "../../Classes.js";
+const content = document.getElementsByTagName("body")[0];
+let savedTheme = appStorage.get('theme');
 if (savedTheme === null || savedTheme === undefined) {
     settings.theme;
 }
 else {
     settings.theme = savedTheme;
 }
+/**
+ * @description tempTheme save the current selected theme but, it is deleted
+ * when not save the preferences
+ *
+ * @descripción thempTheme guarda el tema seleccionado actual, este se elimina
+ * si no guardamos las preferencias
+ */
+let tempTheme;
+/**
+ * @function AppPreferences()
+ *
+ * @descripción abre las preferencias de la aplicación. Edita y guarda las
+ * preferencias del usuario
+ */
 export function AppPreferences() {
-    const app = document.querySelector("#app");
-    app.innerHTML += `
-    <div class="preference_overlay" id="preferences">
+    const preferences = document.querySelector("#app-preferences");
+    preferences.style.display = "block";
+    preferences.innerHTML += `
+    <div class="preference_overlay preferences_isActive" id="app-preferences-window">
         <div class="preference_window">
             <h1><i class="fa-solid fa-gear"></i> Preferencias</h1>
             <section>
@@ -69,22 +85,25 @@ export function AppPreferences() {
 
             <section>
                 <div class="preferences_footer_buttons">
-                    <button class="btn">Cancelar</button>
+                    <button class="btn" id="cancel-preferences">Cancelar</button>
                     <button class="btn btn_primary" id="save-preferences">Guardar</button>
                 </div>
             </section>
         </div>
     </div>`;
+    const preferencesWindow = document.getElementById("app-preferences-window");
     // Themes
     const themesButtons = document.querySelectorAll(".aspect_button");
     themesButtons.forEach((button) => {
         button.addEventListener('click', () => {
             themesButtons.forEach((button) => button.classList.remove('isActive'));
-            content[0].className = "";
+            content.className = "";
             // set theme
-            content[0].classList.add(`${button.dataset.theme}`);
+            content.classList.add(`${button.dataset.theme}`);
             button.classList.add('isActive');
             settings.theme = `${button.dataset.theme}`;
+            tempTheme = "";
+            tempTheme = settings.theme;
         });
     });
     // Tables
@@ -92,11 +111,22 @@ export function AppPreferences() {
     // SAVE
     const save = document.getElementById('save-preferences');
     save?.addEventListener('click', () => {
-        const currentTheme = content[0].classList.contains(`${settings.theme}`);
-        localStorage.setItem("theme", settings.theme);
-        console.log(currentTheme);
-        window.location.reload();
+        const currentTheme = content.classList.contains(`${settings.theme}`);
+        appStorage.save("theme", settings.theme, "show");
+        // hide preferences on save
+        preferences.style.display = "none";
+        preferencesWindow?.remove();
+    });
+    // CANCEL
+    // BUG: not return if the current theme is light
+    const cancel = document.getElementById("cancel-preferences");
+    cancel?.addEventListener('click', () => {
+        preferences.style.display = "none";
+        content.classList.remove(tempTheme);
+        content.classList.add(savedTheme);
+        preferencesWindow?.remove();
+        // clear temporal theme variable
+        tempTheme = "";
     });
 }
-console.log(savedTheme);
-content[0].classList.add(savedTheme);
+content.classList.add(savedTheme);
