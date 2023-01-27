@@ -1,6 +1,6 @@
 .sidebar {
     hr {
-        border-color: $slategray-700 !important;
+        border-color: $gray-700 !important;
     }
 }
 
@@ -18,19 +18,14 @@
 
         &-isActive {
             .menu_item_label {
-                background-color: $slategray-600;
-                border-color: $slategray-500;
-                color: $slategray-100
+                background-color: $gray-600;
+                border-color: $gray-500;
+                color: $gray-100
             }
         }
 
         &_label {
-            color: $slategray-500;
-        }
-
-        &:hover {
-            background-color: rgba($gray-900, 0.2);
-            color: $gray-300;
+            color: $gray-500;
         }
 
         &_name {
@@ -45,4 +40,6 @@
             }
         }
     }
+
+
 }

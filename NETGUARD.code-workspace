@@ -1,8 +1,12 @@
 {
     "folders": [
         {
-            "name": "Common",
+            "name": "NETGUARD",
             "path": "."
+        },
+        {
+            "name": "Playground",
+            "path": "./Playground",
         },
         {
             "name": "Public",
@@ -13,19 +17,19 @@
             "path": "./source"
         },
         {
-            "name": "Style Components",
+            "name": "UI Components",
             "path": "./Source/SCSS/Source/Components"
         },
         {
-            "name": "Style themes",
+            "name": "Themes",
             "path": "./Source/SCSS/Source/Themes"
         },
         {
-            "name": "Views Library",
+            "name": "Core",
             "path": "./Source/TypeScript/Views"
         },
         {
-            "name": "Scripts Library",
+            "name": "Libs",
             "path": "./Source/TypeScript/Libs"
         }
     ],

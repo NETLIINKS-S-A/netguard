@@ -3,11 +3,9 @@ import { App } from "./Views/Login/TokenValidator.js"
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js"
 import { UIElement } from "./Libs/lib.types.js"
 import { login } from "./Views/Login/Login.js"
-import { checkAspectAtStartup } from "./Views/Preferences/Preferences.js"
 
 const app: App = new App()
 app.render()
-
 // get login elements
 const loginForm = document.getElementById("login-form")
 const userEmail: UIElement = document.getElementById("user-email")
@@ -22,7 +20,6 @@ loginForm?.addEventListener("submit", (e: SubmitEvent): void => {
 // check token validation at the app start
 app.checkToken()
 renderAppDate()
-checkAspectAtStartup()
 
 // Keybindings
 window.addEventListener("keyup", (e): void => {
@@ -31,3 +28,8 @@ window.addEventListener("keyup", (e): void => {
 
     if (e.altKey && key == "KeyS") spotlight?.focus()
 })
+
+// body
+const content = document.getElementsByTagName("body")
+let savedTheme = localStorage.getItem("theme")
+content[0].classList.add(`${savedTheme}`)

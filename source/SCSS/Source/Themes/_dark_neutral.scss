@@ -4,6 +4,11 @@
     }
 
     .app {
+        &_header {
+            background-color: rgba($neutral-700, 0.5);
+            border-color: $neutral-600;
+        }
+
         // date and time
         &_month {
             display: block;
@@ -32,6 +37,8 @@
     @import './dark_neutral/menu';
     @import './dark_neutral/modal';
     @import './dark_neutral/pagination';
+    @import './dark_neutral/preferences';
+    @import'./dark_neutral/select';
     @import './dark_neutral/sidebar';
     @import './dark_neutral/table';
     @import './dark_neutral/toggle';

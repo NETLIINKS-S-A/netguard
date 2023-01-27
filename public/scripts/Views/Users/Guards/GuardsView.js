@@ -9,9 +9,9 @@ const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function guardsView() {
-    let GET_DATA = await getEntitiesData("User");
-    let notSuper = GET_DATA.filter((data) => data.isSuper == false);
-    let arrayGuards = notSuper.filter((data) => `${data.userType}`.includes("GUARD"));
+    const BACKEND_DATA = await getEntitiesData("User");
+    const removeSuperUsers = BACKEND_DATA.filter((data) => data.isSuper == false);
+    const arrayGuards = removeSuperUsers.filter((guard) => `${guard.userType}`.includes("GUARD"));
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>

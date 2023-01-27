@@ -1,9 +1,9 @@
 @mixin Toggle {
     position: relative;
     border-radius: 100px;
-    border: 1px solid $slategray-600;
+    border: 1px solid $neutral-600;
     box-shadow: $input-shadow;
-    background-color: $slategray-600;
+    background-color: $neutral-600;
 }
 
 .toggle {
@@ -18,7 +18,7 @@
         height: 32px;
         width: 32px;
         background-color: white;
-        border: 1px solid $slategray-300;
+        border: 1px solid $neutral-300;
         border-radius: 25px;
         position: absolute;
         top: 1.5px;

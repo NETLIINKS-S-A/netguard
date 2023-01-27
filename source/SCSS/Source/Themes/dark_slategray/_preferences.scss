@@ -3,7 +3,7 @@
 }
 
 .preference_window {
-    background-color: $gray-800;
+    background-color: $slategray-800;
 
     h1 {
         display: flex;
@@ -11,15 +11,15 @@
         padding: 10px;
         font-size: 32px;
 
-        i { color: $gray-400 }
+        i { color: $slategray-400 }
     }
 
     section {
-        border-top: 1px solid $gray-700;
+        border-top: 1px solid $slategray-700;
     }
 
     h4 {
-        i { color: $gray-400 }
+        i { color: $slategray-400 }
     }
 
     .pref_button {
@@ -44,13 +44,13 @@
         transition: 0.2s all ease-in-out;
 
         &:hover {
-            background-color: $gray-100;
-            border-color:  $gray-300;
+            background-color: $slategray-100;
+            border-color:  $slategray-300;
         }
 
         &.isActive {
-            background-color: $gray-900;
-            border-color:  $gray-700;
+            background-color: $slategray-900;
+            border-color:  $slategray-700;
         }
 
         img {
@@ -61,7 +61,7 @@
         span {
             display: block;
             margin-top: 4px;
-            color: $gray-200;
+            color: $slategray-200;
         }
     }
 }

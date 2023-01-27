@@ -4,10 +4,15 @@
     }
 
     .app {
+        &_header {
+            background-color: rgba($slategray-700, 0.5);
+            border-color: $slategray-600;
+        }
+
         // date and time
         &_month {
             display: block;
-            color: $neutral-200;
+            color: $slategray-200;
         }
 
         &_day {
@@ -32,6 +37,8 @@
     @import './dark_slategray/menu';
     @import './dark_slategray/modal';
     @import './dark_slategray/pagination';
+    @import './dark_slategray/preferences';
+    @import'./dark_slategray/select';
     @import './dark_slategray/sidebar';
     @import './dark_slategray/table';
     @import './dark_slategray/toggle';

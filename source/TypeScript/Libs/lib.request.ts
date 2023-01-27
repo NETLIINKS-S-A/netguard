@@ -36,6 +36,12 @@ export async function updateData(url: string, raw: any) {
     }).then((Response) => Response.json())
 }
 
+/**
+ * @function getEntitiesData()
+ * @description Obtiene los datos completos de las entidades usando fetchPlans
+ *
+ * @param entities - El nombre de la entidad a acceder
+*/
 export async function getEntitiesData(entities: string): Promise<void> {
     const url = `https://backend.netliinks.com:443/rest/entities/${entities}?fetchPlan=full`
     return await getData(url)

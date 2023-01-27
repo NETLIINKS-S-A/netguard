@@ -13,10 +13,10 @@ const appTools = UIApp?.tools
 let currentPage: number = 1
 
 export async function guardsView() {
-    let GET_DATA: any = await getEntitiesData("User")
-    let notSuper = GET_DATA.filter((data: any) => data.isSuper == false)
-    let arrayGuards: any = notSuper.filter((data: any) =>
-        `${data.userType}`.includes("GUARD")
+    const BACKEND_DATA: any = await getEntitiesData("User")
+    const removeSuperUsers = BACKEND_DATA.filter((data: any) => data.isSuper == false)
+    const arrayGuards: any = removeSuperUsers.filter((guard: any) =>
+        `${guard.userType}`.includes("GUARD")
     )
 
     // Write application template

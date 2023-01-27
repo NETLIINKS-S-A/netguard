@@ -1,5 +1,5 @@
 // @filename: AppView.ts
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIElement } from "../../Libs/lib.types.js";
 import { logout, dismissLogout, openLogout } from "../Login/Logout.js"
 // import libs
 import { UI } from "../../Libs/lib.dom.js"
