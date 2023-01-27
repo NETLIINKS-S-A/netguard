@@ -93,10 +93,10 @@ export function AppPreferences() {
     </div>`;
     const preferencesWindow = document.getElementById("app-preferences-window");
     // Themes
-    const themesButtons = document.querySelectorAll(".aspect_button");
-    themesButtons.forEach((button) => {
+    const togglesButton = document.querySelectorAll(".aspect_button");
+    togglesButton.forEach((button) => {
         button.addEventListener('click', () => {
-            themesButtons.forEach((button) => button.classList.remove('isActive'));
+            togglesButton.forEach((button) => button.classList.remove('isActive'));
             content.className = "";
             // set theme
             content.classList.add(`${button.dataset.theme}`);

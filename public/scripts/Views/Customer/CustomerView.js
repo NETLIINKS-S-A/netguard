@@ -3,6 +3,7 @@ import { renderCustomerData } from "./CustomerRenderData.js";
 // libs
 import { getEntitiesData } from "../../Libs/lib.request.js";
 import { pagination } from "../../Libs/lib.tools.js";
+import { CFN } from "./CustomerViewFuncs.js";
 const tableRows = UI.tableRows; // number of rows to show on tables
 const UIApp = UI.App;
 const app = UIApp?.content;
@@ -34,92 +35,24 @@ export async function customerView() {
         <input type="number" placeholder="${tableRows}" id="paginationLimiter" min="${tableRows}" max="30">
     </div>
 
-    <!-- =========================
-                EDITOR
-    ========================= -->
-    <div class="modal" id="editBusiness">
-        <div class="modal_dialog modal_body" style="max-width: 450px !important">
-            <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
-
-            <form autocomplete="off" id="businessEditorForm">
-                <div class="input_group">
-                    <label for="businessName" class="form_label">Nombre</label>
-                    <input class="input" id="businessName" placeholder="Nombre">
-                </div>
-
-                <div class="input_group">
-                    <label class="form_label">RUC</label>
-                    <input type="text" class="input" id="rucInputElement" maxlength="10">
-                </div>
-
-                <div class="form_group">
-                    <div class="input_group customerStatus">
-                        <label for="customerStatus" class="form_label">Estado: <span id="customerStatusLabel">inactivo</span></label>
-                        <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
-                    </div>
-
-                    <div class="input_group">
-                        <label for="vehicularEntrance" class="form_label">Ingreso vehicular: <span id="customerVehicularEntranceLabel">no</span></label>
-                        <input type="checkbox" name="vehicularEntrance" id="vehicularEntrance" class="toggle">
-                    </div>
-                </div>
-            </form>
-
-            <div class="modal_footer">
-                <button class="btn" id="closeEditor">Cancelar</button>
-                <button class="btn btn_success" id="updateCutomerEntity">Guardar</button>
-            </div>
-        </div>
+    <div id="modal-content">
     </div>
-
-    <!-- =========================
-        ADD NEW BUSINESS
-    ========================= -->
-    <div class="modal" id="addNewBusinessModal">
-        <div class="modal_dialog modal_body" style="max-width: 450px !important">
-            <h2 class="modal_title">Crear nueva empresa</h2>
-
-            <form autocomplete="off" id="createBusinessForm">
-                <div class="input_group">
-                    <label for="businessName" class="form_label">Nombre</label>
-                    <input class="input" id="businessName" placeholder="Nombre">
-                </div>
-
-                <div class="input_group">
-                    <label class="form_label">RUC</label>
-                    <input type="text" class="input" id="rucInputElement" maxlength="10">
-                </div>
-
-                <div class="form_group">
-                    <div class="input_group customerStatus">
-                        <label for="customerStatus" class="form_label">Estado: <span id="customerStatusLabel">inactivo</span></label>
-                        <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
-                    </div>
-
-                    <div class="input_group">
-                        <label for="vehicularEntrance" class="form_label">Ingreso vehicular: <span id="customerVehicularEntranceLabel">no</span></label>
-                        <input type="checkbox" name="vehicularEntrance" id="vehicularEntrance" class="toggle">
-                    </div>
-                </div>
-
-            </form>
-
-            <div class="modal_footer">
-                <button class="btn" id="closeAddNewBusinessModal">Cancelar</button>
-                <button class="btn btn_success" id="saveNewBusiness">Guardar</button>
-            </div>
-        </div>
     </div>`;
     // Add tools
     const toolbox = UIApp?.tools;
     toolbox.innerHTML = `
     <div class="toolbox">
-        <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-plus"></i></button>
+        <button class="btn btn_icon" id="add-new"><i class="fa-solid fa-plus"></i></button>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
+    const modal = document.getElementById("modal-content");
+    const addNew = document.getElementById("add-new");
+    addNew?.addEventListener('click', () => {
+        CFN.newCustomer(modal);
+    });
     // HTML ELEMENTS
     const tableBody = document.querySelector("#tableBody");
     const searchInput = document.querySelector("#searcher");
@@ -151,22 +84,13 @@ export async function customerView() {
     // Display data and pagination
     renderCustomerData(arrayCustomers, tableBody, tableRows, currentPage, paginationCounter);
     pagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
-    // Customer Status
-    const toggleStatus = document.getElementById("customerStatus");
-    const customerStatusLabel = document.getElementById("customerStatusLabel");
-    toggleStatus.addEventListener("click", () => {
-        if (toggleStatus?.checked == true)
-            customerStatusLabel.innerHTML = "activo";
-        else
-            customerStatusLabel.innerHTML = "inactivo";
-    });
-    // Vehicular Entrance
-    const toggleVehicularEntrace = document.getElementById("vehicularEntrance");
-    const customerVehicularEntranceLabel = document.getElementById("customerVehicularEntranceLabel");
-    toggleVehicularEntrace.addEventListener("click", () => {
-        if (toggleVehicularEntrace?.checked == true)
-            customerVehicularEntranceLabel.innerHTML = "si";
-        else
-            customerVehicularEntranceLabel.innerHTML = "no";
+    // Edit Customer
+    const editButtons = document.querySelectorAll(".btn_table-editor");
+    editButtons.forEach((editButton) => {
+        editButton.addEventListener('click', () => {
+            let entity = editButton.dataset.id;
+            console.log(editButton, entity);
+            CFN.editCustomer(modal, entity);
+        });
     });
 }

@@ -3,6 +3,7 @@
 // }
 
 .input {
+    appearance: none;
     display: inline-block;
     font-size: 14px;
     font-family: 'Inter'; // TODO: change to variable
@@ -52,6 +53,26 @@
                 border-width: 0;
                 display: none;
             }
+        }
+    }
+
+    &:disabled {
+        color: $slategray-900;
+        user-select: none; /* supported by Chrome and Opera */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        cursor: not-allowed;
+    }
+
+    &_error {
+        border-color: $red-500;
+        color: $red-500;
+
+        &:focus {
+            border-color: $red-500 !important;
+            color: $slategray-500;
         }
     }
 

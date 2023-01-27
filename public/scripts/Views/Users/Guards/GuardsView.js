@@ -48,7 +48,7 @@ export async function guardsView() {
     // write appTools
     appTools.innerHTML = `
     <div class="toolbox">
-        <div class="select">
+        <div class="select filter">
             <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
             <div class="select_options" id="select_options">
             </div>

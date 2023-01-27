@@ -3,10 +3,7 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { UIElement } from "../../Libs/lib.types.js"
-import {
-    CustomerEditor,
-    closeBusinessModal,
-} from "./CustomerViewFuncs.js"
+import { CFN } from "./CustomerViewFuncs.js"
 
 /**
  *
@@ -29,8 +26,9 @@ export async function renderCustomerData(
     let end = start + rowsPerPage
     let paginatedItems = items.slice(start, end)
 
+    let customer: any
     for (let i = 0; i < paginatedItems.length; i++) {
-        let customer = paginatedItems[i]
+        customer = paginatedItems[i]
         let itemElement = document.createElement("tr")
         itemElement.innerHTML = `<tr>
             <td>${customer.name}</td>
@@ -55,21 +53,6 @@ export async function renderCustomerData(
     const updateCustomerEntityElement: UIElement = document.getElementById(
         "updateCutomerEntity"
     )
-
-    // functions
-    const customerEditor: CustomerEditor = new CustomerEditor()
-    editorButtonElements.forEach((btn: UIElement) => {
-        btn.addEventListener("click", () => {
-            let entity: string = btn.dataset.id
-            customerEditor.open(entity, "editBusiness")
-        })
-    })
-    closeEditorButtonElement.addEventListener("click", () =>
-        closeBusinessModal("editBusiness")
-    )
-    updateCustomerEntityElement.addEventListener("click", () => {
-        customerEditor.update("editBusiness")
-    })
 
     // CUSTOMER CREATOR ================================================
 }

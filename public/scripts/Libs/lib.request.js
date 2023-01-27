@@ -40,6 +40,13 @@ export async function getEntitiesData(entities) {
     const url = `https://backend.netliinks.com:443/rest/entities/${entities}?fetchPlan=full`;
     return await getData(url);
 }
+/**
+ * @function getEntityData()
+ * @description Obtiene un elemento de la entidad que lo contiene
+ *
+ * @param entities - El nombre de la entidad a acceder
+ * @param entity - Nombre del elemento dentro de la entidad
+*/
 export async function getEntityData(entity, entities) {
     const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}`;
     return await getData(url);

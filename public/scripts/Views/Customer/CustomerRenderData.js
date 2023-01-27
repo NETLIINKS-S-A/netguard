@@ -1,4 +1,3 @@
-import { CustomerEditor, closeBusinessModal, } from "./CustomerViewFuncs.js";
 /**
  *
  * @param items - The saved data and filtered data (tableData)
@@ -12,8 +11,9 @@ export async function renderCustomerData(items, tableBody, rowsPerPage, page, pa
     let start = rowsPerPage * page;
     let end = start + rowsPerPage;
     let paginatedItems = items.slice(start, end);
+    let customer;
     for (let i = 0; i < paginatedItems.length; i++) {
-        let customer = paginatedItems[i];
+        customer = paginatedItems[i];
         let itemElement = document.createElement("tr");
         itemElement.innerHTML = `<tr>
             <td>${customer.name}</td>
@@ -33,17 +33,5 @@ export async function renderCustomerData(items, tableBody, rowsPerPage, page, pa
     const editorButtonElements = document.querySelectorAll("tr td button");
     const closeEditorButtonElement = document.getElementById("closeEditor");
     const updateCustomerEntityElement = document.getElementById("updateCutomerEntity");
-    // functions
-    const customerEditor = new CustomerEditor();
-    editorButtonElements.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            let entity = btn.dataset.id;
-            customerEditor.open(entity, "editBusiness");
-        });
-    });
-    closeEditorButtonElement.addEventListener("click", () => closeBusinessModal("editBusiness"));
-    updateCustomerEntityElement.addEventListener("click", () => {
-        customerEditor.update("editBusiness");
-    });
     // CUSTOMER CREATOR ================================================
 }

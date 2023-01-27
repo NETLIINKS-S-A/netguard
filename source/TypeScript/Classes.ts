@@ -56,4 +56,17 @@ export class AppStorage {
     private showInConsole(name: string) { console.log(localStorage.getItem(name)) }
 }
 
+/**
+ * @class AppStorage
+ *
+ * ## description:
+ * Interacts with localStorage
+ *
+ * ## Methods:
+ * - Save: save data on localStorage (public)
+ * - Get: get specifict data from localStorage (public)
+ * - Remove: remove specific data from localStorage (public)
+ * - showInConsole: show localStorage data in console (private). I'ts part of
+ * save and get methods
+ */
 export let appStorage: AppStorage = new AppStorage()

@@ -99,10 +99,10 @@ export function AppPreferences() {
     const preferencesWindow = document.getElementById("app-preferences-window")
 
     // Themes
-    const themesButtons = document.querySelectorAll(".aspect_button")
-    themesButtons.forEach((button: UIElement) => {
+    const togglesButton = document.querySelectorAll(".aspect_button")
+    togglesButton.forEach((button: UIElement) => {
         button.addEventListener('click', (): void => {
-            themesButtons.forEach((button: UIElement) => button.classList.remove('isActive'))
+            togglesButton.forEach((button: UIElement) => button.classList.remove('isActive'))
             content.className = ""
             // set theme
             content.classList.add(`${button.dataset.theme}`)

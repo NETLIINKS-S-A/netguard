@@ -303,12 +303,20 @@ img {
   color: #475469;
 }
 .form_group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.form_group .input_group {
+  margin-right: 10px;
+}
+.form_group .input_group:last-child {
+  margin-right: 0;
 }
 
 .input {
+  appearance: none;
   display: inline-block;
   font-size: 14px;
   font-family: "Inter";
@@ -353,6 +361,28 @@ img {
   padding: 0;
   border-width: 0;
   display: none;
+}
+.input:disabled {
+  color: #1E293B;
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  cursor: not-allowed;
+}
+.input_error {
+  border-color: #FF523F;
+  color: #FF523F;
+}
+.input_error:focus {
+  border-color: #FF523F !important;
+  color: #94A2B8;
 }
 
 .sidebar {
@@ -512,13 +542,6 @@ img {
 }
 .modal_body form .form_group {
   display: flex;
-}
-.modal_body form .input_group {
-  display: block;
-  width: 100%;
-}
-.modal_body form .input_group + * {
-  margin-right: 10px;
 }
 .modal_footer {
   display: flex;
@@ -686,11 +709,13 @@ img {
 
 .select {
   position: relative;
-  width: 250px;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 250px;
   height: 36px;
   margin-right: 6px !important;
 }
-.select::before {
+.select.filter::before {
   content: "\f0b0";
   font: normal 900 1em/1 "Font Awesome 6 Pro";
   position: absolute;
@@ -737,13 +762,11 @@ img {
   color: #324255;
 }
 .select_options .select_option:hover {
-  background-color: #F1F5F9;
+  background-color: #2877FF;
+  color: #FFF;
 }
 .select_active .select_options {
   display: block;
-}
-.select_active::before, .select_active input {
-  border-color: #2877FF;
 }
 
 .user_active {

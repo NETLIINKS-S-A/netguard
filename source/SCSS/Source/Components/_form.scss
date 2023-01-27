@@ -18,8 +18,17 @@ img {
     }
 
     &_group {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+
+        .input_group {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 }

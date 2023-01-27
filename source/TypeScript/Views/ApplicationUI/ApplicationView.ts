@@ -370,7 +370,7 @@ export async function applicationView() {
             })
         }
 
-        guardsView()
+        customerView()
     }
 
     renderInterface(data)

@@ -47,6 +47,13 @@ export async function getEntitiesData(entities: string): Promise<void> {
     return await getData(url)
 }
 
+/**
+ * @function getEntityData()
+ * @description Obtiene un elemento de la entidad que lo contiene
+ *
+ * @param entities - El nombre de la entidad a acceder
+ * @param entity - Nombre del elemento dentro de la entidad
+*/
 export async function getEntityData(
     entity: string,
     entities: string
