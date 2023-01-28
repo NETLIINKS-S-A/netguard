@@ -1,4 +1,5 @@
 // @filename: lib.settings.ts
+
 type Rows = number
 type Accent = string
 type Theme = string
