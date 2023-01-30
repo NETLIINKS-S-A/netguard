@@ -1,3 +1,4 @@
+// @filename: lib.settings.ts
 export let settings = {
     limitRows: 8,
     accent: "blue",
