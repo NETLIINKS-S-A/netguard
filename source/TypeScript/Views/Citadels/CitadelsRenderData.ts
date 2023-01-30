@@ -1,9 +1,9 @@
 // @filename: CitadelsRenderData.ts
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 
 export async function renderCitadelData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -18,7 +18,7 @@ export async function renderCitadelData(
 
     for (index = 0; index < arrayCitadels.length; index++) {
         let citadel: any = arrayCitadels[index]
-        let row: UIElement = document.createElement("tr")
+        let row: UIControl = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${citadel.name}</td>
@@ -30,8 +30,8 @@ export async function renderCitadelData(
         tableBody.appendChild(row)
 
         // Fix citadels
-        const citadels: UIElement = document.querySelectorAll(".citadels i")
-        citadels?.forEach((citadel: UIElement) => {
+        const citadels: UIControl = document.querySelectorAll(".citadels i")
+        citadels?.forEach((citadel: UIControl) => {
             if (citadel.innerText === "NO APLICA") {
                 citadel.innerText = "no aplica"
             } else if (citadel.innerText === "No Aplica") {

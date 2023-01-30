@@ -1,9 +1,9 @@
 // @filename: PlatformRenderData.ts
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 
 export async function renderPlatformData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -18,7 +18,7 @@ export async function renderPlatformData(
 
     for (index = 0; index < arrayPlatform.length; index++) {
         let access: any = arrayPlatform[index]
-        let row: UIElement = document.createElement("tr")
+        let row: UIControl = document.createElement("tr")
 
         const windowsDevice = access.userAgent.includes("Windows NT")
         const linuxDevice = access.userAgent.includes("Linux x86_64")

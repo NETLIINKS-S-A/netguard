@@ -1,11 +1,11 @@
 // @filename: GuardsRenderData.ts
 import { Modal } from "../../../Classes.js"
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { TableFunctions } from "./GuardsViewFuncs.js"
 
 export async function renderGuardData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -36,8 +36,8 @@ export async function renderGuardData(
         tableBody.appendChild(row)
 
         // fix states
-        const states: UIElement = document.querySelectorAll(".status i")
-        states?.forEach((state: UIElement) => {
+        const states: UIControl = document.querySelectorAll(".status i")
+        states?.forEach((state: UIControl) => {
             if (state.innerText === "ENABLED") {
                 state.classList.add("g")
                 state.innerText = "Activo"
@@ -48,8 +48,8 @@ export async function renderGuardData(
         })
 
         // Fix citadels
-        const citadels: UIElement = document.querySelectorAll(".citadels i")
-        citadels?.forEach((citadel: UIElement) => {
+        const citadels: UIControl = document.querySelectorAll(".citadels i")
+        citadels?.forEach((citadel: UIControl) => {
             if (citadel.innerText === "NO APLICA") {
                 citadel.innerText = "no aplica"
             } else if (citadel.innerText === "No Aplica") {
@@ -64,8 +64,8 @@ export async function renderGuardData(
         })
 
         // Fix type
-        const types: UIElement = document.querySelectorAll(".type i")
-        types.forEach((type: UIElement) => {
+        const types: UIControl = document.querySelectorAll(".type i")
+        types.forEach((type: UIControl) => {
             if (type.innerText === "CUSTOMER") {
                 type.classList.add("p")
                 type.innerText = "Cliente"
@@ -73,7 +73,7 @@ export async function renderGuardData(
         })
     }
 
-    const deleteButtons: UIElement =
+    const deleteButtons: UIControl =
         document.querySelectorAll(".btn_table-delete")
     console.log(deleteButtons)
     const modalCancelButton = document.getElementById("cancel")
@@ -83,7 +83,7 @@ export async function renderGuardData(
         modal.close()
     })
 
-    await deleteButtons.forEach((btn: UIElement) => {
+    await deleteButtons.forEach((btn: UIControl) => {
         btn.addEventListener('click', (): void => {
             modal.open()
             tableFunctions.deleteEntity()

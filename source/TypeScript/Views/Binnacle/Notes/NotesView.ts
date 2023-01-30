@@ -8,7 +8,7 @@
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { renderNotesData } from "./NotesRenderData.js"
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 
 const tableRows: number = UI.tableRows
@@ -54,9 +54,9 @@ export async function notesView(): Promise<void> {
     </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl =
         document.getElementById("pagination-counter")
 
     // Table body template

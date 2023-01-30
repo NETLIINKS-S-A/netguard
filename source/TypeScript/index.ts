@@ -1,15 +1,15 @@
 // @filename: index.ts
 import { App } from "./Views/Login/TokenValidator.js"
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js"
-import { UIElement } from "./Libs/lib.types.js"
+import { UIControl } from "./Libs/lib.types.js"
 import { login } from "./Views/Login/Login.js"
 
 const app: App = new App()
 app.render()
 // get login elements
 const loginForm = document.getElementById("login-form")
-const userEmail: UIElement = document.getElementById("user-email")
-const userPassword: UIElement = document.getElementById("user-password")
+const userEmail: UIControl = document.getElementById("user-email")
+const userPassword: UIControl = document.getElementById("user-password")
 // submit data
 loginForm?.addEventListener("submit", (e: SubmitEvent): void => {
     e.preventDefault()

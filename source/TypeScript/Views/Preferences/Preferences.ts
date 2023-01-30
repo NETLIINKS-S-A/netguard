@@ -1,8 +1,9 @@
 // @filename: Preferences.ts
-import { UIElement, settings } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 import { appStorage } from "../../Classes.js"
+import { settings } from "../../Libs/lib.settings.js"
 
-const content: UIElement = document.getElementsByTagName("body")[0]
+const content: UIControl = document.getElementsByTagName("body")[0]
 
 let savedTheme = appStorage.get('theme')
 if (savedTheme === null || savedTheme === undefined) {
@@ -27,7 +28,7 @@ let tempTheme: string
  * preferencias del usuario
  */
 export function AppPreferences() {
-    const preferences: UIElement = document.querySelector("#app-preferences")
+    const preferences: UIControl = document.querySelector("#app-preferences")
     preferences.style.display = "block"
 
     preferences.innerHTML += `
@@ -100,9 +101,9 @@ export function AppPreferences() {
 
     // Themes
     const togglesButton = document.querySelectorAll(".aspect_button")
-    togglesButton.forEach((button: UIElement) => {
+    togglesButton.forEach((button: UIControl) => {
         button.addEventListener('click', (): void => {
-            togglesButton.forEach((button: UIElement) => button.classList.remove('isActive'))
+            togglesButton.forEach((button: UIControl) => button.classList.remove('isActive'))
             content.className = ""
             // set theme
             content.classList.add(`${button.dataset.theme}`)

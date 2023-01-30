@@ -1,12 +1,12 @@
 // @filename: TokenValidator.ts
 import { UI } from "../../Libs/lib.dom.js"
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 import { applicationView } from "../ApplicationUI/ApplicationView.js"
 import { logout } from "./Logout.js"
 
 export class App {
     public render() {
-        const UI: UIElement = document.getElementById("login")
+        const UI: UIControl = document.getElementById("login")
         UI.innerHTML = `
         <div class="login_window">
             <!-- Login Header -->
@@ -60,8 +60,8 @@ export class App {
 
     public async checkToken(): Promise<void> {
         const accessToken: string | null = localStorage.getItem('access_token')
-        const application: UIElement = UI.App.app
-        const login: UIElement = document.getElementById("login")
+        const application: UIControl = UI.App.app
+        const login: UIControl = document.getElementById("login")
 
         if (!accessToken) application.style.display = "none"
         else if (accessToken === "undefined") console.error("Error: access token is undefined")

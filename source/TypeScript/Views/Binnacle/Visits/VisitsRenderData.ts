@@ -1,9 +1,9 @@
 // @filename: VisitsRenderData.ts
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 
 export async function renderVisitData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -18,7 +18,7 @@ export async function renderVisitData(
 
     for (index = 0; index < arrayVisits.length; index++) {
         let visit: any = arrayVisits[index]
-        let row: UIElement = document.createElement("tr")
+        let row: UIControl = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${visit.firstName} ${visit.firstLastName}</td>

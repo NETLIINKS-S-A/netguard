@@ -2,7 +2,7 @@
 import { UI } from "../../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { pagination } from "../../../Libs/lib.tools.js"
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { renderPlatformData } from "./PlatformRenderData.js"
 
 const tableRows: number = 22
@@ -43,9 +43,9 @@ export async function platformView(): Promise<void> {
     </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl =
         document.getElementById("pagination-counter")
 
     // write table template
@@ -62,7 +62,7 @@ export async function platformView(): Promise<void> {
     let GET_DATA = await getEntitiesData("WebAccess")
     let arrayPlatform: any = GET_DATA
 
-    const dataCount: UIElement = document.getElementById("data-count")
+    const dataCount: UIControl = document.getElementById("data-count")
     dataCount.innerHTML = `${arrayPlatform.length} accesos`
 
     await searchInput?.addEventListener("keyup", (): void => {

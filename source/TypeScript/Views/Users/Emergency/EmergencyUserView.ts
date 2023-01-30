@@ -1,6 +1,6 @@
 // @filename: EmergenctUserView.ts
 import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { renderEmergencyUserData } from "./EmergencyRenderData.js"
@@ -50,9 +50,9 @@ export async function emergencyUserView() {
     </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl =
         document.getElementById("pagination-counter")
 
     // search data

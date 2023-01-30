@@ -1,6 +1,5 @@
-// @filename: Preferences.ts
-import { settings } from "../../Libs/lib.types.js";
 import { appStorage } from "../../Classes.js";
+import { settings } from "../../Libs/lib.settings.js";
 const content = document.getElementsByTagName("body")[0];
 let savedTheme = appStorage.get('theme');
 if (savedTheme === null || savedTheme === undefined) {

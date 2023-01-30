@@ -2,7 +2,7 @@
 import { UI } from "../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../Libs/lib.request.js"
 import { pagination } from "../../Libs/lib.tools.js"
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 import { renderCitadelData } from "./CitadelsRenderData.js"
 
 const tableRows: number = UI.tableRows
@@ -42,9 +42,9 @@ export async function citadelsView(): Promise<void> {
     </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl =
         document.getElementById("pagination-counter")
 
     // write table template

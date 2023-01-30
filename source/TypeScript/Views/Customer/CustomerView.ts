@@ -1,5 +1,5 @@
 // @filename: CustomerView.ts
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 import { UI } from "../../Libs/lib.dom.js"
 import { renderCustomerData } from "./CustomerRenderData.js"
 // libs
@@ -8,9 +8,9 @@ import { pagination } from "../../Libs/lib.tools.js"
 import { CFN } from "./CustomerViewFuncs.js"
 
 const tableRows: number = UI.tableRows // number of rows to show on tables
-const UIApp: UIElement = UI.App
-const app: UIElement = UIApp?.content
-const appTools: UIElement = UIApp?.tools
+const UIApp: UIControl = UI.App
+const app: UIControl = UIApp?.content
+const appTools: UIControl = UIApp?.tools
 let currentPage: number = 1
 
 export async function customerView() {
@@ -65,9 +65,9 @@ export async function customerView() {
     })
 
     // HTML ELEMENTS
-    const tableBody: UIElement = document.querySelector("#tableBody")
-    const searchInput: UIElement = document.querySelector("#searcher")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#tableBody")
+    const searchInput: UIControl = document.querySelector("#searcher")
+    const paginationCounter: UIControl =
         document.getElementById("paginationCounter")
     let currentPage: number = 1
 
@@ -130,8 +130,8 @@ export async function customerView() {
     )
 
     // Edit Customer
-    const editButtons: UIElement = document.querySelectorAll(".btn_table-editor")
-    editButtons.forEach((editButton: UIElement) => {
+    const editButtons: UIControl = document.querySelectorAll(".btn_table-editor")
+    editButtons.forEach((editButton: UIControl) => {
         editButton.addEventListener('click', (): void => {
             let entity = editButton.dataset.id
             console.log(editButton, entity)

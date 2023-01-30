@@ -1,5 +1,5 @@
 // @filename: AppView.ts
-import { UIElement } from "../../Libs/lib.types.js";
+import { UIControl } from "../../Libs/lib.types.js";
 import { logout, dismissLogout, openLogout } from "../Login/Logout.js"
 // import libs
 import { UI } from "../../Libs/lib.dom.js"
@@ -19,9 +19,9 @@ import { AppPreferences } from "../Preferences/Preferences.js"
 
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
-    const sidebar: UIElement = document.getElementById("appSidebar")
-    const content: UIElement = UI.App?.app
-    const wrapper: UIElement = UI.App?.wrapper
+    const sidebar: UIControl = document.getElementById("appSidebar")
+    const content: UIControl = UI.App?.app
+    const wrapper: UIControl = UI.App?.wrapper
 
     let data = await getData(url)
 
@@ -347,8 +347,8 @@ export async function applicationView() {
                 ?.addEventListener("click", (e) => dismissLogout("logOutModal"))
             // End close session functions
 
-            const menuItems: UIElement = document.querySelectorAll(".menu_item")
-            const menuItemToggle: UIElement =
+            const menuItems: UIControl = document.querySelectorAll(".menu_item")
+            const menuItemToggle: UIControl =
                 document.querySelectorAll(".menu_item_toggle")
 
             menuItems?.forEach((menuItem: any) => {

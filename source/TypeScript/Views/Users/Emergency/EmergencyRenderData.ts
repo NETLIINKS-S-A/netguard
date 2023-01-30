@@ -1,9 +1,9 @@
 // @filename: EmergencyUserRenderData.ts
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 
 export async function renderEmergencyUserData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -18,7 +18,7 @@ export async function renderEmergencyUserData(
 
     for (index = 0; index < arrayEmergencyUsers.length; index++) {
         let emergencyUser: any = arrayEmergencyUsers[index]
-        let row: UIElement = document.createElement("tr")
+        let row: UIControl = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${emergencyUser?.name}</td>

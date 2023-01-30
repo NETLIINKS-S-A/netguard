@@ -1,6 +1,6 @@
 // @filename: lib.tools.ts
 import { FNPHTMLElement } from "../Types/FunctionParameterTypes.js"
-import { UIElement } from "./lib.types.js"
+import { UIControl } from "./lib.types.js"
 
 export const $color = {
     PRIMARY: "#54B3A4",
@@ -167,16 +167,16 @@ export const $font = {
  */
 export function pagination(
     items: [],
-    wrapper: UIElement,
+    wrapper: UIControl,
     rowsPerPage: number,
     currentPage: number,
-    tableBody?: UIElement,
+    tableBody?: UIControl,
     displayFunc?: any
 ): void {
     wrapper.innerHTML = ""
     let pageCount = Math.ceil(items.length / rowsPerPage)
 
-    let btn: UIElement
+    let btn: UIControl
     for (let i = 1; i < pageCount + 1; i++) {
         btn = setupButtons(
             i,
@@ -204,11 +204,11 @@ function setupButtons(
     page: FNPHTMLElement,
     items: [],
     currentPage: number,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     displayData: any
 ): void {
-    const button: UIElement = document.createElement("button")
+    const button: UIControl = document.createElement("button")
     button.innerText = page
 
     if (currentPage == page) button.classList.add("isActive")
@@ -217,7 +217,7 @@ function setupButtons(
         currentPage = page
         displayData(items, tableBody, rowsPerPage, currentPage)
 
-        let currentButton: UIElement = document.querySelector(
+        let currentButton: UIControl = document.querySelector(
             ".pagination button.isActive"
         )
         currentButton.classList.remove("isActive")

@@ -1,9 +1,9 @@
 // @filename: Classes.ts
-import { UIElement } from "./Libs/lib.types.js"
+import { UIControl } from "./Libs/lib.types.js"
 
 export class Modal {
     private id: string
-    readonly modal: UIElement
+    readonly modal: UIControl
 
     public constructor(id: string) {
         this.id = id

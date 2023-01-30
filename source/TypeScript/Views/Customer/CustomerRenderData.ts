@@ -2,7 +2,7 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 import { CFN } from "./CustomerViewFuncs.js"
 
 /**
@@ -46,11 +46,11 @@ export async function renderCustomerData(
 
     // CUSTOMER EDITOR ================================================
     // elements
-    const editorButtonElements: UIElement =
+    const editorButtonElements: UIControl =
         document.querySelectorAll("tr td button")
-    const closeEditorButtonElement: UIElement =
+    const closeEditorButtonElement: UIControl =
         document.getElementById("closeEditor")
-    const updateCustomerEntityElement: UIElement = document.getElementById(
+    const updateCustomerEntityElement: UIControl = document.getElementById(
         "updateCutomerEntity"
     )
 

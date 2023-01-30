@@ -2,7 +2,7 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { UserEditor, MultiInput, closeUserModal } from "./UsersViewFuncs.js"
 
 /**
@@ -43,8 +43,8 @@ export async function displayUserData(
         tableBody.appendChild(itemElement)
 
         // fix states
-        const states: UIElement = document.querySelectorAll(".status i")
-        states?.forEach((state: UIElement) => {
+        const states: UIControl = document.querySelectorAll(".status i")
+        states?.forEach((state: UIControl) => {
             if (state.innerText === "ENABLED") {
                 state.classList.add("g")
                 state.innerText = "Activo"
@@ -55,8 +55,8 @@ export async function displayUserData(
         })
 
         // Fix citadels
-        const citadels: UIElement = document.querySelectorAll(".citadels i")
-        citadels?.forEach((citadel: UIElement) => {
+        const citadels: UIControl = document.querySelectorAll(".citadels i")
+        citadels?.forEach((citadel: UIControl) => {
             if (citadel.innerText === "NO APLICA") {
                 citadel.innerText = "no aplica"
             } else if (citadel.innerText === "No Aplica") {
@@ -71,8 +71,8 @@ export async function displayUserData(
         })
 
         // Fix type
-        const types: UIElement = document.querySelectorAll(".type i")
-        types.forEach((type: UIElement) => {
+        const types: UIControl = document.querySelectorAll(".type i")
+        types.forEach((type: UIControl) => {
             if (type.innerText === "CUSTOMER") {
                 type.classList.add("p")
                 type.innerText = "Cliente"
@@ -82,17 +82,17 @@ export async function displayUserData(
 
     // CUSTOMER EDITOR ================================================
     // elements
-    const editorButtonElements: UIElement =
+    const editorButtonElements: UIControl =
         document.querySelectorAll("tr td button")
-    const closeEditorButtonElement: UIElement =
+    const closeEditorButtonElement: UIControl =
         document.getElementById("closeEditor")
-    const updateCustomerEntityElement: UIElement = document.getElementById(
+    const updateCustomerEntityElement: UIControl = document.getElementById(
         "updateCutomerEntity"
     )
 
     // functions
     const userEditor: UserEditor = new UserEditor()
-    editorButtonElements.forEach((btn: UIElement) => {
+    editorButtonElements.forEach((btn: UIControl) => {
         btn.addEventListener("click", () => {
             let entity: string = btn.dataset.id
             userEditor.open(entity, "editBusiness", MultiInput)

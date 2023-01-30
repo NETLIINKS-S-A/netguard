@@ -1,9 +1,9 @@
 // @filename: AdministratorRenderData.ts
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 
 export async function renderAdministratorData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -18,7 +18,7 @@ export async function renderAdministratorData(
 
     for (index = 0; index < arrayEvents.length; index++) {
         let administrator: any = arrayEvents[index]
-        let row: UIElement = document.createElement("tr")
+        let row: UIControl = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${administrator?.firstName} ${administrator?.lastName}</td>
@@ -34,8 +34,8 @@ export async function renderAdministratorData(
         tableBody.appendChild(row)
 
         // fix states
-        const states: UIElement = document.querySelectorAll(".status i")
-        states?.forEach((state: UIElement) => {
+        const states: UIControl = document.querySelectorAll(".status i")
+        states?.forEach((state: UIControl) => {
             if (state.innerText === "ENABLED") {
                 state.classList.add("g")
                 state.innerText = "Activo"
@@ -46,8 +46,8 @@ export async function renderAdministratorData(
         })
 
         // Fix citadels
-        const citadels: UIElement = document.querySelectorAll(".citadels i")
-        citadels?.forEach((citadel: UIElement) => {
+        const citadels: UIControl = document.querySelectorAll(".citadels i")
+        citadels?.forEach((citadel: UIControl) => {
             if (citadel.innerText === "NO APLICA") {
                 citadel.innerText = "no aplica"
             } else if (citadel.innerText === "No Aplica") {
@@ -60,8 +60,8 @@ export async function renderAdministratorData(
         })
 
         // Fix type
-        const types: UIElement = document.querySelectorAll(".type i")
-        types.forEach((type: UIElement) => {
+        const types: UIControl = document.querySelectorAll(".type i")
+        types.forEach((type: UIControl) => {
             if (type.innerText === "CUSTOMER") {
                 type.classList.add("p")
                 type.innerText = "Cliente"

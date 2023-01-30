@@ -1,13 +1,13 @@
 // @filename: BusinessEditor.ts
 import { getEntityData } from "../../Libs/lib.request.js"
-import { UIElement } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types.js"
 import { $color } from "../../Libs/lib.tools.js"
 
 let entityURL: string
 // Close editor
 
 class CustomerFuncs {
-    public newCustomer(modalElement: UIElement): void {
+    public newCustomer(modalElement: UIControl): void {
         modalElement.innerHTML = `
         <div class="modal" id="modal">
             <div class="modal_dialog modal_body" style="max-width: 450px !important">
@@ -53,23 +53,23 @@ class CustomerFuncs {
         this.open()
 
 
-        const cancel: UIElement = document.getElementById("cancel")
+        const cancel: UIControl = document.getElementById("cancel")
         cancel.addEventListener('click', (): void => { this.cancel() })
 
-        const toggle: UIElement = document.getElementById("vehicular-entrance")
+        const toggle: UIControl = document.getElementById("vehicular-entrance")
         // toggle.checked = true
         let vehicularStatus: boolean
         let customerStatus: boolean
 
         toggle?.addEventListener('click', (): void => {
-            const labelStatus: UIElement = document.getElementById("customer-vehicular-status")
+            const labelStatus: UIControl = document.getElementById("customer-vehicular-status")
             if (toggle?.checked) labelStatus.innerText = "si", vehicularStatus = true
             else labelStatus.innerText = "no", vehicularStatus = false
         })
 
-        const select: UIElement = document.querySelector(".select")
-        const selectInput: UIElement = document.getElementById('input-select')
-        const selectOptions: UIElement = document.querySelectorAll('.select_option')
+        const select: UIControl = document.querySelector(".select")
+        const selectInput: UIControl = document.getElementById('input-select')
+        const selectOptions: UIControl = document.querySelectorAll('.select_option')
 
         select.addEventListener('click', () => {
             select.classList.toggle("select_active")
@@ -85,7 +85,7 @@ class CustomerFuncs {
             })
         })
     }
-    public async editCustomer(modalElement: UIElement, entity: any): Promise<void> {
+    public async editCustomer(modalElement: UIControl, entity: any): Promise<void> {
         const currentEntity: any = await getEntityData(entity, "Customer")
         console.log(currentEntity)
 
@@ -133,12 +133,12 @@ class CustomerFuncs {
         </div>`
         this.open()
 
-        const cancel: UIElement = document.getElementById("cancel")
+        const cancel: UIControl = document.getElementById("cancel")
         cancel.addEventListener('click', (): void => { this.cancel() })
 
         // Fill data
-        const customerNameInput: UIElement = document.getElementById("customer-name")
-        const customerRUCInput: UIElement = document.getElementById("customer-ruc")
+        const customerNameInput: UIControl = document.getElementById("customer-name")
+        const customerRUCInput: UIControl = document.getElementById("customer-ruc")
         customerNameInput.value = currentEntity.name
         customerRUCInput.value = parseInt(currentEntity.ruc)
 
@@ -147,20 +147,20 @@ class CustomerFuncs {
             customerRUCInput.classList.remove("input_error")
         })
 
-        const toggle: UIElement = document.getElementById("vehicular-entrance")
+        const toggle: UIControl = document.getElementById("vehicular-entrance")
         // toggle.checked = true
         let vehicularStatus: boolean
         let customerStatus: boolean
 
         toggle?.addEventListener('click', (): void => {
-            const labelStatus: UIElement = document.getElementById("customer-vehicular-status")
+            const labelStatus: UIControl = document.getElementById("customer-vehicular-status")
             if (toggle?.checked) labelStatus.innerText = "si", vehicularStatus = true
             else labelStatus.innerText = "no", vehicularStatus = false
         })
 
-        const select: UIElement = document.querySelector(".select")
-        const selectInput: UIElement = document.getElementById('input-select')
-        const selectOptions: UIElement = document.querySelectorAll('.select_option')
+        const select: UIControl = document.querySelector(".select")
+        const selectInput: UIControl = document.getElementById('input-select')
+        const selectOptions: UIControl = document.querySelectorAll('.select_option')
 
         select.addEventListener('click', () => {
             select.classList.toggle("select_active")
@@ -178,7 +178,7 @@ class CustomerFuncs {
     }
 
     private cancel(): void {
-        const modal: UIElement = document.getElementById("modal")
+        const modal: UIControl = document.getElementById("modal")
 
         setTimeout(() => modal.classList.toggle("open"), 200)
 
@@ -187,7 +187,7 @@ class CustomerFuncs {
     }
 
     private open(): void {
-        const modal: UIElement = document.getElementById("modal")
+        const modal: UIControl = document.getElementById("modal")
         modal.style.display = "block"
         setTimeout(() => {
             modal.classList.add("open")

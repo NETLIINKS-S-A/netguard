@@ -1,5 +1,5 @@
 // @filename: GuardsView.ts
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
@@ -71,9 +71,9 @@ export async function guardsView() {
     </div>`
 
     // get rendered elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement = document.getElementById("pagination-counter")
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl = document.getElementById("pagination-counter")
 
     // search data
     await searchInput?.addEventListener("keyup", (): void => {
@@ -133,9 +133,9 @@ export async function guardsView() {
         renderGuardData
     )
 
-    const select: UIElement = document.querySelector(".select")
-    const selectInput: UIElement = document.getElementById('input-select')
-    const selectOptionsContainer: UIElement = document.querySelector('.select_options')
+    const select: UIControl = document.querySelector(".select")
+    const selectInput: UIControl = document.getElementById('input-select')
+    const selectOptionsContainer: UIControl = document.querySelector('.select_options')
 
     tableFunctions.filterDataByCustomer(select, selectOptionsContainer, selectInput)
 }

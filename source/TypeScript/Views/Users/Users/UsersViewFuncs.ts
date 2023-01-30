@@ -1,7 +1,7 @@
 // @filename: UsesViewFuncs.ts
 import { Modal } from "../../../Classes.js"
 import { getData, updateData } from "../../../Libs/lib.request.js"
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { usersView as renderUsers } from "./UsersView.js"
 
 let entityURL: string
@@ -12,7 +12,7 @@ export function closeUserModal(id: string): void {
 }
 
 export class UserEditor {
-    async open(entity: string, id: string, rucInput: UIElement): Promise<void> {
+    async open(entity: string, id: string, rucInput: UIControl): Promise<void> {
         let editor = new Modal(id)
         editor.open()
 
@@ -20,8 +20,8 @@ export class UserEditor {
         let data = await getData(entityURL)
 
         // Write business data on modal window
-        const entityName: UIElement = document.getElementById("entityName")
-        const businessName: UIElement = document.getElementById("businessName")
+        const entityName: UIControl = document.getElementById("entityName")
+        const businessName: UIControl = document.getElementById("businessName")
 
         entityName.innerHTML = data.name
         businessName.value = data.name
@@ -32,7 +32,7 @@ export class UserEditor {
     }
 
     async update(modalID: string): Promise<void> {
-        const businessName: UIElement = document.getElementById("businessName")
+        const businessName: UIControl = document.getElementById("businessName")
         // get inputData
         let raw = JSON.stringify({
             name: businessName.value,
@@ -64,7 +64,7 @@ export class MultiInput {
             input.nextElementSibling.focus()
     }
 
-    handlePaste(e: any, inputs: UIElement): void {
+    handlePaste(e: any, inputs: UIControl): void {
         const paste = e.clipboardData.getData("text")
         inputs?.forEach((input: any, i: number) => {
             input.value = paste[i]
@@ -83,7 +83,7 @@ export class newUser {
         closeUserModal(id)
     }
 
-    clearInputs(inputs: UIElement): void {
+    clearInputs(inputs: UIControl): void {
         inputs?.forEach((input: any) => {
             input.value = ""
         })

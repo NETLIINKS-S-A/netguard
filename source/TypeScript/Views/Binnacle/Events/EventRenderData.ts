@@ -1,9 +1,9 @@
 // @filename: EventRenderData.ts
-import { UIElement } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 
 export async function renderEventData(
     items: any,
-    tableBody: UIElement,
+    tableBody: UIControl,
     rowsPerPage: number,
     page: number,
     paginationElement?: any
@@ -18,7 +18,7 @@ export async function renderEventData(
 
     for (index = 0; index < arrayEvents.length; index++) {
         let event: any = arrayEvents[index]
-        let row: UIElement = document.createElement("tr")
+        let row: UIControl = document.createElement("tr")
         row.innerHTML = `
         <tr>
             <td>${event.user.firstName} ${event.user.lastName}</td>
