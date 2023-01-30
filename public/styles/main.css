@@ -93,143 +93,56 @@ html, body {
 }
 
 .btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   display: flex;
   align-items: center;
-  justify-items: center;
   justify-content: center;
   padding: 0 16px;
-  height: 36px;
-  font-family: "Inter", sans-serif;
+  height: 40px;
+  border: 1px solid #D1D5DB;
+  font-family: "Inter";
   font-size: 14px;
-  background-color: #FFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 5px;
-  color: #94A2B8;
-  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.07);
-  transition: 0.3s all ease;
-  /* BUTTON STATUS */
+  border-radius: 4px;
+  background-color: #E5E6EC;
+  color: #6B7280;
 }
-.btn_widder {
-  display: block;
+.btn-withMargin {
+  margin: 0 !important;
+}
+.btn-isWidder {
   width: 100%;
-}
-.btn_icon {
-  width: fit-content;
-  padding: 10px 12px;
-}
-.btn:hover {
-  background-color: #F1F5F9;
-  border: 1px solid #E2E8F0;
-  color: #94A2B8;
-}
-.btn:active {
-  background-color: #E2E8F0;
-  border: 1px solid #CCD5E1;
-  color: #94A2B8;
-}
-.btn_primary {
-  background-color: #54B3A4;
-  border-color: #3D9993;
-  color: #FFF;
-}
-.btn_primary:hover {
-  background-color: #7ED1BC;
-  border: 1px solid #54B3A4;
-  color: #FFF;
-}
-.btn_primary:active {
-  background-color: #3D9993;
-  border: 1px solid #2A7E80;
-  color: #FFF;
 }
 .btn_success {
   background-color: #5CBC4F;
   border-color: #3DA139;
   color: #FFF;
 }
-.btn_success:hover {
-  background-color: #8BD679;
-  border: 1px solid #5CBC4F;
-  color: #FFF;
-}
-.btn_success:active {
-  background-color: #3DA139;
-  border: 1px solid #27872B;
-  color: #FFF;
-}
-.btn_warning {
-  background-color: #DDCD30;
-  border-color: #D0CF21;
-  color: #7A5400;
-}
-.btn_warning:hover {
-  background-color: #FFDA41;
-  border: 1px solid #DDCD30;
-  color: #B78701;
-}
-.btn_warning:active {
-  background-color: #D0CF21;
-  border: 1px solid #B78701;
-  color: #FFF8CC;
-}
-.btn_danger {
-  background-color: #DB312E;
-  border-color: #B71F29;
-  color: #FFF;
-}
-.btn_danger:hover {
+.btn_danger, .btn_red {
   background-color: #FF523F;
-  border: 1px solid #DB312E;
+  border-color: #DB312E;
   color: #FFF;
-}
-.btn_danger:active {
-  background-color: #B71F29;
-  border: 1px solid #931426;
-  color: #FFF;
-}
-.btn_table {
-  background-color: #FFF;
-  border: 1px solid #CCD5E1;
-  color: #64738C;
-  display: flex;
-  padding: 8px 10px;
-  font-size: 14px;
-  margin: 0;
-}
-.btn_table:hover {
-  background-color: #F1F5F9;
-  border: 1px solid #E2E8F0;
-  color: #94A2B8;
-}
-.btn_table:active {
-  background-color: #E2E8F0;
-  border: 1px solid #CCD5E1;
-  color: #94A2B8;
-}
-
-[role=button] {
-  text-decoration: none;
-  text-align: center;
 }
 
 h1, .heading-1 {
   color: #475469;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
   font-size: 3.81rem;
 }
 
 h2, .heading-2 {
   color: #475469;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
   font-size: 3.05rem;
 }
 
 h3, .heading-3 {
   color: #475469;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
   font-size: 2.44rem;
 }
 
@@ -1558,17 +1471,17 @@ table .tbody tr td:first-child,
 .dark_gray h1, .dark_gray .heading-1 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_gray h2, .dark_gray .heading-2 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_gray h3, .dark_gray .heading-3 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_gray h4, .dark_gray .heading-4 {
   color: #F7FBFC;
@@ -2024,17 +1937,17 @@ table .tbody tr td:first-child,
 .dark_slategray h1, .dark_slategray .heading-1 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_slategray h2, .dark_slategray .heading-2 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_slategray h3, .dark_slategray .heading-3 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_slategray h4, .dark_slategray .heading-4 {
   color: #F7FBFC;
@@ -2490,17 +2403,17 @@ table .tbody tr td:first-child,
 .dark_neutral h1, .dark_neutral .heading-1 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_neutral h2, .dark_neutral .heading-2 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_neutral h3, .dark_neutral .heading-3 {
   color: #F7FBFC;
   font-weight: 900;
-  letter-spacing: -1.17px;
+  letter-spacing: 0.087px;
 }
 .dark_neutral h4, .dark_neutral .heading-4 {
   color: #F7FBFC;

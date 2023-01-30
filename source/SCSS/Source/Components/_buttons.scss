@@ -1,146 +1,181 @@
 .btn {
+    // reset
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    // set default
     display: flex;
     align-items: center;
-    justify-items: center;
     justify-content: center;
     padding: 0 16px;
+    height: 40px;
 
-    height: 36px;
-
-    font-family: 'Inter', sans-serif;
+    border: 1px solid $gray-400;
+    font-family: 'Inter';
     font-size: 14px;
-    
-    background-color: $white;
-    border: 1px solid $slategray-300;
-    border-radius: 5px;
-    color: $slategray-500;
+    border-radius: 4px;
+    background-color: $gray-300;
+    color: $gray-600;
 
-    box-shadow: 0 2px 8px rgba($slategray-900, 0.07);
-    transition: 0.3s all ease;
+    &-withMargin { margin: 0 !important; }
+    &-isWidder { width: 100%; }
 
-    &_widder {
-        display: block;
-        width: 100%;
-    }
-
-    &_icon {
-        width: fit-content;
-        padding: 10px 12px;
-    }
-
-    /* BUTTON STATUS */
-    &:hover {
-        background-color: $slategray-200;
-        border: 1px solid $slategray-300;
-        color: $slategray-500;
-    }
-
-    &:active {
-        background-color: $slategray-300;
-        border: 1px solid $slategray-400;
-        color: $slategray-500;
-    }
-
-    &_primary {
-        background-color: $primary-500;
-        border-color: $primary-600;
-        color: $white;
-
-        &:hover {
-            background-color: $primary-400;
-            border: 1px solid $primary-500;
-            color: $white;
-        }
-
-        &:active {
-            background-color: $primary-600;
-            border: 1px solid $primary-700;
-            color: $white;
-        }
-    }
-
-    // SUCCESS BUTTON
     &_success {
         background-color: $green-500;
         border-color: $green-600;
         color: $white;
-
-        &:hover {
-            background-color: $green-400;
-            border: 1px solid $green-500;
-            color: $white;
-        }
-
-        &:active {
-            background-color: $green-600;
-            border: 1px solid $green-700;
-            color: $white;
-        }
     }
 
-    // WARNING BUTTON
-    &_warning {
-        background-color: $yellow-500;
-        border-color: $yellow-600;
-        color: $yellow-900;
-
-        &:hover {
-            background-color: $yellow-400;
-            border: 1px solid $yellow-500;
-            color: $yellow-700;
-        }
-
-        &:active {
-            background-color: $yellow-600;
-            border: 1px solid $yellow-700;
-            color: $yellow-100;
-        }
-    }
-
-    // DANGER BUTTON
-    &_danger {
-        background-color: $red-600;
-        border-color: $red-700;
+    &_danger, &_red {
+        background-color: $red-500;
+        border-color: $red-600;
         color: $white;
-
-        &:hover {
-            background-color: $red-500;
-            border: 1px solid $red-600;
-            color: $white;
-        }
-
-        &:active {
-            background-color: $red-700;
-            border: 1px solid $red-800;
-            color: $white;
-        }
-    }
-
-    // BUTTONS FROM TABLES
-    &_table {
-        background-color: $white;
-        border: 1px solid $slategray-400;
-        color: $slategray-600;
-        display: flex;
-        padding: 8px 10px;
-        font-size: 14px;
-        margin: 0;
-
-        &:hover {
-            background-color: $slategray-200;
-            border: 1px solid $slategray-300;
-            color: $slategray-500;
-        }
-
-        &:active {
-            background-color: $slategray-300;
-            border: 1px solid $slategray-400;
-            color: $slategray-500;
-        }
     }
 }
 
-[role=button] {
-    text-decoration: none;
-    text-align: center;
-}
+// .btn {
+//     display: flex;
+//     align-items: center;
+//     justify-items: center;
+//     justify-content: center;
+//     padding: 0 16px;
+
+//     height: 36px;
+
+//     font-family: 'Inter', sans-serif;
+//     font-size: 14px;
+
+//     background-color: $white;
+//     border: 1px solid $slategray-300;
+//     border-radius: 5px;
+//     color: $slategray-500;
+
+//     box-shadow: 0 2px 8px rgba($slategray-900, 0.07);
+//     transition: 0.3s all ease;
+
+//     &_widder {
+//         display: block;
+//         width: 100%;
+//     }
+
+//     &_icon {
+//         width: fit-content;
+//         padding: 10px 12px;
+//     }
+
+//     /* BUTTON STATUS */
+//     &:hover {
+//         background-color: $slategray-200;
+//         border: 1px solid $slategray-300;
+//         color: $slategray-500;
+//     }
+
+//     &:active {
+//         background-color: $slategray-300;
+//         border: 1px solid $slategray-400;
+//         color: $slategray-500;
+//     }
+
+//     &_primary {
+//         background-color: $primary-500;
+//         border-color: $primary-600;
+//         color: $white;
+
+//         &:hover {
+//             background-color: $primary-400;
+//             border: 1px solid $primary-500;
+//             color: $white;
+//         }
+
+//         &:active {
+//             background-color: $primary-600;
+//             border: 1px solid $primary-700;
+//             color: $white;
+//         }
+//     }
+
+//     // SUCCESS BUTTON
+//     &_success {
+//         background-color: $green-500;
+//         border-color: $green-600;
+//         color: $white;
+
+//         &:hover {
+//             background-color: $green-400;
+//             border: 1px solid $green-500;
+//             color: $white;
+//         }
+
+//         &:active {
+//             background-color: $green-600;
+//             border: 1px solid $green-700;
+//             color: $white;
+//         }
+//     }
+
+//     // WARNING BUTTON
+//     &_warning {
+//         background-color: $yellow-500;
+//         border-color: $yellow-600;
+//         color: $yellow-900;
+
+//         &:hover {
+//             background-color: $yellow-400;
+//             border: 1px solid $yellow-500;
+//             color: $yellow-700;
+//         }
+
+//         &:active {
+//             background-color: $yellow-600;
+//             border: 1px solid $yellow-700;
+//             color: $yellow-100;
+//         }
+//     }
+
+//     // DANGER BUTTON
+//     &_danger {
+//         background-color: $red-600;
+//         border-color: $red-700;
+//         color: $white;
+
+//         &:hover {
+//             background-color: $red-500;
+//             border: 1px solid $red-600;
+//             color: $white;
+//         }
+
+//         &:active {
+//             background-color: $red-700;
+//             border: 1px solid $red-800;
+//             color: $white;
+//         }
+//     }
+
+//     // BUTTONS FROM TABLES
+//     &_table {
+//         background-color: $white;
+//         border: 1px solid $slategray-400;
+//         color: $slategray-600;
+//         display: flex;
+//         padding: 8px 10px;
+//         font-size: 14px;
+//         margin: 0;
+
+//         &:hover {
+//             background-color: $slategray-200;
+//             border: 1px solid $slategray-300;
+//             color: $slategray-500;
+//         }
+
+//         &:active {
+//             background-color: $slategray-300;
+//             border: 1px solid $slategray-400;
+//             color: $slategray-500;
+//         }
+//     }
+// }
+
+// [role=button] {
+//     text-decoration: none;
+//     text-align: center;
+// }

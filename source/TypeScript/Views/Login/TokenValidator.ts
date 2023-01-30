@@ -37,7 +37,7 @@ export class App {
                         <input type="password" class="input" name="password" placeholder="••••••••••" id="user-password">
                     </div>
 
-                    <button id="loginSubmitButton" class="btn btn_widder btn_success">Iniciar sesión</button>
+                    <button id="loginSubmitButton" class="btn btn-isWidder btn_success">Iniciar sesión</button>
                 </form>
             </div>
 

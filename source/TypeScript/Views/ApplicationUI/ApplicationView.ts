@@ -370,7 +370,18 @@ export async function applicationView() {
             })
         }
 
+        // Render selected view
         customerView()
+        // usersView()
+        // guardsView()
+        // emergencyUserView()
+        // eventView()
+        // platformView()
+        // administratorsView()
+        // citadelsView()
+        // visitsView()
+        // notesView()
+        // AppPreferences()
     }
 
     renderInterface(data)
