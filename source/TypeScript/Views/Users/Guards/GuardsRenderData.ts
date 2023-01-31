@@ -75,8 +75,8 @@ export async function renderGuardData(
 
     const deleteButtons: UIControl =
         document.querySelectorAll(".btn_table-delete")
-    console.log(deleteButtons)
-    const modalCancelButton = document.getElementById("cancel")
+
+    const modalCancelButton: UIControl = document.getElementById("cancel")
     let modal = new Modal("delete")
 
     modalCancelButton?.addEventListener('click', () => {

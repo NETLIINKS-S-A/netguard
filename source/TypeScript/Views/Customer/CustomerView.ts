@@ -66,7 +66,7 @@ export async function customerView() {
 
     // HTML ELEMENTS
     const tableBody: UIControl = document.querySelector("#tableBody")
-    const searchInput: UIControl = document.querySelector("#searcher")
+    const searchInput: UIControl = document.querySelector("#search-input")
     const paginationCounter: UIControl =
         document.getElementById("paginationCounter")
     let currentPage: number = 1

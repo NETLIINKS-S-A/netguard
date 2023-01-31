@@ -16,7 +16,7 @@ export class TableFunctions {
         const entityName = document.getElementById("entity-name");
         entityName.innerHTML = "l";
     }
-    async filterDataByCustomer(select, container, selectInput) {
+    async filterDataByCustomer(select, container, selectInput, currentCustomer) {
         let CNames = customerNames;
         container.innerHTML = ''; // clear template
         for (let i = 0; i < CNames.length; i++) {
@@ -32,6 +32,8 @@ export class TableFunctions {
             i++;
             option.addEventListener('click', async () => {
                 selectInput.value = await selectOPtions[i - 1].innerHTML;
+                currentCustomer = selectInput.value;
+                console.log(currentCustomer);
             });
         });
     }

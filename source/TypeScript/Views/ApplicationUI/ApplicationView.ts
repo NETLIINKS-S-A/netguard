@@ -371,7 +371,7 @@ export async function applicationView() {
         }
 
         // Render selected view
-        customerView()
+        // customerView()
         // usersView()
         // guardsView()
         // emergencyUserView()
@@ -379,7 +379,7 @@ export async function applicationView() {
         // platformView()
         // administratorsView()
         // citadelsView()
-        // visitsView()
+        visitsView()
         // notesView()
         // AppPreferences()
     }

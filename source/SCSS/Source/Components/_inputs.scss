@@ -4,12 +4,14 @@
 
 .input {
     appearance: none;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: 40px;
     font-size: 14px;
     font-family: 'Inter'; // TODO: change to variable
-    padding: 9px 12px;
+    padding: 0px 16px;
     border-radius: 4px;
-    border: $border-regular;
+    border: 1px solid $gray-400;
     width: 100%;
     outline: none;
     transition: 0.3s all ease;

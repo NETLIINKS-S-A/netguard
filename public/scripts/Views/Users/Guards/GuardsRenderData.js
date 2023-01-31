@@ -64,7 +64,6 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
         });
     }
     const deleteButtons = document.querySelectorAll(".btn_table-delete");
-    console.log(deleteButtons);
     const modalCancelButton = document.getElementById("cancel");
     let modal = new Modal("delete");
     modalCancelButton?.addEventListener('click', () => {

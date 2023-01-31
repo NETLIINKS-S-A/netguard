@@ -18,7 +18,7 @@ export async function renderCustomerData(items, tableBody, rowsPerPage, page, pa
         itemElement.innerHTML = `<tr>
             <td>${customer.name}</td>
             <td class="monospace">${customer.ruc}</td>
-            <td>${customer.createdBy}</td>
+            <td class="status"><i>${customer.state.name}</i></td>
             <td>
                 <button class="btn btn_table-editor" data-id="${customer.id}">
                     <i class="fa-solid fa-pencil"></i>
@@ -27,6 +27,18 @@ export async function renderCustomerData(items, tableBody, rowsPerPage, page, pa
         </tr>`;
         // write datas on table
         tableBody.appendChild(itemElement);
+        // fix states
+        const states = document.querySelectorAll(".status i");
+        states?.forEach((state) => {
+            if (state.innerText === "ENABLED") {
+                state.classList.add("g");
+                state.innerText = "Activo";
+            }
+            else if (state.innerText === "DISABLED") {
+                state.classList.add("i");
+                state.innerText = "Inactivo";
+            }
+        });
     }
     // CUSTOMER EDITOR ================================================
     // elements

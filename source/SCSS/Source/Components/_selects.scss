@@ -1,9 +1,11 @@
 .select {
+    display: flex;
+    align-items: center;
     position: relative;
     width: fit-content;
     max-width: 100%;
     min-width: 250px;
-    height: 36px;
+    height: 40px;
     margin-right: 6px !important;
 
     &.filter::before {
@@ -13,9 +15,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 36px;
+        height: 40px;
         width: 36px;
-        border: 1px solid $slategray-300;
+        border: 1px solid $slategray-400;
         border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
         color: $slategray-500;
@@ -34,8 +36,8 @@
         cursor: pointer;
         outline: none;
 
-        &:active {
-            border-color: $slategray-300 !important;
+        &:active, &:active + .filter::before {
+            border-color: $blue-300 !important;
         }
     }
 

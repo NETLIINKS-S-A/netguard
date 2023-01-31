@@ -55,7 +55,7 @@ export async function customerView() {
     });
     // HTML ELEMENTS
     const tableBody = document.querySelector("#tableBody");
-    const searchInput = document.querySelector("#searcher");
+    const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("paginationCounter");
     let currentPage = 1;
     // search data on real-time

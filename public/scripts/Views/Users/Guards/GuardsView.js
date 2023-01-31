@@ -9,9 +9,6 @@ const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function guardsView() {
-    const BACKEND_DATA = await getEntitiesData("User");
-    const removeSuperUsers = BACKEND_DATA.filter((data) => data.isSuper == false);
-    const arrayGuards = removeSuperUsers.filter((guard) => `${guard.userType}`.includes("GUARD"));
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -61,14 +58,21 @@ export async function guardsView() {
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
+    const BACKEND_DATA = await getEntitiesData("User");
+    const arrayGuards = BACKEND_DATA.filter((guard) => `${guard.userType}`.includes("GUARD"));
+    arrayGuards.filter((data) => data.isSuper == false);
+    arrayGuards.filter((data) => data.customer == "prueba");
     // get rendered elements
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
+    const select = document.querySelector(".select");
+    const selectInput = document.getElementById('input-select');
+    const selectOptionsContainer = document.querySelector('.select_options');
     // search data
     await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter((guard) => `${guard.firstName}
+        const arrayData = arrayGuardsFilteredByCustomer.filter((guard) => `${guard.firstName}
              ${guard.lastName}
              ${guard.description}`
             .toLowerCase()
@@ -92,9 +96,5 @@ export async function guardsView() {
     `.repeat(tableRows);
     renderGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
     pagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
-    const select = document.querySelector(".select");
-    const selectInput = document.getElementById('input-select');
-    const selectOptionsContainer = document.querySelector('.select_options');
-    tableFunctions.filterDataByCustomer(select, selectOptionsContainer, selectInput);
 }
 let tableFunctions = new TableFunctions();

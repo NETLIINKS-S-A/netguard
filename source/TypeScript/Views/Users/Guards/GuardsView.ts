@@ -13,12 +13,6 @@ const appTools = UIApp?.tools
 let currentPage: number = 1
 
 export async function guardsView() {
-    const BACKEND_DATA: any = await getEntitiesData("User")
-    const removeSuperUsers = BACKEND_DATA.filter((data: any) => data.isSuper == false)
-    const arrayGuards: any = removeSuperUsers.filter((guard: any) =>
-        `${guard.userType}`.includes("GUARD")
-    )
-
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -70,15 +64,25 @@ export async function guardsView() {
         </div>
     </div>`
 
+    const BACKEND_DATA: any = await getEntitiesData("User")
+    const arrayGuards: any = BACKEND_DATA.filter((guard: any) => `${guard.userType}`.includes("GUARD"))
+    arrayGuards.filter((data: any) => data.isSuper == false)
+    arrayGuards.filter((data: any) => data.customer == "prueba")
+
+
     // get rendered elements
     const tableBody: UIControl = document.querySelector("#table-body")
     const searchInput: UIControl = document.querySelector("#search-input")
     const paginationCounter: UIControl = document.getElementById("pagination-counter")
 
+    const select: UIControl = document.querySelector(".select")
+    const selectInput: UIControl = document.getElementById('input-select')
+    const selectOptionsContainer: UIControl = document.querySelector('.select_options')
+
     // search data
     await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter((guard) =>
+        const arrayData = arrayGuardsFilteredByCustomer.filter((guard) =>
             `${guard.firstName}
              ${guard.lastName}
              ${guard.description}`
@@ -88,6 +92,7 @@ export async function guardsView() {
 
         let filteredResult = arrayData.length
         if (filteredResult >= tableRows) filteredResult = tableRows
+
         renderGuardData(
             arrayData,
             tableBody,
@@ -133,11 +138,6 @@ export async function guardsView() {
         renderGuardData
     )
 
-    const select: UIControl = document.querySelector(".select")
-    const selectInput: UIControl = document.getElementById('input-select')
-    const selectOptionsContainer: UIControl = document.querySelector('.select_options')
-
-    tableFunctions.filterDataByCustomer(select, selectOptionsContainer, selectInput)
 }
 
 let tableFunctions: TableFunctions = new TableFunctions()

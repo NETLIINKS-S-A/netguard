@@ -20,7 +20,7 @@ export class TableFunctions {
         entityName.innerHTML = "l"
     }
 
-    public async filterDataByCustomer(select: UIControl, container: any, selectInput: UIControl): Promise<void> {
+    public async filterDataByCustomer(select: UIControl, container: any, selectInput: UIControl, currentCustomer?: string): Promise<void> {
         let CNames = customerNames
         container.innerHTML = '' // clear template
         for (let i = 0; i < CNames.length; i++) {
@@ -39,6 +39,10 @@ export class TableFunctions {
             i++
             option.addEventListener('click', async (): Promise<void> => {
                 selectInput.value = await selectOPtions[i - 1].innerHTML
+
+                currentCustomer = selectInput.value
+
+                console.log(currentCustomer)
             })
         })
     }

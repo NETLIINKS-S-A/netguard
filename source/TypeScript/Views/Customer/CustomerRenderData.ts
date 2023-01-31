@@ -3,7 +3,6 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { UIControl } from "../../Libs/lib.types.js"
-import { CFN } from "./CustomerViewFuncs.js"
 
 /**
  *
@@ -33,7 +32,7 @@ export async function renderCustomerData(
         itemElement.innerHTML = `<tr>
             <td>${customer.name}</td>
             <td class="monospace">${customer.ruc}</td>
-            <td>${customer.createdBy}</td>
+            <td class="status"><i>${customer.state.name}</i></td>
             <td>
                 <button class="btn btn_table-editor" data-id="${customer.id}">
                     <i class="fa-solid fa-pencil"></i>
@@ -42,6 +41,18 @@ export async function renderCustomerData(
         </tr>`
         // write datas on table
         tableBody.appendChild(itemElement)
+
+        // fix states
+        const states: UIControl = document.querySelectorAll(".status i")
+        states?.forEach((state: UIControl) => {
+            if (state.innerText === "ENABLED") {
+                state.classList.add("g")
+                state.innerText = "Activo"
+            } else if (state.innerText === "DISABLED") {
+                state.classList.add("i")
+                state.innerText = "Inactivo"
+            }
+        })
     }
 
     // CUSTOMER EDITOR ================================================
