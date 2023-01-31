@@ -4,7 +4,7 @@ import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { renderGuardData } from "./GuardsRenderData.js"
-import { TableFunctions } from "./GuardsViewFuncs.js"
+import { TableFn } from "./GuardsViewFuncs.js"
 
 const tableRows = UI.tableRows
 const UIApp = UI.App
@@ -36,16 +36,7 @@ export async function guardsView() {
         <div id="pagination-counter"></div>
     </div>
 
-    <div class="modal" id="delete">
-        <div class="modal_dialog modal_body" style="max-width: 450px !important">
-            <h2 class="modal_title">Deseas eliminar <span id="entity-name"></span></h2>
-
-            <div class="modal_footer">
-                <button class="btn" id="cancel">Cancelar</button>
-                <button class="btn btn_danger">Eliminar</button>
-            </div>
-        </div>
-    </div>`
+    <div id="modal-container"></div>`
 
     // write appTools
     appTools.innerHTML = `
@@ -138,6 +129,8 @@ export async function guardsView() {
         renderGuardData
     )
 
-}
+    // table editors
+    const showEditor = document.querySelectorAll(".btn_table-editor")
+    TableFn.edit(showEditor)
 
-let tableFunctions: TableFunctions = new TableFunctions()
+}

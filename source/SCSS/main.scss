@@ -19,9 +19,10 @@
 @import './Source/Components/toggle';
 
 // VIEWS
-@import './Source/Modules/date';
-@import './Source/Modules/app';
-@import './Source/Modules/login';
+@import './Source/Layouts/dateLayout';
+@import './Source/Layouts/appLayout';
+@import './Source/Layouts/loginLayout';
+@import './Source/Layouts/visitInformationLayout';
 
 // DARK MODE
 @import './Source/Themes/dark_gray';

@@ -1,5 +1,6 @@
 import { customerNames } from "../../../Libs/lib.data.js";
-export class TableFunctions {
+import { getEntityData } from "../../../Libs/lib.request.js";
+class TBLFn {
     renderBadges(badges) {
         badges?.forEach((badge) => {
             if (badge?.innerText === "Enabled") {
@@ -37,4 +38,29 @@ export class TableFunctions {
             });
         });
     }
+    async edit(controllers) {
+        controllers.forEach((controller) => {
+            // get entity
+            const entityID = controller.dataset.id;
+            // add functionality
+            controller.addEventListener("click", async () => {
+                const arrayGuards = await getEntityData(entityID, "User");
+                const modalContainer = document.getElementById("modal-container");
+                modalContainer.innerHTML = `
+                <div class="modal" id="modal">
+                    <div class="modal_dialog modal_body">
+                        <h4 class="modal_title">Editar guardia</h4>
+
+                    </div>
+                </div>`;
+                this.open();
+            });
+        });
+    }
+    open() {
+        const modal = document.getElementById("modal");
+        modal.style.display = "block";
+        setTimeout(() => modal.classList.add("open"), 300);
+    }
 }
+export let TableFn = new TBLFn();

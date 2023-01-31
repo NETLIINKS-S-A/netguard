@@ -130,46 +130,43 @@ html, body {
 }
 
 h1, .heading-1 {
-  color: #475469;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
   font-size: 3.81rem;
 }
 
 h2, .heading-2 {
-  color: #475469;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
   font-size: 3.05rem;
 }
 
 h3, .heading-3 {
-  color: #475469;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
   font-size: 2.44rem;
 }
 
 h4, .heading-4 {
-  color: #475469;
   font-size: 1.95rem;
   font-weight: 800;
 }
 
 h5, .heading-5 {
-  color: #475469;
   font-size: 1.56rem;
   font-weight: 800;
 }
 
 h6, .heading-6 {
-  color: #475469;
   font-size: 1.25rem;
   font-weight: 800;
 }
 
 p, .pharagraph {
-  color: #94A2B8;
+  color: #4C5563;
   font-size: 1rem;
   font-weight: regular;
 }
@@ -283,11 +280,16 @@ img {
 }
 .input:disabled {
   color: #1E293B;
-  user-select: none; /* supported by Chrome and Opera */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   cursor: not-allowed;
 }
 .input_error {
@@ -389,8 +391,10 @@ img {
   resize: horizontal;
   background-color: #F7FBFC;
   border-right: 1px solid #E2E8F0;
-  -ms-overflow-style: none; /* ms windows */
-  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none;
+  /* ms windows */
+  scrollbar-width: none;
+  /* firefox */
 }
 .app_sidebar::-webkit-scrollbar {
   display: none;
@@ -892,72 +896,72 @@ table .tbody tr .r,
 
 @media screen and (max-width: 1024px) {
   table,
-  .table {
+.table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 25px;
     border-radius: 10px;
   }
   table thead,
-  table .thead,
-  .table thead,
-  .table .thead {
+table .thead,
+.table thead,
+.table .thead {
     background-color: #94A2B8;
   }
   table thead tr,
-  table .thead tr,
-  .table thead tr,
-  .table .thead tr {
+table .thead tr,
+.table thead tr,
+.table .thead tr {
     background-color: inherit;
   }
   table thead tr th:last-child,
-  table .thead tr th:last-child,
-  .table thead tr th:last-child,
-  .table .thead tr th:last-child {
+table .thead tr th:last-child,
+.table thead tr th:last-child,
+.table .thead tr th:last-child {
     border-top-right-radius: 10px;
   }
   table thead tr th:first-child,
-  table .thead tr th:first-child,
-  .table thead tr th:first-child,
-  .table .thead tr th:first-child {
+table .thead tr th:first-child,
+.table thead tr th:first-child,
+.table .thead tr th:first-child {
     border-top-left-radius: 10px;
   }
   table thead th,
-  table .thead th,
-  .table thead th,
-  .table .thead th {
+table .thead th,
+.table thead th,
+.table .thead th {
     padding: 15px 20px;
     text-transform: uppercase;
   }
   table tbody tr:last-child td:last-child,
-  table .tbody tr:last-child td:last-child,
-  .table tbody tr:last-child td:last-child,
-  .table .tbody tr:last-child td:last-child {
+table .tbody tr:last-child td:last-child,
+.table tbody tr:last-child td:last-child,
+.table .tbody tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
   }
   table tbody tr:last-child td:first-child,
-  table .tbody tr:last-child td:first-child,
-  .table tbody tr:last-child td:first-child,
-  .table .tbody tr:last-child td:first-child {
+table .tbody tr:last-child td:first-child,
+.table tbody tr:last-child td:first-child,
+.table .tbody tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
   table tbody tr .monospace,
-  table .tbody tr .monospace,
-  .table tbody tr .monospace,
-  .table .tbody tr .monospace {
+table .tbody tr .monospace,
+.table tbody tr .monospace,
+.table .tbody tr .monospace {
     font-size: 12px;
   }
   table tbody tr td,
-  table .tbody tr td,
-  .table tbody tr td,
-  .table .tbody tr td {
+table .tbody tr td,
+.table tbody tr td,
+.table .tbody tr td {
     padding: 10px;
     padding-left: 20px;
   }
   table tbody tr td:first-child,
-  table .tbody tr td:first-child,
-  .table tbody tr td:first-child,
-  .table .tbody tr td:first-child {
+table .tbody tr td:first-child,
+.table tbody tr td:first-child,
+.table .tbody tr td:first-child {
     padding-left: 20px;
   }
 }
@@ -1227,9 +1231,11 @@ table .tbody tr .r,
   .app_sidebar .menu_items .menu_item-isActive .menu_item_label {
     color: #475469;
   }
+
   .app_wrapper {
     padding: 25px 20px;
   }
+
   .app_header {
     width: calc(100% - 80px);
   }
@@ -1327,6 +1333,30 @@ table .tbody tr .r,
   font-weight: 500;
   letter-spacing: 0.0353rem;
   margin-top: 10px;
+}
+
+.visit_information .modal_body {
+  max-width: 500px !important;
+}
+.visit_information img {
+  display: block;
+  height: 200px;
+  width: 200px;
+  background-color: #F8FAFA;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+}
+.visit_information .info_group {
+  display: block;
+}
+.visit_information .info_group {
+  display: block;
+  margin-bottom: 8px;
+}
+.visit_information .info_2_cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
 .dark_gray, .dark_gray html, .dark_gray body {
@@ -1471,16 +1501,19 @@ table .tbody tr .r,
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_gray h2, .dark_gray .heading-2 {
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_gray h3, .dark_gray .heading-3 {
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_gray h4, .dark_gray .heading-4 {
   color: #F7FBFC;
@@ -1937,16 +1970,19 @@ table .tbody tr .r,
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_slategray h2, .dark_slategray .heading-2 {
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_slategray h3, .dark_slategray .heading-3 {
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_slategray h4, .dark_slategray .heading-4 {
   color: #F7FBFC;
@@ -2403,16 +2439,19 @@ table .tbody tr .r,
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_neutral h2, .dark_neutral .heading-2 {
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_neutral h3, .dark_neutral .heading-3 {
   color: #F7FBFC;
   font-weight: 900;
   letter-spacing: 0.087px;
+  color: #1F2937;
 }
 .dark_neutral h4, .dark_neutral .heading-4 {
   color: #F7FBFC;

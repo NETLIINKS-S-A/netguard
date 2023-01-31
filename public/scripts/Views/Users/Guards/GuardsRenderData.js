@@ -1,6 +1,6 @@
 // @filename: GuardsRenderData.ts
 import { Modal } from "../../../Classes.js";
-import { TableFunctions } from "./GuardsViewFuncs.js";
+import { TableFn } from "./GuardsViewFuncs.js";
 export async function renderGuardData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = "";
     page--;
@@ -72,8 +72,7 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
     await deleteButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
             modal.open();
-            tableFunctions.deleteEntity();
+            TableFn.deleteEntity();
         });
     });
 }
-let tableFunctions = new TableFunctions();

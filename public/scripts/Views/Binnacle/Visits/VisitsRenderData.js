@@ -29,16 +29,34 @@ export class Visits {
             // The entity
             let entityID = controller.dataset.id;
             controller.addEventListener('click', async () => {
-                const GET_DATA = await getEntityData(entityID, 'Visit');
+                const arrayVisitsInformation = await getEntityData(entityID, 'Visit');
                 const modalContainer = document.getElementById("modal-container");
                 console.log(modalContainer);
                 modalContainer.innerHTML = `
-                <div class="modal" id="modal">
+                <div class="modal visit_information" id="modal">
                     <div class="modal_dialog modal_body">
                         <h2 class="modal_title">Detalles</h2>
 
-                        <div>
-                            <p class="name">${GET_DATA._instanceName}</p>
+                        <div class="info_2_cols">
+                            <img src="./public/pictures/picture_placeholder.png">
+                            <div class="info_block">
+                                <div class="info_group">
+                                    <p><b>Nombre:</b></p>
+                                    <p class="name">${arrayVisitsInformation.firstName} ${arrayVisitsInformation.firstLastName} ${arrayVisitsInformation.secondLastName}</p>
+                                </div>
+                                <div class="info_group">
+                                    <p><b>CI:</b></p>
+                                    <p class="name">${arrayVisitsInformation.dni}</p>
+                                </div>
+                                <div class="info_group">
+                                    <p><b>Estado:</b></p>
+                                    <p class="name">${arrayVisitsInformation.firstName} ${arrayVisitsInformation.firstLastName} ${arrayVisitsInformation.secondLastName}</p>
+                                </div>
+                                <div class="info_group">
+                                    <p><b>Nombre:</b></p>
+                                    <p class="name">${arrayVisitsInformation.firstName} ${arrayVisitsInformation.firstLastName} ${arrayVisitsInformation.secondLastName}</p>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="modal_footer">
@@ -54,7 +72,7 @@ export class Visits {
                     modal.style.display = "none";
                     modal.remove();
                 });
-                console.log(GET_DATA);
+                console.log(arrayVisitsInformation);
             });
         });
     }

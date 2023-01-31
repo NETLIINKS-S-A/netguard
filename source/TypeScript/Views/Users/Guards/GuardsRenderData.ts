@@ -1,7 +1,7 @@
 // @filename: GuardsRenderData.ts
 import { Modal } from "../../../Classes.js"
 import { UIControl } from "../../../Libs/lib.types.js"
-import { TableFunctions } from "./GuardsViewFuncs.js"
+import { TableFn } from "./GuardsViewFuncs.js"
 
 export async function renderGuardData(
     items: any,
@@ -86,9 +86,7 @@ export async function renderGuardData(
     await deleteButtons.forEach((btn: UIControl) => {
         btn.addEventListener('click', (): void => {
             modal.open()
-            tableFunctions.deleteEntity()
+            TableFn.deleteEntity()
         })
     })
 }
-
-let tableFunctions: TableFunctions = new TableFunctions()

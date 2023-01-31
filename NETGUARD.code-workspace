@@ -40,7 +40,7 @@
             "**/.git/": true
         },
         "files.trimTrailingWhitespace": true,
-        "editor.tabSize": 2,
+        "editor.tabSize": 4,
         "editor.insertSpaces": true,
         "[typescript]": {
             "editor.formatOnPaste": true,
@@ -53,7 +53,7 @@
         "editor.rulers": [80],
         "files.insertFinalNewline": true,
         "editor.detectIndentation": true,
-        //"editor.wrappingIndent": "none",
+        "editor.wrappingIndent": "none",
         "editor.formatOnSave": true,
         "editor.linkedEditing": true,
         "editor.minimap.enabled": true,

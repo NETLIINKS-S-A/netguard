@@ -1,52 +1,47 @@
 @mixin black-header {
     font-weight: $black;
     letter-spacing: 0.087px;
+    color: $gray-900;
 }
 
 h1, .heading-1 {
-    color: $color-heading;
     @include black-header;
     font-size: 3.81rem;
 }
 
 h2, .heading-2 {
-    color: $color-heading;
     @include black-header;
     font-size: 3.05rem;
 }
 
 h3, .heading-3 {
-    color: $color-heading;
     @include black-header;
     font-size: 2.44rem;
 }
 
 h4, .heading-4 {
-    color: $color-heading;
     font-size: 1.95rem;
     font-weight: $extra-bold;
 }
 
 h5, .heading-5 {
-    color: $color-heading;
     font-size: 1.56rem;
     font-weight: $extra-bold;
 }
 
 h6, .heading-6 {
-    color: $color-heading;
     font-size: 1.25rem;
     font-weight: $extra-bold;
 }
 
 p, .pharagraph {
-    color: $color-pharagraph;
+    color: $gray-700;
     font-size: 1rem;
     font-weight: regular;
 }
 
 a, .link {
-    color: $color-link;
+    color: $blue-500;
     font-size: 1rem;
     font-weight: $regular;
 }

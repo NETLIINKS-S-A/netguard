@@ -1,7 +1,8 @@
 import { customerNames } from "../../../Libs/lib.data.js"
+import { getEntityData } from "../../../Libs/lib.request.js"
 import { UIControl } from "../../../Libs/lib.types.js"
 
-export class TableFunctions {
+class TBLFn {
     public renderBadges(badges: UIControl): void {
         badges?.forEach((badge: any) => {
             if (badge?.innerText === "Enabled") {
@@ -20,7 +21,10 @@ export class TableFunctions {
         entityName.innerHTML = "l"
     }
 
-    public async filterDataByCustomer(select: UIControl, container: any, selectInput: UIControl, currentCustomer?: string): Promise<void> {
+    public async filterDataByCustomer(select: UIControl,
+        container: any,
+        selectInput: UIControl,
+        currentCustomer?: string): Promise<void> {
         let CNames = customerNames
         container.innerHTML = '' // clear template
         for (let i = 0; i < CNames.length; i++) {
@@ -46,4 +50,35 @@ export class TableFunctions {
             })
         })
     }
+
+    public async edit(controllers: UIControl): Promise<void> {
+        controllers.forEach((controller: UIControl) => {
+            // get entity
+            const entityID: string = controller.dataset.id
+            // add functionality
+            controller.addEventListener("click", async (): Promise<void> => {
+                const arrayGuards: any = await getEntityData(entityID, "User")
+
+                const modalContainer: UIControl = document.getElementById("modal-container")
+
+                modalContainer.innerHTML = `
+                <div class="modal" id="modal">
+                    <div class="modal_dialog modal_body">
+                        <h4 class="modal_title">Editar guardia</h4>
+
+                    </div>
+                </div>`
+
+                this.open()
+            })
+        })
+    }
+
+    private open(): void {
+        const modal: UIControl = document.getElementById("modal")
+        modal.style.display = "block"
+        setTimeout((): void => modal.classList.add("open"), 300)
+    }
 }
+
+export let TableFn: TBLFn = new TBLFn()
