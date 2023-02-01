@@ -1,7 +1,7 @@
 // @filename: CustomerView.ts
 import { UIControl } from "../../Libs/lib.types.js"
 import { UI } from "../../Libs/lib.dom.js"
-import { renderCustomerData } from "./CustomerRenderData.js"
+import { renderTableData } from "./CustomerRenderData.js"
 // libs
 import { getEntitiesData } from "../../Libs/lib.request.js"
 import { pagination } from "../../Libs/lib.tools.js"
@@ -41,10 +41,7 @@ export async function customerView() {
     </div>
 
     <div id="modal-content">
-    </div>
     </div>`
-
-
 
     // Add tools
     const toolbox = UIApp?.tools
@@ -73,7 +70,7 @@ export async function customerView() {
 
     // search data on real-time
     await searchInput?.addEventListener("keyup", (): void => {
-        const arrayData = arrayCustomers.filter((customer) =>
+        const arrayData: any = arrayCustomers.filter((customer) =>
             // @ts-ignore
             `${customer.name.toLowerCase()}`.includes(
                 searchInput.value.toLowerCase()
@@ -85,22 +82,8 @@ export async function customerView() {
 
         // display table data and pagination when
         // find results
-        renderCustomerData(
-            arrayData,
-            tableBody,
-            filteredResult,
-            currentPage,
-            paginationCounter
-        )
-        pagination(
-            // @ts-ignore
-            arrayData,
-            paginationCounter,
-            tableRows,
-            currentPage,
-            tableBody,
-            renderCustomerData
-        )
+        renderTableData(arrayData, tableBody, filteredResult, currentPage)
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderTableData)
     })
 
     // Table placeholder
@@ -113,21 +96,8 @@ export async function customerView() {
     </tr>`.repeat(tableRows)
 
     // Display data and pagination
-    renderCustomerData(
-        arrayCustomers,
-        tableBody,
-        tableRows,
-        currentPage,
-        paginationCounter
-    )
-    pagination(
-        arrayCustomers,
-        paginationCounter,
-        tableRows,
-        currentPage,
-        tableBody,
-        renderCustomerData
-    )
+    renderTableData(arrayCustomers, tableBody, tableRows, currentPage)
+    pagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderTableData)
 
     // Edit Customer
     const editButtons: UIControl = document.querySelectorAll(".btn_table-editor")

@@ -285,16 +285,11 @@ img {
 }
 .input:disabled {
   color: #1E293B;
-  user-select: none;
-  /* supported by Chrome and Opera */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
   cursor: not-allowed;
 }
 .input_error {
@@ -396,10 +391,8 @@ img {
   resize: horizontal;
   background-color: #F7FBFC;
   border-right: 1px solid #E2E8F0;
-  -ms-overflow-style: none;
-  /* ms windows */
-  scrollbar-width: none;
-  /* firefox */
+  -ms-overflow-style: none; /* ms windows */
+  scrollbar-width: none; /* firefox */
 }
 .app_sidebar::-webkit-scrollbar {
   display: none;
@@ -838,16 +831,10 @@ table .tbody tr:hover td .btn_table_info,
   border-color: #7EB7FF;
   color: #2877FF;
 }
-table tbody tr .type i, table tbody tr .status i, table tbody tr .citadels i,
-table .tbody tr .type i,
-table .tbody tr .status i,
-table .tbody tr .citadels i,
-.table tbody tr .type i,
-.table tbody tr .status i,
-.table tbody tr .citadels i,
-.table .tbody tr .type i,
-.table .tbody tr .status i,
-.table .tbody tr .citadels i {
+table tbody tr .tag span,
+table .tbody tr .tag span,
+.table tbody tr .tag span,
+.table .tbody tr .tag span {
   background-color: #F1F5F9;
   color: #94A2B8;
   font-weight: 700;
@@ -857,6 +844,35 @@ table .tbody tr .citadels i,
   text-transform: uppercase;
   padding: 5px 10px;
   border-radius: 4px;
+  white-space: nowrap;
+}
+table tbody tr .tag span.g,
+table .tbody tr .tag span.g,
+.table tbody tr .tag span.g,
+.table .tbody tr .tag span.g {
+  background-color: #5CBC4F !important;
+  color: #FFF !important;
+}
+table tbody tr .tag span.p,
+table .tbody tr .tag span.p,
+.table tbody tr .tag span.p,
+.table .tbody tr .tag span.p {
+  background-color: #54B3A4 !important;
+  color: #FFF !important;
+}
+table tbody tr .tag span.b,
+table .tbody tr .tag span.b,
+.table tbody tr .tag span.b,
+.table .tbody tr .tag span.b {
+  background-color: #2877FF !important;
+  color: #FFF !important;
+}
+table tbody tr .tag span.r,
+table .tbody tr .tag span.r,
+.table tbody tr .tag span.r,
+.table .tbody tr .tag span.r {
+  background-color: #FF523F !important;
+  color: #FFF !important;
 }
 table tbody tr .citadels,
 table .tbody tr .citadels,
@@ -870,103 +886,75 @@ table .tbody tr .citadels i,
 .table .tbody tr .citadels i {
   white-space: nowrap;
 }
-table tbody tr .g,
-table .tbody tr .g,
-.table tbody tr .g,
-.table .tbody tr .g {
-  background-color: #5CBC4F !important;
-  color: #FFF !important;
-}
-table tbody tr .p,
-table .tbody tr .p,
-.table tbody tr .p,
-.table .tbody tr .p {
-  background-color: #54B3A4 !important;
-  color: #FFF !important;
-}
-table tbody tr .b,
-table .tbody tr .b,
-.table tbody tr .b,
-.table .tbody tr .b {
-  background-color: #2877FF !important;
-  color: #FFF !important;
-}
-table tbody tr .r,
-table .tbody tr .r,
-.table tbody tr .r,
-.table .tbody tr .r {
-  background-color: #FF523F !important;
-  color: #FFF !important;
-}
 
 @media screen and (max-width: 1024px) {
   table,
-.table {
+  .table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 25px;
     border-radius: 10px;
   }
   table thead,
-table .thead,
-.table thead,
-.table .thead {
+  table .thead,
+  .table thead,
+  .table .thead {
     background-color: #94A2B8;
   }
   table thead tr,
-table .thead tr,
-.table thead tr,
-.table .thead tr {
+  table .thead tr,
+  .table thead tr,
+  .table .thead tr {
     background-color: inherit;
   }
   table thead tr th:last-child,
-table .thead tr th:last-child,
-.table thead tr th:last-child,
-.table .thead tr th:last-child {
+  table .thead tr th:last-child,
+  .table thead tr th:last-child,
+  .table .thead tr th:last-child {
     border-top-right-radius: 10px;
   }
   table thead tr th:first-child,
-table .thead tr th:first-child,
-.table thead tr th:first-child,
-.table .thead tr th:first-child {
+  table .thead tr th:first-child,
+  .table thead tr th:first-child,
+  .table .thead tr th:first-child {
     border-top-left-radius: 10px;
   }
   table thead th,
-table .thead th,
-.table thead th,
-.table .thead th {
+  table .thead th,
+  .table thead th,
+  .table .thead th {
     padding: 15px 20px;
     text-transform: uppercase;
   }
   table tbody tr:last-child td:last-child,
-table .tbody tr:last-child td:last-child,
-.table tbody tr:last-child td:last-child,
-.table .tbody tr:last-child td:last-child {
+  table .tbody tr:last-child td:last-child,
+  .table tbody tr:last-child td:last-child,
+  .table .tbody tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
   }
   table tbody tr:last-child td:first-child,
-table .tbody tr:last-child td:first-child,
-.table tbody tr:last-child td:first-child,
-.table .tbody tr:last-child td:first-child {
+  table .tbody tr:last-child td:first-child,
+  .table tbody tr:last-child td:first-child,
+  .table .tbody tr:last-child td:first-child {
     border-bottom-left-radius: 5px;
   }
   table tbody tr .monospace,
-table .tbody tr .monospace,
-.table tbody tr .monospace,
-.table .tbody tr .monospace {
+  table .tbody tr .monospace,
+  .table tbody tr .monospace,
+  .table .tbody tr .monospace {
     font-size: 12px;
   }
   table tbody tr td,
-table .tbody tr td,
-.table tbody tr td,
-.table .tbody tr td {
+  table .tbody tr td,
+  .table tbody tr td,
+  .table .tbody tr td {
     padding: 10px;
     padding-left: 20px;
   }
   table tbody tr td:first-child,
-table .tbody tr td:first-child,
-.table tbody tr td:first-child,
-.table .tbody tr td:first-child {
+  table .tbody tr td:first-child,
+  .table tbody tr td:first-child,
+  .table .tbody tr td:first-child {
     padding-left: 20px;
   }
 }
@@ -1236,11 +1224,9 @@ table .tbody tr td:first-child,
   .app_sidebar .menu_items .menu_item-isActive .menu_item_label {
     color: #475469;
   }
-
   .app_wrapper {
     padding: 25px 20px;
   }
-
   .app_header {
     width: calc(100% - 80px);
   }

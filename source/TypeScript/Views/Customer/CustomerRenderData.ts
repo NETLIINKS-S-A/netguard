@@ -3,6 +3,7 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { UIControl } from "../../Libs/lib.types.js"
+import { CFN } from "./CustomerViewFuncs.js"
 
 /**
  *
@@ -11,59 +12,51 @@ import { UIControl } from "../../Libs/lib.types.js"
  * @param rowsPerPage - The quantity rows show per page (tableRows)
  * @param page - The current page
  */
-export async function renderCustomerData(
-    items: any,
-    tableBody: any,
-    rowsPerPage: number,
-    page: number,
-    paginationElement?: any
-): Promise<void> {
-    tableBody.innerHTML = ""
+export async function renderTableData(items: any, table: any, rows: number, page: number): Promise<void> {
+    table.innerHTML = ""
     page--
 
-    let start = rowsPerPage * page
-    let end = start + rowsPerPage
+    let start: number = rows + page
+    let end: number = start + rows
     let paginatedItems = items.slice(start, end)
-
     let customer: any
+
     for (let i = 0; i < paginatedItems.length; i++) {
         customer = paginatedItems[i]
-        let itemElement = document.createElement("tr")
-        itemElement.innerHTML = `<tr>
+
+        let tableRow = document.createElement("tr")
+        tableRow.innerHTML = `
+        <tr>
             <td>${customer.name}</td>
-            <td class="monospace">${customer.ruc}</td>
-            <td class="status"><i>${customer.state.name}</i></td>
+            <td class="monospace ruc">${customer.ruc}</td>
+            <td class="tag"><span>${customer.state.name}</span></td>
             <td>
-                <button class="btn btn_table-editor" data-id="${customer.id}">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
+                <button class="btn btn_table" id="edit-entity" data-id="${customer.id}"><i class="fa-solid fa-pencil"></i></button>
             </td>
         </tr>`
-        // write datas on table
-        tableBody.appendChild(itemElement)
 
-        // fix states
-        const states: UIControl = document.querySelectorAll(".status i")
-        states?.forEach((state: UIControl) => {
-            if (state.innerText === "ENABLED") {
-                state.classList.add("g")
-                state.innerText = "Activo"
-            } else if (state.innerText === "DISABLED") {
-                state.classList.add("i")
-                state.innerText = "Inactivo"
-            }
-        })
+        // write data on table
+        table.appendChild(tableRow)
+
+        // Add tags styles
+        const tableTag: UIControl = document.querySelectorAll(".tag span")
+        CFN.addTags(tableTag)
+
+        // verify RUC length
+        const ruc: UIControl = document.querySelectorAll(".ruc")
+        CFN.verifyRucLength(ruc)
+
     }
-
-    // CUSTOMER EDITOR ================================================
-    // elements
-    const editorButtonElements: UIControl =
-        document.querySelectorAll("tr td button")
-    const closeEditorButtonElement: UIControl =
-        document.getElementById("closeEditor")
-    const updateCustomerEntityElement: UIControl = document.getElementById(
-        "updateCutomerEntity"
-    )
-
-    // CUSTOMER CREATOR ================================================
 }
+
+
+//     // CUSTOMER EDITOR ================================================
+//     // elements
+//     const editorButtonElements: UIControl =
+//         document.querySelectorAll("tr td button")
+//     const closeEditorButtonElement: UIControl =
+//         document.getElementById("closeEditor")
+//     const updateCustomerEntityElement: UIControl = document.getElementById(
+//         "updateCutomerEntity"
+//     )
+

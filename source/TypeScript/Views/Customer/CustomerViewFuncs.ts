@@ -6,7 +6,29 @@ import { $color } from "../../Libs/lib.tools.js"
 let entityURL: string
 // Close editor
 
-class CustomerFuncs {
+class Funcs {
+    public async addTags(tableTag: any): Promise<void> {
+        tableTag?.forEach((state: UIControl) => {
+            if (state.innerText === "ENABLED" || state.innerText === "Enabled") {
+                state.classList.add("g")
+                state.innerText = "Activo"
+            } else if (state.innerText === "DISABLED" || state.innerText === "DISABLED") {
+                state.classList.add("i")
+                state.innerText = "Inactivo"
+            }
+        })
+    }
+
+    public async verifyRucLength(tableRuc: any): Promise<void> {
+        tableRuc.forEach((ruc: any) => {
+            if (ruc.innerText.length > 10) {
+                ruc.style.color = $color.red.r500
+            } else if (ruc.innerText.length < 10) {
+                ruc.style.color = $color.red.r500
+            }
+        })
+    }
+
     public newCustomer(modalElement: UIControl): void {
         modalElement.innerHTML = `
         <div class="modal" id="modal">
@@ -196,4 +218,4 @@ class CustomerFuncs {
 }
 
 
-export let CFN: CustomerFuncs = new CustomerFuncs()
+export let CFN: Funcs = new Funcs()

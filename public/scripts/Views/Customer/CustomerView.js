@@ -1,5 +1,5 @@
 import { UI } from "../../Libs/lib.dom.js";
-import { renderCustomerData } from "./CustomerRenderData.js";
+import { renderTableData } from "./CustomerRenderData.js";
 // libs
 import { getEntitiesData } from "../../Libs/lib.request.js";
 import { pagination } from "../../Libs/lib.tools.js";
@@ -36,7 +36,6 @@ export async function customerView() {
     </div>
 
     <div id="modal-content">
-    </div>
     </div>`;
     // Add tools
     const toolbox = UIApp?.tools;
@@ -68,10 +67,8 @@ export async function customerView() {
             filteredResult = tableRows;
         // display table data and pagination when
         // find results
-        renderCustomerData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        pagination(
-        // @ts-ignore
-        arrayData, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
+        renderTableData(arrayData, tableBody, filteredResult, currentPage);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderTableData);
     });
     // Table placeholder
     tableBody.innerHTML = `
@@ -82,8 +79,8 @@ export async function customerView() {
         <td>Cargando...</td>
     </tr>`.repeat(tableRows);
     // Display data and pagination
-    renderCustomerData(arrayCustomers, tableBody, tableRows, currentPage, paginationCounter);
-    pagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderCustomerData);
+    renderTableData(arrayCustomers, tableBody, tableRows, currentPage);
+    pagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderTableData);
     // Edit Customer
     const editButtons = document.querySelectorAll(".btn_table-editor");
     editButtons.forEach((editButton) => {

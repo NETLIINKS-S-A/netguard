@@ -1,8 +1,31 @@
 // @filename: BusinessEditor.ts
 import { getEntityData } from "../../Libs/lib.request.js";
+import { $color } from "../../Libs/lib.tools.js";
 let entityURL;
 // Close editor
-class CustomerFuncs {
+class Funcs {
+    async addTags(tableTag) {
+        tableTag?.forEach((state) => {
+            if (state.innerText === "ENABLED" || state.innerText === "Enabled") {
+                state.classList.add("g");
+                state.innerText = "Activo";
+            }
+            else if (state.innerText === "DISABLED" || state.innerText === "DISABLED") {
+                state.classList.add("i");
+                state.innerText = "Inactivo";
+            }
+        });
+    }
+    async verifyRucLength(tableRuc) {
+        tableRuc.forEach((ruc) => {
+            if (ruc.innerText.length > 10) {
+                ruc.style.color = $color.red.r500;
+            }
+            else if (ruc.innerText.length < 10) {
+                ruc.style.color = $color.red.r500;
+            }
+        });
+    }
     newCustomer(modalElement) {
         modalElement.innerHTML = `
         <div class="modal" id="modal">
@@ -175,4 +198,4 @@ class CustomerFuncs {
         }, 200);
     }
 }
-export let CFN = new CustomerFuncs();
+export let CFN = new Funcs();
