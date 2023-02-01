@@ -1,5 +1,5 @@
 // @filename: CitadelsRenderData.ts
-import { UIControl } from "../../Libs/lib.types.js"
+import { UIControl } from "../../Libs/lib.types"
 
 export async function renderCitadelData(
     items: any,

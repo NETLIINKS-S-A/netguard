@@ -3,7 +3,7 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { UIControl } from "../../../Libs/lib.types.js"
-import { UserEditor, MultiInput, closeUserModal } from "./UsersViewFuncs.js"
+import { UserEditor, MultiInput, closeUserModal } from "./Functions.js"
 
 /**
  *

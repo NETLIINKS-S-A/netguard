@@ -1,7 +1,7 @@
 // @filename: VisitsView.ts
 import { UI } from "../../../Libs/lib.dom.js";
 import { pagination } from "../../../Libs/lib.tools.js";
-import { VisitsControllers } from "./VisitsRenderData.js";
+import { VisitsControllers } from "./Render.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;

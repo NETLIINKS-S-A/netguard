@@ -1,8 +1,8 @@
 // @filename: EmergenctUserView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { pagination } from "../../../Libs/lib.tools.js";
-import { renderEmergencyUserData } from "./Render.js";
+import { getEntitiesData } from "../../../Libs/lib.request";
+import { UI } from "../../../Libs/lib.dom";
+import { pagination } from "../../../Libs/lib.tools";
+import { renderEmergencyUserData } from "./Render";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;

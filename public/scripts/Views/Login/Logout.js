@@ -1,7 +1,7 @@
 // @filename: Logout.ts
 //
 import { Modal } from "../../Classes.js";
-import { App } from "./TokenValidator.js";
+import { App } from "./Login.js";
 export function openLogout(id) {
     const show = new Modal(id);
     show.open();

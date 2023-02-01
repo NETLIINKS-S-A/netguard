@@ -1,11 +1,11 @@
 // @filename: CustomerView.ts
 import { UIControl } from "../../Libs/lib.types.js"
 import { UI } from "../../Libs/lib.dom.js"
-import { renderTableData } from "./CustomerRenderData.js"
-// libs
 import { getEntitiesData } from "../../Libs/lib.request.js"
 import { pagination } from "../../Libs/lib.tools.js"
-import { CFN } from "./CustomerViewFuncs.js"
+
+import { CFN } from "./Functions.js"
+import { renderTableData } from "./Render.js"
 
 const tableRows: number = UI.tableRows // number of rows to show on tables
 const UIApp: UIControl = UI.App
@@ -109,5 +109,4 @@ export async function customerView() {
 
         })
     })
-
 }

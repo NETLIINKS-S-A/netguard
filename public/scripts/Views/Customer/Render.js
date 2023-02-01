@@ -1,4 +1,4 @@
-import { CFN } from "./CustomerViewFuncs.js";
+import { CFN } from "./Functions.js";
 /**
  *
  * @param items - The saved data and filtered data (tableData)

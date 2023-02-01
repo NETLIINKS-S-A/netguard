@@ -3,7 +3,7 @@ import { UI } from "../../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { UIControl } from "../../../Libs/lib.types.js"
-import { renderPlatformData } from "./PlatformRenderData.js"
+import { renderPlatformData } from "./Render.js"
 
 const tableRows: number = 22
 const UIApp = UI.App

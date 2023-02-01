@@ -1,7 +1,7 @@
 // @filename: GuardsRenderData.ts
 import { Modal } from "../../../Classes.js"
 import { UIControl } from "../../../Libs/lib.types.js"
-import { TableFn } from "./GuardsViewFuncs.js"
+import { TableFn } from "./Functions.js"
 
 export async function renderGuardData(
     items: any,

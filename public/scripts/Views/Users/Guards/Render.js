@@ -1,6 +1,6 @@
 // @filename: GuardsRenderData.ts
 import { Modal } from "../../../Classes.js";
-import { TableFn } from "./Functions";
+import { TableFn } from "./Functions.js";
 export async function renderGuardData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = "";
     page--;

@@ -3,7 +3,7 @@ import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { UIControl } from "../../../Libs/lib.types.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
-import { renderEmergencyUserData } from "./EmergencyRenderData.js"
+import { renderEmergencyUserData } from "./Render.js"
 
 const tableRows = UI.tableRows
 const UIApp = UI.App

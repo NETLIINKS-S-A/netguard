@@ -1,9 +1,8 @@
 import { UI } from "../../Libs/lib.dom.js";
-import { renderTableData } from "./CustomerRenderData.js";
-// libs
 import { getEntitiesData } from "../../Libs/lib.request.js";
 import { pagination } from "../../Libs/lib.tools.js";
-import { CFN } from "./CustomerViewFuncs.js";
+import { CFN } from "./Functions.js";
+import { renderTableData } from "./Render.js";
 const tableRows = UI.tableRows; // number of rows to show on tables
 const UIApp = UI.App;
 const app = UIApp?.content;

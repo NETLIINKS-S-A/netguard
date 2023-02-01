@@ -1,43 +1,80 @@
-// @filename: Login
+// @filename: TokenValidator.ts
 import { UI } from "../../Libs/lib.dom.js";
-import { App } from "./TokenValidator.js";
-let app = new App();
-/**
- * @function login
- * @param mail
- * @param password
- */
-export function login(mail, password) {
-    generateToken();
-    async function generateToken() {
-        const url = "https://backend.netliinks.com:443/oauth/token";
-        const requestOptions = {
-            method: "POST",
-            body: `grant_type=password&username=${mail}&password=${password}`,
-            headers: {
-                Accept: "application/json",
-                "User-agent": `${UI.UserAgent}`,
-                Authorization: "Basic YzNjMDM1MzQ2MjoyZmM5ZjFiZTVkN2IwZDE4ZjI1YmU2NDJiM2FmMWU1Yg==",
-                "Content-Type": "application/x-www-form-urlencoded",
-                Cookie: "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF",
-            },
-        };
-        fetch(url, requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-            const login = UI.Login?.login;
-            console.log(data.expires_in);
-            app.checkExpirationTime(data.expires_in);
-            localStorage.setItem("access_token", data.access_token);
-            if (data.error === "invalid_grant") {
-                alert("Credenciales incorrectas");
-            }
-            else {
-                (login.style.display = "none");
-                app.checkToken();
-                window.location.reload();
-            }
-        })
-            .catch((error) => console.error("Error: " + error));
+import { applicationView } from "../ApplicationUI/ApplicationView.js";
+import { logout } from "./Logout.js";
+export class App {
+    render() {
+        const UI = document.getElementById("login");
+        UI.innerHTML = `
+        <div class="login_window">
+            <!-- Login Header -->
+            <div class="login_header">
+                <div class="login_showcase">
+                    <img class="login_showcase_picture" src="./public/pictures/icon_login-light.png" alt="Netliinks Logo">
+                    <div class="login_showcase_text">
+                        <h4>Netliinks s.a.</h4>
+                        <p>Networking & security</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Body -->
+            <div class="login_body">
+                <h1 class="login_body_title">Iniciar Sesión</h1>
+                <p class="login_body_subtitle">Inicie sesión con los datos proporcionados por el proveedor</p>
+
+                <!-- Login Form -->
+                <form autocomplete="off" method="POST" id="login-form" class="login_form">
+                    <div class="input_group">
+                        <label for="user-email" class="form_label">Correo</label>
+                        <input type="text" class="input" name="email" placeholder="jhon.doe@ejemplo.com" id="user-email">
+                    </div>
+
+                    <div class="input_group">
+                        <label for="user-password" class="form_label">Contraseña</label>
+                        <input type="password" class="input" name="password" placeholder="••••••••••" id="user-password">
+                    </div>
+
+                    <button id="loginSubmitButton" class="btn btn-isWidder btn_success">Iniciar sesión</button>
+                </form>
+            </div>
+
+            <!-- Login Footer -->
+            <div class="login_footer">
+                <div class="login_footer_horizontal">
+                    <i class="fa-duotone fa-buildings"></i>
+                    <i class="fa-duotone fa-user-police"></i>
+                    <i class="fa-duotone fa-inboxes"></i>
+                    <i class="fa-duotone fa-briefcase-medical"></i>
+                    <i class="fa-duotone fa-file-excel"></i>
+                    <i class="fa-duotone fa-note"></i>
+                </div>
+
+                <p>Accede a todas nuestras herramientas</p>
+            </div>
+
+        </div>`;
+    }
+    async checkToken() {
+        const accessToken = localStorage.getItem('access_token');
+        const application = UI.App.app;
+        const login = document.getElementById("login");
+        if (!accessToken)
+            application.style.display = "none";
+        else if (accessToken === "undefined")
+            console.error("Error: access token is undefined");
+        else if (accessToken === null)
+            console.error("Error: access token is null");
+        else {
+            application.style.display = "block";
+            login.style.display = "none";
+            applicationView();
+        }
+    }
+    checkExpirationTime(time) {
+        if (time === 0) {
+            logout();
+        }
+        console.log(time);
     }
 }

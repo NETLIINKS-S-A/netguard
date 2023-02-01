@@ -1,21 +1,16 @@
 // @filename: VisitsRenderData.ts
-import { Modal } from "../../../Classes.js"
-import { getEntityData } from "../../../Libs/lib.request.js"
-import { UIViewAsync, UIControl } from "../../../Libs/lib.types.js"
-
+import { getEntityData } from "../../../Libs/lib.request.js";
 export class Visits {
-    public async render(items: any, table: UIControl, rows: number, page: number): UIViewAsync {
-        table.innerHTML = ""
-        page--
-
-        const start: number = rows * page
-        const end: number = start + rows
-        const arrayVisits: [] = await items.slice(start, end)
-        let index: number
-
+    async render(items, table, rows, page) {
+        table.innerHTML = "";
+        page--;
+        const start = rows * page;
+        const end = start + rows;
+        const arrayVisits = await items.slice(start, end);
+        let index;
         for (index = 0; index < arrayVisits.length; index++) {
-            const visit: any = arrayVisits[index]
-            let row: UIControl = document.createElement("tr")
+            const visit = arrayVisits[index];
+            let row = document.createElement("tr");
             row.innerHTML = `
             <tr>
                 <td>${visit.firstLastName}</td>
@@ -26,24 +21,18 @@ export class Visits {
                 <td>${visit.user.firstName}</td>
                 <td><button class="btn btn_table_info" data-id="${visit.id}"><i class="fa-solid fa-list"></i></button></td>
             </tr>
-            `
-
-            table.appendChild(row)
+            `;
+            table.appendChild(row);
         }
     }
-
-    public async showInfo(controllers: UIControl): UIViewAsync {
-
-        controllers.forEach((controller: UIControl) => {
+    async showInfo(controllers) {
+        controllers.forEach((controller) => {
             // The entity
-            let entityID: string = controller.dataset.id
-
-            controller.addEventListener('click', async (): Promise<void> => {
-                const arrayVisitsInformation: any = await getEntityData(entityID, 'Visit')
-
-                const modalContainer: UIControl = document.getElementById("modal-container")
-                console.log(modalContainer)
-
+            let entityID = controller.dataset.id;
+            controller.addEventListener('click', async () => {
+                const arrayVisitsInformation = await getEntityData(entityID, 'Visit');
+                const modalContainer = document.getElementById("modal-container");
+                console.log(modalContainer);
                 modalContainer.innerHTML = `
                 <div class="modal visit_information" id="modal">
                     <div class="modal_dialog modal_body">
@@ -75,31 +64,26 @@ export class Visits {
                             <button class="btn btn_success" id="close">Aceptar</button>
                         </div>
                     </div>
-                </div>`
-                this.open()
-
-                const closeButton = document.getElementById("close")
+                </div>`;
+                this.open();
+                const closeButton = document.getElementById("close");
                 closeButton?.addEventListener('click', () => {
-                    const modal: UIControl = document.getElementById("modal")
-                    modal.classList.toggle("open")
-                    modal.style.display = "none"
-                    modal.remove()
-                })
-
-                console.log(arrayVisitsInformation)
-            })
-        })
+                    const modal = document.getElementById("modal");
+                    modal.classList.toggle("open");
+                    modal.style.display = "none";
+                    modal.remove();
+                });
+                console.log(arrayVisitsInformation);
+            });
+        });
     }
-
-    private cancel(): void { }
-
-    private open(): void {
-        const modal: UIControl = document.getElementById("modal")
-        modal.style.display = "block"
-        setTimeout((): void => {
-            modal.classList.add("open")
-        })
+    cancel() { }
+    open() {
+        const modal = document.getElementById("modal");
+        modal.style.display = "block";
+        setTimeout(() => {
+            modal.classList.add("open");
+        });
     }
 }
-
-export let VisitsControllers: Visits = new Visits()
+export let VisitsControllers = new Visits();

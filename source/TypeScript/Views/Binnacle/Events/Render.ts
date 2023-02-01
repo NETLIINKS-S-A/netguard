@@ -1,5 +1,5 @@
 // @filename: EventRenderData.ts
-import { UIControl } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Libs/lib.types"
 
 export async function renderEventData(
     items: any,

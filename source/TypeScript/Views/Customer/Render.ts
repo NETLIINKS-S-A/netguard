@@ -3,7 +3,7 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { UIControl } from "../../Libs/lib.types.js"
-import { CFN } from "./CustomerViewFuncs.js"
+import { CFN } from "./Functions.js"
 
 /**
  *
@@ -59,4 +59,3 @@ export async function renderTableData(items: any, table: any, rows: number, page
 //     const updateCustomerEntityElement: UIControl = document.getElementById(
 //         "updateCutomerEntity"
 //     )
-

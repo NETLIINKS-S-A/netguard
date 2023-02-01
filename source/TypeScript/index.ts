@@ -1,8 +1,10 @@
 // @filename: index.ts
-import { App } from "./Views/Login/TokenValidator.js"
+import { App } from "./Views/Login/Login.js"
+import { login } from "./Views/Login/Check.js"
+
+
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js"
 import { UIControl } from "./Libs/lib.types.js"
-import { login } from "./Views/Login/Login.js"
 
 const app: App = new App()
 app.render()
