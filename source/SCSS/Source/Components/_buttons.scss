@@ -36,6 +36,12 @@
         border-color: $red-600;
         color: $white;
     }
+
+    &_warning, &_yellow {
+        background-color: $yellow-500;
+        border-color: $yellow-700;
+        color: $yellow-900;
+    }
 }
 
 // .btn {

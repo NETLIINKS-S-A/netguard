@@ -66,10 +66,79 @@ class TBLFn {
                     <div class="modal_dialog modal_body">
                         <h4 class="modal_title">Editar guardia</h4>
 
+                        <form autocomplete="off" id="modal-form">
+                            <div class="input_group">
+                                <label for="guard-first-name" class="form_label">Nombre</label>
+                                <input class="input" id="guard-first-name" value="${arrayGuards.firstName} ${arrayGuards.lastName} ${arrayGuards.secondLastName}" readonly disabled="true">
+                            </div>
+
+                            <div class="input_group">
+                                <label for="guard-customer" class="form_label">Empresa</label>
+                                <input class="input" id="guard-customer" value="${arrayGuards.customer.name}" readonly disabled="true">
+                            </div>
+
+                            <div class="input_group">
+                                <label for="guard-customer" class="form_label">ID</label>
+                                <input class="input" id="guard-customer" value="${arrayGuards.username}" readonly disabled="true">
+                            </div>
+
+                            <div class="input_group">
+                                <label for="guard-customer" class="form_label">Teléfono</label>
+                                <input class="input" id="guard-customer" value="${arrayGuards.phone}" maxlength="10">
+                            </div>
+
+                            <div class="input_group">
+                                <label class="form_label">Estado</label>
+
+                                <div class="select">
+                                    <input type="text" id="input-select" class="input select_box" value="Activo" readonly>
+                                    <div class="select_options" id="select_options">
+                                        <div class="select_option" data-status="active">Activo</div>
+                                        <div class="select_option" data-status="inactive">Inactivo</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <div class="modal_footer">
+                            <button class="btn" id="close">cancelar</button>
+                            <button class="btn btn_warning" id="reset">Reiniciar</button>
+                            <button class="btn btn_success" id="submit">Actualizar</button>
+                        </div>
                     </div>
                 </div>`
-
                 this.open()
+
+                console.log(arrayGuards)
+
+                const closeButton = document.getElementById("close")
+                closeButton?.addEventListener('click', () => {
+                    const modal: UIControl = document.getElementById("modal")
+                    modal.classList.toggle("open")
+                    modal.style.display = "none"
+                    modal.remove()
+                })
+
+                let customerStatus: boolean
+
+                const select: UIControl = document.querySelector(".select")
+                const selectInput: UIControl = document.getElementById('input-select')
+                const selectOptions: UIControl = document.querySelectorAll('.select_option')
+
+                select.addEventListener('click', () => {
+                    select.classList.toggle("select_active")
+                })
+
+                selectOptions.forEach((option: any) => {
+                    option.addEventListener('click', async (): Promise<void> => {
+                        if (option.dataset.status == "active") customerStatus = true
+                        else customerStatus = false
+
+                        selectInput.value = option.innerText
+
+                    })
+                })
             })
         })
     }
@@ -77,7 +146,7 @@ class TBLFn {
     private open(): void {
         const modal: UIControl = document.getElementById("modal")
         modal.style.display = "block"
-        setTimeout((): void => modal.classList.add("open"), 300)
+        setTimeout((): void => modal.classList.add("open"), 250)
     }
 }
 

@@ -48,6 +48,6 @@ export async function getEntitiesData(entities) {
  * @param entity - Nombre del elemento dentro de la entidad
 */
 export async function getEntityData(entity, entities) {
-    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}`;
+    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}?fetchPlan=full`;
     return await getData(url);
 }

@@ -19,6 +19,7 @@ export async function guardsView() {
                 <th>ID</th>
                 <th>Estado</th>
                 <th>Ciudadela</th>
+                <th>Teléfono</th>
                 <th width="45px"></th>
                 <th width="45px"></th>
             </tr>
@@ -53,6 +54,7 @@ export async function guardsView() {
     const arrayGuards = BACKEND_DATA.filter((guard) => `${guard.userType}`.includes("GUARD"));
     arrayGuards.filter((data) => data.isSuper == false);
     arrayGuards.filter((data) => data.customer == "prueba");
+    console.log(arrayGuards);
     // get rendered elements
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
@@ -77,6 +79,7 @@ export async function guardsView() {
     // write table template
     tableBody.innerHTML = `
     <tr>
+        <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>

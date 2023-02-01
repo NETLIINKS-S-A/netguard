@@ -27,7 +27,8 @@ export async function renderGuardData(
             <td class="monospace">${guard.email}</td>
             <td class="status"><i>${guard.state._instanceName}</i></td>
             <td class="citadels"><i>${guard.citadel?.description}</i></td>
-            <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
+            <td class="status"><i>${guard.phone}</i></td>
+            <td><button class="btn btn_table-editor" data-id="${guard?.id}"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete" id="deleteGuard" data-id="${guard?.id}"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`

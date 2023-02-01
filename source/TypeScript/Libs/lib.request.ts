@@ -58,6 +58,6 @@ export async function getEntityData(
     entity: string,
     entities: string
 ): Promise<void> {
-    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}`
+    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}?fetchPlan=full`
     return await getData(url)
 }
