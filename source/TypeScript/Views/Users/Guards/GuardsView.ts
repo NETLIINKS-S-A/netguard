@@ -57,21 +57,24 @@ export async function guardsView() {
     </div>`
 
     const BACKEND_DATA: any = await getEntitiesData("User")
-    const arrayGuards: any = BACKEND_DATA.filter((guard: any) => `${guard.userType}`.includes("GUARD"))
+    const arrayGuards: any = BACKEND_DATA.filter((guard: any) =>
+        `${guard.userType}`.includes("GUARD")
+    )
     arrayGuards.filter((data: any) => data.isSuper == false)
     arrayGuards.filter((data: any) => data.customer == "prueba")
 
     console.log(arrayGuards)
 
-
     // get rendered elements
     const tableBody: UIControl = document.querySelector("#table-body")
     const searchInput: UIControl = document.querySelector("#search-input")
-    const paginationCounter: UIControl = document.getElementById("pagination-counter")
+    const paginationCounter: UIControl =
+        document.getElementById("pagination-counter")
 
     const select: UIControl = document.querySelector(".select")
-    const selectInput: UIControl = document.getElementById('input-select')
-    const selectOptionsContainer: UIControl = document.querySelector('.select_options')
+    const selectInput: UIControl = document.getElementById("input-select")
+    const selectOptionsContainer: UIControl =
+        document.querySelector(".select_options")
 
     // search data
     await searchInput?.addEventListener("keyup", (): void => {
@@ -136,5 +139,4 @@ export async function guardsView() {
     // table editors
     const showEditor = document.querySelectorAll(".btn_table-editor")
     TableFn.edit(showEditor)
-
 }

@@ -6,11 +6,13 @@ let entityURL;
 class Funcs {
     async addTags(tableTag) {
         tableTag?.forEach((state) => {
-            if (state.innerText === "ENABLED" || state.innerText === "Enabled") {
+            if (state.innerText === "ENABLED" ||
+                state.innerText === "Enabled") {
                 state.classList.add("g");
                 state.innerText = "Activo";
             }
-            else if (state.innerText === "DISABLED" || state.innerText === "DISABLED") {
+            else if (state.innerText === "DISABLED" ||
+                state.innerText === "DISABLED") {
                 state.classList.add("i");
                 state.innerText = "Inactivo";
             }
@@ -71,26 +73,28 @@ class Funcs {
         </div>`;
         this.open();
         const cancel = document.getElementById("cancel");
-        cancel.addEventListener('click', () => { this.cancel(); });
+        cancel.addEventListener("click", () => {
+            this.cancel();
+        });
         const toggle = document.getElementById("vehicular-entrance");
         // toggle.checked = true
         let vehicularStatus;
         let customerStatus;
-        toggle?.addEventListener('click', () => {
+        toggle?.addEventListener("click", () => {
             const labelStatus = document.getElementById("customer-vehicular-status");
             if (toggle?.checked)
-                labelStatus.innerText = "si", vehicularStatus = true;
+                (labelStatus.innerText = "si"), (vehicularStatus = true);
             else
-                labelStatus.innerText = "no", vehicularStatus = false;
+                (labelStatus.innerText = "no"), (vehicularStatus = false);
         });
         const select = document.querySelector(".select");
-        const selectInput = document.getElementById('input-select');
-        const selectOptions = document.querySelectorAll('.select_option');
-        select.addEventListener('click', () => {
+        const selectInput = document.getElementById("input-select");
+        const selectOptions = document.querySelectorAll(".select_option");
+        select.addEventListener("click", () => {
             select.classList.toggle("select_active");
         });
         selectOptions.forEach((option) => {
-            option.addEventListener('click', async () => {
+            option.addEventListener("click", async () => {
                 if (option.dataset.status == "active")
                     customerStatus = true;
                 else
@@ -146,7 +150,9 @@ class Funcs {
         </div>`;
         this.open();
         const cancel = document.getElementById("cancel");
-        cancel.addEventListener('click', () => { this.cancel(); });
+        cancel.addEventListener("click", () => {
+            this.cancel();
+        });
         // Fill data
         const customerNameInput = document.getElementById("customer-name");
         const customerRUCInput = document.getElementById("customer-ruc");
@@ -161,21 +167,21 @@ class Funcs {
         // toggle.checked = true
         let vehicularStatus;
         let customerStatus;
-        toggle?.addEventListener('click', () => {
+        toggle?.addEventListener("click", () => {
             const labelStatus = document.getElementById("customer-vehicular-status");
             if (toggle?.checked)
-                labelStatus.innerText = "si", vehicularStatus = true;
+                (labelStatus.innerText = "si"), (vehicularStatus = true);
             else
-                labelStatus.innerText = "no", vehicularStatus = false;
+                (labelStatus.innerText = "no"), (vehicularStatus = false);
         });
         const select = document.querySelector(".select");
-        const selectInput = document.getElementById('input-select');
-        const selectOptions = document.querySelectorAll('.select_option');
-        select.addEventListener('click', () => {
+        const selectInput = document.getElementById("input-select");
+        const selectOptions = document.querySelectorAll(".select_option");
+        select.addEventListener("click", () => {
             select.classList.toggle("select_active");
         });
         selectOptions.forEach((option) => {
-            option.addEventListener('click', async () => {
+            option.addEventListener("click", async () => {
                 if (option.dataset.status == "active")
                     customerStatus = true;
                 else
@@ -197,7 +203,6 @@ class Funcs {
             modal.classList.add("open");
         }, 200);
     }
-    async submit() {
-    }
+    async submit() { }
 }
 export let CFN = new Funcs();

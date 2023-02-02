@@ -5,7 +5,7 @@ import { settings } from "../../Libs/lib.settings.js"
 
 const content: UIControl = document.getElementsByTagName("body")[0]
 
-let savedTheme = appStorage.get('theme')
+let savedTheme = appStorage.get("theme")
 if (savedTheme === null || savedTheme === undefined) {
     settings.theme
 } else {
@@ -102,12 +102,14 @@ export function AppPreferences() {
     // Themes
     const togglesButton = document.querySelectorAll(".aspect_button")
     togglesButton.forEach((button: UIControl) => {
-        button.addEventListener('click', (): void => {
-            togglesButton.forEach((button: UIControl) => button.classList.remove('isActive'))
+        button.addEventListener("click", (): void => {
+            togglesButton.forEach((button: UIControl) =>
+                button.classList.remove("isActive")
+            )
             content.className = ""
             // set theme
             content.classList.add(`${button.dataset.theme}`)
-            button.classList.add('isActive')
+            button.classList.add("isActive")
             settings.theme = `${button.dataset.theme}`
 
             tempTheme = ""
@@ -118,8 +120,8 @@ export function AppPreferences() {
     // Accessibility
 
     // SAVE
-    const save = document.getElementById('save-preferences')
-    save?.addEventListener('click', () => {
+    const save = document.getElementById("save-preferences")
+    save?.addEventListener("click", () => {
         const currentTheme = content.classList.contains(`${settings.theme}`)
         appStorage.save("theme", settings.theme, "show")
         // hide preferences on save
@@ -130,7 +132,7 @@ export function AppPreferences() {
     // CANCEL
     // BUG: not return if the current theme is light
     const cancel = document.getElementById("cancel-preferences")
-    cancel?.addEventListener('click', (): void => {
+    cancel?.addEventListener("click", (): void => {
         preferences.style.display = "none"
         content.classList.remove(tempTheme)
         content.classList.add(savedTheme)

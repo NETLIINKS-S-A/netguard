@@ -12,7 +12,12 @@ import { CFN } from "./Functions.js"
  * @param rowsPerPage - The quantity rows show per page (tableRows)
  * @param page - The current page
  */
-export async function renderTableData(items: any, table: any, rows: number, page: number): Promise<void> {
+export async function renderTableData(
+    items: any,
+    table: any,
+    rows: number,
+    page: number
+): Promise<void> {
     table.innerHTML = ""
     page--
 
@@ -45,10 +50,8 @@ export async function renderTableData(items: any, table: any, rows: number, page
         // verify RUC length
         const ruc: UIControl = document.querySelectorAll(".ruc")
         CFN.verifyRucLength(ruc)
-
     }
 }
-
 
 //     // CUSTOMER EDITOR ================================================
 //     // elements

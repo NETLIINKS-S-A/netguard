@@ -2,7 +2,6 @@
 import { App } from "./Views/Login/Login.js"
 import { login } from "./Views/Login/Check.js"
 
-
 import { renderAppDate } from "./Views/ApplicationUI/ApplicationDateAndTime.js"
 import { UIControl } from "./Libs/lib.types.js"
 
@@ -16,7 +15,8 @@ const userPassword: UIControl = document.getElementById("user-password")
 loginForm?.addEventListener("submit", (e: SubmitEvent): void => {
     e.preventDefault()
     if (userEmail?.value === "") alert('El campo "correo" no puede estar vacío')
-    else if (userPassword?.value === "") alert('El campo "Contraseña" no puede estar vacío')
+    else if (userPassword?.value === "")
+        alert('El campo "Contraseña" no puede estar vacío')
     else login(userEmail.value, userPassword.value)
 })
 // check token validation at the app start

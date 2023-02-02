@@ -13,7 +13,7 @@ export const $color = {
         p600: "#3D9993",
         p700: "#2A7E80",
         p800: "#1A5E67",
-        p900: "#104655"
+        p900: "#104655",
     },
 
     GREEN: "#5CBC4F",
@@ -26,7 +26,7 @@ export const $color = {
         g600: "#3DA139",
         g700: "#27872B",
         g800: "#196D23",
-        g900: "#0F5A1E"
+        g900: "#0F5A1E",
     },
 
     BLUE: "#2877FF",
@@ -39,7 +39,7 @@ export const $color = {
         b600: "#1D5BDB",
         b700: "#1443B7",
         b800: "#0C2F93",
-        b900: "#07207A"
+        b900: "#07207A",
     },
 
     YELLOW: "#DDCD30",
@@ -52,7 +52,7 @@ export const $color = {
         y600: "#D0CF21",
         y700: "#B78701",
         y800: "#936900",
-        y900: "#7A5400"
+        y900: "#7A5400",
     },
 
     RED: "#FF523F",
@@ -65,7 +65,7 @@ export const $color = {
         r600: "#DB312E",
         r700: "#B71F29",
         r800: "#931426",
-        r900: "#7A0C24"
+        r900: "#7A0C24",
     },
 
     SLATEGRAY: "#94A2B8",
@@ -78,7 +78,7 @@ export const $color = {
         s600: "#64738C",
         s700: "#475469",
         s800: "#324255",
-        s900: "#1E293B"
+        s900: "#1E293B",
     },
 
     GRAY: "#9AA3AE",
@@ -91,7 +91,7 @@ export const $color = {
         g600: "#6B7280",
         g700: "#4C5563",
         g800: "#374151",
-        g900: "#1F2937"
+        g900: "#1F2937",
     },
 
     ZING: "#A1A1AA",
@@ -104,7 +104,7 @@ export const $color = {
         z600: "#71717A",
         z700: "#52525B",
         z800: "#3F3F46",
-        z900: "#27272A"
+        z900: "#27272A",
     },
 
     NEUTRAL: "#A3A3A3",
@@ -117,7 +117,7 @@ export const $color = {
         n600: "#737373",
         n700: "#525252",
         n800: "#404040",
-        n900: "#272626"
+        n900: "#272626",
     },
 
     STONE: "#A8A29F",
@@ -130,8 +130,8 @@ export const $color = {
         s600: "#78716B",
         s700: "#56534F",
         s800: "#44403B",
-        s900: "#292524"
-    }
+        s900: "#292524",
+    },
 }
 
 export const $font = {
@@ -139,7 +139,7 @@ export const $font = {
         small: "10px",
         mid: "12px",
         normal: "14px",
-        large: "16px"
+        large: "16px",
     },
 
     weigth: {
@@ -147,14 +147,14 @@ export const $font = {
         semibold: 500,
         bold: 600,
         extraBold: 700,
-        black: 800
+        black: 800,
     },
 
     cap: {
         lowercase: "lowercase",
         normal: "normal",
-        uppercase: "uppercase"
-    }
+        uppercase: "uppercase",
+    },
 }
 
 /**

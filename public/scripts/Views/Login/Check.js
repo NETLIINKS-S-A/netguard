@@ -33,7 +33,7 @@ export function login(mail, password) {
                 alert("Credenciales incorrectas");
             }
             else {
-                (login.style.display = "none");
+                login.style.display = "none";
                 app.checkToken();
                 window.location.reload();
             }

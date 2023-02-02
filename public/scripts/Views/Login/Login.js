@@ -56,7 +56,7 @@ export class App {
         </div>`;
     }
     async checkToken() {
-        const accessToken = localStorage.getItem('access_token');
+        const accessToken = localStorage.getItem("access_token");
         const application = UI.App.app;
         const login = document.getElementById("login");
         if (!accessToken)

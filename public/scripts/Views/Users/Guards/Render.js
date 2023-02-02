@@ -51,7 +51,9 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
             else if (citadel.innerText === "UNDEFINED") {
                 citadel.innerText = "•••";
             }
-            else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO" && citadel.innerText != "•••") {
+            else if (citadel.innerText != "no aplica" &&
+                citadel.innerText != "NINGUNO" &&
+                citadel.innerText != "•••") {
                 citadel.classList.add("b");
             }
         });
@@ -67,11 +69,11 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
     const deleteButtons = document.querySelectorAll(".btn_table-delete");
     const modalCancelButton = document.getElementById("cancel");
     let modal = new Modal("delete");
-    modalCancelButton?.addEventListener('click', () => {
+    modalCancelButton?.addEventListener("click", () => {
         modal.close();
     });
     await deleteButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener("click", () => {
             modal.open();
             TableFn.deleteEntity();
         });

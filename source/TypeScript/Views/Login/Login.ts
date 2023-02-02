@@ -59,14 +59,15 @@ export class App {
     }
 
     public async checkToken(): Promise<void> {
-        const accessToken: string | null = localStorage.getItem('access_token')
+        const accessToken: string | null = localStorage.getItem("access_token")
         const application: UIControl = UI.App.app
         const login: UIControl = document.getElementById("login")
 
         if (!accessToken) application.style.display = "none"
-        else if (accessToken === "undefined") console.error("Error: access token is undefined")
-        else if (accessToken === null) console.error("Error: access token is null")
-
+        else if (accessToken === "undefined")
+            console.error("Error: access token is undefined")
+        else if (accessToken === null)
+            console.error("Error: access token is null")
         else {
             application.style.display = "block"
             login.style.display = "none"

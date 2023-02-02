@@ -38,7 +38,7 @@ export function login<T>(mail: T, password: T) {
                 if (data.error === "invalid_grant") {
                     alert("Credenciales incorrectas")
                 } else {
-                    (login.style.display = "none")
+                    login.style.display = "none"
                     app.checkToken()
                     window.location.reload()
                 }

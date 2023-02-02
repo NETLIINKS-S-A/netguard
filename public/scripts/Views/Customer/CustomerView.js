@@ -48,7 +48,7 @@ export async function customerView() {
     </div>`;
     const modal = document.getElementById("modal-content");
     const addNew = document.getElementById("add-new");
-    addNew?.addEventListener('click', () => {
+    addNew?.addEventListener("click", () => {
         CFN.newCustomer(modal);
     });
     // HTML ELEMENTS
@@ -83,7 +83,7 @@ export async function customerView() {
     // Edit Customer
     const editButtons = document.querySelectorAll(".btn_table-editor");
     editButtons.forEach((editButton) => {
-        editButton.addEventListener('click', () => {
+        editButton.addEventListener("click", () => {
             let entity = editButton.dataset.id;
             console.log(editButton, entity);
             CFN.editCustomer(modal, entity);

@@ -36,7 +36,7 @@ export async function updateData(url, raw) {
  * @description Obtiene los datos completos de las entidades usando fetchPlans
  *
  * @param entities - El nombre de la entidad a acceder
-*/
+ */
 export async function getEntitiesData(entities) {
     const url = `${BACKEND_ENTITIES_URL}${entities}?fetchPlan=full`;
     return await getData(url);
@@ -47,11 +47,27 @@ export async function getEntitiesData(entities) {
  *
  * @param entities - El nombre de la entidad a acceder
  * @param entity - Nombre del elemento dentro de la entidad
-*/
+ */
 export async function getEntityData(entities, entity) {
     const url = `${BACKEND_ENTITIES_URL}${entities}/${entity}?fetchPlan=full`;
     return await getData(url);
 }
+var raw = JSON.stringify({
+    lastName: "Vaca",
+    secondLastName: "Orrala",
+    isSuper: false,
+    email: "danny.vaca@mail.com",
+    temp: "",
+    isWebUser: false,
+    active: true,
+    firstName: "Danny",
+    state: {
+        id: "60885987-1b61-4247-94c7-dff348347f93",
+    },
+    phone: "0986778119",
+    userType: "CUSTOMER",
+    username: "danny.vaca@mail.com",
+});
 export async function postNewData(entity, raw) {
     const postData = {
         url: `${BACKEND_ENTITIES_URL}${entity}`,
@@ -59,10 +75,10 @@ export async function postNewData(entity, raw) {
             method: "POST",
             headers: requestHeader,
             body: raw,
-            redirect: "follow"
-        }
+            redirect: "follow",
+        },
     };
     fetch(postData)
-        .then(response => response.json())
-        .catch(error => console.log('error', error));
+        .then((response) => response.json())
+        .catch((error) => console.log("error", error));
 }

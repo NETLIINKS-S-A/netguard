@@ -21,12 +21,14 @@ class TBLFn {
         entityName.innerHTML = "l"
     }
 
-    public async filterDataByCustomer(select: UIControl,
+    public async filterDataByCustomer(
+        select: UIControl,
         container: any,
         selectInput: UIControl,
-        currentCustomer?: string): Promise<void> {
+        currentCustomer?: string
+    ): Promise<void> {
         let CNames = customerNames
-        container.innerHTML = '' // clear template
+        container.innerHTML = "" // clear template
         for (let i = 0; i < CNames.length; i++) {
             container.innerHTML += `
             <div class="select_option" id="${CNames.id}">${CNames[i].name}</div>`
@@ -35,13 +37,15 @@ class TBLFn {
             selectInput.value = CNames[0].name
         }
 
-        const selectOPtions: UIControl = await container.querySelectorAll('div')
+        const selectOPtions: UIControl = await container.querySelectorAll("div")
         // Open options on click
-        select.addEventListener('click', (): void => select.classList.toggle("select_active"))
+        select.addEventListener("click", (): void =>
+            select.classList.toggle("select_active")
+        )
 
         selectOPtions.forEach((option: UIControl, i: number) => {
             i++
-            option.addEventListener('click', async (): Promise<void> => {
+            option.addEventListener("click", async (): Promise<void> => {
                 selectInput.value = await selectOPtions[i - 1].innerHTML
 
                 currentCustomer = selectInput.value
@@ -59,7 +63,8 @@ class TBLFn {
             controller.addEventListener("click", async (): Promise<void> => {
                 const arrayGuards: any = await getEntityData(entityID, "User")
 
-                const modalContainer: UIControl = document.getElementById("modal-container")
+                const modalContainer: UIControl =
+                    document.getElementById("modal-container")
 
                 modalContainer.innerHTML = `
                 <div class="modal" id="modal">
@@ -113,7 +118,7 @@ class TBLFn {
                 console.log(arrayGuards)
 
                 const closeButton = document.getElementById("close")
-                closeButton?.addEventListener('click', () => {
+                closeButton?.addEventListener("click", () => {
                     const modal: UIControl = document.getElementById("modal")
                     modal.classList.toggle("open")
                     modal.style.display = "none"
@@ -123,21 +128,26 @@ class TBLFn {
                 let customerStatus: boolean
 
                 const select: UIControl = document.querySelector(".select")
-                const selectInput: UIControl = document.getElementById('input-select')
-                const selectOptions: UIControl = document.querySelectorAll('.select_option')
+                const selectInput: UIControl =
+                    document.getElementById("input-select")
+                const selectOptions: UIControl =
+                    document.querySelectorAll(".select_option")
 
-                select.addEventListener('click', () => {
+                select.addEventListener("click", () => {
                     select.classList.toggle("select_active")
                 })
 
                 selectOptions.forEach((option: any) => {
-                    option.addEventListener('click', async (): Promise<void> => {
-                        if (option.dataset.status == "active") customerStatus = true
-                        else customerStatus = false
+                    option.addEventListener(
+                        "click",
+                        async (): Promise<void> => {
+                            if (option.dataset.status == "active")
+                                customerStatus = true
+                            else customerStatus = false
 
-                        selectInput.value = option.innerText
-
-                    })
+                            selectInput.value = option.innerText
+                        }
+                    )
                 })
             })
         })

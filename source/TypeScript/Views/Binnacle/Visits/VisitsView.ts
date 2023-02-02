@@ -84,7 +84,7 @@ export async function visitsView(): Promise<void> {
             arrayData,
             tableBody,
             filteredResult,
-            currentPage,
+            currentPage
         )
 
         pagination(
@@ -102,7 +102,7 @@ export async function visitsView(): Promise<void> {
         arrayVisits,
         tableBody,
         tableRows,
-        currentPage,
+        currentPage
     )
 
     pagination(

@@ -53,7 +53,9 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
             else if (citadel.innerText === "UNDEFINED") {
                 citadel.innerText = "•••";
             }
-            else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO" && citadel.innerText != "•••") {
+            else if (citadel.innerText != "no aplica" &&
+                citadel.innerText != "NINGUNO" &&
+                citadel.innerText != "•••") {
                 citadel.classList.add("b");
             }
         });

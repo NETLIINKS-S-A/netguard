@@ -54,7 +54,10 @@ export async function renderAdministratorData(
                 citadel.innerText = "no aplica"
             } else if (citadel.innerText === "N/A") {
                 citadel.innerText = "ninguno"
-            } else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO") {
+            } else if (
+                citadel.innerText != "no aplica" &&
+                citadel.innerText != "NINGUNO"
+            ) {
                 citadel.classList.add("b")
             }
         })

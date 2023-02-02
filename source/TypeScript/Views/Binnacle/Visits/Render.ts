@@ -3,7 +3,12 @@ import { getEntityData } from "../../../Libs/lib.request.js"
 import { UIViewAsync, UIControl } from "../../../Libs/lib.types"
 
 export class Visits {
-    public async render(items: any, table: UIControl, rows: number, page: number): UIViewAsync {
+    public async render(
+        items: any,
+        table: UIControl,
+        rows: number,
+        page: number
+    ): UIViewAsync {
         table.innerHTML = ""
         page--
 
@@ -32,15 +37,18 @@ export class Visits {
     }
 
     public async showInfo(controllers: UIControl): UIViewAsync {
-
         controllers.forEach((controller: UIControl) => {
             // The entity
             let entityID: string = controller.dataset.id
 
-            controller.addEventListener('click', async (): Promise<void> => {
-                const arrayVisitsInformation: any = await getEntityData(entityID, 'Visit')
+            controller.addEventListener("click", async (): Promise<void> => {
+                const arrayVisitsInformation: any = await getEntityData(
+                    entityID,
+                    "Visit"
+                )
 
-                const modalContainer: UIControl = document.getElementById("modal-container")
+                const modalContainer: UIControl =
+                    document.getElementById("modal-container")
                 console.log(modalContainer)
 
                 modalContainer.innerHTML = `
@@ -78,7 +86,7 @@ export class Visits {
                 this.open()
 
                 const closeButton = document.getElementById("close")
-                closeButton?.addEventListener('click', () => {
+                closeButton?.addEventListener("click", () => {
                     const modal: UIControl = document.getElementById("modal")
                     modal.classList.toggle("open")
                     modal.style.display = "none"
@@ -90,7 +98,7 @@ export class Visits {
         })
     }
 
-    private cancel(): void { }
+    private cancel(): void {}
 
     private open(): void {
         const modal: UIControl = document.getElementById("modal")

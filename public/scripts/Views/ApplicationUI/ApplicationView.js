@@ -314,7 +314,9 @@ export async function applicationView() {
                 );
             */
             // Open app preferences
-            document.getElementById("open-preferences")?.addEventListener('click', () => {
+            document
+                .getElementById("open-preferences")
+                ?.addEventListener("click", () => {
                 AppPreferences();
             });
             // Close session functions

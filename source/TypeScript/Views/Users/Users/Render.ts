@@ -65,7 +65,11 @@ export async function displayUserData(
                 citadel.innerText = "ninguno"
             } else if (citadel.innerText === "UNDEFINED") {
                 citadel.innerText = "•••"
-            } else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO" && citadel.innerText != "•••") {
+            } else if (
+                citadel.innerText != "no aplica" &&
+                citadel.innerText != "NINGUNO" &&
+                citadel.innerText != "•••"
+            ) {
                 citadel.classList.add("b")
             }
         })

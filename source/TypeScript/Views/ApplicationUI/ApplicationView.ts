@@ -1,5 +1,5 @@
 // @filename: AppView.ts
-import { UIControl } from "../../Libs/lib.types.js";
+import { UIControl } from "../../Libs/lib.types.js"
 import { logout, dismissLogout, openLogout } from "../Login/Logout.js"
 // import libs
 import { UI } from "../../Libs/lib.dom.js"
@@ -26,7 +26,8 @@ export async function applicationView() {
     let data = await getData(url)
 
     async function renderInterface(interfaceData: any): Promise<void> {
-        if (interfaceData.error) logout() // if any error, close session (in case access token fails)
+        if (interfaceData.error)
+            logout() // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = "block"
             content.style.display = "flex"
@@ -331,9 +332,11 @@ export async function applicationView() {
             */
 
             // Open app preferences
-            document.getElementById("open-preferences")?.addEventListener('click', (): void => {
-                AppPreferences()
-            })
+            document
+                .getElementById("open-preferences")
+                ?.addEventListener("click", (): void => {
+                    AppPreferences()
+                })
 
             // Close session functions
             document

@@ -53,7 +53,9 @@ export class AppStorage {
      * @description show data saved in navigator console
      * @descripción muestra los datos guardados en la consola del navegador
      */
-    private showInConsole(name: string) { console.log(localStorage.getItem(name)) }
+    private showInConsole(name: string) {
+        console.log(localStorage.getItem(name))
+    }
 }
 
 /**

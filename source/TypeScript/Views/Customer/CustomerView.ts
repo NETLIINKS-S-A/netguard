@@ -57,7 +57,7 @@ export async function customerView() {
     const modal = document.getElementById("modal-content")
     const addNew = document.getElementById("add-new")
 
-    addNew?.addEventListener('click', (): void => {
+    addNew?.addEventListener("click", (): void => {
         CFN.newCustomer(modal)
     })
 
@@ -83,7 +83,14 @@ export async function customerView() {
         // display table data and pagination when
         // find results
         renderTableData(arrayData, tableBody, filteredResult, currentPage)
-        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderTableData)
+        pagination(
+            arrayData,
+            paginationCounter,
+            tableRows,
+            currentPage,
+            tableBody,
+            renderTableData
+        )
     })
 
     // Table placeholder
@@ -97,16 +104,23 @@ export async function customerView() {
 
     // Display data and pagination
     renderTableData(arrayCustomers, tableBody, tableRows, currentPage)
-    pagination(arrayCustomers, paginationCounter, tableRows, currentPage, tableBody, renderTableData)
+    pagination(
+        arrayCustomers,
+        paginationCounter,
+        tableRows,
+        currentPage,
+        tableBody,
+        renderTableData
+    )
 
     // Edit Customer
-    const editButtons: UIControl = document.querySelectorAll(".btn_table-editor")
+    const editButtons: UIControl =
+        document.querySelectorAll(".btn_table-editor")
     editButtons.forEach((editButton: UIControl) => {
-        editButton.addEventListener('click', (): void => {
+        editButton.addEventListener("click", (): void => {
             let entity = editButton.dataset.id
             console.log(editButton, entity)
             CFN.editCustomer(modal, entity)
-
         })
     })
 }

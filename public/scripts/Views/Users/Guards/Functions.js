@@ -19,19 +19,19 @@ class TBLFn {
     }
     async filterDataByCustomer(select, container, selectInput, currentCustomer) {
         let CNames = customerNames;
-        container.innerHTML = ''; // clear template
+        container.innerHTML = ""; // clear template
         for (let i = 0; i < CNames.length; i++) {
             container.innerHTML += `
             <div class="select_option" id="${CNames.id}">${CNames[i].name}</div>`;
             // Get first value as default value into select filter
             selectInput.value = CNames[0].name;
         }
-        const selectOPtions = await container.querySelectorAll('div');
+        const selectOPtions = await container.querySelectorAll("div");
         // Open options on click
-        select.addEventListener('click', () => select.classList.toggle("select_active"));
+        select.addEventListener("click", () => select.classList.toggle("select_active"));
         selectOPtions.forEach((option, i) => {
             i++;
-            option.addEventListener('click', async () => {
+            option.addEventListener("click", async () => {
                 selectInput.value = await selectOPtions[i - 1].innerHTML;
                 currentCustomer = selectInput.value;
                 console.log(currentCustomer);
@@ -96,7 +96,7 @@ class TBLFn {
                 this.open();
                 console.log(arrayGuards);
                 const closeButton = document.getElementById("close");
-                closeButton?.addEventListener('click', () => {
+                closeButton?.addEventListener("click", () => {
                     const modal = document.getElementById("modal");
                     modal.classList.toggle("open");
                     modal.style.display = "none";
@@ -104,13 +104,13 @@ class TBLFn {
                 });
                 let customerStatus;
                 const select = document.querySelector(".select");
-                const selectInput = document.getElementById('input-select');
-                const selectOptions = document.querySelectorAll('.select_option');
-                select.addEventListener('click', () => {
+                const selectInput = document.getElementById("input-select");
+                const selectOptions = document.querySelectorAll(".select_option");
+                select.addEventListener("click", () => {
                     select.classList.toggle("select_active");
                 });
                 selectOptions.forEach((option) => {
-                    option.addEventListener('click', async () => {
+                    option.addEventListener("click", async () => {
                         if (option.dataset.status == "active")
                             customerStatus = true;
                         else

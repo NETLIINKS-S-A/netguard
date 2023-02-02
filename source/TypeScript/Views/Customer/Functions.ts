@@ -9,10 +9,16 @@ let entityURL: string
 class Funcs {
     public async addTags(tableTag: any): Promise<void> {
         tableTag?.forEach((state: UIControl) => {
-            if (state.innerText === "ENABLED" || state.innerText === "Enabled") {
+            if (
+                state.innerText === "ENABLED" ||
+                state.innerText === "Enabled"
+            ) {
                 state.classList.add("g")
                 state.innerText = "Activo"
-            } else if (state.innerText === "DISABLED" || state.innerText === "DISABLED") {
+            } else if (
+                state.innerText === "DISABLED" ||
+                state.innerText === "DISABLED"
+            ) {
                 state.classList.add("i")
                 state.innerText = "Inactivo"
             }
@@ -74,41 +80,48 @@ class Funcs {
         </div>`
         this.open()
 
-
         const cancel: UIControl = document.getElementById("cancel")
-        cancel.addEventListener('click', (): void => { this.cancel() })
+        cancel.addEventListener("click", (): void => {
+            this.cancel()
+        })
 
         const toggle: UIControl = document.getElementById("vehicular-entrance")
         // toggle.checked = true
         let vehicularStatus: boolean
         let customerStatus: boolean
 
-        toggle?.addEventListener('click', (): void => {
-            const labelStatus: UIControl = document.getElementById("customer-vehicular-status")
-            if (toggle?.checked) labelStatus.innerText = "si", vehicularStatus = true
-            else labelStatus.innerText = "no", vehicularStatus = false
+        toggle?.addEventListener("click", (): void => {
+            const labelStatus: UIControl = document.getElementById(
+                "customer-vehicular-status"
+            )
+            if (toggle?.checked)
+                (labelStatus.innerText = "si"), (vehicularStatus = true)
+            else (labelStatus.innerText = "no"), (vehicularStatus = false)
         })
 
         const select: UIControl = document.querySelector(".select")
-        const selectInput: UIControl = document.getElementById('input-select')
-        const selectOptions: UIControl = document.querySelectorAll('.select_option')
+        const selectInput: UIControl = document.getElementById("input-select")
+        const selectOptions: UIControl =
+            document.querySelectorAll(".select_option")
 
-        select.addEventListener('click', () => {
+        select.addEventListener("click", () => {
             select.classList.toggle("select_active")
         })
 
         selectOptions.forEach((option: any) => {
-            option.addEventListener('click', async (): Promise<void> => {
+            option.addEventListener("click", async (): Promise<void> => {
                 if (option.dataset.status == "active") customerStatus = true
                 else customerStatus = false
 
                 selectInput.value = option.innerText
-
             })
         })
     }
 
-    public async editCustomer(modalElement: UIControl, entity: any): Promise<void> {
+    public async editCustomer(
+        modalElement: UIControl,
+        entity: any
+    ): Promise<void> {
         const currentEntity: any = await getEntityData(entity, "Customer")
         console.log(currentEntity)
 
@@ -157,15 +170,20 @@ class Funcs {
         this.open()
 
         const cancel: UIControl = document.getElementById("cancel")
-        cancel.addEventListener('click', (): void => { this.cancel() })
+        cancel.addEventListener("click", (): void => {
+            this.cancel()
+        })
 
         // Fill data
-        const customerNameInput: UIControl = document.getElementById("customer-name")
-        const customerRUCInput: UIControl = document.getElementById("customer-ruc")
+        const customerNameInput: UIControl =
+            document.getElementById("customer-name")
+        const customerRUCInput: UIControl =
+            document.getElementById("customer-ruc")
         customerNameInput.value = currentEntity.name
         customerRUCInput.value = parseInt(currentEntity.ruc)
 
-        if (customerRUCInput.value == "NaN") customerRUCInput.classList.add("input_error")
+        if (customerRUCInput.value == "NaN")
+            customerRUCInput.classList.add("input_error")
         customerRUCInput.addEventListener("keyup", () => {
             customerRUCInput.classList.remove("input_error")
         })
@@ -175,27 +193,30 @@ class Funcs {
         let vehicularStatus: boolean
         let customerStatus: boolean
 
-        toggle?.addEventListener('click', (): void => {
-            const labelStatus: UIControl = document.getElementById("customer-vehicular-status")
-            if (toggle?.checked) labelStatus.innerText = "si", vehicularStatus = true
-            else labelStatus.innerText = "no", vehicularStatus = false
+        toggle?.addEventListener("click", (): void => {
+            const labelStatus: UIControl = document.getElementById(
+                "customer-vehicular-status"
+            )
+            if (toggle?.checked)
+                (labelStatus.innerText = "si"), (vehicularStatus = true)
+            else (labelStatus.innerText = "no"), (vehicularStatus = false)
         })
 
         const select: UIControl = document.querySelector(".select")
-        const selectInput: UIControl = document.getElementById('input-select')
-        const selectOptions: UIControl = document.querySelectorAll('.select_option')
+        const selectInput: UIControl = document.getElementById("input-select")
+        const selectOptions: UIControl =
+            document.querySelectorAll(".select_option")
 
-        select.addEventListener('click', () => {
+        select.addEventListener("click", () => {
             select.classList.toggle("select_active")
         })
 
         selectOptions.forEach((option: any) => {
-            option.addEventListener('click', async (): Promise<void> => {
+            option.addEventListener("click", async (): Promise<void> => {
                 if (option.dataset.status == "active") customerStatus = true
                 else customerStatus = false
 
                 selectInput.value = option.innerText
-
             })
         })
     }
@@ -217,9 +238,7 @@ class Funcs {
         }, 200)
     }
 
-    private async submit(): Promise<void> {
-
-    }
+    private async submit(): Promise<void> {}
 }
 
 export let CFN: Funcs = new Funcs()

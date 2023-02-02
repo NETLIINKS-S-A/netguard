@@ -60,8 +60,8 @@ export async function guardsView() {
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
     const select = document.querySelector(".select");
-    const selectInput = document.getElementById('input-select');
-    const selectOptionsContainer = document.querySelector('.select_options');
+    const selectInput = document.getElementById("input-select");
+    const selectOptionsContainer = document.querySelector(".select_options");
     // search data
     await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
