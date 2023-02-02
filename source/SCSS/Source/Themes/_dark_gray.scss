@@ -1,0 +1,45 @@
+.dark_gray {
+    &, html, body {
+        background-color: $gray-900;
+    }
+
+    .app {
+        &_header {
+            background-color: rgba($gray-700, 0.5);
+            border-color: $gray-600;
+        }
+
+        // date and time
+        &_month {
+            display: block;
+            color: $gray-200;
+        }
+
+        &_day {
+            display: block;
+            font-size: 28px;
+            font-weight: $black;
+            color: $gray-500;
+        }
+
+        &_time {
+            display: block;
+            color: $gray-500;
+        }
+    }
+
+    @import './dark/alerts';
+    @import './dark/buttons';
+    @import './dark/fonts';
+    @import './dark/form';
+    @import './dark/inputs';
+    @import './dark/login';
+    @import './dark/menu';
+    @import './dark/modal';
+    @import './dark/pagination';
+    @import './dark/preferences';
+    @import'./dark/select';
+    @import './dark/sidebar';
+    @import './dark/table';
+    @import './dark/toggle';
+}

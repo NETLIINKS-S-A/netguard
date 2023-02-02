@@ -1,7 +1,7 @@
 .select {
     &::before {
-        border-color: $slategray-700;
-        background-color: $slategray-800;
+        border-color: $gray-700;
+        background-color: $gray-800;
         color: white;
     }
 
@@ -9,20 +9,20 @@
         position: absolute;
         top: 40px;
         width: 100%;
-        background-color: $slategray-800;
+        background-color: $gray-800;
         box-shadow: $input-shadow;
         overflow: hidden;
         z-index: 200;
-        border: 1px solid $slategray-700;
+        border: 1px solid $gray-700;
         border-radius: 4px;
         display: none;
 
         .select_option {
             padding: 10px 20px;
-            color: $slategray-100;
+            color: $gray-100;
 
             &:hover {
-                background-color: $slategray-700;
+                background-color: $gray-700;
             }
         }
     }

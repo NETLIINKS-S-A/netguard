@@ -1,5 +1,5 @@
 // @filename: AppView.ts
-import { UIElement } from "../../Types/GeneralTypes.js"
+import { UIControl } from "../../Libs/lib.types.js";
 import { logout, dismissLogout, openLogout } from "../Login/Logout.js"
 // import libs
 import { UI } from "../../Libs/lib.dom.js"
@@ -15,12 +15,13 @@ import { administratorsView } from "../Users/Administrators/AdministratorView.js
 import { citadelsView } from "../Citadels/CitadelsView.js"
 import { visitsView } from "../Binnacle/Visits/VisitsView.js"
 import { notesView } from "../Binnacle/Notes/NotesView.js"
+import { AppPreferences } from "../Preferences/Preferences.js"
 
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
-    const sidebar: UIElement = document.getElementById("appSidebar")
-    const content: UIElement = UI.App?.app
-    const wrapper: UIElement = UI.App?.wrapper
+    const sidebar: UIControl = document.getElementById("appSidebar")
+    const content: UIControl = UI.App?.app
+    const wrapper: UIControl = UI.App?.wrapper
 
     let data = await getData(url)
 
@@ -218,6 +219,13 @@ export async function applicationView() {
                         <hr>
 
                         <div class="menu_logout">
+                            <div class="menu_item" id="open-preferences">
+                                <div class="menu_item_label">
+                                    <i class="fa-regular fa-gear"></i>
+                                    <span>Preferencias</span>
+                                </div>
+                            </div>
+
                             <a href="#" class="menu_link_item" id="openLogOut">
                                 <div class="menu_link_item_label">
                                     <i class="fa-regular fa-up-from-bracket"></i>
@@ -322,6 +330,11 @@ export async function applicationView() {
                 );
             */
 
+            // Open app preferences
+            document.getElementById("open-preferences")?.addEventListener('click', (): void => {
+                AppPreferences()
+            })
+
             // Close session functions
             document
                 .getElementById("openLogOut")
@@ -334,8 +347,8 @@ export async function applicationView() {
                 ?.addEventListener("click", (e) => dismissLogout("logOutModal"))
             // End close session functions
 
-            const menuItems: UIElement = document.querySelectorAll(".menu_item")
-            const menuItemToggle: UIElement =
+            const menuItems: UIControl = document.querySelectorAll(".menu_item")
+            const menuItemToggle: UIControl =
                 document.querySelectorAll(".menu_item_toggle")
 
             menuItems?.forEach((menuItem: any) => {
@@ -357,7 +370,18 @@ export async function applicationView() {
             })
         }
 
-        guardsView()
+        // Render selected view
+        customerView()
+        // usersView()
+        // guardsView()
+        // emergencyUserView()
+        // eventView()
+        // platformView()
+        // administratorsView()
+        // citadelsView()
+        // visitsView()
+        // notesView()
+        // AppPreferences()
     }
 
     renderInterface(data)

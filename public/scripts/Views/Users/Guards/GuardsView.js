@@ -1,17 +1,14 @@
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { UI } from "../../../Libs/lib.dom.js";
 import { pagination } from "../../../Libs/lib.tools.js";
-import { renderGuardData } from "./GuardsRenderData.js";
-import { TableFunctions } from "./GuardsViewFuncs.js";
+import { renderGuardData } from "./Render.js";
+import { TableFn } from "./Functions.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;
 const appTools = UIApp?.tools;
 let currentPage = 1;
 export async function guardsView() {
-    let GET_DATA = await getEntitiesData("User");
-    let notSuper = GET_DATA.filter((data) => data.isSuper == false);
-    let arrayGuards = notSuper.filter((data) => `${data.userType}`.includes("GUARD"));
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -22,6 +19,7 @@ export async function guardsView() {
                 <th>ID</th>
                 <th>Estado</th>
                 <th>Ciudadela</th>
+                <th>Teléfono</th>
                 <th width="45px"></th>
                 <th width="45px"></th>
             </tr>
@@ -35,20 +33,11 @@ export async function guardsView() {
         <div id="pagination-counter"></div>
     </div>
 
-    <div class="modal" id="delete">
-        <div class="modal_dialog modal_body" style="max-width: 450px !important">
-            <h2 class="modal_title">Deseas eliminar <span id="entity-name"></span></h2>
-
-            <div class="modal_footer">
-                <button class="btn" id="cancel">Cancelar</button>
-                <button class="btn btn_danger">Eliminar</button>
-            </div>
-        </div>
-    </div>`;
+    <div id="modal-container"></div>`;
     // write appTools
     appTools.innerHTML = `
     <div class="toolbox">
-        <div class="select">
+        <div class="select filter">
             <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
             <div class="select_options" id="select_options">
             </div>
@@ -61,14 +50,22 @@ export async function guardsView() {
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
         </div>
     </div>`;
+    const BACKEND_DATA = await getEntitiesData("User");
+    const arrayGuards = BACKEND_DATA.filter((guard) => `${guard.userType}`.includes("GUARD"));
+    arrayGuards.filter((data) => data.isSuper == false);
+    arrayGuards.filter((data) => data.customer == "prueba");
+    console.log(arrayGuards);
     // get rendered elements
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");
+    const select = document.querySelector(".select");
+    const selectInput = document.getElementById('input-select');
+    const selectOptionsContainer = document.querySelector('.select_options');
     // search data
     await searchInput?.addEventListener("keyup", () => {
         // @ts-ignore
-        const arrayData = arrayGuards.filter((guard) => `${guard.firstName}
+        const arrayData = arrayGuardsFilteredByCustomer.filter((guard) => `${guard.firstName}
              ${guard.lastName}
              ${guard.description}`
             .toLowerCase()
@@ -86,15 +83,14 @@ export async function guardsView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
+        <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
     `.repeat(tableRows);
     renderGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
     pagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
-    const select = document.querySelector(".select");
-    const selectInput = document.getElementById('input-select');
-    const selectOptionsContainer = document.querySelector('.select_options');
-    tableFunctions.filterDataByCustomer(select, selectOptionsContainer, selectInput);
+    // table editors
+    const showEditor = document.querySelectorAll(".btn_table-editor");
+    TableFn.edit(showEditor);
 }
-let tableFunctions = new TableFunctions();

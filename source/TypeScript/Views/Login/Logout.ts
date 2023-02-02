@@ -2,7 +2,7 @@
 //
 import { Modal } from "../../Classes.js"
 import { FNPHTMLElement } from "../../Types/FunctionParameterTypes.js"
-import { App } from "./TokenValidator.js"
+import { App } from "./Login.js"
 
 export function openLogout(id: FNPHTMLElement) {
     const show: Modal = new Modal(id)

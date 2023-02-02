@@ -2,7 +2,7 @@
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { UI } from "../../../Libs/lib.dom.js";
 import { pagination } from "../../../Libs/lib.tools.js";
-import { displayUserData } from "./UsersRenderData.js";
+import { displayUserData } from "./Render.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
 const app = UIApp?.content;

@@ -8,23 +8,23 @@ table,
     border-radius: 10px;
     background-color: $white;
     overflow: hidden;
-    
+
     thead,
     .thead {
         background-color: $slategray-500;
-        
+
         tr {
             background-color: inherit;
-            
+
             th:last-child {
                 border-top-right-radius: 10px;
             }
-            
+
             th:first-child {
                 border-top-left-radius: 10px;
             }
         }
-        
+
         th {
             padding: 15px 20px;
             text-align: left;
@@ -32,34 +32,34 @@ table,
             text-transform: uppercase;
         }
     }
-    
+
     tbody,
     .tbody {
         background-color: $white;
         border: 1px solid $slategray-300;
-        
+
         tr {
             border: 1px solid $slategray-300;
             background-color: inherit;
-            
+
             &:nth-child(even) {
                 background-color: $slategray-100;
             }
-            
+
             // Define el radio de los últimos datos de las tablas
             &:last-child {
                 td {
                     &:last-child { border-bottom-right-radius: 10px; }
-                    
+
                     &:first-child { border-bottom-left-radius: 10px; }
                 }
             }
-            
+
             td {
                 padding: 10px;
                 padding-left: 20px;
                 color: $slategray-500;
-                
+
                 &:first-child {
                     font-weight: $medium;
                     color: $slategray-700;
@@ -93,16 +93,40 @@ table,
                 }
             }
 
-            .type i, .status i, .citadels i {
-                background-color: $slategray-200;
-                color: $slategray-500;
-                font-weight: $bold;
-                font-size: 12px;
-                letter-spacing: 1px;
-                font-style: normal;
-                text-transform: uppercase;
-                padding: 5px 10px;
-                border-radius: 4px;
+            .tag {
+
+                span {
+                    background-color: $slategray-200;
+                    color: $slategray-500;
+                    font-weight: $bold;
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                    font-style: normal;
+                    text-transform: uppercase;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+
+                    &.g {
+                        background-color: $green-500 !important;
+                        color: $white !important;
+                    }
+
+                    &.p {
+                        background-color: $primary-500 !important;
+                        color: $white !important;
+                    }
+
+                    &.b {
+                        background-color: $blue-500 !important;
+                        color: $white !important;
+                    }
+
+                    &.r {
+                        background-color: $red-500 !important;
+                        color: $white !important;
+                    }
+                }
             }
 
             .citadels {
@@ -113,25 +137,6 @@ table,
                 }
             }
 
-            .g {
-                background-color: $green-500 !important;
-                color: $white !important;
-            }
-
-            .p {
-                background-color: $primary-500 !important;
-                color: $white !important;
-            }
-
-            .b {
-                background-color: $blue-500 !important;
-                color: $white !important;
-            }
-
-            .r {
-                background-color: $red-500 !important;
-                color: $white !important;
-            }
         }
     }
 }

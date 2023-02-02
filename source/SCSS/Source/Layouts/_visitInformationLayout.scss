@@ -1,0 +1,29 @@
+.visit_information {
+    .modal_body {
+        max-width: 500px !important;
+    }
+
+  img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    background-color: $gray-100;
+    border: 1px solid $gray-400;
+    border-radius: 4px;
+  }
+
+  .info_group {
+    display: block;
+  }
+
+  .info_group {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .info_2_cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+}

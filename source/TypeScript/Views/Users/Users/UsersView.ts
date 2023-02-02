@@ -1,9 +1,9 @@
 // @filename: UsersView.ts
 import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
-import { displayUserData } from "./UsersRenderData.js"
+import { displayUserData } from "./Render.js"
 
 const tableRows = UI.tableRows
 const UIApp = UI.App
@@ -137,9 +137,9 @@ export async function usersView() {
     </div>`
 
     // HTML ELEMENTS
-    const tableBody: UIElement = document.querySelector("#tableBody")
-    const searchInput: UIElement = document.querySelector("#searcher")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#tableBody")
+    const searchInput: UIControl = document.querySelector("#searcher")
+    const paginationCounter: UIControl =
         document.getElementById("paginationCounter")
 
     // search data on real-time
@@ -202,8 +202,8 @@ export async function usersView() {
     )
 
     // Customer Status
-    const toggleStatus: UIElement = document.getElementById("customerStatus")
-    const customerStatusLabel: UIElement = document.getElementById(
+    const toggleStatus: UIControl = document.getElementById("customerStatus")
+    const customerStatusLabel: UIControl = document.getElementById(
         "customerStatusLabel"
     )
 
@@ -214,9 +214,9 @@ export async function usersView() {
     })
 
     // Vehicular Entrance
-    const toggleVehicularEntrace: UIElement =
+    const toggleVehicularEntrace: UIControl =
         document.getElementById("vehicularEntrance")
-    const customerVehicularEntranceLabel: UIElement = document.getElementById(
+    const customerVehicularEntranceLabel: UIControl = document.getElementById(
         "customerVehicularEntranceLabel"
     )
     toggleVehicularEntrace.addEventListener("click", () => {

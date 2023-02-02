@@ -1,6 +1,6 @@
 // @filename: GuardsRenderData.ts
 import { Modal } from "../../../Classes.js";
-import { TableFunctions } from "./GuardsViewFuncs.js";
+import { TableFn } from "./Functions";
 export async function renderGuardData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = "";
     page--;
@@ -17,7 +17,8 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
             <td class="monospace">${guard.email}</td>
             <td class="status"><i>${guard.state._instanceName}</i></td>
             <td class="citadels"><i>${guard.citadel?.description}</i></td>
-            <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
+            <td class="status"><i>${guard.phone}</i></td>
+            <td><button class="btn btn_table-editor" data-id="${guard?.id}"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete" id="deleteGuard" data-id="${guard?.id}"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`;
@@ -64,7 +65,6 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
         });
     }
     const deleteButtons = document.querySelectorAll(".btn_table-delete");
-    console.log(deleteButtons);
     const modalCancelButton = document.getElementById("cancel");
     let modal = new Modal("delete");
     modalCancelButton?.addEventListener('click', () => {
@@ -73,8 +73,7 @@ export async function renderGuardData(items, tableBody, rowsPerPage, page, pagin
     await deleteButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
             modal.open();
-            tableFunctions.deleteEntity();
+            TableFn.deleteEntity();
         });
     });
 }
-let tableFunctions = new TableFunctions();

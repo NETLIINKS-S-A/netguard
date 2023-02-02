@@ -2,8 +2,8 @@
 import { UI } from "../../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { pagination } from "../../../Libs/lib.tools.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
-import { renderEventData } from "./EventRenderData.js"
+import { UIControl } from "../../../Libs/lib.types.js"
+import { renderEventData } from "./Render.js"
 
 const tableRows: number = UI.tableRows
 const UIApp = UI.App
@@ -47,9 +47,9 @@ export async function eventView(): Promise<void> {
     </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl =
         document.getElementById("pagination-counter")
 
     // write table template
@@ -66,7 +66,7 @@ export async function eventView(): Promise<void> {
 
     console.log(arrayEvents)
 
-    const dataCount: UIElement = document.getElementById("data-count")
+    const dataCount: UIControl = document.getElementById("data-count")
     dataCount.innerHTML = `${arrayEvents.length} eventos`
 
     await searchInput?.addEventListener("keyup", (): void => {

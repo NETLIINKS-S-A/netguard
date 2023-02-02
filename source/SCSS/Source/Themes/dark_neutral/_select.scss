@@ -1,0 +1,35 @@
+.select {
+    &::before {
+        border-color: $neutral-700;
+        background-color: $neutral-800;
+        color: white;
+    }
+
+    &_options {
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        background-color: $neutral-800;
+        box-shadow: $input-shadow;
+        overflow: hidden;
+        z-index: 200;
+        border: 1px solid $neutral-700;
+        border-radius: 4px;
+        display: none;
+
+        .select_option {
+            padding: 10px 20px;
+            color: $neutral-100;
+
+            &:hover {
+                background-color: $neutral-700;
+            }
+        }
+    }
+
+    &_active {
+        .select_options {
+            display: block;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 // @filename: VisitsView.ts
 import { UI } from "../../../Libs/lib.dom.js";
 import { pagination } from "../../../Libs/lib.tools.js";
-import { renderVisitData } from "./VisitsRenderData.js";
+import { VisitsControllers } from "./Render.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;
@@ -29,7 +29,10 @@ export async function visitsView() {
 
     <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
-    </div>`;
+    </div>
+
+    <div id="modal-container"></div>
+    `;
     // write app tools
     appTools.innerHTML = `
     <div class="toolbox">
@@ -65,10 +68,13 @@ export async function visitsView() {
         let filteredResult = arrayData.length;
         if (filteredResult >= tableRows)
             filteredResult = tableRows;
-        renderVisitData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderVisitData);
+        VisitsControllers.render(arrayData, tableBody, filteredResult, currentPage);
+        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, VisitsControllers.render);
     });
     // render data
-    await renderVisitData(arrayVisits, tableBody, tableRows, currentPage, paginationCounter);
-    pagination(arrayVisits, paginationCounter, tableRows, currentPage, tableBody, renderVisitData);
+    await VisitsControllers.render(arrayVisits, tableBody, tableRows, currentPage);
+    pagination(arrayVisits, paginationCounter, tableRows, currentPage, tableBody, VisitsControllers.render);
+    const showDetailButtons = document.querySelectorAll(".btn_table_info");
+    console.log(showDetailButtons);
+    VisitsControllers.showInfo(showDetailButtons);
 }

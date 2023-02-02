@@ -6,7 +6,7 @@
 // --- button ---
 import { UI } from "../../../Libs/lib.dom.js";
 import { pagination } from "../../../Libs/lib.tools.js";
-import { renderNotesData } from "./NotesRenderData.js";
+import { renderNotesData } from "./Render.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 const tableRows = UI.tableRows;
 const UIApp = UI.App;

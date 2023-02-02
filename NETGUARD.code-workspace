@@ -1,0 +1,64 @@
+{
+    "folders": [
+        {
+            "name": "NETGUARD",
+            "path": "."
+        },
+        {
+            "name": "Playground",
+            "path": "./Playground"
+        },
+        {
+            "name": "Public",
+            "path": "./public"
+        },
+        {
+            "name": "Source",
+            "path": "./source"
+        },
+        {
+            "name": "UI Components",
+            "path": "./Source/SCSS/Source/Components"
+        },
+        {
+            "name": "Themes",
+            "path": "./Source/SCSS/Source/Themes"
+        },
+        {
+            "name": "Core",
+            "path": "./Source/TypeScript/Views"
+        },
+        {
+            "name": "Libs",
+            "path": "./Source/TypeScript/Libs"
+        }
+    ],
+    "settings": {
+        "typescript.updateImportsOnFileMove.enabled": "always",
+        "liveServer.settings.multiRootWorkspaceName": "NETGUARD",
+        "search.exclude": {
+            "**/.git/": true
+        },
+        "files.trimTrailingWhitespace": true,
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "[typescript]": {
+            "editor.formatOnPaste": true,
+            "editor.formatOnSave": true
+        },
+        "[javascript]": {
+            "editor.formatOnPaste": true,
+            "editor.formatOnSave": true
+        },
+        "editor.rulers": [80],
+        "files.insertFinalNewline": true,
+        "editor.detectIndentation": true,
+        "editor.wrappingIndent": "none",
+        "editor.formatOnSave": true,
+        "editor.linkedEditing": true,
+        "editor.minimap.enabled": true,
+        "git.alwaysShowStagedChangesResourceGroup": true,
+        "git.autofetch": "all",
+        "workbench.editor.languageDetection": true
+    }
+}

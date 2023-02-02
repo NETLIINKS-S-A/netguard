@@ -1,8 +1,8 @@
 // @filename: VisitsView.ts
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
-import { renderVisitData } from "./VisitsRenderData.js"
-import { UIElement } from "../../../Types/GeneralTypes.js"
+import { VisitsControllers } from "./Render.js"
+import { UIControl } from "../../../Libs/lib.types.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 
 const tableRows: number = UI.tableRows
@@ -32,7 +32,10 @@ export async function visitsView(): Promise<void> {
 
     <div class="pagination" style="display: none !important">
         <div id="pagination-counter"></div>
-    </div>`
+    </div>
+
+    <div id="modal-container"></div>
+    `
 
     // write app tools
     appTools.innerHTML = `
@@ -46,9 +49,9 @@ export async function visitsView(): Promise<void> {
     </div>`
 
     // get elements
-    const tableBody: UIElement = document.querySelector("#table-body")
-    const searchInput: UIElement = document.querySelector("#search-input")
-    const paginationCounter: UIElement =
+    const tableBody: UIControl = document.querySelector("#table-body")
+    const searchInput: UIControl = document.querySelector("#search-input")
+    const paginationCounter: UIControl =
         document.getElementById("pagination-counter")
 
     // write table template
@@ -77,12 +80,11 @@ export async function visitsView(): Promise<void> {
         let filteredResult = arrayData.length
         if (filteredResult >= tableRows) filteredResult = tableRows
 
-        renderVisitData(
+        VisitsControllers.render(
             arrayData,
             tableBody,
             filteredResult,
             currentPage,
-            paginationCounter
         )
 
         pagination(
@@ -91,17 +93,16 @@ export async function visitsView(): Promise<void> {
             tableRows,
             currentPage,
             tableBody,
-            renderVisitData
+            VisitsControllers.render
         )
     })
 
     // render data
-    await renderVisitData(
+    await VisitsControllers.render(
         arrayVisits,
         tableBody,
         tableRows,
         currentPage,
-        paginationCounter
     )
 
     pagination(
@@ -110,6 +111,11 @@ export async function visitsView(): Promise<void> {
         tableRows,
         currentPage,
         tableBody,
-        renderVisitData
+        VisitsControllers.render
     )
+
+    const showDetailButtons = document.querySelectorAll(".btn_table_info")
+    console.log(showDetailButtons)
+
+    VisitsControllers.showInfo(showDetailButtons)
 }

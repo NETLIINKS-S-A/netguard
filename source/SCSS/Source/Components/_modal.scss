@@ -28,13 +28,13 @@
         transition-property: opacity, transform;
         box-shadow: $box-shadow;
     }
-  
+
     &_title {
         font-size: 25px;
         font-weight: 600;
         margin-bottom: 12px;
     }
-  
+
     &_body {
         display: flow-root;
         padding: 20px;
@@ -45,18 +45,9 @@
             .form_group {
                 display: flex;
             }
-
-            .input_group {
-                display: block;
-                width: 100%;
-
-                & + * {
-                    margin-right: 10px
-                }
-            }
         }
     }
-  
+
     &_footer {
         display: flex;
         align-items: center;
@@ -68,7 +59,7 @@
         }
     }
 }
-  
+
 // Add open with the dialog is display
 .open .modal_dialog {
     opacity: 1;
