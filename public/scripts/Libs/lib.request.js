@@ -4,6 +4,7 @@ let requestHeader = new Headers();
 requestHeader.append("Authorization", `Bearer ${UI.accessToken}`);
 requestHeader.append("Content-Type", "application/json");
 requestHeader.append("Cookie", "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF");
+const BACKEND_ENTITIES_URL = "https://backend.netliinks.com:443/rest/entities/";
 export async function getData(url) {
     let GetRequestOption = {
         method: "GET",
@@ -37,7 +38,7 @@ export async function updateData(url, raw) {
  * @param entities - El nombre de la entidad a acceder
 */
 export async function getEntitiesData(entities) {
-    const url = `https://backend.netliinks.com:443/rest/entities/${entities}?fetchPlan=full`;
+    const url = `${BACKEND_ENTITIES_URL}${entities}?fetchPlan=full`;
     return await getData(url);
 }
 /**
@@ -47,7 +48,21 @@ export async function getEntitiesData(entities) {
  * @param entities - El nombre de la entidad a acceder
  * @param entity - Nombre del elemento dentro de la entidad
 */
-export async function getEntityData(entity, entities) {
-    const url = `https://backend.netliinks.com:443/rest/entities/${entities}/${entity}?fetchPlan=full`;
+export async function getEntityData(entities, entity) {
+    const url = `${BACKEND_ENTITIES_URL}${entities}/${entity}?fetchPlan=full`;
     return await getData(url);
+}
+export async function postNewData(entity, raw) {
+    const postData = {
+        url: `${BACKEND_ENTITIES_URL}${entity}`,
+        requestOptions: {
+            method: "POST",
+            headers: requestHeader,
+            body: raw,
+            redirect: "follow"
+        }
+    };
+    fetch(postData)
+        .then(response => response.json())
+        .catch(error => console.log('error', error));
 }
