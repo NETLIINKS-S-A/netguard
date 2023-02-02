@@ -197,5 +197,7 @@ class Funcs {
             modal.classList.add("open");
         }, 200);
     }
+    async submit() {
+    }
 }
 export let CFN = new Funcs();

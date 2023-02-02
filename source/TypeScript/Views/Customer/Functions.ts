@@ -107,6 +107,7 @@ class Funcs {
             })
         })
     }
+
     public async editCustomer(modalElement: UIControl, entity: any): Promise<void> {
         const currentEntity: any = await getEntityData(entity, "Customer")
         console.log(currentEntity)
@@ -215,7 +216,10 @@ class Funcs {
             modal.classList.add("open")
         }, 200)
     }
-}
 
+    private async submit(): Promise<void> {
+
+    }
+}
 
 export let CFN: Funcs = new Funcs()
