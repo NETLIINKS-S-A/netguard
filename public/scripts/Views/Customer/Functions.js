@@ -110,7 +110,7 @@ class Funcs {
         document.getElementById("new-customer-entity")?.addEventListener("click", () => this.submit(customerName, customerRuc, customerStatus, vehicularStatus = false));
     }
     async editCustomer(modalElement, entity) {
-        const currentEntity = await getEntityData(entity, "Customer");
+        const currentEntity = await getEntityData("Customer", entity);
         console.log(currentEntity);
         modalElement.innerHTML = `
         <div class="modal" id="modal">
@@ -160,7 +160,9 @@ class Funcs {
             this.cancel();
         });
         // Fill data
+        // NAME INPUT
         const customerNameInput = document.getElementById("customer-name");
+        // RUC INPUT
         const customerRUCInput = document.getElementById("customer-ruc");
         customerNameInput.value = currentEntity.name;
         customerRUCInput.value = parseInt(currentEntity.ruc);

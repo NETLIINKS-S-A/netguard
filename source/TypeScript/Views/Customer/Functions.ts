@@ -1,6 +1,6 @@
 // @filename: BusinessEditor.ts
 import { getEntityData, postNewData } from "../../Libs/lib.request.js"
-import { UIControl } from "../../Libs/lib.types.js"
+import { UIController } from "../../Libs/lib.types.js"
 import { $color } from "../../Libs/lib.tools.js"
 
 let entityURL: string
@@ -8,7 +8,7 @@ let entityURL: string
 
 class Funcs {
     public async addTags(tableTag: any): Promise<void> {
-        tableTag?.forEach((state: UIControl) => {
+        tableTag?.forEach((state: UIController) => {
             if (
                 state.innerText === "ENABLED" ||
                 state.innerText === "Enabled"
@@ -35,7 +35,7 @@ class Funcs {
         })
     }
 
-    public newCustomer(modalElement: UIControl): void {
+    public newCustomer(modalElement: UIController): void {
         modalElement.innerHTML = `
         <div class="modal" id="modal">
             <div class="modal_dialog modal_body" style="max-width: 450px !important">
@@ -88,13 +88,13 @@ class Funcs {
         const customerStatus = document.getElementById("input-select")
 
         // V E H I C U L A R   E N T R A N C E
-        const toggle: UIControl = document.getElementById("vehicular-entrance")
+        const toggle: UIController = document.getElementById("vehicular-entrance")
         // toggle.checked = true
         let vehicularStatus: boolean
         let statusData: boolean
 
         toggle?.addEventListener("click", (): void => {
-            const labelStatus: UIControl = document.getElementById(
+            const labelStatus: UIController = document.getElementById(
                 "customer-vehicular-status"
             )
             if (toggle?.checked)
@@ -102,9 +102,9 @@ class Funcs {
             else (labelStatus.innerText = "no"), (vehicularStatus = false)
         })
 
-        const select: UIControl = document.querySelector(".select")
-        const selectInput: UIControl = document.getElementById("input-select")
-        const selectOptions: UIControl =
+        const select: UIController = document.querySelector(".select")
+        const selectInput: UIController = document.getElementById("input-select")
+        const selectOptions: UIController =
             document.querySelectorAll(".select_option")
 
         select.addEventListener("click", () => {
@@ -127,10 +127,10 @@ class Funcs {
     }
 
     public async editCustomer(
-        modalElement: UIControl,
+        modalElement: UIController,
         entity: any
     ): Promise<void> {
-        const currentEntity: any = await getEntityData(entity, "Customer")
+        const currentEntity: any = await getEntityData("Customer", entity)
         console.log(currentEntity)
 
         modalElement.innerHTML = `
@@ -177,32 +177,38 @@ class Funcs {
         </div>`
         this.open()
 
-        const cancel: UIControl = document.getElementById("cancel")
+        const cancel: UIController = document.getElementById("cancel")
         cancel.addEventListener("click", (): void => {
             this.cancel()
         })
 
         // Fill data
-        const customerNameInput: UIControl =
+        // NAME INPUT
+        const customerNameInput: UIController =
             document.getElementById("customer-name")
-        const customerRUCInput: UIControl =
+
+        // RUC INPUT
+        const customerRUCInput: UIController =
             document.getElementById("customer-ruc")
+
         customerNameInput.value = currentEntity.name
+
         customerRUCInput.value = parseInt(currentEntity.ruc)
 
         if (customerRUCInput.value == "NaN")
             customerRUCInput.classList.add("input_error")
+
         customerRUCInput.addEventListener("keyup", () => {
             customerRUCInput.classList.remove("input_error")
         })
 
-        const toggle: UIControl = document.getElementById("vehicular-entrance")
+        const toggle: UIController = document.getElementById("vehicular-entrance")
         // toggle.checked = true
         let vehicularStatus: boolean
         let customerStatus: boolean
 
         toggle?.addEventListener("click", (): void => {
-            const labelStatus: UIControl = document.getElementById(
+            const labelStatus: UIController = document.getElementById(
                 "customer-vehicular-status"
             )
             if (toggle?.checked)
@@ -210,9 +216,9 @@ class Funcs {
             else (labelStatus.innerText = "no"), (vehicularStatus = false)
         })
 
-        const select: UIControl = document.querySelector(".select")
-        const selectInput: UIControl = document.getElementById("input-select")
-        const selectOptions: UIControl =
+        const select: UIController = document.querySelector(".select")
+        const selectInput: UIController = document.getElementById("input-select")
+        const selectOptions: UIController =
             document.querySelectorAll(".select_option")
 
         select.addEventListener("click", () => {
@@ -230,7 +236,7 @@ class Funcs {
     }
 
     private cancel(): void {
-        const modal: UIControl = document.getElementById("modal")
+        const modal: UIController = document.getElementById("modal")
 
         setTimeout(() => modal.classList.toggle("open"), 200)
 
@@ -239,14 +245,14 @@ class Funcs {
     }
 
     private open(): void {
-        const modal: UIControl = document.getElementById("modal")
+        const modal: UIController = document.getElementById("modal")
         modal.style.display = "block"
         setTimeout(() => {
             modal.classList.add("open")
         }, 200)
     }
 
-    private async submit(name: UIControl, ruc: UIControl, status: UIControl, vehicularEntrance: UIControl): Promise<void> {
+    private async submit(name: UIController, ruc: UIController, status: UIController, vehicularEntrance: UIController): Promise<void> {
 
         let stateId: string = status.dataset.statesId
 

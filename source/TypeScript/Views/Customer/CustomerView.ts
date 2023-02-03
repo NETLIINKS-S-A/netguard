@@ -101,16 +101,4 @@ export async function customerView() {
     // Display data and pagination
     renderTableData(arrayCustomers, table, rows, currentPage)
     pagination(arrayCustomers, paginationCounter, rows, currentPage, table, renderTableData)
-
-    // Edit Customer
-    const editButtons: UIControl =
-        document.querySelectorAll(".btn_table-editor")
-
-    editButtons.forEach((editButton: UIControl) => {
-        editButton.addEventListener("click", (): void => {
-            let entity = editButton.dataset.id
-            console.log(editButton, entity)
-            CFN.editCustomer(modal, entity)
-        })
-    })
 }

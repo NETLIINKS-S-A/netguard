@@ -22,7 +22,7 @@ export async function renderTableData(items, table, rows, page) {
             <td class="monospace ruc">${customer.ruc}</td>
             <td class="tag"><span>${customer.state.name}</span></td>
             <td>
-                <button class="btn btn_table" id="edit-entity" data-id="${customer.id}"><i class="fa-solid fa-pencil"></i></button>
+                <button class="btn btn_table editor" id="edit-entity" data-id="${customer.id}"><i class="fa-solid fa-pencil"></i></button>
             </td>
         </tr>`;
         // write data on table
@@ -33,7 +33,16 @@ export async function renderTableData(items, table, rows, page) {
         // verify RUC length
         const ruc = document.querySelectorAll(".ruc");
         CFN.verifyRucLength(ruc);
+        // Edit Customer
     }
+    const editButtons = document.querySelectorAll(".editor");
+    const modal = document.getElementById("modal-content");
+    editButtons.forEach((editButton) => {
+        editButton.addEventListener("click", () => {
+            let entity = editButton.dataset.id;
+            CFN.editCustomer(modal, entity);
+        });
+    });
 }
 //     // CUSTOMER EDITOR ================================================
 //     // elements
