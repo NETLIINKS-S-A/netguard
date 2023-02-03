@@ -1,4 +1,4 @@
-import { UserEditor, MultiInput, closeUserModal } from "./Functions.js";
+import { UserEditor, MultiInput, closeUserModal, FNClients } from "./Functions.js";
 /**
  *
  * @param items - The saved data and filtered data (tableData)
@@ -18,55 +18,17 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
         itemElement.innerHTML = `<tr>
             <td>${user?.firstName} ${user?.lastName}</td>
             <td class="monospace">${user.email}</td>
-            <td class="status"><i>${user.state._instanceName}</i></td>
-            <td class="citadels"><i>${user.citadel?.description}</i></td>
+            <td class="tag"><span>${user.state._instanceName}</span></td>
+            <td class="tag"><span>${user.citadel?.description}</span></td>
             <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`;
         // write datas on table
         tableBody.appendChild(itemElement);
-        // fix states
-        const states = document.querySelectorAll(".status i");
-        states?.forEach((state) => {
-            if (state.innerText === "ENABLED") {
-                state.classList.add("g");
-                state.innerText = "Activo";
-            }
-            else if (state.innerText === "DISABLED") {
-                state.classList.add("i");
-                state.innerText = "Inactivo";
-            }
-        });
-        // Fix citadels
-        const citadels = document.querySelectorAll(".citadels i");
-        citadels?.forEach((citadel) => {
-            if (citadel.innerText === "NO APLICA") {
-                citadel.innerText = "no aplica";
-            }
-            else if (citadel.innerText === "No Aplica") {
-                citadel.innerText = "no aplica";
-            }
-            else if (citadel.innerText === "N/A") {
-                citadel.innerText = "ninguno";
-            }
-            else if (citadel.innerText === "UNDEFINED") {
-                citadel.innerText = "•••";
-            }
-            else if (citadel.innerText != "no aplica" &&
-                citadel.innerText != "NINGUNO" &&
-                citadel.innerText != "•••") {
-                citadel.classList.add("b");
-            }
-        });
-        // Fix type
-        const types = document.querySelectorAll(".type i");
-        types.forEach((type) => {
-            if (type.innerText === "CUSTOMER") {
-                type.classList.add("p");
-                type.innerText = "Cliente";
-            }
-        });
+        // fix tags
+        const tags = document.querySelectorAll(".tag span");
+        FNClients.TAGS(tags);
     }
     // CUSTOMER EDITOR ================================================
     // elements

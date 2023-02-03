@@ -1,8 +1,51 @@
 // @filename: UsesViewFuncs.ts
 import { Modal } from "../../../Classes.js"
-import { getData, updateData } from "../../../Libs/lib.request.js"
-import { UIControl } from "../../../Libs/lib.types.js"
+import { getData, getEntityData, updateData } from "../../../Libs/lib.request.js"
+import { UIControl, UIController } from "../../../Libs/lib.types.js"
 import { usersView as renderUsers } from "./UsersView.js"
+
+class NLFClients {
+    public async TAGS(TABLE_TAGS: UIControl): Promise<void> {
+        TABLE_TAGS?.forEach((TAG: UIController) => {
+            if (
+                TAG.innerText === "ENABLED" ||
+                TAG.innerText === "Enabled"
+            ) {
+                TAG.classList.add("g")
+                TAG.innerText === "Activo"
+            } else if (
+                TAG.innerText === "DISABLED" ||
+                TAG.innerText === "Disabled" ||
+                TAG.innerText === "Inactivo" ||
+                TAG.innerText === "INACTIVO"
+            ) {
+                TAG.classList.add("i")
+                TAG.innerText = "Inactivo"
+            } else if (TAG.innerText === "NO APLICA") {
+                TAG.innerText = "no aplica"
+            } else if (TAG.innerText === "No Aplica") {
+                TAG.innerText = "no aplica"
+            } else if (TAG.innerText === "N/A") {
+                TAG.innerText = "ninguno"
+            } else if (TAG.innerText === "UNDEFINED") {
+                TAG.innerText = "•••"
+            } else if (
+                TAG.innerText != "no aplica" &&
+                TAG.innerText != "NINGUNO" &&
+                TAG.innerText != "•••"
+            ) {
+                TAG.classList.add("b")
+            }
+        })
+    }
+
+    public async editor(entity: string) {
+        let GET_DATA = getEntityData("Users", entity)
+    }
+}
+
+export const FNClients: NLFClients = new NLFClients()
+
 
 let entityURL: string
 // Close editor

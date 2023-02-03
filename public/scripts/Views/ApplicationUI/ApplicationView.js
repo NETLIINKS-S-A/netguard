@@ -346,8 +346,8 @@ export async function applicationView() {
             });
         }
         // Render selected view
-        customerView();
-        // usersView()
+        // customerView()
+        usersView();
         // guardsView()
         // emergencyUserView()
         // eventView()
