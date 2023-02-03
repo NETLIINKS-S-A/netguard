@@ -188,8 +188,6 @@ export function pagination(
         )
         wrapper.appendChild(btn)
     }
-
-    truncatePagination(wrapper)
 }
 
 /**
@@ -225,10 +223,4 @@ function setupButtons(
     })
 
     return button
-}
-
-async function truncatePagination(w: any): Promise<void> {
-    const paginationWrapper: HTMLElement | any = w
-
-    console.log(paginationWrapper)
 }

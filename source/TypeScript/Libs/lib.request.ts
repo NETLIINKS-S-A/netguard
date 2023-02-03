@@ -93,6 +93,8 @@ export async function postNewData(entity: string, raw: any): Promise<void> {
         },
     }
 
+    console.log(postData)
+
     fetch(postData)
         .then((response) => response.json())
         .catch((error) => console.log("error", error))

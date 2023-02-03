@@ -156,7 +156,6 @@ export function pagination(items, wrapper, rowsPerPage, currentPage, tableBody, 
         btn = setupButtons(i, items, currentPage, tableBody, rowsPerPage, displayFunc);
         wrapper.appendChild(btn);
     }
-    truncatePagination(wrapper);
 }
 /**
  *
@@ -179,8 +178,4 @@ function setupButtons(page, items, currentPage, tableBody, rowsPerPage, displayD
         button.classList.add("isActive");
     });
     return button;
-}
-async function truncatePagination(w) {
-    const paginationWrapper = w;
-    console.log(paginationWrapper);
 }

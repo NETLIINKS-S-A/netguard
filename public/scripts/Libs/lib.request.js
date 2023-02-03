@@ -78,6 +78,7 @@ export async function postNewData(entity, raw) {
             redirect: "follow",
         },
     };
+    console.log(postData);
     fetch(postData)
         .then((response) => response.json())
         .catch((error) => console.log("error", error));

@@ -1,5 +1,5 @@
 // @filename: BusinessEditor.ts
-import { getEntityData } from "../../Libs/lib.request.js"
+import { getEntityData, postNewData } from "../../Libs/lib.request.js"
 import { UIControl } from "../../Libs/lib.types.js"
 import { $color } from "../../Libs/lib.tools.js"
 
@@ -43,14 +43,14 @@ class Funcs {
 
                 <form>
                     <div class="input_group">
-                        <label for="name" class="form_label">Nombre</label>
-                        <input type="text" placeholder="empresa" class="input">
+                        <label for="customer-name" class="form_label">Nombre</label>
+                        <input type="text" placeholder="empresa" class="input" id="customer-name">
                     </div>
 
                     <div class="form_group">
                         <div class="input_group">
-                            <label for="ruc" class="form_label">RUC</label>
-                            <input type="text" placeholder="0900900000" class="input monospace" maxlength="10">
+                            <label for="customer-ruc" class="form_label">RUC</label>
+                            <input type="text" placeholder="0900900000" class="input monospace" maxlength="10" id="customer-ruc">
                         </div>
 
                         <div class="input_group">
@@ -74,21 +74,24 @@ class Funcs {
                 </form>
                 <div class="modal_footer">
                     <button class="btn" id="cancel">Cancelar</button>
-                    <button class="btn btn_success" id="updateCutomerEntity">Guardar</button>
+                    <button class="btn btn_success" id="new-customer-entity">Guardar</button>
                 </div>
             </div>
         </div>`
         this.open()
 
-        const cancel: UIControl = document.getElementById("cancel")
-        cancel.addEventListener("click", (): void => {
-            this.cancel()
-        })
+        // C U S T O M E R   N A M E
+        const customerName = document.getElementById("customer-name")
+        // R U C
+        const customerRuc = document.getElementById("customer-ruc")
+        // S T A T U S
+        const customerStatus = document.getElementById("input-select")
 
+        // V E H I C U L A R   E N T R A N C E
         const toggle: UIControl = document.getElementById("vehicular-entrance")
         // toggle.checked = true
         let vehicularStatus: boolean
-        let customerStatus: boolean
+        let statusData: boolean
 
         toggle?.addEventListener("click", (): void => {
             const labelStatus: UIControl = document.getElementById(
@@ -110,12 +113,17 @@ class Funcs {
 
         selectOptions.forEach((option: any) => {
             option.addEventListener("click", async (): Promise<void> => {
-                if (option.dataset.status == "active") customerStatus = true
-                else customerStatus = false
+                if (option.dataset.status == "active") statusData = true
+                else statusData = false
 
                 selectInput.value = option.innerText
             })
         })
+
+        // Modal controls
+        document.getElementById("cancel")?.addEventListener("click", (): void => this.cancel())
+
+        document.getElementById("new-customer-entity")?.addEventListener("click", (): any => this.submit(customerName, customerRuc, customerStatus, vehicularStatus = false))
     }
 
     public async editCustomer(
@@ -148,8 +156,8 @@ class Funcs {
                             <div class="select">
                                 <input type="text" id="input-select" class="input select_box" value="Activo" readonly>
                                 <div class="select_options" id="select_options">
-                                    <div class="select_option" data-status="active">Activo</div>
-                                    <div class="select_option" data-status="inactive">Inactivo</div>
+                                    <div class="select_option" data-stateId="60885987-1b61-4247-94c7-dff348347f93">Activo</div>
+                                    <div class="select_option" data-stateId="225b5e5d-9bb1-469a-b2d9-ca85d53db47b">Inactivo</div>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +246,21 @@ class Funcs {
         }, 200)
     }
 
-    private async submit(): Promise<void> {}
+    private async submit(name: UIControl, ruc: UIControl, status: UIControl, vehicularEntrance: UIControl): Promise<void> {
+
+        let stateId: string = status.dataset.statesId
+
+        let raw: any = JSON.stringify({
+            "name": `${name.value}`,
+            "ruc": `${ruc.value}`,
+            "asociated": `${name.value}`.toLowerCase().trim(),
+            "state": {
+                "id": `${stateId}`
+            }
+        })
+
+        postNewData("Customer", raw)
+    }
 }
 
 export let CFN: Funcs = new Funcs()
