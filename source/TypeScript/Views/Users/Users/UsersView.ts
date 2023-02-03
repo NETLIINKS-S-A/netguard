@@ -1,6 +1,6 @@
 // @filename: UsersView.ts
 import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { UIControl } from "../../../Libs/lib.types.js"
+import { NLData, UIAsyncView, UIControl } from "../../../Libs/lib.types.js"
 import { UI } from "../../../Libs/lib.dom.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 import { displayUserData } from "./Render.js"
@@ -11,8 +11,8 @@ const app = UIApp?.content
 const appTools = UIApp?.tools
 let currentPage: number = 1
 
-export async function usersView() {
-    let GET_DATA: any = await getEntitiesData("User")
+export async function usersView(): UIAsyncView {
+    let GET_DATA: NLData = await getEntitiesData("User")
     let notSuper: any = GET_DATA.filter((data: any) => data.isSuper === false)
     let arrayUsers: any = notSuper.filter((data: any) =>
         `${data.userType}`.includes("CUSTOMER")

@@ -1,6 +1,6 @@
 // @filename: VisitsRenderData.ts
 import { getEntityData } from "../../../Libs/lib.request.js"
-import { UIViewAsync, UIControl } from "../../../Libs/lib.types"
+import { UIAsyncView, UIControl } from "../../../Libs/lib.types"
 
 export class Visits {
     public async render(
@@ -8,7 +8,7 @@ export class Visits {
         table: UIControl,
         rows: number,
         page: number
-    ): UIViewAsync {
+    ): UIAsyncView {
         table.innerHTML = ""
         page--
 
@@ -36,7 +36,7 @@ export class Visits {
         }
     }
 
-    public async showInfo(controllers: UIControl): UIViewAsync {
+    public async showInfo(controllers: UIControl): UIAsyncView {
         controllers.forEach((controller: UIControl) => {
             // The entity
             let entityID: string = controller.dataset.id
@@ -98,7 +98,7 @@ export class Visits {
         })
     }
 
-    private cancel(): void {}
+    private cancel(): void { }
 
     private open(): void {
         const modal: UIControl = document.getElementById("modal")
