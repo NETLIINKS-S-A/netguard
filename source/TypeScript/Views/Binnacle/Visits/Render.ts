@@ -1,6 +1,6 @@
 // @filename: VisitsRenderData.ts
 import { getEntityData } from "../../../Libs/lib.request.js"
-import { UIAsyncView, UIControl } from "../../../Libs/lib.types"
+import { UIControl, BackendValues } from "../../../Libs/lib.types"
 
 export class Visits {
     public async render(
@@ -8,7 +8,7 @@ export class Visits {
         table: UIControl,
         rows: number,
         page: number
-    ): UIAsyncView {
+    ): Promise<BackendValues> {
         table.innerHTML = ""
         page--
 
@@ -36,7 +36,7 @@ export class Visits {
         }
     }
 
-    public async showInfo(controllers: UIControl): UIAsyncView {
+    public async showInfo(controllers: UIControl): Promise<BackendValues> {
         controllers.forEach((controller: UIControl) => {
             // The entity
             let entityID: string = controller.dataset.id
