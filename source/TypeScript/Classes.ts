@@ -1,27 +1,70 @@
-// @filename: Classes.ts
-import { UIControl } from "./Libs/lib.types.js"
+// @filename: GeneralFunctions.ts
+import { InterfaceModifier, UIControl, UIController } from "./Libs/lib.types.js"
 
-export class Modal {
-    private id: string
-    readonly modal: UIControl
-
-    public constructor(id: string) {
-        this.id = id
-        this.modal = document.getElementById(this.id)
-    }
-
-    public open(): void {
-        this.modal.style.display = "block"
-        setTimeout(() => this.modal.classList.toggle("open"), 100)
-    }
-
-    public close(): void {
-        this.modal.classList.toggle("open")
-        setTimeout(() => (this.modal.style.display = "none"), 100)
+class Funcs {
+    public async TAGS(TABLE_TAGS: UIControl): Promise<InterfaceModifier> {
+        TABLE_TAGS?.forEach((TAG: UIController) => {
+            if (
+                TAG.innerText === "ENABLED" ||
+                TAG.innerText === "Enabled"
+            ) {
+                TAG.classList.add("g")
+                TAG.innerText === "Activo"
+            } else if (
+                TAG.innerText === "DISABLED" ||
+                TAG.innerText === "Disabled" ||
+                TAG.innerText === "Inactivo" ||
+                TAG.innerText === "INACTIVO"
+            ) {
+                TAG.classList.add("i")
+                TAG.innerText = "Inactivo"
+            } else if (TAG.innerText === "NO APLICA") {
+                TAG.innerText = "no aplica"
+            } else if (TAG.innerText === "No Aplica") {
+                TAG.innerText = "no aplica"
+            } else if (TAG.innerText === "N/A") {
+                TAG.innerText = "ninguno"
+            } else if (TAG.innerText === "UNDEFINED") {
+                TAG.innerText = "•••"
+            } else if (
+                TAG.innerText != "no aplica" &&
+                TAG.innerText != "NINGUNO" &&
+                TAG.innerText != "•••"
+            ) {
+                TAG.classList.add("b")
+            }
+        })
     }
 }
 
-export class AppStorage {
+export class Modal {
+    public open(): void {
+        const modal: UIController = document.getElementById("modal")
+        modal ? modal.style.display = "block" : console.error("no se encuentra el modal")
+        setTimeout(() => modal.classList.add("open"), 200)
+    }
+
+    public close(): void {
+        const modal: UIController = document.getElementById("modal")
+        setTimeout(() => modal.classList.toggle("open"), 200)
+
+        modal.style.display = "none"
+        modal.remove()
+    }
+
+    public cancel(): void {
+        const modal: UIController = document.getElementById("modal")
+
+        // TODO: add clear input functions
+
+        setTimeout(() => modal.classList.toggle("open"), 200)
+
+        modal.style.display = "none"
+        modal.remove()
+    }
+}
+
+class AppStorage {
     /**
      * @function save
      * @param name - string
@@ -72,3 +115,4 @@ export class AppStorage {
  * save and get methods
  */
 export let appStorage: AppStorage = new AppStorage()
+export const NLFuncs: Funcs = new Funcs()

@@ -1,4 +1,9 @@
-import { UserEditor, MultiInput, closeUserModal, FNClients } from "./Functions.js";
+// @filename: UsersRenderData.ts
+/* ******************************************
+DISPLAY TABLE DATA AND FILTERED TABLE DATA
+******************************************** */
+import { NLFuncs } from "../../../Classes.js";
+import { FNClients } from "./Functions.js";
 /**
  *
  * @param items - The saved data and filtered data (tableData)
@@ -20,32 +25,23 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
             <td class="monospace">${user.email}</td>
             <td class="tag"><span>${user.state._instanceName}</span></td>
             <td class="tag"><span>${user.citadel?.description}</span></td>
-            <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
+            <td><button class="btn btn_table-editor" id="edit" data-entityid="${user.id}"><i class="fa-solid fa-pencil"></i></button></td>
             <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`;
         // write datas on table
         tableBody.appendChild(itemElement);
-        // fix tags
-        const tags = document.querySelectorAll(".tag span");
-        FNClients.TAGS(tags);
     }
-    // CUSTOMER EDITOR ================================================
-    // elements
-    const editorButtonElements = document.querySelectorAll("tr td button");
-    const closeEditorButtonElement = document.getElementById("closeEditor");
-    const updateCustomerEntityElement = document.getElementById("updateCutomerEntity");
-    // functions
-    const userEditor = new UserEditor();
-    editorButtonElements.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            let entity = btn.dataset.id;
-            userEditor.open(entity, "editBusiness", MultiInput);
+    // fix tags
+    const tags = document.querySelectorAll(".tag span");
+    NLFuncs.TAGS(tags);
+    // Edit clients
+    const openEditor = document.querySelectorAll("#edit");
+    openEditor.forEach((editor) => {
+        editor.addEventListener("click", () => {
+            let editorID = editor.dataset.entityid;
+            FNClients.editor(editorID);
+            console.log(editor);
         });
     });
-    closeEditorButtonElement.addEventListener("click", () => closeUserModal("editBusiness"));
-    updateCustomerEntityElement.addEventListener("click", () => {
-        userEditor.update("editBusiness");
-    });
-    // CUSTOMER CREATOR ================================================
 }

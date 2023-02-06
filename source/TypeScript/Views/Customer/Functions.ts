@@ -2,11 +2,14 @@
 import { getEntityData, postNewData } from "../../Libs/lib.request.js"
 import { UIController } from "../../Libs/lib.types.js"
 import { $color } from "../../Libs/lib.tools.js"
+import { Modal } from "../../Classes.js"
 
 let entityURL: string
 // Close editor
 
-class Funcs {
+
+
+class Funcs extends Modal {
     public async addTags(tableTag: any): Promise<void> {
         tableTag?.forEach((state: UIController) => {
             if (
@@ -233,23 +236,6 @@ class Funcs {
                 selectInput.value = option.innerText
             })
         })
-    }
-
-    private cancel(): void {
-        const modal: UIController = document.getElementById("modal")
-
-        setTimeout(() => modal.classList.toggle("open"), 200)
-
-        modal.style.display = "none"
-        modal.remove()
-    }
-
-    private open(): void {
-        const modal: UIController = document.getElementById("modal")
-        modal.style.display = "block"
-        setTimeout(() => {
-            modal.classList.add("open")
-        }, 200)
     }
 
     private async submit(name: UIController, ruc: UIController, status: UIController, vehicularEntrance: UIController): Promise<void> {

@@ -17,6 +17,10 @@
             "path": "./source"
         },
         {
+            "name": "Core",
+            "path": "./Source/TypeScript/"
+        },
+        {
             "name": "UI Components",
             "path": "./Source/SCSS/Source/Components"
         },
@@ -25,9 +29,10 @@
             "path": "./Source/SCSS/Source/Themes"
         },
         {
-            "name": "Core",
+            "name": "Views",
             "path": "./Source/TypeScript/Views"
         },
+
         {
             "name": "Libs",
             "path": "./Source/TypeScript/Libs"
@@ -50,7 +55,7 @@
             "editor.formatOnPaste": true,
             "editor.formatOnSave": true
         },
-        "editor.rulers": [80],
+        "editor.rulers": [90],
         "files.insertFinalNewline": true,
         "editor.detectIndentation": true,
         "editor.wrappingIndent": "none",

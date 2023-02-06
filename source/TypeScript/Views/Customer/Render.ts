@@ -6,7 +6,7 @@ import { UIControl } from "../../Libs/lib.types.js"
 import { CFN } from "./Functions.js"
 
 /**
- *
+ * Render table data with backend data obtained
  * @param items - The saved data and filtered data (tableData)
  * @param wrapper - The table body content (table body)
  * @param rowsPerPage - The quantity rows show per page (tableRows)
@@ -16,7 +16,8 @@ export async function renderTableData(
     items: any,
     table: any,
     rows: number,
-    page: number
+    page: number,
+    paginationCounter?: any
 ): Promise<void> {
     table.innerHTML = ""
     page--
@@ -61,18 +62,7 @@ export async function renderTableData(
     editButtons.forEach((editButton: UIControl) => {
         editButton.addEventListener("click", (): void => {
             let entity = editButton.dataset.id
-
             CFN.editCustomer(modal, entity)
         })
     })
 }
-
-//     // CUSTOMER EDITOR ================================================
-//     // elements
-//     const editorButtonElements: UIControl =
-//         document.querySelectorAll("tr td button")
-//     const closeEditorButtonElement: UIControl =
-//         document.getElementById("closeEditor")
-//     const updateCustomerEntityElement: UIControl = document.getElementById(
-//         "updateCutomerEntity"
-//     )

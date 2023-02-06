@@ -1,9 +1,10 @@
 // @filename: BusinessEditor.ts
 import { getEntityData, postNewData } from "../../Libs/lib.request.js";
 import { $color } from "../../Libs/lib.tools.js";
+import { Modal } from "../../Classes.js";
 let entityURL;
 // Close editor
-class Funcs {
+class Funcs extends Modal {
     async addTags(tableTag) {
         tableTag?.forEach((state) => {
             if (state.innerText === "ENABLED" ||
@@ -197,19 +198,6 @@ class Funcs {
                 selectInput.value = option.innerText;
             });
         });
-    }
-    cancel() {
-        const modal = document.getElementById("modal");
-        setTimeout(() => modal.classList.toggle("open"), 200);
-        modal.style.display = "none";
-        modal.remove();
-    }
-    open() {
-        const modal = document.getElementById("modal");
-        modal.style.display = "block";
-        setTimeout(() => {
-            modal.classList.add("open");
-        }, 200);
     }
     async submit(name, ruc, status, vehicularEntrance) {
         let stateId = status.dataset.statesId;

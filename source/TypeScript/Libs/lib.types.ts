@@ -13,10 +13,18 @@ export type NLData = any
 export type NLControl = HTMLElement | null | any
 export type NLTruncatedData = any
 export type NLInt = number
-export type RSTData = any
+export type RSTData = object
+export type dataId = object
 
 // Function agrument types
 export type BackendValues = void
 export type ViewValues = string
+export type InterfaceModifier = void
+export type NewValue = void
+export type EditValue = void
+
+// Math types
 export type MathValues = Float32Array | Int32Array | Uint8Array | Uint8Array[]
-export type InterfaceTrigger = void
+export type float32 = Float32Array // for kernels
+export type int32 = Int32Array // for kernels
+export type uint8 = Uint8Array

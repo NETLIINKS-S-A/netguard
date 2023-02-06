@@ -99,6 +99,8 @@ export async function customerView() {
     </tr>`.repeat(rows)
 
     // Display data and pagination
-    renderTableData(arrayCustomers, table, rows, currentPage)
+    renderTableData(arrayCustomers, table, rows, currentPage, paginationCounter)
     pagination(arrayCustomers, paginationCounter, rows, currentPage, table, renderTableData)
+    // renderTableData(arrayCustomers, table, rows, currentPage)
+    // pagination(arrayCustomers, paginationCounter, rows, currentPage, table, renderTableData)
 }

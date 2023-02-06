@@ -1,12 +1,12 @@
 import { CFN } from "./Functions.js";
 /**
- *
+ * Render table data with backend data obtained
  * @param items - The saved data and filtered data (tableData)
  * @param wrapper - The table body content (table body)
  * @param rowsPerPage - The quantity rows show per page (tableRows)
  * @param page - The current page
  */
-export async function renderTableData(items, table, rows, page) {
+export async function renderTableData(items, table, rows, page, paginationCounter) {
     table.innerHTML = "";
     page--;
     let start = rows + page;
@@ -44,12 +44,3 @@ export async function renderTableData(items, table, rows, page) {
         });
     });
 }
-//     // CUSTOMER EDITOR ================================================
-//     // elements
-//     const editorButtonElements: UIControl =
-//         document.querySelectorAll("tr td button")
-//     const closeEditorButtonElement: UIControl =
-//         document.getElementById("closeEditor")
-//     const updateCustomerEntityElement: UIControl = document.getElementById(
-//         "updateCutomerEntity"
-//     )

@@ -1,4 +1,4 @@
-import { logout, dismissLogout, openLogout } from "../Login/Logout.js";
+import { logout } from "../Login/Logout.js";
 // import libs
 import { UI } from "../../Libs/lib.dom.js";
 import { getData } from "../../Libs/lib.request.js";
@@ -22,7 +22,7 @@ export async function applicationView() {
     let data = await getData(url);
     async function renderInterface(interfaceData) {
         if (interfaceData.error)
-            logout(); // if any error, close session (in case access token fails)
+            logout.logout_(); // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = "block";
             content.style.display = "flex";
@@ -221,7 +221,7 @@ export async function applicationView() {
                                 </div>
                             </div>
 
-                            <a href="#" class="menu_link_item" id="openLogOut">
+                            <a href="#" class="menu_link_item" id="logout">
                                 <div class="menu_link_item_label">
                                     <i class="fa-regular fa-up-from-bracket"></i>
                                     <span>Salir</span>
@@ -229,23 +229,7 @@ export async function applicationView() {
                             </a>
                         </div>
                     </div>
-                </div>
-
-            <div class="modal" id="logOutModal">
-                <div class="modal_dialog modal_body">
-                    <h2 class="modal_title">Cerrar sesión</h2>
-
-                    <div class="modal_content">
-                        <p>${interfaceData.username} ¿Deseas cerrar sesión?</p>
-                    </div>
-
-                    <div class="modal_footer">
-                        <button class="btn" id="dismissLogOut">Cancelar</button>
-
-                        <button class="btn btn_danger" id="logOut">Cerrar sesión</button>
-                    </div>
-                </div>
-            </div>`;
+                </div>`;
             // render functions
             document
                 .getElementById("stadistics-view")
@@ -320,15 +304,7 @@ export async function applicationView() {
                 AppPreferences();
             });
             // Close session functions
-            document
-                .getElementById("openLogOut")
-                ?.addEventListener("click", (e) => openLogout("logOutModal"));
-            document
-                .getElementById("logOut")
-                ?.addEventListener("click", (e) => logout());
-            document
-                .getElementById("dismissLogOut")
-                ?.addEventListener("click", (e) => dismissLogout("logOutModal"));
+            document.getElementById("logout")?.addEventListener("click", () => logout.open_());
             // End close session functions
             const menuItems = document.querySelectorAll(".menu_item");
             const menuItemToggle = document.querySelectorAll(".menu_item_toggle");

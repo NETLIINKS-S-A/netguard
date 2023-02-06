@@ -77,9 +77,14 @@ export class App {
 
     public checkExpirationTime(time: number) {
         if (time === 0) {
-            logout()
+            logout.logout_()
         }
 
         console.log(time)
     }
 }
+
+/**
+ * A sets of functions for app rendering
+ */
+export const application: App = new App()
