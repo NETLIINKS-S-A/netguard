@@ -6,22 +6,25 @@ import { FNGuards } from "./GuardsFunctions.js"
 
 // Libs
 import { UI as DOM } from "../../../Libs/lib.dom.js"
-import { NLData, UIControl } from "../../../Libs/lib.types.js"
+import { BackendValues, NLData, UIControl } from "../../../Libs/lib.types.js"
 import { getEntitiesData } from "../../../Libs/lib.request.js"
 import { settings } from "../../../Libs/lib.settings.js"
 import { pagination } from "../../../Libs/lib.tools.js"
 
 // Primary elements
-const limitRows: number = settings.limitRows
+let rows: number = settings.limitRows
 const currentPage: number = settings.currentPaginationPage
 const AppDOM: any = DOM?.App
 const appToolbar = AppDOM?.tools
 const appContent = AppDOM?.content
 
-export async function guardsView() {
+console.log(rows)
+
+export async function guardsView(): Promise<BackendValues> {
     const BACKEND_DATA: NLData = await getEntitiesData("User")
-    let arrayGuards: any = BACKEND_DATA.filter((data: any) => data.isSuper === false)
-    arrayGuards.filter((data: any) => `${data.userType}`.includes("GUARD"))
+    let notSuperUser: any = BACKEND_DATA.filter((data: any) => data.isSuper === false)
+    let arrayGuards: any = notSuperUser.filter((data: any) =>
+        `${data.userType}`.includes("GUARD"))
 
     // Write application template
     appContent.innerHTML = `
@@ -61,11 +64,11 @@ export async function guardsView() {
             </div>
         </div>
 
-        <button class="btn btn_icon" id="addNewBusiness">
+        <button class="btn btn_icon" id="new-guard">
             <i class="fa-solid fa-user-plus"></i>
         </button>
 
-        <button class="btn btn_icon" id="addNewBusinessAdmin">
+        <button class="btn btn_icon" id="new-superuser">
             <i class="fa-solid fa-shield-plus"></i>
         </button>
 
@@ -84,7 +87,7 @@ export async function guardsView() {
 
     // get rendered elements
     const tableBody: UIControl =
-        document.getElementById("table-body")
+        document.querySelector("#table-body")
 
     const searchInput: UIControl =
         document.querySelector("#search-input")
@@ -92,15 +95,12 @@ export async function guardsView() {
     const pagination_: UIControl =
         document.getElementById("pagination")
 
-    const select: UIControl = document.querySelector(".select")
-    const selectInput: UIControl = document.getElementById("input-select")
-    const selectOptionsContainer: UIControl =
-        document.querySelector(".select_options")
+    const newGuard_: UIControl =
+        document.getElementById("new-guard")
 
     // search data
     await searchInput?.addEventListener("keyup", (): void => {
-        // @ts-ignore
-        const arrayData = arrayGuardsFilteredByCustomer.filter((guard) =>
+        const arrayData = arrayGuards.filter((guard: any) =>
             `${guard.firstName}
              ${guard.lastName}
              ${guard.description}`
@@ -109,23 +109,11 @@ export async function guardsView() {
         )
 
         let filteredResult = arrayData.length
-        if (filteredResult >= limitRows) filteredResult = limitRows
+        console.log(filteredResult)
+        if (filteredResult >= rows) filteredResult = rows
 
-        displayGuardsData(
-            arrayData,
-            tableBody,
-            filteredResult,
-            currentPage,
-            pagination_
-        )
-        pagination(
-            arrayData,
-            pagination_,
-            limitRows,
-            currentPage,
-            tableBody,
-            displayGuardsData
-        )
+        displayGuardsData(arrayData, tableBody, filteredResult, currentPage, pagination_)
+        pagination(arrayData, pagination_, rows, currentPage, tableBody, displayGuardsData)
     })
 
     // write table template
@@ -139,12 +127,12 @@ export async function guardsView() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
-    `.repeat(limitRows)
+    `.repeat(rows)
 
     displayGuardsData(
         arrayGuards,
         tableBody,
-        limitRows,
+        rows,
         currentPage,
         pagination_
     )
@@ -152,9 +140,13 @@ export async function guardsView() {
     pagination(
         arrayGuards,
         pagination_,
-        limitRows,
+        rows,
         currentPage,
         tableBody,
         displayGuardsData
     )
+
+    newGuard_.addEventListener("click", (): void => {
+        FNGuards.new()
+    })
 }

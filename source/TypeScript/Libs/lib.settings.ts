@@ -14,7 +14,7 @@ interface Settings {
     currentPaginationPage: CurrentPaginationPage
 }
 
-export let settings: Settings = {
+export const settings: Settings = {
     limitRows: 16,
     accent: "blue",
     theme: "light",

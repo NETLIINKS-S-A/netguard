@@ -1,21 +1,23 @@
 // @filename: GuardsView.ts
 // Functions
 import { displayGuardsData } from "./GuardsRender.js";
+import { FNGuards } from "./GuardsFunctions.js";
 // Libs
 import { UI as DOM } from "../../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../../Libs/lib.request.js";
 import { settings } from "../../../Libs/lib.settings.js";
 import { pagination } from "../../../Libs/lib.tools.js";
 // Primary elements
-const limitRows = settings.limitRows;
+let rows = settings.limitRows;
 const currentPage = settings.currentPaginationPage;
 const AppDOM = DOM?.App;
 const appToolbar = AppDOM?.tools;
 const appContent = AppDOM?.content;
+console.log(rows);
 export async function guardsView() {
     const BACKEND_DATA = await getEntitiesData("User");
-    let arrayGuards = BACKEND_DATA.filter((data) => data.isSuper === false);
-    arrayGuards.filter((data) => `${data.userType}`.includes("GUARD"));
+    let notSuperUser = BACKEND_DATA.filter((data) => data.isSuper === false);
+    let arrayGuards = notSuperUser.filter((data) => `${data.userType}`.includes("GUARD"));
     // Write application template
     appContent.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -53,11 +55,11 @@ export async function guardsView() {
             </div>
         </div>
 
-        <button class="btn btn_icon" id="addNewBusiness">
+        <button class="btn btn_icon" id="new-guard">
             <i class="fa-solid fa-user-plus"></i>
         </button>
 
-        <button class="btn btn_icon" id="addNewBusinessAdmin">
+        <button class="btn btn_icon" id="new-superuser">
             <i class="fa-solid fa-shield-plus"></i>
         </button>
 
@@ -74,25 +76,23 @@ export async function guardsView() {
         </div>
     </div>`;
     // get rendered elements
-    const tableBody = document.getElementById("table-body");
+    const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const pagination_ = document.getElementById("pagination");
-    const select = document.querySelector(".select");
-    const selectInput = document.getElementById("input-select");
-    const selectOptionsContainer = document.querySelector(".select_options");
+    const newGuard_ = document.getElementById("new-guard");
     // search data
     await searchInput?.addEventListener("keyup", () => {
-        // @ts-ignore
-        const arrayData = arrayGuardsFilteredByCustomer.filter((guard) => `${guard.firstName}
+        const arrayData = arrayGuards.filter((guard) => `${guard.firstName}
              ${guard.lastName}
              ${guard.description}`
             .toLowerCase()
             .includes(searchInput.value.toLowerCase()));
         let filteredResult = arrayData.length;
-        if (filteredResult >= limitRows)
-            filteredResult = limitRows;
+        console.log(filteredResult);
+        if (filteredResult >= rows)
+            filteredResult = rows;
         displayGuardsData(arrayData, tableBody, filteredResult, currentPage, pagination_);
-        pagination(arrayData, pagination_, limitRows, currentPage, tableBody, displayGuardsData);
+        pagination(arrayData, pagination_, rows, currentPage, tableBody, displayGuardsData);
     });
     // write table template
     tableBody.innerHTML = `
@@ -105,7 +105,10 @@ export async function guardsView() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
-    `.repeat(limitRows);
-    displayGuardsData(arrayGuards, tableBody, limitRows, currentPage, pagination_);
-    pagination(arrayGuards, pagination_, limitRows, currentPage, tableBody, displayGuardsData);
+    `.repeat(rows);
+    displayGuardsData(arrayGuards, tableBody, rows, currentPage, pagination_);
+    pagination(arrayGuards, pagination_, rows, currentPage, tableBody, displayGuardsData);
+    newGuard_.addEventListener("click", () => {
+        FNGuards.new();
+    });
 }

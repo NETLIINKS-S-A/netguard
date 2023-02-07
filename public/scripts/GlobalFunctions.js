@@ -5,7 +5,7 @@ class Funcs {
         const tags = document.querySelectorAll(".tag span");
         tags.forEach((tag) => {
             let tagText = tag.innerText;
-            if (tagText === "ENABLED" || tagText === "Enabled" || tagText === "enabled") {
+            if (tagText === "ENABLED" || tagText === "Enabled" || tagText === "enabled" || tagText === "activo" || tagText === "ACTIVO") {
                 tag.innerText = "Activo";
                 tag.classList.add("g");
             }

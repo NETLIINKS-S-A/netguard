@@ -1,9 +1,11 @@
 // @filename: GuardsRender.ts
 import { NLFuncs } from "../../../GlobalFunctions.js";
+import { FNGuards } from "./GuardsFunctions.js";
 export async function displayGuardsData(items, table, rows, page, paginationCounter) {
     table.innerHTML = "";
     page--;
-    let start = rows + page;
+    console.log(items);
+    let start = rows * page;
     let end = start + rows;
     let paginatedItems = items.slice(start, end);
     for (let i = 0; i < paginatedItems.length; i++) {
@@ -17,7 +19,7 @@ export async function displayGuardsData(items, table, rows, page, paginationCoun
                 <td class="tag"><span>${guard.citadel?.description}</span></td>
                 <td class="tag"><span>${guard.phone}</span></td>
                 <td>
-                    <button class="btn btn_table-editor" data-id="${guard?.id}">
+                    <button class="btn btn_table-editor" id="edit-guard" data-id="${guard?.id}">
                         <i class="fa-solid fa-pencil"></i>
                     </button>
                 </td>
@@ -34,21 +36,10 @@ export async function displayGuardsData(items, table, rows, page, paginationCoun
         // format table
         NLFuncs.TAGS_();
     }
+    const editGuard_ = document.querySelectorAll("#edit-guard");
+    editGuard_.forEach((editGuard) => {
+        editGuard.addEventListener("click", () => {
+            FNGuards.edit();
+        });
+    });
 }
-//         <tr>
-//             <td>${guard?.firstName} ${guard?.lastName}</td>
-//             <td class="monospace">${guard.email}</td>
-//             <td class="tag"><i>${guard.state._instanceName}</i></td>
-//             <td class="tag"><i>${guard.citadel?.description}</i></td>
-//             <td class="tag"><i>${guard.phone}</i></td>
-//             <td><button class="btn btn_table-editor" data-id="${guard?.id}"><i class="fa-solid fa-pencil"></i></button></td>
-//             <td><button class="btn btn_table-delete" id="deleteGuard" data-id="${guard?.id}"><i class="fa-solid fa-trash"></i></button></td>
-//             </td>
-//         </tr>`
-//         // write data on table
-//         tableBody.appendChild(row)
-//     }
-//     const deleteButtons: UIControl =
-//         document.querySelectorAll(".btn_table-delete")
-//     const modalCancelButton: UIControl = document.getElementById("cancel")
-// }
