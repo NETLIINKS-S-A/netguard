@@ -1,5 +1,4 @@
 // @filename: lib.tools.ts
-import { FNPHTMLElement } from "../Types/FunctionParameterTypes.js"
 import { UIControl } from "./lib.types.js"
 
 export const $color = {
@@ -199,7 +198,7 @@ export function pagination(
  * @returns button
  */
 function setupButtons(
-    page: FNPHTMLElement,
+    page: UIControl,
     items: [],
     currentPage: number,
     tableBody: UIControl,
