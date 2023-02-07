@@ -1,24 +1,10 @@
 // @filename: BusinessEditor.ts
 import { getEntityData, postNewData } from "../../Libs/lib.request.js";
 import { $color } from "../../Libs/lib.tools.js";
-import { Modal } from "../../Classes.js";
+import { Modal } from "../../GlobalFunctions.js";
 let entityURL;
 // Close editor
 class Funcs extends Modal {
-    async addTags(tableTag) {
-        tableTag?.forEach((state) => {
-            if (state.innerText === "ENABLED" ||
-                state.innerText === "Enabled") {
-                state.classList.add("g");
-                state.innerText = "Activo";
-            }
-            else if (state.innerText === "DISABLED" ||
-                state.innerText === "DISABLED") {
-                state.classList.add("i");
-                state.innerText = "Inactivo";
-            }
-        });
-    }
     async verifyRucLength(tableRuc) {
         tableRuc.forEach((ruc) => {
             if (ruc.innerText.length > 10) {

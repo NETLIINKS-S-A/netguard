@@ -2,6 +2,7 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
+import { NLFuncs } from "../../GlobalFunctions.js"
 import { UIControl } from "../../Libs/lib.types.js"
 import { CFN } from "./Functions.js"
 
@@ -44,17 +45,16 @@ export async function renderTableData(
         // write data on table
         table.appendChild(tableRow)
 
-        // Add tags styles
-        const tableTag: UIControl = document.querySelectorAll(".tag span")
-        CFN.addTags(tableTag)
-
-        // verify RUC length
-        const ruc: UIControl = document.querySelectorAll(".ruc")
-        CFN.verifyRucLength(ruc)
-
-        // Edit Customer
     }
 
+    // Add tags styles
+    NLFuncs.TAGS_()
+
+    // verify RUC length
+    const ruc: UIControl = document.querySelectorAll(".ruc")
+    CFN.verifyRucLength(ruc)
+
+    // Edit Customer
     const editButtons: UIControl =
         document.querySelectorAll(".editor")
 

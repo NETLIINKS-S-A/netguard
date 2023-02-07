@@ -3,7 +3,7 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { NLFuncs } from "../../../Classes.js";
-import { FNClients } from "./ClientsFunctions";
+import { FNClients } from "./ClientsFunctions.js";
 /**
  *
  * @param items - The saved data and filtered data (tableData)

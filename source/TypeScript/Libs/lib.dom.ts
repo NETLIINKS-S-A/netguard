@@ -6,6 +6,7 @@ export const UI: any = {
         content: document.getElementById("appContent"),
         date: document.getElementById("appDate"),
         tools: document.getElementById("appTools"),
+        modal: document.getElementById("modal-content")
     },
 
     Login: {

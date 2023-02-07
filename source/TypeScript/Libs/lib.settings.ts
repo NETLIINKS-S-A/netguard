@@ -4,12 +4,14 @@ type Rows = number
 type Accent = string
 type Theme = string
 type Sidebar = string
+type CurrentPaginationPage = number
 
 interface Settings {
     limitRows: Rows
     accent: Accent
     theme: Theme
-    sidebar: Sidebar
+    sidebar: Sidebar,
+    currentPaginationPage: CurrentPaginationPage
 }
 
 export let settings: Settings = {
@@ -17,4 +19,5 @@ export let settings: Settings = {
     accent: "blue",
     theme: "light",
     sidebar: "normal",
+    currentPaginationPage: 1
 }

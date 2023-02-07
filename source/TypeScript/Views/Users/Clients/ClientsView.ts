@@ -1,17 +1,22 @@
 // @filename: UsersView.ts
+
 import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { NLData, UIControl, BackendValues, MathValues } from "../../../Libs/lib.types.js"
-import { UI } from "../../../Libs/lib.dom.js"
+import { NLData, UIControl, BackendValues } from "../../../Libs/lib.types.js"
 import { pagination } from "../../../Libs/lib.tools.js"
-import { displayUserData } from "./Render.js"
+import { settings } from "../../../Libs/lib.settings.js"
+import { UI as DOM } from "../../../Libs/lib.dom.js"
+import { displayUserData } from "./ClientsRender.js"
+import { FNClients } from "./ClientsFunctions.js"
 
-const tableRows = UI.tableRows
-const UIApp = UI.App
-const app = UIApp?.content
-const appTools = UIApp?.tools
-let currentPage: number = 1
+// Page settings
+const LIMIT_ROWS = settings.limitRows
+const currentPage: number = settings.currentPaginationPage
+// DOM Elements
+const DOM_ = DOM.App
+const app = DOM_?.content
+const appTools = DOM_?.tools
 
-export async function usersView(): Promise<BackendValues> {
+export async function clientsView(): Promise<BackendValues> {
     let GET_DATA: NLData = await getEntitiesData("User")
     let notSuper: any = GET_DATA.filter((data: any) => data.isSuper === false)
     let arrayUsers: any = notSuper.filter((data: any) =>
@@ -39,7 +44,7 @@ export async function usersView(): Promise<BackendValues> {
 
         <div class="pagination">
             <div id="paginationCounter"></div>
-            <input type="number" placeholder="${tableRows}" id="paginationLimiter" min="${tableRows}" max="30">
+            <input type="number" placeholder="${LIMIT_ROWS}" id="paginationLimiter" min="${LIMIT_ROWS}" max="30">
         </div>`
 
     // Add tools
@@ -51,8 +56,10 @@ export async function usersView(): Promise<BackendValues> {
                 </div>
             </div>
 
-            <button class="btn btn_icon" id="addNewClient"><i class="fa-solid fa-user-plus"></i></button>
+            <button class="btn btn_icon" id="add-new-client"><i class="fa-solid fa-user-plus"></i></button>
+
             <button class="btn btn_icon" id="addNewClientAdmin"><i class="fa-solid fa-shield-plus"></i></button>
+
             <div class="toolbox_spotlight">
                 <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
                 <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
@@ -70,17 +77,18 @@ export async function usersView(): Promise<BackendValues> {
         // @ts-ignore
         const arrayData = arrayUsers.filter((user) =>
             `${user.firstName}
-                                                    ${user.lastName}
-                                                    ${user.description}`
+             ${user.lastName}
+             ${user.description}`
                 .toLowerCase()
                 .includes(searchInput.value.toLowerCase())
         )
 
         let filteredResult = arrayData.length
-        if (filteredResult >= tableRows) filteredResult = tableRows
+
+        if (filteredResult >= LIMIT_ROWS) filteredResult = LIMIT_ROWS
 
         displayUserData(arrayData, tableBody, filteredResult, currentPage, paginationCounter)
-        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, displayUserData)
+        pagination(arrayData, paginationCounter, LIMIT_ROWS, currentPage, tableBody, displayUserData)
     })
 
     // Table placeholder
@@ -91,24 +99,18 @@ export async function usersView(): Promise<BackendValues> {
         <td>Cargando...</td>
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
-    </tr>`.repeat(tableRows)
+    </tr>`.repeat(LIMIT_ROWS)
+
 
     // Display data and pagination
-    displayUserData(
-        arrayUsers,
-        tableBody,
-        tableRows,
-        currentPage,
-        paginationCounter
-    )
-    // @ts-ignore
-    pagination(
-        arrayUsers,
-        paginationCounter,
-        tableRows,
-        currentPage,
-        tableBody,
-        displayUserData
-    )
+    displayUserData(arrayUsers, tableBody, LIMIT_ROWS, currentPage, paginationCounter)
+    pagination(arrayUsers, paginationCounter, LIMIT_ROWS, currentPage, tableBody, displayUserData)
+
+    // add New client
+    const addNewUserButton: UIControl = document.getElementById("add-new-client")
+    console.log(addNewUserButton)
+    addNewUserButton.addEventListener("click", (): void => {
+        FNClients.new_()
+    })
 
 }

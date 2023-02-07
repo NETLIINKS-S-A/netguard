@@ -4,7 +4,7 @@ import { UI } from "../../Libs/lib.dom.js";
 import { getData } from "../../Libs/lib.request.js";
 // import views
 import { customerView } from "../Customer/CustomerView.js";
-import { usersView } from "../Users/Users/UsersView.js";
+import { clientsView } from "../Users/Clients/ClientsView.js";
 import { guardsView } from "../Users/Guards/GuardsView.js";
 import { emergencyUserView } from "../Users/Emergency/EmergencyUserView.js";
 import { eventView } from "../Binnacle/Events/EventView.js";
@@ -241,7 +241,7 @@ export async function applicationView() {
             // clients
             document
                 .getElementById("clients-view")
-                ?.addEventListener("click", (e) => usersView());
+                ?.addEventListener("click", (e) => clientsView());
             // guards
             document
                 .getElementById("guards-view")
@@ -323,7 +323,7 @@ export async function applicationView() {
         }
         // Render selected view
         // customerView()
-        usersView();
+        clientsView();
         // guardsView()
         // emergencyUserView()
         // eventView()

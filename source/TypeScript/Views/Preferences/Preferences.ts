@@ -1,6 +1,6 @@
 // @filename: Preferences.ts
 import { UIControl } from "../../Libs/lib.types.js"
-import { appStorage } from "../../Classes.js"
+import { appStorage } from "../../GlobalFunctions.js"
 import { settings } from "../../Libs/lib.settings.js"
 
 const content: UIControl = document.getElementsByTagName("body")[0]

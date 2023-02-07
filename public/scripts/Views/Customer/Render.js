@@ -1,3 +1,8 @@
+// @filename: CustomerRenderData.ts
+/* ******************************************
+DISPLAY TABLE DATA AND FILTERED TABLE DATA
+******************************************** */
+import { NLFuncs } from "../../GlobalFunctions.js";
 import { CFN } from "./Functions.js";
 /**
  * Render table data with backend data obtained
@@ -27,14 +32,13 @@ export async function renderTableData(items, table, rows, page, paginationCounte
         </tr>`;
         // write data on table
         table.appendChild(tableRow);
-        // Add tags styles
-        const tableTag = document.querySelectorAll(".tag span");
-        CFN.addTags(tableTag);
-        // verify RUC length
-        const ruc = document.querySelectorAll(".ruc");
-        CFN.verifyRucLength(ruc);
-        // Edit Customer
     }
+    // Add tags styles
+    NLFuncs.TAGS_();
+    // verify RUC length
+    const ruc = document.querySelectorAll(".ruc");
+    CFN.verifyRucLength(ruc);
+    // Edit Customer
     const editButtons = document.querySelectorAll(".editor");
     const modal = document.getElementById("modal-content");
     editButtons.forEach((editButton) => {

@@ -1,38 +1,37 @@
 // @filename: GeneralFunctions.ts
-import { InterfaceModifier, UIControl, UIController } from "./Libs/lib.types.js"
+import { NLInterfaceElement, UIControl, UIController } from "./Libs/lib.types"
 
 class Funcs {
-    public async TAGS(TABLE_TAGS: UIControl): Promise<InterfaceModifier> {
-        TABLE_TAGS?.forEach((TAG: UIController) => {
-            if (
-                TAG.innerText === "ENABLED" ||
-                TAG.innerText === "Enabled"
-            ) {
-                TAG.classList.add("g")
-                TAG.innerText === "Activo"
-            } else if (
-                TAG.innerText === "DISABLED" ||
-                TAG.innerText === "Disabled" ||
-                TAG.innerText === "Inactivo" ||
-                TAG.innerText === "INACTIVO"
-            ) {
-                TAG.classList.add("i")
-                TAG.innerText = "Inactivo"
-            } else if (TAG.innerText === "NO APLICA") {
-                TAG.innerText = "no aplica"
-            } else if (TAG.innerText === "No Aplica") {
-                TAG.innerText = "no aplica"
-            } else if (TAG.innerText === "N/A") {
-                TAG.innerText = "ninguno"
-            } else if (TAG.innerText === "UNDEFINED") {
-                TAG.innerText = "•••"
-            } else if (
-                TAG.innerText != "no aplica" &&
-                TAG.innerText != "NINGUNO" &&
-                TAG.innerText != "•••"
-            ) {
-                TAG.classList.add("b")
+    public async TAGS_(): Promise<NLInterfaceElement> {
+        const tags: UIControl = document.querySelectorAll(".tag span")
+
+        tags.forEach((tag: UIControl) => {
+            let tagText = tag.innerText
+
+            if (tagText === "ENABLED" || tagText === "Enabled" || tagText === "enabled") {
+                tag.innerText = "Activo"
+                tag.classList.add("g")
             }
+            else if (tagText === "Disabled" || tagText === "DISABLED" || tagText === "Inactivo" || tagText === "INACTIVO") {
+                tag.innerText = "Inactivo"
+                tag.classList.add("i")
+            }
+            else if (tagText === "NO APLICA" || tagText === "No aplica") {
+                tag.innerText = "No aplica"
+                tag.classList.add("i")
+            }
+            else if (tagText === "N/A") {
+                tag.innerText = "ninguno"
+                tag.classList.add("i")
+            }
+            else if (tagText === "undefined" || tagText === "" || tagText === "UNDEFINED") {
+                tag.innerText = "•••"
+            }
+
+            else {
+                tag.classList.add("b")
+            }
+
         })
     }
 }
@@ -80,8 +79,6 @@ class AppStorage {
 
     public get(name: string, showInConsole?: string): void {
         let data: any = localStorage.getItem(name)
-        if (showInConsole === "show") console.log(data)
-
         return data
     }
 

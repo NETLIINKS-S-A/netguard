@@ -20,6 +20,7 @@ export type dataId = object
 export type BackendValues = void
 export type ViewValues = string
 export type InterfaceModifier = void
+export type NLInterfaceElement = HTMLElement | HTMLCollection | any
 export type NewValue = void
 export type EditValue = void
 

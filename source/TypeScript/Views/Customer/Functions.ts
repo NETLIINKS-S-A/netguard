@@ -2,7 +2,7 @@
 import { getEntityData, postNewData } from "../../Libs/lib.request.js"
 import { UIController } from "../../Libs/lib.types.js"
 import { $color } from "../../Libs/lib.tools.js"
-import { Modal } from "../../Classes.js"
+import { Modal } from "../../GlobalFunctions.js"
 
 let entityURL: string
 // Close editor
@@ -10,23 +10,6 @@ let entityURL: string
 
 
 class Funcs extends Modal {
-    public async addTags(tableTag: any): Promise<void> {
-        tableTag?.forEach((state: UIController) => {
-            if (
-                state.innerText === "ENABLED" ||
-                state.innerText === "Enabled"
-            ) {
-                state.classList.add("g")
-                state.innerText = "Activo"
-            } else if (
-                state.innerText === "DISABLED" ||
-                state.innerText === "DISABLED"
-            ) {
-                state.classList.add("i")
-                state.innerText = "Inactivo"
-            }
-        })
-    }
 
     public async verifyRucLength(tableRuc: any): Promise<void> {
         tableRuc.forEach((ruc: any) => {

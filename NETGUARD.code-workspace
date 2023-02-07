@@ -5,39 +5,27 @@
             "path": "."
         },
         {
-            "name": "Playground",
+            "name": "Playgrounds",
             "path": "./Playground"
         },
         {
-            "name": "Public",
-            "path": "./public"
+            "name": "Styles",
+            "path": "./Source/SCSS"
         },
         {
-            "name": "Source",
-            "path": "./source"
-        },
-        {
-            "name": "Core",
-            "path": "./Source/TypeScript/"
-        },
-        {
-            "name": "UI Components",
-            "path": "./Source/SCSS/Source/Components"
-        },
-        {
-            "name": "Themes",
-            "path": "./Source/SCSS/Source/Themes"
+            "name": "Scripts",
+            "path": "./Source/TypeScript"
         },
         {
             "name": "Views",
             "path": "./Source/TypeScript/Views"
         },
-
         {
             "name": "Libs",
             "path": "./Source/TypeScript/Libs"
         }
     ],
+
     "settings": {
         "typescript.updateImportsOnFileMove.enabled": "always",
         "liveServer.settings.multiRootWorkspaceName": "NETGUARD",

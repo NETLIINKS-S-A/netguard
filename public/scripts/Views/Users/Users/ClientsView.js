@@ -1,9 +1,9 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { pagination } from "../../../Libs/lib.tools.js";
-import { settings } from "../../../Libs/lib.settings.js";
-import { UI as DOM } from "../../../Libs/lib.dom.js";
-import { displayUserData } from "./ClientsRender.js";
+import { getEntitiesData } from "../../../Libs/lib.request";
+import { pagination } from "../../../Libs/lib.tools";
+import { settings } from "../../../Libs/lib.settings";
+import { UI as DOM } from "../../../Libs/lib.dom";
+import { displayUserData } from "./ClientsRender";
 // Page settings
 const tableRows = settings.limitRows;
 const currentPage = settings.currentPaginationPage;

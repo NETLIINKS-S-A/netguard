@@ -1,18 +1,13 @@
-// @filename: Functions.ts
-import { NewValue, UIControl } from "../../../Libs/lib.types.js"
-import { getEntityData } from "../../../Libs/lib.request.js"
-import { Modal } from "../../../Classes.js"
-
+import { getEntityData } from "../../../Libs/lib.request.js";
+import { Modal } from "../../../GlobalFunctions.js";
 class NLFClients extends Modal {
-
-    public async editor(entity: string): Promise<void> {
-        let GET_DATA = getEntityData("Users", entity)
-        const modalElement: UIControl = document.getElementById("modal-content")
-
+    async editor(entity) {
+        let DATA = await getEntityData("User", entity);
+        const modalElement = document.getElementById("modal-content");
         modalElement.innerHTML = `
         <div class="modal" id="modal">
             <div class="modal_dialog modal_body" style="max-width: 450px !important">
-                <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name"></span></h2>
+                <h2 class="modal_title">Editar <span id="entityName" class="modal_title-name">${DATA.firstName} ${DATA.lastName}</span></h2>
 
                 <form autocomplete="off" id="businessEditorForm">
                     <div class="input_group">
@@ -26,14 +21,14 @@ class NLFClients extends Modal {
                     </div>
 
                     <div class="form_group">
-                        <div class="input_group customerStatus">
-                            <label for="customerStatus" class="form_label">Estado: <span id="customerStatusLabel">inactivo</span></label>
-                            <input type="checkbox" name="customerStatus" id="customerStatus" class="toggle">
+                        <div class="input_group">
+                            <label for="toggle-status" class="form_label">Estado: <span id="toggle-status-label">inactivo</span></label>
+                            <input type="checkbox" name="toggle-status" id="toggle-status" class="toggle">
                         </div>
 
                         <div class="input_group">
-                            <label for="vehicularEntrance" class="form_label">Ingreso vehicular: <span id="customerVehicularEntranceLabel">no</span></label>
-                            <input type="checkbox" name="vehicularEntrance" id="vehicularEntrance" class="toggle">
+                            <label for="vehicular-entrance" class="form_label">Ingreso vehicular: <span id="vehicular-entrance-label">no</span></label>
+                            <input type="checkbox" name="vehicular-entrance" id="vehicular-entrance" class="toggle">
                         </div>
                     </div>
                 </form>
@@ -43,48 +38,36 @@ class NLFClients extends Modal {
                     <button class="btn btn_success" id="updateCutomerEntity">Guardar</button>
                 </div>
             </div>
-        </div>`
-        this.open()
-
-        // Customer Status
-        const toggleStatus: UIControl = document.getElementById("customerStatus")
-        const customerStatusLabel: UIControl = document.getElementById(
-            "customerStatusLabel"
-        )
-
+        </div>`;
+        this.open();
+        // Customer Status Toggle
+        const toggleStatus = document.getElementById("toggle-status");
         toggleStatus.addEventListener("click", () => {
-            if (toggleStatus?.checked == true)
-                customerStatusLabel.innerHTML = "activo"
-            else customerStatusLabel.innerHTML = "inactivo"
-        })
-
-        // Vehicular Entrance
-        const toggleVehicularEntrace: UIControl =
-            document.getElementById("vehicularEntrance")
-        const customerVehicularEntranceLabel: UIControl = document.getElementById(
-            "customerVehicularEntranceLabel"
-        )
-        toggleVehicularEntrace.addEventListener("click", () => {
-            if (toggleVehicularEntrace?.checked == true)
-                customerVehicularEntranceLabel.innerHTML = "si"
-            else customerVehicularEntranceLabel.innerHTML = "no"
-        })
-
+            const toggleStatusLabel = document.getElementById("toggle-status-label");
+            toggleStatus?.checked == true
+                ? toggleStatusLabel.innerHTML = "activo"
+                : toggleStatusLabel.innerHTML = "inactivo";
+        });
+        // Vehicular Entrance Toggle
+        const toggleVEntrance = document.getElementById("vehicular-entrance");
+        toggleVEntrance.addEventListener("click", () => {
+            const toggleVEntranceLabel = document.getElementById("vehicular-entrance-label");
+            toggleVEntrance?.checked === true
+                ? toggleVEntranceLabel.innerHTML = "si"
+                : toggleVEntranceLabel.innerHTML = "no";
+        });
         // cancel
-        const cancel: UIControl =
-            document.getElementById("cancel")
-
-        cancel.addEventListener('click', (): void => {
-            this.cancel()
-        })
+        const cancel = document.getElementById("cancel");
+        cancel.addEventListener('click', () => {
+            this.cancel();
+        });
     }
-
-    public new_(entityID: string): void {
-        const modalElement: UIControl = document.getElementById("modal-content")
+    new_() {
+        const modalElement = document.getElementById("modal-content");
         modalElement.innerHTML = `
         <div class="modal" id="modal">
             <div class="modal_dialog modal_body" style="max-width: 450px !important">
-                <h2 class="modal_title">Nueva empresa</h2>
+                <h2 class="modal_title">Nuevo cliente</h2>
 
                 <form>
                     <div class="input_group">
@@ -122,60 +105,48 @@ class NLFClients extends Modal {
                     <button class="btn btn_success" id="new-customer-entity">Guardar</button>
                 </div>
             </div>
-        </div>`
-        this.open()
-
+        </div>`;
+        this.open();
+        const closeButton = document.getElementById("cancel");
+        closeButton?.addEventListener("click", () => {
+            this.cancel();
+        });
     }
-
-    public async newSuperuser(entity: string): Promise<NewValue> {
+    async newSuperuser(entity) {
         // ...
     }
-
-    public async remove_(): Promise<void> {
+    async remove_() {
         // ...
     }
-
-    // private open(): void { }
-    // private close(): void { }
 }
-
-export const FNClients: NLFClients = new NLFClients()
-
-
+export const FNClients = new NLFClients();
 // let entityURL: string
 // // Close editor
 // export function closeUserModal(id: string): void {
 //     let editor = new Modal(id)
 //     editor.close()
 // }
-
 // export class UserEditor {
 //     async open(entity: string, id: string, rucInput: UIControl): Promise<void> {
 //         let editor = new Modal(id)
 //         editor.open()
-
 //         entityURL = `https://backend.netliinks.com:443/rest/entities/Users/${entity}`
 //         let data = await getData(entityURL)
-
 //         // Write business data on modal window
 //         const entityName: UIControl = document.getElementById("entityName")
 //         const businessName: UIControl = document.getElementById("businessName")
-
 //         entityName.innerHTML = data.name
 //         businessName.value = data.name
 //         const rucValue = data.ruc
-
 //         // clear multi-input in cas there is written information
 //         clearRucIinput(rucInput)
 //     }
-
 //     async update(modalID: string): Promise<void> {
 //         const businessName: UIControl = document.getElementById("businessName")
 //         // get inputData
 //         let raw = JSON.stringify({
 //             name: businessName.value,
 //         })
-
 //         // preventing rename with a empty value
 //         if (businessName.value === "" || businessName.value.trim() === "")
 //             alert("Debe completar todos los campos")
@@ -188,20 +159,17 @@ export const FNClients: NLFClients = new NLFClients()
 //         }
 //     }
 // }
-
 // export class MultiInput {
 //     clearInputs(inputs: HTMLElement | any): void {
 //         inputs?.forEach((r: any) => {
 //             r.value = ""
 //         })
 //     }
-
 //     handleInput(e: any): void {
 //         const input = e.target
 //         if (input?.nextElementSibling && input?.value)
 //             input.nextElementSibling.focus()
 //     }
-
 //     handlePaste(e: any, inputs: UIControl): void {
 //         const paste = e.clipboardData.getData("text")
 //         inputs?.forEach((input: any, i: number) => {
@@ -209,25 +177,21 @@ export const FNClients: NLFClients = new NLFClients()
 //         })
 //     }
 // }
-
 // export class newUser {
 //     open(id: string): void {
 //         let editorWindow = new Modal(id)
 //         editorWindow.open()
 //         console.info("this function is under construction")
 //     }
-
 //     add(id: string): void {
 //         closeUserModal(id)
 //     }
-
 //     clearInputs(inputs: UIControl): void {
 //         inputs?.forEach((input: any) => {
 //             input.value = ""
 //         })
 //     }
 // }
-
 // function clearRucIinput(ruc: any): void {
 //     ruc?.forEach((r: any) => {
 //         r.value = ""

@@ -18,6 +18,21 @@
     color: $gray-600;
     box-shadow: $input-shadow;
 
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($white, 2%);
+        border-color: darken($gray-400, 5%);
+        color: $gray-700;
+    }
+
+    &:active {
+        background-color: $gray-200;
+        border-color: $gray-500;
+        color: $gray-800;
+    }
+
     &-withMargin { margin: 0 !important; }
     &-isWidder { width: 100%; }
 
@@ -29,12 +44,36 @@
         background-color: $green-500;
         border-color: $green-600;
         color: $white;
+
+        &:hover {
+            background-color: darken($green-500, 5%);
+            border-color: darken($green-600, 5%);
+            color: $white;
+        }
+
+        &:active {
+            background-color: $green-600;
+            border-color: $green-700;
+            color: $white;
+        }
     }
 
     &_danger, &_red {
         background-color: $red-500;
         border-color: $red-600;
         color: $white;
+
+        &:hover {
+            background-color: darken($red-500, 5%);
+            border-color: darken($red-600, 5%);
+            color: $white;
+        }
+
+        &:active {
+            background-color: $red-600;
+            border-color: $red-700;
+            color: $white;
+        }
     }
 
     &_warning, &_yellow {

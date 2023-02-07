@@ -64,8 +64,6 @@ class AppStorage {
     }
     get(name, showInConsole) {
         let data = localStorage.getItem(name);
-        if (showInConsole === "show")
-            console.log(data);
         return data;
     }
     remove(name) {

@@ -1,16 +1,13 @@
 h1, .heading-1 {
-    color: $color-dark-heading;
-    @include black-header;
+    color: $gray-300 !important;
 }
 
 h2, .heading-2 {
-    color: $color-dark-heading;
-    @include black-header;
+    color: $gray-300 !important;
 }
 
 h3, .heading-3 {
-    color: $color-dark-heading;
-    @include black-header;
+    color: $gray-300 !important;
 }
 
 h4, .heading-4 {

@@ -4,4 +4,5 @@ export let settings = {
     accent: "blue",
     theme: "light",
     sidebar: "normal",
+    currentPaginationPage: 1
 };

@@ -1,6 +1,6 @@
 // @filename: Logout.ts
 //
-import { Modal } from "../../Classes.js";
+import { Modal, appStorage } from "../../GlobalFunctions.js";
 import { application } from "./Login.js";
 class Logout extends Modal {
     open_() {
@@ -15,7 +15,7 @@ class Logout extends Modal {
                     </div>
 
                     <div class="modal_footer">
-                        <button class="btn" id="dismissLogOut">Cancelar</button>
+                        <button class="btn" id="dismiss">Cancelar</button>
 
                         <button class="btn btn_danger" id="logout-button">Cerrar sesión</button>
                     </div>
@@ -24,27 +24,12 @@ class Logout extends Modal {
         `;
         this.open();
         document.getElementById("logout-button")?.addEventListener("click", () => this.logout_());
+        document.getElementById("dismiss")?.addEventListener("click", () => this.close());
     }
     logout_() {
-        localStorage.removeItem("access_token");
+        appStorage.remove("access_token");
         application.checkToken();
         window.location.reload();
     }
-    dismiss_() {
-    }
 }
 export const logout = new Logout();
-// export function openLogout(id: FNPHTMLElement) {
-//     const show: Modal = new Modal(id)
-//     show.open()
-// }
-// export function logout() {
-//     let app = new App()
-//     localStorage.removeItem("access_token")
-//     app.checkToken()
-//     window.location.reload()
-// }
-// export function dismissLogout(id: any) {
-//     const close: Modal = new Modal(id)
-//     close.close()
-// }
