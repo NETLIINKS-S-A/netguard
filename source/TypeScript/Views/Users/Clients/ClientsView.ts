@@ -61,20 +61,19 @@ export async function clientsView(): Promise<BackendValues> {
             <button class="btn btn_icon" id="addNewClientAdmin"><i class="fa-solid fa-shield-plus"></i></button>
 
             <div class="toolbox_spotlight">
-                <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
-                <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
             </div>
         </div>`
 
     // HTML ELEMENTS
     const tableBody: UIControl = document.querySelector("#tableBody")
-    const searchInput: UIControl = document.querySelector("#searcher")
+    const searchInput: UIControl = document.querySelector("#search-input")
     const paginationCounter: UIControl =
         document.getElementById("paginationCounter")
 
     // search data on real-time
     await searchInput?.addEventListener("keyup", (): void => {
-        // @ts-ignore
         const arrayData = arrayUsers.filter((user) =>
             `${user.firstName}
              ${user.lastName}

@@ -53,17 +53,16 @@ export async function clientsView() {
             <button class="btn btn_icon" id="addNewClientAdmin"><i class="fa-solid fa-shield-plus"></i></button>
 
             <div class="toolbox_spotlight">
-                <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
-                <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
             </div>
         </div>`;
     // HTML ELEMENTS
     const tableBody = document.querySelector("#tableBody");
-    const searchInput = document.querySelector("#searcher");
+    const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("paginationCounter");
     // search data on real-time
     await searchInput?.addEventListener("keyup", () => {
-        // @ts-ignore
         const arrayData = arrayUsers.filter((user) => `${user.firstName}
              ${user.lastName}
              ${user.description}`

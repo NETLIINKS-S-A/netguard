@@ -15,7 +15,7 @@ interface Settings {
 }
 
 export let settings: Settings = {
-    limitRows: 8,
+    limitRows: 16,
     accent: "blue",
     theme: "light",
     sidebar: "normal",
