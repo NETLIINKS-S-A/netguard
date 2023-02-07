@@ -8,7 +8,64 @@ let entityURL: string
 
 class NLFCustomers extends Modal {
     public async new(): Promise<void> {
-        const modalContainer: UIControl = document
+        const modalContainer: UIControl =
+            document.getElementById("modal-content")
+
+        modalContainer.innerHTML = `
+            <div class="modal" id="modal">
+                <div class="modal_dialog modal_body" style="max-width: 450px !important">
+                    <h2 class="modal_title">Nueva empresa</h2>
+
+                    <form>
+                        <div class="input_group">
+                            <label for="customer-name" class="form_label">Nombre</label>
+                            <input type="text"
+                                id="customer-name"
+                                placeholder="empresa"
+                                class="input">
+                        </div>
+
+                        <div class="form_group">
+                            <div class="input_group">
+                                <label for="customer-ruc" class="form_label">RUC</label>
+                                <input type="text"
+                                    placeholder="0900900000"
+                                    class="input monospace"
+                                    maxlength="10"
+                                    id="customer-ruc">
+                            </div>
+
+                            <div class="input_group">
+                                <label class="form_label">Estado</label>
+
+                                <div class="select">
+                                    <input type="text"
+                                        id="input-select"
+                                        class="input select_box"
+                                        value="Activo"
+                                        readonly>
+
+                                    <div class="select_options" id="select_options">
+                                        <div class="select_option"
+                                            data-stateId="">Activo</div>
+
+                                        <div class="select_option"
+                                            data-stateId="">Inactivo</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="modal_footer">
+                        <button class="btn" id="cancel">Cancelar</button>
+                        <button class="btn btn_success" id="submit">Guardar</button>
+                    </div>
+                </div>
+            </div>`
+        this.open()
+
+        document.getElementById("cancel")?.addEventListener("click", (): void => this.cancel())
     }
 
     public async edit(customerId: any): Promise<void> {
@@ -74,8 +131,6 @@ export const FNCustomers: NLFCustomers = new NLFCustomers()
 
 
 class Funcs extends Modal {
-
-
     public newCustomer(modalElement: UIController): void {
         modalElement.innerHTML = `
         <div class="modal" id="modal">

@@ -1,26 +1,31 @@
 // @filename: CustomerView.ts
-import { UIControl } from "../../Libs/lib.types.js"
-import { UI } from "../../Libs/lib.dom.js"
-import { getEntitiesData } from "../../Libs/lib.request.js"
-import { pagination } from "../../Libs/lib.tools.js"
-import { settings } from "../../Libs/lib.settings.js"
+
+// Functions
 import { displayCustomerData } from "./CustomerRender.js"
 import { FNCustomers } from "./CustomerFunctions.js"
-import { NLFuncs } from "../../GlobalFunctions.js"
 
+// Libs
+import { UI } from "../../Libs/lib.dom.js"
+import { UIControl } from "../../Libs/lib.types.js"
+import { getEntitiesData } from "../../Libs/lib.request.js"
+import { settings } from "../../Libs/lib.settings.js"
+import { pagination } from "../../Libs/lib.tools.js"
+
+// Primary elements
 const limitRows: number = settings.limitRows
-const UIApp: UIControl = UI.App
-const app: UIControl = UIApp?.content
-const Toolbar: UIControl = UIApp?.tools
-let currentPage: number = 1
+const currentPage: number = settings.currentPaginationPage
+const AppDOM = UI?.App
+const appToolbar = AppDOM?.tools
+const appContent = AppDOM?.content
 
 export async function customerView() {
     // GET BACKEND DATA
-    let GET_DATA: any = await getEntitiesData("Customer")
-    let arrayCustomers: any = GET_DATA
+    let DATA: any = await getEntitiesData("Customer")
+    console.log(DATA)
+    let arrayCustomers: any = DATA
 
     // Write application template
-    app.innerHTML = `
+    appContent.innerHTML = `
     <h1 class="app_title">Empresas</h1>
     <table class="table">
         <thead>
@@ -37,20 +42,28 @@ export async function customerView() {
     </table>
 
     <div class="pagination">
-        <div id="paginationCounter"></div>
+        <div id="pagination"></div>
     </div>
 
     <div id="modal-content">
     </div>`
 
     // Add tools
-    const toolbar = Toolbar
-    toolbar.innerHTML = `
+
+    appToolbar.innerHTML = `
     <div class="toolbox">
         <button class="btn btn_icon" id="new-customer"><i class="fa-solid fa-plus"></i></button>
+
         <div class="toolbox_spotlight">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
+            <label class="btn btn_icon spotlight_label" for="search-input">
+                <i class="fa-solid fa-search"></i>
+            </label>
+
+            <input type="text"
+                class="input
+                input_spotlight"
+                placeholder="Buscar por nombre"
+                id="search-input">
         </div>
     </div>`
 
@@ -58,8 +71,11 @@ export async function customerView() {
     const table: UIControl =
         document.querySelector("#table-body")
 
-    const paginationCounter: UIControl =
-        document.getElementById("paginationCounter")
+    const pagination_: UIControl =
+        document.getElementById("pagination")
+
+    const addCustomer: UIControl =
+        document.getElementById("new-customer")
 
     // search data on real-time
     const searchInput: UIControl = document.querySelector("#search-input")
@@ -78,11 +94,9 @@ export async function customerView() {
 
         if (filteredResult >= limitRows) filteredResult = limitRows
 
-        // render data
-        displayCustomerData(arrayData, table, filteredResult, currentPage, paginationCounter)
+        displayCustomerData(arrayData, table, filteredResult, currentPage, pagination_)
+        pagination(arrayData, pagination_, limitRows, currentPage, table, displayCustomerData)
 
-        // render pagination
-        pagination(arrayData, paginationCounter, limitRows, currentPage, table, displayCustomerData)
     })
 
     // render load on tables
@@ -95,7 +109,12 @@ export async function customerView() {
     </tr>`.repeat(limitRows)
 
     // Display data and pagination
-    displayCustomerData(arrayCustomers, table, limitRows, currentPage, paginationCounter)
-    pagination(arrayCustomers, paginationCounter, limitRows, currentPage, table, displayCustomerData)
+    displayCustomerData(arrayCustomers, table, limitRows, currentPage, pagination_)
+    pagination(arrayCustomers, pagination_, limitRows, currentPage, table, displayCustomerData)
+
+    // Add new customer
+    addCustomer.addEventListener("click", (): void => {
+        FNCustomers.new()
+    })
 
 }

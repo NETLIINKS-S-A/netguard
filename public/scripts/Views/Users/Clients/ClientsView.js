@@ -37,7 +37,6 @@ export async function clientsView() {
 
         <div class="pagination">
             <div id="paginationCounter"></div>
-            <input type="number" placeholder="${LIMIT_ROWS}" id="paginationLimiter" min="${LIMIT_ROWS}" max="30">
         </div>`;
     // Add tools
     appTools.innerHTML = `

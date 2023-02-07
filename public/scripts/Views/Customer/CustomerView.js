@@ -1,19 +1,25 @@
+// @filename: CustomerView.ts
+// Functions
+import { displayCustomerData } from "./CustomerRender.js";
+import { FNCustomers } from "./CustomerFunctions.js";
+// Libs
 import { UI } from "../../Libs/lib.dom.js";
 import { getEntitiesData } from "../../Libs/lib.request.js";
-import { pagination } from "../../Libs/lib.tools.js";
 import { settings } from "../../Libs/lib.settings.js";
-import { displayCustomerData } from "./CustomerRender.js";
+import { pagination } from "../../Libs/lib.tools.js";
+// Primary elements
 const limitRows = settings.limitRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const Toolbar = UIApp?.tools;
-let currentPage = 1;
+const currentPage = settings.currentPaginationPage;
+const AppDOM = UI?.App;
+const appToolbar = AppDOM?.tools;
+const appContent = AppDOM?.content;
 export async function customerView() {
     // GET BACKEND DATA
-    let GET_DATA = await getEntitiesData("Customer");
-    let arrayCustomers = GET_DATA;
+    let DATA = await getEntitiesData("Customer");
+    console.log(DATA);
+    let arrayCustomers = DATA;
     // Write application template
-    app.innerHTML = `
+    appContent.innerHTML = `
     <h1 class="app_title">Empresas</h1>
     <table class="table">
         <thead>
@@ -30,24 +36,32 @@ export async function customerView() {
     </table>
 
     <div class="pagination">
-        <div id="paginationCounter"></div>
+        <div id="pagination"></div>
     </div>
 
     <div id="modal-content">
     </div>`;
     // Add tools
-    const toolbar = Toolbar;
-    toolbar.innerHTML = `
+    appToolbar.innerHTML = `
     <div class="toolbox">
         <button class="btn btn_icon" id="new-customer"><i class="fa-solid fa-plus"></i></button>
+
         <div class="toolbox_spotlight">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
+            <label class="btn btn_icon spotlight_label" for="search-input">
+                <i class="fa-solid fa-search"></i>
+            </label>
+
+            <input type="text"
+                class="input
+                input_spotlight"
+                placeholder="Buscar por nombre"
+                id="search-input">
         </div>
     </div>`;
     // HTML ELEMENTS
     const table = document.querySelector("#table-body");
-    const paginationCounter = document.getElementById("paginationCounter");
+    const pagination_ = document.getElementById("pagination");
+    const addCustomer = document.getElementById("new-customer");
     // search data on real-time
     const searchInput = document.querySelector("#search-input");
     await searchInput?.addEventListener("keyup", () => {
@@ -59,10 +73,8 @@ export async function customerView() {
         let filteredResult = arrayData.length;
         if (filteredResult >= limitRows)
             filteredResult = limitRows;
-        // render data
-        displayCustomerData(arrayData, table, filteredResult, currentPage, paginationCounter);
-        // render pagination
-        pagination(arrayData, paginationCounter, limitRows, currentPage, table, displayCustomerData);
+        displayCustomerData(arrayData, table, filteredResult, currentPage, pagination_);
+        pagination(arrayData, pagination_, limitRows, currentPage, table, displayCustomerData);
     });
     // render load on tables
     table.innerHTML = `
@@ -73,6 +85,10 @@ export async function customerView() {
         <td>Cargando...</td>
     </tr>`.repeat(limitRows);
     // Display data and pagination
-    displayCustomerData(arrayCustomers, table, limitRows, currentPage, paginationCounter);
-    pagination(arrayCustomers, paginationCounter, limitRows, currentPage, table, displayCustomerData);
+    displayCustomerData(arrayCustomers, table, limitRows, currentPage, pagination_);
+    pagination(arrayCustomers, pagination_, limitRows, currentPage, table, displayCustomerData);
+    // Add new customer
+    addCustomer.addEventListener("click", () => {
+        FNCustomers.new();
+    });
 }
