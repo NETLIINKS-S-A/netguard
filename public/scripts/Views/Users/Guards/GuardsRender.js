@@ -25,7 +25,8 @@ export async function displayGuardsData(items, table, rows, page, paginationCoun
                 </td>
 
                 <td>
-                    <button class="btn btn_table-delete"
+                    <button
+                        class="btn btn_table-delete"
                         id="deleteGuard"
                         data-id="${guard?.id}">
                             <i class="fa-solid fa-trash"></i>

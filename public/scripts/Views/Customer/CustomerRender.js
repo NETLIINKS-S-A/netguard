@@ -10,7 +10,7 @@ import { FNCustomers } from "./CustomerFunctions.js";
 export async function displayCustomerData(items, table, rows, page, paginationCounter) {
     table.innerHTML = "";
     page--;
-    let start = rows + page;
+    let start = rows * page;
     let end = start + rows;
     let paginatedItems = items.slice(start, end);
     for (let i = 0; i < paginatedItems.length; i++) {

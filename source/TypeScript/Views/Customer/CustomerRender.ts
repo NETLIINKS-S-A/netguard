@@ -25,7 +25,7 @@ export async function displayCustomerData(
     table.innerHTML = ""
     page--
 
-    let start: number = rows + page
+    let start: number = rows * page
     let end: number = start + rows
     let paginatedItems = items.slice(start, end)
 
