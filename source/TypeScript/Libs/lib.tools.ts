@@ -164,15 +164,9 @@ export const $font = {
  * @param currentPage - Actual page (1)
  * @param tableBody - the table body
  */
-export function pagination(
-    items: [],
-    wrapper: UIControl,
-    rowsPerPage: number,
-    currentPage: number,
-    tableBody?: UIControl,
-    displayFunc?: any
-): void {
+export function pagination(items: [], wrapper: UIControl, rowsPerPage: number, currentPage: number, tableBody?: UIControl, displayFunc?: any): void {
     wrapper.innerHTML = ""
+
     let pageCount = Math.ceil(items.length / rowsPerPage)
 
     let btn: UIControl
