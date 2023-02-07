@@ -3,17 +3,22 @@ import { UIControl } from "../../Libs/lib.types.js"
 import { UI } from "../../Libs/lib.dom.js"
 import { getEntitiesData } from "../../Libs/lib.request.js"
 import { pagination } from "../../Libs/lib.tools.js"
-import { CFN } from "./Functions.js"
-import { renderTableData } from "./Render.js"
 import { settings } from "../../Libs/lib.settings.js"
+import { displayCustomerData } from "./CustomerRender.js"
+import { FNCustomers } from "./CustomerFunctions.js"
+import { NLFuncs } from "../../GlobalFunctions.js"
 
-const rows: number = settings.limitRows
+const limitRows: number = settings.limitRows
 const UIApp: UIControl = UI.App
 const app: UIControl = UIApp?.content
 const Toolbar: UIControl = UIApp?.tools
 let currentPage: number = 1
 
 export async function customerView() {
+    // GET BACKEND DATA
+    let GET_DATA: any = await getEntitiesData("Customer")
+    let arrayCustomers: any = GET_DATA
+
     // Write application template
     app.innerHTML = `
     <h1 class="app_title">Empresas</h1>
@@ -26,7 +31,7 @@ export async function customerView() {
                 <th width="45px"></th>
             </tr>
         </thead>
-        <tbody id="tableBody">
+        <tbody id="table-body">
 
         </tbody>
     </table>
@@ -44,49 +49,40 @@ export async function customerView() {
     <div class="toolbox">
         <button class="btn btn_icon" id="new-customer"><i class="fa-solid fa-plus"></i></button>
         <div class="toolbox_spotlight">
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
         </div>
     </div>`
 
-    // GET BACKEND DATA
-    let GET_DATA: any = await getEntitiesData("Customer")
-    let arrayCustomers: [] = GET_DATA // filter in the future
-    // EX:
-    // arrayCustomers.filter(value).include(value)
-
-    const modal = document.getElementById("modal-content")
-    const newCustomer = document.getElementById("new-customer")
-
-    newCustomer?.addEventListener("click", (): void => {
-        CFN.newCustomer(modal)
-    })
-
     // HTML ELEMENTS
     const table: UIControl =
-        document.querySelector("#tableBody")
+        document.querySelector("#table-body")
 
     const paginationCounter: UIControl =
         document.getElementById("paginationCounter")
 
     // search data on real-time
-    const SEARCH: UIControl =
-        document.querySelector("#search-input")
-    await SEARCH?.addEventListener("keyup", (): void => {
-        const arrayData: any = arrayCustomers.filter((customer) =>
-            // @ts-ignore
-            `${customer.name.toLowerCase()}`.includes(
-                SEARCH.value.toLowerCase()
-            )
+    const searchInput: UIControl = document.querySelector("#search-input")
+
+    await searchInput?.addEventListener("keyup", (): void => {
+        console.log(searchInput.value.toLowerCase())
+        const arrayData: any = arrayCustomers.filter((customer: any) =>
+            `${customer.name}`
+                .toLowerCase()
+                .trim()
+                .includes(searchInput.value.toLowerCase().trim())
         )
 
+
         let filteredResult = arrayData.length
-        if (filteredResult >= rows) filteredResult = rows
+
+        if (filteredResult >= limitRows) filteredResult = limitRows
 
         // render data
-        renderTableData(arrayData, table, filteredResult, currentPage)
+        displayCustomerData(arrayData, table, filteredResult, currentPage, paginationCounter)
+
         // render pagination
-        pagination(arrayData, paginationCounter, rows, currentPage, table, renderTableData)
+        pagination(arrayData, paginationCounter, limitRows, currentPage, table, displayCustomerData)
     })
 
     // render load on tables
@@ -96,11 +92,10 @@ export async function customerView() {
         <td>Cargando...</td>
         <td>Cargando...</td>
         <td>Cargando...</td>
-    </tr>`.repeat(rows)
+    </tr>`.repeat(limitRows)
 
     // Display data and pagination
-    renderTableData(arrayCustomers, table, rows, currentPage, paginationCounter)
-    pagination(arrayCustomers, paginationCounter, rows, currentPage, table, renderTableData)
-    // renderTableData(arrayCustomers, table, rows, currentPage)
-    // pagination(arrayCustomers, paginationCounter, rows, currentPage, table, renderTableData)
+    displayCustomerData(arrayCustomers, table, limitRows, currentPage, paginationCounter)
+    pagination(arrayCustomers, paginationCounter, limitRows, currentPage, table, displayCustomerData)
+
 }

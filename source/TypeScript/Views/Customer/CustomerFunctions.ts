@@ -1,25 +1,80 @@
-// @filename: BusinessEditor.ts
+// @filename: CustomerFunctions.ts
 import { getEntityData, postNewData } from "../../Libs/lib.request.js"
-import { UIController } from "../../Libs/lib.types.js"
-import { $color } from "../../Libs/lib.tools.js"
+import { UIControl, UIController } from "../../Libs/lib.types.js"
 import { Modal } from "../../GlobalFunctions.js"
 
 let entityURL: string
 // Close editor
 
+class NLFCustomers extends Modal {
+    public async new(): Promise<void> {
+        const modalContainer: UIControl = document
+    }
+
+    public async edit(customerId: any): Promise<void> {
+        const data: any = await getEntityData("Customer", customerId)
+
+        console.log(data)
+
+        const modalElement: UIControl = document.getElementById("modal-content")
+
+        modalElement.innerHTML = `
+        <div class="modal" id="modal">
+            <div class="modal_dialog modal_body" style="max-width: 450px !important">
+                <h2 class="modal_title">Editar empresa</h2>
+
+                <form>
+                    <div class="input_group">
+                        <label for="customer-name" class="form_label">Nombre</label>
+                        <input type="text" id="customer-name" placeholder="empresa" class="input" disabled="disabled" value="${data.name}" disabled="true" readonly>
+                    </div>
+
+                    <div class="form_group">
+                        <div class="input_group">
+                            <label for="customer-ruc" class="form_label">RUC</label>
+                            <input type="text" placeholder="0900900000" class="input monospace" maxlength="10" id="customer-ruc">
+                        </div>
+
+                        <div class="input_group">
+                            <label class="form_label">Estado</label>
+
+                            <div class="select">
+                                <input type="text" id="input-select" class="input select_box" value="Activo" readonly>
+                                <div class="select_options" id="select_options">
+                                    <div class="select_option" data-stateId="60885987-1b61-4247-94c7-dff348347f93">Activo</div>
+                                    <div class="select_option" data-stateId="225b5e5d-9bb1-469a-b2d9-ca85d53db47b">Inactivo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input_group">
+                        <label for="vehicular-entrance" class="form_label">Ingreso vehicular: <span id="customer-vehicular-status">no</span></label>
+                        <input type="checkbox" name="vehicularEntrance" id="vehicular-entrance" class="toggle">
+                    </div>
+
+                </form>
+                <div class="modal_footer">
+                    <button class="btn" id="cancel">Cancelar</button>
+                    <button class="btn btn_success" id="submit">Guardar</button>
+                </div>
+            </div>
+        </div>`
+        this.open()
+
+        document.getElementById("cancel")?.addEventListener("click", (): void => {
+            this.cancel()
+        })
+    }
+
+}
+
+export const FNCustomers: NLFCustomers = new NLFCustomers()
+
 
 
 class Funcs extends Modal {
 
-    public async verifyRucLength(tableRuc: any): Promise<void> {
-        tableRuc.forEach((ruc: any) => {
-            if (ruc.innerText.length > 10) {
-                ruc.style.color = $color.red.r500
-            } else if (ruc.innerText.length < 10) {
-                ruc.style.color = $color.red.r500
-            }
-        })
-    }
 
     public newCustomer(modalElement: UIController): void {
         modalElement.innerHTML = `
@@ -237,5 +292,7 @@ class Funcs extends Modal {
         postNewData("Customer", raw)
     }
 }
+
+
 
 export let CFN: Funcs = new Funcs()

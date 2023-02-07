@@ -3,7 +3,7 @@
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
 import { NLFuncs } from "../../GlobalFunctions.js";
-import { CFN } from "./Functions.js";
+import { CFN } from "./CustomerFunctions";
 /**
  * Render table data with backend data obtained
  * @param items - The saved data and filtered data (tableData)

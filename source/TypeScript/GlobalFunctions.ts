@@ -1,4 +1,5 @@
-// @filename: GeneralFunctions.ts
+// @filename: GlobalFunctions.ts
+import { $color } from "./Libs/lib.tools.js"
 import { NLInterfaceElement, UIControl, UIController } from "./Libs/lib.types"
 
 class Funcs {
@@ -34,7 +35,22 @@ class Funcs {
 
         })
     }
+
+    public async validateRUC(): Promise<void> {
+        const rucTableElement = document.querySelectorAll(".ruc")
+
+        rucTableElement.forEach((ruc: any) => {
+            if (ruc.innerText.length > 10) {
+                ruc.style.color = $color.red.r500
+            }
+            else if (ruc.innerText.length < 10) {
+                ruc.style.color = $color.red.r500
+            }
+        })
+    }
 }
+
+export const NLFuncs: Funcs = new Funcs()
 
 export class Modal {
     public open(): void {
@@ -112,4 +128,3 @@ class AppStorage {
  * save and get methods
  */
 export let appStorage: AppStorage = new AppStorage()
-export const NLFuncs: Funcs = new Funcs()

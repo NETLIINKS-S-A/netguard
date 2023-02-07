@@ -1,3 +1,5 @@
+// @filename: GlobalFunctions.ts
+import { $color } from "./Libs/lib.tools.js";
 class Funcs {
     async TAGS_() {
         const tags = document.querySelectorAll(".tag span");
@@ -27,7 +29,19 @@ class Funcs {
             }
         });
     }
+    async validateRUC() {
+        const rucTableElement = document.querySelectorAll(".ruc");
+        rucTableElement.forEach((ruc) => {
+            if (ruc.innerText.length > 10) {
+                ruc.style.color = $color.red.r500;
+            }
+            else if (ruc.innerText.length < 10) {
+                ruc.style.color = $color.red.r500;
+            }
+        });
+    }
 }
+export const NLFuncs = new Funcs();
 export class Modal {
     open() {
         const modal = document.getElementById("modal");
@@ -94,4 +108,3 @@ class AppStorage {
  * save and get methods
  */
 export let appStorage = new AppStorage();
-export const NLFuncs = new Funcs();
