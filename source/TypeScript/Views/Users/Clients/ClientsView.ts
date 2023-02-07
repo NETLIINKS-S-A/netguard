@@ -74,7 +74,7 @@ export async function clientsView(): Promise<BackendValues> {
 
     // search data on real-time
     await searchInput?.addEventListener("keyup", (): void => {
-        const arrayData = arrayUsers.filter((user) =>
+        const arrayData = arrayUsers.filter((user: any) =>
             `${user.firstName}
              ${user.lastName}
              ${user.description}`
