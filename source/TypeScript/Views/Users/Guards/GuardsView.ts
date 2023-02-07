@@ -103,6 +103,8 @@ export async function guardsView(): Promise<BackendValues> {
         const arrayData = arrayGuards.filter((guard: any) =>
             `${guard.firstName}
              ${guard.lastName}
+             ${guard.email}
+             ${guard.citadel?.description}
              ${guard.description}`
                 .toLowerCase()
                 .includes(searchInput.value.toLowerCase())

@@ -84,6 +84,8 @@ export async function guardsView() {
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayGuards.filter((guard) => `${guard.firstName}
              ${guard.lastName}
+             ${guard.email}
+             ${guard.citadel?.description}
              ${guard.description}`
             .toLowerCase()
             .includes(searchInput.value.toLowerCase()));

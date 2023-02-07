@@ -21,7 +21,7 @@ class Funcs {
                 tag.innerText = "No aplica"
                 tag.classList.add("i")
             }
-            else if (tagText === "N/A" || tagText === "Ninguno" || tagText === "NINGUNO") {
+            else if (tagText === "N/A" || tagText === "Ninguno" || tagText === "NINGUNO" || tagText === "NA") {
                 tag.innerText = "ninguno"
                 tag.classList.add("i")
             }
