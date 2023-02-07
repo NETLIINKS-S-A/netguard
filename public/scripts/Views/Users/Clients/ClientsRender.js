@@ -26,7 +26,7 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
             <td class="tag"><span>${user.state._instanceName}</span></td>
             <td class="tag"><span>${user.citadel?.description}</span></td>
             <td><button class="btn btn_table-editor" id="edit" data-entityid="${user.id}"><i class="fa-solid fa-pencil"></i></button></td>
-            <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
+            <td><button class="btn btn_table-delete" id="remove-entity" data-entityid="${user.id}"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`;
         // write datas on table
@@ -40,6 +40,14 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
         editor.addEventListener("click", () => {
             let editorID = editor.dataset.entityid;
             FNClients.editor(editorID);
+        });
+    });
+    // Remove client
+    const removeClientButtons = document.querySelectorAll("#remove-entity");
+    removeClientButtons.forEach((removeClientButton) => {
+        removeClientButton.addEventListener("click", () => {
+            let editorID = removeClientButton.dataset.entityid;
+            FNClients.remove_();
         });
     });
 }

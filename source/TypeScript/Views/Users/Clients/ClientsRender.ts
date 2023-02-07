@@ -36,7 +36,7 @@ export async function displayUserData(
             <td class="tag"><span>${user.state._instanceName}</span></td>
             <td class="tag"><span>${user.citadel?.description}</span></td>
             <td><button class="btn btn_table-editor" id="edit" data-entityid="${user.id}"><i class="fa-solid fa-pencil"></i></button></td>
-            <td><button class="btn btn_table-delete"><i class="fa-solid fa-trash"></i></button></td>
+            <td><button class="btn btn_table-delete" id="remove-entity" data-entityid="${user.id}"><i class="fa-solid fa-trash"></i></button></td>
             </td>
         </tr>`
 
@@ -54,6 +54,15 @@ export async function displayUserData(
         editor.addEventListener("click", (): void => {
             let editorID = editor.dataset.entityid
             FNClients.editor(editorID)
+        })
+    })
+
+    // Remove client
+    const removeClientButtons: UIControl = document.querySelectorAll("#remove-entity")
+    removeClientButtons.forEach((removeClientButton: UIControl) => {
+        removeClientButton.addEventListener("click", (): void => {
+            let editorID = removeClientButton.dataset.entityid
+            FNClients.remove_()
         })
     })
 }

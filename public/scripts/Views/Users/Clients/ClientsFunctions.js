@@ -116,7 +116,23 @@ class NLFClients extends Modal {
         // ...
     }
     async remove_() {
-        // ...
+        const modalElement = document.getElementById("modal-content");
+        modalElement.innerHTML = `
+            <div class="modal" id="modal">
+            <div class="modal_dialog modal_body" style="max-width: 450px !important">
+                <h2 class="modal_title">¿Deseas eliminar este usuario?</h2>
+
+                <p>Esta acción no se puede revertir</p>
+
+                <div class="modal_footer">
+                    <button class="btn" id="cancel">Cancelar</button>
+                    <button class="btn btn_danger" id="delete">Eliminar</button>
+                </div>
+            </div>
+        </div>
+        `;
+        this.open();
+        document.getElementById("cancel")?.addEventListener("click", () => this.cancel());
     }
 }
 export const FNClients = new NLFClients();
