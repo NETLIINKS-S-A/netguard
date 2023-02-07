@@ -88,7 +88,6 @@ export async function clientsView() {
     pagination(arrayUsers, paginationCounter, LIMIT_ROWS, currentPage, tableBody, displayUserData);
     // add New client
     const addNewUserButton = document.getElementById("add-new-client");
-    console.log(addNewUserButton);
     addNewUserButton.addEventListener("click", () => {
         FNClients.new_();
     });

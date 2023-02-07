@@ -107,7 +107,6 @@ export async function clientsView(): Promise<BackendValues> {
 
     // add New client
     const addNewUserButton: UIControl = document.getElementById("add-new-client")
-    console.log(addNewUserButton)
     addNewUserButton.addEventListener("click", (): void => {
         FNClients.new_()
     })
