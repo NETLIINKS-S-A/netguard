@@ -17,11 +17,11 @@ class Funcs {
                 tag.innerText = "No aplica";
                 tag.classList.add("i");
             }
-            else if (tagText === "N/A") {
+            else if (tagText === "N/A" || tagText === "Ninguno" || tagText === "NINGUNO") {
                 tag.innerText = "ninguno";
                 tag.classList.add("i");
             }
-            else if (tagText === "undefined" || tagText === "" || tagText === "UNDEFINED") {
+            else if (tagText === "undefined" || tagText === "" || tagText === "UNDEFINED" || tagText === "•••") {
                 tag.innerText = "•••";
             }
             else {
