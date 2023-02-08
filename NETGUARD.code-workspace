@@ -13,6 +13,10 @@
             "path": "./Source/SCSS"
         },
         {
+            "name": "Core",
+            "path": "./Source/TypeScript"
+        },
+        {
             "name": "Test",
             "path": "./Source/TypeScript/Test"
         },

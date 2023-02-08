@@ -23,10 +23,10 @@ class Logout extends Modal {
             </div>
         `;
         this.open();
-        document.getElementById("logout-button")?.addEventListener("click", () => Logout.exit_());
+        document.getElementById("logout-button")?.addEventListener("click", () => this.exit_());
         document.getElementById("dismiss")?.addEventListener("click", () => this.close());
     }
-    static exit_() {
+    exit_() {
         AppStorage.remove("access_token");
         login.checkToken();
         window.location.reload();

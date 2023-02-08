@@ -22,7 +22,7 @@ export async function applicationView() {
     let data = await getData(url);
     async function renderInterface(interfaceData) {
         if (interfaceData.error)
-            logout.close(); // if any error, close session (in case access token fails)
+            logout.exit_(); // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = "block";
             content.style.display = "flex";

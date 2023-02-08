@@ -28,11 +28,11 @@ class Logout extends Modal {
         `
         this.open()
 
-        document.getElementById("logout-button")?.addEventListener("click", (): void => Logout.exit_())
+        document.getElementById("logout-button")?.addEventListener("click", (): void => this.exit_())
         document.getElementById("dismiss")?.addEventListener("click", (): void => this.close())
     }
 
-    static exit_(): void {
+    public exit_(): void {
         AppStorage.remove("access_token")
         login.checkToken()
         window.location.reload()
