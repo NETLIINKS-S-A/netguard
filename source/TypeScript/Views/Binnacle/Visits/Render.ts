@@ -1,6 +1,6 @@
 // @filename: VisitsRenderData.ts
-import { getEntityData } from "../../../Libs/lib.request.js"
-import { UIControl, BackendValues } from "../../../Libs/lib.types"
+import { getEntityData } from "../../../Backend/Connection.js"
+import { UIControl, BackendValues } from "../../../Shared/Libs/lib.types.g.js"
 
 export class Visits {
     public async render(

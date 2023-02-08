@@ -1,13 +1,13 @@
 // @filename: VisitsView.ts
-import { UI } from "../../../Libs/lib.dom.js";
-import { pagination } from "../../../Libs/lib.tools.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { VisitsControllers } from "./Render.js";
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-const tableRows = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-const currentPage = 1;
+import { getEntitiesData } from "../../../Backend/Connection.js";
+import { tableSettings } from "../../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
+const tableRows = tableSettings.Rows;
+const currentPage = tableSettings.paginationPage;
+const app = AppContent;
+const tools = appTools;
 export async function visitsView() {
     // write application template
     app.innerHTML = `
@@ -34,7 +34,7 @@ export async function visitsView() {
     <div id="modal-container"></div>
     `;
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-trash"></i></button>

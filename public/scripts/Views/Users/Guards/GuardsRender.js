@@ -1,5 +1,5 @@
 // @filename: GuardsRender.ts
-import { NLFuncs } from "../../../GlobalFunctions.js";
+import { StylingTable } from "../../../Shared/Functions/StylingTable.js";
 import { FNGuards } from "./GuardsFunctions.js";
 export async function displayGuardsData(items, table, rows, page, paginationCounter) {
     table.innerHTML = "";
@@ -35,7 +35,7 @@ export async function displayGuardsData(items, table, rows, page, paginationCoun
             </tr>`;
         table.appendChild(row);
         // format table
-        NLFuncs.TAGS_();
+        StylingTable.TAGS();
     }
     const editGuard_ = document.querySelectorAll("#edit-guard");
     editGuard_.forEach((editGuard) => {

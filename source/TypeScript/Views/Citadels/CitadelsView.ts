@@ -1,15 +1,16 @@
 // @filename: CitadelsView.ts
-import { UI } from "../../Libs/lib.dom.js"
-import { getEntitiesData } from "../../Libs/lib.request.js"
-import { pagination } from "../../Libs/lib.tools.js"
-import { UIControl } from "../../Libs/lib.types.js"
+import { getEntitiesData } from "../../Backend/Connection.js"
+import { pagination } from "../../Shared/Functions/Pagination.js"
+import { UIControl } from "../../Shared/Libs/lib.types.g.js"
+import { AppContent, appTools } from "../../Shared/Settings/Misc.js"
+import { tableSettings } from "../../Shared/Settings/Table.js"
 import { renderCitadelData } from "./Render.js"
 
-const tableRows: number = UI.tableRows
-const UIApp = UI.App
-const app = UIApp?.content
-const appTools = UIApp?.tools
-const currentPage: number = 1
+const tableRows: number = tableSettings.Rows
+const currentPage: number = tableSettings.paginationPage
+
+const app = AppContent
+const tools = appTools
 
 export async function citadelsView(): Promise<void> {
     // write application template
@@ -32,7 +33,7 @@ export async function citadelsView(): Promise<void> {
     </div>`
 
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-add"></i></button>
         <div class="toolbox_spotlight">

@@ -1,5 +1,5 @@
-import { getEntityData } from "../../../Libs/lib.request.js";
-import { Modal } from "../../../GlobalFunctions.js";
+import { getEntityData } from "../../../Backend/Connection.js";
+import { Modal } from "../../../Shared/Functions/Modal.js";
 class NLFClients extends Modal {
     async editor(entity) {
         let DATA = await getEntityData("User", entity);

@@ -5,20 +5,17 @@ import { displayGuardsData } from "./GuardsRender.js"
 import { FNGuards } from "./GuardsFunctions.js"
 
 // Libs
-import { UI as DOM } from "../../../Libs/lib.dom.js"
-import { BackendValues, NLData, UIControl } from "../../../Libs/lib.types.js"
-import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { settings } from "../../../Libs/lib.settings.js"
-import { pagination } from "../../../Libs/lib.tools.js"
+import { BackendValues, NLData, UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { pagination } from "../../../Shared/Functions/Pagination.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
+import { tableSettings } from "../../../Shared/Settings/Table.js"
+import { getEntitiesData } from "../../../Backend/Connection.js"
 
 // Primary elements
-let rows: number = settings.limitRows
-const currentPage: number = settings.currentPaginationPage
-const AppDOM: any = DOM?.App
-const appToolbar = AppDOM?.tools
-const appContent = AppDOM?.content
-
-console.log(rows)
+let rows: number = tableSettings.Rows
+const currentPage: number = tableSettings.paginationPage
+const appToolbar = appTools
+const appContent = AppContent
 
 export async function guardsView(): Promise<BackendValues> {
     const BACKEND_DATA: NLData = await getEntitiesData("User")

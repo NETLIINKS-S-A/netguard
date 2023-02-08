@@ -2,10 +2,9 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIControl } from "../../Libs/lib.types.js"
-import { NLFuncs } from "../../GlobalFunctions.js"
-import { UIView } from "../../Libs/lib.types.js"
+import { UIControl, UIView } from "../../Shared/Libs/lib.types.g"
 import { FNCustomers } from "./CustomerFunctions.js"
+import { StylingTable } from "../../Shared/Functions/StylingTable.js"
 
 /**
  * Render table data with backend data obtained
@@ -67,8 +66,8 @@ export async function displayCustomerData(
 
 
     // format table
-    NLFuncs.TAGS_()
-    NLFuncs.validateRUC()
+    StylingTable.TAGS()
+    StylingTable.validateRUC()
 
     console.log(paginatedItems)
 }

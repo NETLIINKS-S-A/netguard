@@ -5,18 +5,18 @@ import { displayCustomerData } from "./CustomerRender.js"
 import { FNCustomers } from "./CustomerFunctions.js"
 
 // Libs
-import { UI } from "../../Libs/lib.dom.js"
-import { UIControl } from "../../Libs/lib.types.js"
-import { getEntitiesData } from "../../Libs/lib.request.js"
-import { settings } from "../../Libs/lib.settings.js"
-import { pagination } from "../../Libs/lib.tools.js"
+import { UIControl } from "../../Shared/Libs/lib.types.g.js"
+import { pagination } from "../../Shared/Functions/Pagination.js"
+import { getEntitiesData } from "../../Backend/Connection.js"
+import { tableSettings } from "../../Shared/Settings/Table.js"
+import { AppContent, appTools } from "../../Shared/Settings/Misc.js"
 
 // Primary elements
-const limitRows: number = settings.limitRows
-const currentPage: number = settings.currentPaginationPage
-const AppDOM = UI?.App
-const appToolbar = AppDOM?.tools
-const appContent = AppDOM?.content
+const limitRows: number = tableSettings.Rows
+const currentPage: number = tableSettings.paginationPage
+
+const appToolbar = appTools
+const appContent = AppContent
 
 export async function customerView() {
     // GET BACKEND DATA

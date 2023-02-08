@@ -1,16 +1,18 @@
 // @filename: EmergenctUserView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { pagination } from "../../../Libs/lib.tools.js";
-import { renderEmergencyUserData } from "./Render.js";
-const tableRows = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-const currentPage = 1;
+// import { getEntitiesData } from "../../../Libs/lib.request.js"
+import { getEntitiesData } from "../../../Backend/Connection.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
+import { renderEmergencyUserData } from "./EmergencyRender.js";
+import { tableSettings } from "../../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
+const tableRows = tableSettings.Rows;
+const currentPage = tableSettings.paginationPage;
+const app = AppContent;
+const tools = appTools;
 export async function emergencyUserView() {
     let GET_DATA = await getEntitiesData("Contact");
     let arrayEmergencyUsers = GET_DATA;
+    console.log(arrayEmergencyUsers);
     // write application template
     app.innerHTML = `<h1 class="app_title">Emergencia</h1>
     <table>
@@ -28,7 +30,7 @@ export async function emergencyUserView() {
         <div id="pagination-counter"></div>
     </div>`;
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
         <div class="select">
             <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>

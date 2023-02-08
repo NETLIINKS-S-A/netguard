@@ -1,6 +1,6 @@
 // @filename: CustomerFunctions.ts
-import { getEntityData, postNewData } from "../../Libs/lib.request.js";
-import { Modal } from "../../GlobalFunctions.js";
+import { getEntityData, postNewData } from "../../Backend/Connection.js";
+import { Modal } from "../../Shared/Functions/Modal.js";
 let entityURL;
 // Close editor
 class NLFCustomers extends Modal {

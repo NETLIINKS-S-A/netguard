@@ -1,7 +1,6 @@
-import { logout } from "../Login/Logout.js";
+import { logout } from "../../Shared/Functions/Logout.js";
 // import libs
-import { UI } from "../../Libs/lib.dom.js";
-import { getData } from "../../Libs/lib.request.js";
+import { getData } from "../../Backend/Connection.js";
 // import views
 import { customerView } from "../Customer/CustomerView.js";
 import { clientsView } from "../Users/Clients/ClientsView.js";
@@ -14,15 +13,16 @@ import { citadelsView } from "../Citadels/CitadelsView.js";
 import { visitsView } from "../Binnacle/Visits/VisitsView.js";
 import { notesView } from "../Binnacle/Notes/NotesView.js";
 import { AppPreferences } from "../Preferences/Preferences.js";
+import { AppContainer, AppContent, AppWrapper } from "../../Shared/Settings/Misc.js";
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
     const sidebar = document.getElementById("appSidebar");
-    const content = UI.App?.app;
-    const wrapper = UI.App?.wrapper;
+    const content = AppContainer;
+    const wrapper = AppWrapper;
     let data = await getData(url);
     async function renderInterface(interfaceData) {
         if (interfaceData.error)
-            logout.logout_(); // if any error, close session (in case access token fails)
+            logout.close(); // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = "block";
             content.style.display = "flex";
@@ -324,8 +324,8 @@ export async function applicationView() {
         // Render selected view
         // customerView()
         // clientsView()
-        guardsView();
-        // emergencyUserView()
+        // guardsView()
+        emergencyUserView();
         // eventView()
         // platformView()
         // administratorsView()
@@ -337,8 +337,8 @@ export async function applicationView() {
     renderInterface(data);
 }
 function renderBlankPage(name) {
-    let UIApp = UI.App;
-    UIApp.content.innerHTML = `
+    let content = AppContent;
+    content.innerHTML = `
     <h1 class="app_title">${name}</h1>
     <div class="container">
         <p class="message">Lo sentimos, ${name.toLowerCase()} aún está en desarrollo.</p>

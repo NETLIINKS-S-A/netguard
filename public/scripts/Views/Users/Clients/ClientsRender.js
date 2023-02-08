@@ -1,8 +1,4 @@
-// @filename: UsersRenderData.ts
-/* ******************************************
-DISPLAY TABLE DATA AND FILTERED TABLE DATA
-******************************************** */
-import { NLFuncs } from "../../../GlobalFunctions.js";
+import { StylingTable } from "../../../Shared/Functions/StylingTable.js";
 import { FNClients } from "./ClientsFunctions.js";
 /**
  *
@@ -33,7 +29,7 @@ export async function displayUserData(items, tableBody, rowsPerPage, page, pagin
         tableBody.appendChild(itemElement);
     }
     // fix tags
-    NLFuncs.TAGS_();
+    StylingTable.TAGS();
     // Edit clients
     const openEditor = document.querySelectorAll("#edit");
     openEditor.forEach((editor) => {

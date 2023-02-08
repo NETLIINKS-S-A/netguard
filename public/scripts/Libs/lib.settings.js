@@ -1,5 +1,5 @@
 // @filename: lib.settings.ts
-export let settings = {
+export const settings = {
     limitRows: 16,
     accent: "blue",
     theme: "light",

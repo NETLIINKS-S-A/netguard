@@ -1,17 +1,16 @@
 // @filename: UsersView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { pagination } from "../../../Libs/lib.tools.js";
-import { settings } from "../../../Libs/lib.settings.js";
-import { UI as DOM } from "../../../Libs/lib.dom.js";
+import { getEntitiesData } from "../../../Backend/Connection.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { displayUserData } from "./ClientsRender.js";
 import { FNClients } from "./ClientsFunctions.js";
+import { tableSettings } from "../../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
 // Page settings
-const LIMIT_ROWS = settings.limitRows;
-const currentPage = settings.currentPaginationPage;
+const LIMIT_ROWS = tableSettings.Rows;
+const currentPage = tableSettings.paginationPage;
 // DOM Elements
-const DOM_ = DOM.App;
-const app = DOM_?.content;
-const appTools = DOM_?.tools;
+const app = AppContent;
+const tools = appTools;
 export async function clientsView() {
     let GET_DATA = await getEntitiesData("User");
     let notSuper = GET_DATA.filter((data) => data.isSuper === false);
@@ -39,7 +38,7 @@ export async function clientsView() {
             <div id="paginationCounter"></div>
         </div>`;
     // Add tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
         <div class="toolbox">
             <div class="select">
                 <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>

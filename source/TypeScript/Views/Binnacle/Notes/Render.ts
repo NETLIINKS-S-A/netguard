@@ -1,5 +1,5 @@
 // @filename: NotesRenderData.ts
-import { UIControl } from "../../../Libs/lib.types"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 
 /**
  * @function renderNotesData

@@ -1,5 +1,5 @@
 // @filename: PlatformRenderData.ts
-import { UIControl } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 
 export async function renderPlatformData(
     items: any,

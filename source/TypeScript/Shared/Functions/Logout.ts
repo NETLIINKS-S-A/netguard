@@ -1,8 +1,8 @@
 // @filename: Logout.ts
-//
-import { Modal, appStorage } from "../../GlobalFunctions.js"
-import { application } from "./Login.js"
-import { UIControl } from "../../Libs/lib.types.js"
+
+import { UIControl } from "../Libs/lib.types.g.js";
+import { AppStorage } from "./AppStorage.js";
+import { Modal } from "./Modal.js";
 
 class Logout extends Modal {
     public open_(): void {
@@ -27,14 +27,12 @@ class Logout extends Modal {
         `
         this.open()
 
-        document.getElementById("logout-button")?.addEventListener("click", (): void => this.logout_())
+        document.getElementById("logout-button")?.addEventListener("click", (): void => Logout.exit_())
         document.getElementById("dismiss")?.addEventListener("click", (): void => this.close())
     }
 
-    public logout_(): void {
-        appStorage.remove("access_token")
-        application.checkToken()
-        window.location.reload()
+    static exit_(): void {
+        AppStorage.remove("access_token")
     }
 }
 

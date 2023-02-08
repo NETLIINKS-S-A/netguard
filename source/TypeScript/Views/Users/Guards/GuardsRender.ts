@@ -1,7 +1,7 @@
 // @filename: GuardsRender.ts
 
-import { NLFuncs } from "../../../GlobalFunctions.js"
-import { UIControl } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { StylingTable } from "../../../Shared/Functions/StylingTable.js"
 import { FNGuards } from "./GuardsFunctions.js"
 
 export async function displayGuardsData(
@@ -48,7 +48,7 @@ export async function displayGuardsData(
         table.appendChild(row)
 
         // format table
-        NLFuncs.TAGS_()
+        StylingTable.TAGS()
     }
 
     const editGuard_: UIControl = document.querySelectorAll("#edit-guard")

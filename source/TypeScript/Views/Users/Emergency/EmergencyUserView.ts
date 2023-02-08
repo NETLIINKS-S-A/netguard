@@ -1,19 +1,22 @@
 // @filename: EmergenctUserView.ts
-import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { UIControl } from "../../../Libs/lib.types.js"
-import { UI } from "../../../Libs/lib.dom.js"
-import { pagination } from "../../../Libs/lib.tools.js"
-import { renderEmergencyUserData } from "./Render.js"
+// import { getEntitiesData } from "../../../Libs/lib.request.js"
+import { getEntitiesData } from "../../../Backend/Connection.js"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { pagination } from "../../../Shared/Functions/Pagination.js"
+import { renderEmergencyUserData } from "./EmergencyRender.js"
+import { tableSettings } from "../../../Shared/Settings/Table.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
 
-const tableRows = UI.tableRows
-const UIApp = UI.App
-const app = UIApp?.content
-const appTools = UIApp?.tools
-const currentPage: number = 1
+const tableRows = tableSettings.Rows
+const currentPage = tableSettings.paginationPage
+const app = AppContent
+const tools = appTools
 
 export async function emergencyUserView() {
     let GET_DATA: void = await getEntitiesData("Contact")
     let arrayEmergencyUsers: any = GET_DATA
+
+    console.log(arrayEmergencyUsers)
 
     // write application template
     app.innerHTML = `<h1 class="app_title">Emergencia</h1>
@@ -33,7 +36,7 @@ export async function emergencyUserView() {
     </div>`
 
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
         <div class="select">
             <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
@@ -50,15 +53,14 @@ export async function emergencyUserView() {
     </div>`
 
     // get elements
-    const tableBody: UIControl = document.querySelector("#table-body")
-    const searchInput: UIControl = document.querySelector("#search-input")
-    const paginationCounter: UIControl =
-        document.getElementById("pagination-counter")
+    const tableBody = <HTMLElement>document.querySelector("#table-body")
+    const searchInput: UIControl = <HTMLElement>document.querySelector("#search-input")
+    const paginationCounter = <HTMLElement>document.getElementById("pagination-counter")
 
     // search data
     await searchInput?.addEventListener("keyup", (): void => {
         // @ts-ignore
-        const arrayData = arrayEmergencyUsers.filter((emergencyUser) =>
+        const arrayData = arrayEmergencyUsers.filter((emergencyUser: any) =>
             `${emergencyUser.name}
              ${emergencyUser.phone}`
                 .toLowerCase()

@@ -13,16 +13,24 @@
             "path": "./Source/SCSS"
         },
         {
-            "name": "Scripts",
-            "path": "./Source/TypeScript"
+            "name": "Test",
+            "path": "./Source/TypeScript/Test"
         },
         {
             "name": "Views",
             "path": "./Source/TypeScript/Views"
         },
         {
-            "name": "Libs",
-            "path": "./Source/TypeScript/Libs"
+            "name": "Shared Libs",
+            "path": "./Source/TypeScript/Shared/Libs"
+        },
+        {
+            "name": "Shared Functions",
+            "path": "./Source/TypeScript/Shared/Functions"
+        },
+        {
+            "name": "Shared Settings",
+            "path": "./Source/TypeScript/Shared/Settings"
         }
     ],
 

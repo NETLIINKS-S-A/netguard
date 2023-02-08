@@ -1,7 +1,8 @@
 // @filename: CustomerFunctions.ts
-import { getEntityData, postNewData } from "../../Libs/lib.request.js"
-import { UIControl, UIController } from "../../Libs/lib.types.js"
-import { Modal } from "../../GlobalFunctions.js"
+
+import { getEntityData, postNewData } from "../../Backend/Connection.js"
+import { UIControl, UIController } from "../../Shared/Libs/lib.types.g"
+import { Modal } from "../../Shared/Functions/Modal.js"
 
 let entityURL: string
 // Close editor

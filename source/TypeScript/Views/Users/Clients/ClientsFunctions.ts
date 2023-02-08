@@ -1,7 +1,7 @@
 // @filename: Functions.ts
-import { NLData, NewValue, UIControl } from "../../../Libs/lib.types.js"
-import { getEntityData } from "../../../Libs/lib.request.js"
-import { Modal } from "../../../GlobalFunctions.js"
+import { NewValue, UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { getEntityData } from "../../../Backend/Connection.js"
+import { Modal } from "../../../Shared/Functions/Modal.js"
 
 class NLFClients extends Modal {
 

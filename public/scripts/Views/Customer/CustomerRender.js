@@ -1,5 +1,5 @@
-import { NLFuncs } from "../../GlobalFunctions.js";
 import { FNCustomers } from "./CustomerFunctions.js";
+import { StylingTable } from "../../Shared/Functions/StylingTable.js";
 /**
  * Render table data with backend data obtained
  * @param items - The saved data and filtered data (tableData)
@@ -44,8 +44,8 @@ export async function displayCustomerData(items, table, rows, page, paginationCo
         });
     });
     // format table
-    NLFuncs.TAGS_();
-    NLFuncs.validateRUC();
+    StylingTable.TAGS();
+    StylingTable.validateRUC();
     console.log(paginatedItems);
 }
 //     // verify RUC length

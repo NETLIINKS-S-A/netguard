@@ -1,20 +1,19 @@
 // @filename: UsersView.ts
 
-import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { NLData, UIControl, BackendValues } from "../../../Libs/lib.types.js"
-import { pagination } from "../../../Libs/lib.tools.js"
-import { settings } from "../../../Libs/lib.settings.js"
-import { UI as DOM } from "../../../Libs/lib.dom.js"
+import { getEntitiesData } from "../../../Backend/Connection.js"
+import { NLData, UIControl, BackendValues } from "../../../Shared/Libs/lib.types.g.js"
+import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { displayUserData } from "./ClientsRender.js"
 import { FNClients } from "./ClientsFunctions.js"
+import { tableSettings } from "../../../Shared/Settings/Table.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
 
 // Page settings
-const LIMIT_ROWS = settings.limitRows
-const currentPage: number = settings.currentPaginationPage
+const LIMIT_ROWS = tableSettings.Rows
+const currentPage: number = tableSettings.paginationPage
 // DOM Elements
-const DOM_ = DOM.App
-const app = DOM_?.content
-const appTools = DOM_?.tools
+const app = AppContent
+const tools = appTools
 
 export async function clientsView(): Promise<BackendValues> {
     let GET_DATA: NLData = await getEntitiesData("User")
@@ -47,7 +46,7 @@ export async function clientsView(): Promise<BackendValues> {
         </div>`
 
     // Add tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
         <div class="toolbox">
             <div class="select">
                 <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>

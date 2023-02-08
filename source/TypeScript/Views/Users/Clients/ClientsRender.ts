@@ -2,8 +2,8 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { NLFuncs } from "../../../GlobalFunctions.js"
-import { UIControl } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { StylingTable } from "../../../Shared/Functions/StylingTable.js"
 import { FNClients } from "./ClientsFunctions.js"
 
 /**
@@ -45,7 +45,7 @@ export async function displayUserData(
     }
 
     // fix tags
-    NLFuncs.TAGS_()
+    StylingTable.TAGS()
 
     // Edit clients
     const openEditor: UIControl = document.querySelectorAll("#edit")

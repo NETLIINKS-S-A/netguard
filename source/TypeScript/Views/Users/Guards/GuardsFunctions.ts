@@ -1,10 +1,6 @@
 // @filename: GuardsFunctions.ts
-
-import { Modal } from "../../../GlobalFunctions.js"
-import { UIControl } from "../../../Libs/lib.types"
-// import { customerNames } from "../../../Libs/lib.data.js"
-// import { getEntityData } from "../../../Libs/lib.request.js"
-// import { UIControl } from "../../../Libs/lib.types.js"
+import { Modal } from "../../../Shared/Functions/Modal.js"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 
 class NLFGuards extends Modal {
     public async new(): Promise<void> {

@@ -1,5 +1,6 @@
 // @filename: EmergencyUserRenderData.ts
-import { UIControl } from "../../../Libs/lib.types.js"
+import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { FNEmergency } from "./EmergencyFunctions.js"
 
 export async function renderEmergencyUserData(
     items: any,
@@ -23,10 +24,19 @@ export async function renderEmergencyUserData(
         <tr>
             <td>${emergencyUser?.name}</td>
             <td class="monospace">${emergencyUser?.phone}</td>
-            <td><button class="btn btn_table-editor"><i class="fa-solid fa-pencil"></i></button></td>
+            <td><button class="btn btn_table-editor" id="edit" data-id="${emergencyUser?.id}"><i class="fa-solid fa-pencil"></i></button></td>
         </tr>`
 
         // write data on table
         tableBody.appendChild(row)
     }
+
+    const editorButton: UIControl = document.querySelectorAll("#edit")
+
+    editorButton.forEach((editor: UIControl) => {
+        editor.addEventListener("click", (): void => {
+            let id = editor.dataset.id
+            FNEmergency.editor(id)
+        })
+    })
 }

@@ -1,5 +1,5 @@
 // @filename: AppDate.ts
-import { shortMonths, shortDays } from "../../Libs/lib.date.js";
+import { shortMonths, shortDays } from "../../Shared/Libs/lib.date.g.js";
 export function renderAppDate() {
     // DOM elements
     const appMonth = document.getElementById("appMonth");

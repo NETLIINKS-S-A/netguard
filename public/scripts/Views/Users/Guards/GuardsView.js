@@ -2,18 +2,15 @@
 // Functions
 import { displayGuardsData } from "./GuardsRender.js";
 import { FNGuards } from "./GuardsFunctions.js";
-// Libs
-import { UI as DOM } from "../../../Libs/lib.dom.js";
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { settings } from "../../../Libs/lib.settings.js";
-import { pagination } from "../../../Libs/lib.tools.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
+import { tableSettings } from "../../../Shared/Settings/Table.js";
+import { getEntitiesData } from "../../../Backend/Connection.js";
 // Primary elements
-let rows = settings.limitRows;
-const currentPage = settings.currentPaginationPage;
-const AppDOM = DOM?.App;
-const appToolbar = AppDOM?.tools;
-const appContent = AppDOM?.content;
-console.log(rows);
+let rows = tableSettings.Rows;
+const currentPage = tableSettings.paginationPage;
+const appToolbar = appTools;
+const appContent = AppContent;
 export async function guardsView() {
     const BACKEND_DATA = await getEntitiesData("User");
     let notSuperUser = BACKEND_DATA.filter((data) => data.isSuper === false);

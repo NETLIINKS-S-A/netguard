@@ -1,6 +1,4 @@
-// @filename: lib.types.ts
-// Author: Poll Castillo <acastillo@gmail.com>
-// Colaborators:
+// @filename: lib.types.g.ts
 
 export type UIView = void
 export type UIControl = HTMLElement | null | any

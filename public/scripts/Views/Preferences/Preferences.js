@@ -1,12 +1,12 @@
-import { appStorage } from "../../GlobalFunctions.js";
-import { settings } from "../../Libs/lib.settings.js";
+import { AppStorage } from "../../Shared/Functions/AppStorage.js";
+import { interfaceSettings } from "../../Shared/Settings/Global.js";
 const content = document.getElementsByTagName("body")[0];
-let savedTheme = appStorage.get("theme");
+let savedTheme = AppStorage.get("theme");
 if (savedTheme === null || savedTheme === undefined) {
-    settings.theme;
+    interfaceSettings.theme;
 }
 else {
-    settings.theme = savedTheme;
+    interfaceSettings.theme = savedTheme;
 }
 /**
  * @description tempTheme save the current selected theme but, it is deleted
@@ -100,9 +100,9 @@ export function AppPreferences() {
             // set theme
             content.classList.add(`${button.dataset.theme}`);
             button.classList.add("isActive");
-            settings.theme = `${button.dataset.theme}`;
+            interfaceSettings.theme = `${button.dataset.theme}`;
             tempTheme = "";
-            tempTheme = settings.theme;
+            tempTheme = interfaceSettings.theme;
         });
     });
     // Tables
@@ -110,8 +110,8 @@ export function AppPreferences() {
     // SAVE
     const save = document.getElementById("save-preferences");
     save?.addEventListener("click", () => {
-        const currentTheme = content.classList.contains(`${settings.theme}`);
-        appStorage.save("theme", settings.theme, "show");
+        const currentTheme = content.classList.contains(`${interfaceSettings.theme}`);
+        AppStorage.save("theme", interfaceSettings.theme, "show");
         // hide preferences on save
         preferences.style.display = "none";
         preferencesWindow?.remove();

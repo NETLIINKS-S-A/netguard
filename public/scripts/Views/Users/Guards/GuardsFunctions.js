@@ -1,8 +1,5 @@
 // @filename: GuardsFunctions.ts
-import { Modal } from "../../../GlobalFunctions.js";
-// import { customerNames } from "../../../Libs/lib.data.js"
-// import { getEntityData } from "../../../Libs/lib.request.js"
-// import { UIControl } from "../../../Libs/lib.types.js"
+import { Modal } from "../../../Shared/Functions/Modal.js";
 class NLFGuards extends Modal {
     async new() {
         const modalContainer = document.getElementById("modal-content");

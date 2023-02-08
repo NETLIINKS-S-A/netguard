@@ -1,5 +1,5 @@
 // @filename: VisitsRenderData.ts
-import { getEntityData } from "../../../Libs/lib.request.js";
+import { getEntityData } from "../../../Backend/Connection.js";
 export class Visits {
     async render(items, table, rows, page) {
         table.innerHTML = "";

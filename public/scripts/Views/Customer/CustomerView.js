@@ -2,17 +2,15 @@
 // Functions
 import { displayCustomerData } from "./CustomerRender.js";
 import { FNCustomers } from "./CustomerFunctions.js";
-// Libs
-import { UI } from "../../Libs/lib.dom.js";
-import { getEntitiesData } from "../../Libs/lib.request.js";
-import { settings } from "../../Libs/lib.settings.js";
-import { pagination } from "../../Libs/lib.tools.js";
+import { pagination } from "../../Shared/Functions/Pagination.js";
+import { getEntitiesData } from "../../Backend/Connection.js";
+import { tableSettings } from "../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../Shared/Settings/Misc.js";
 // Primary elements
-const limitRows = settings.limitRows;
-const currentPage = settings.currentPaginationPage;
-const AppDOM = UI?.App;
-const appToolbar = AppDOM?.tools;
-const appContent = AppDOM?.content;
+const limitRows = tableSettings.Rows;
+const currentPage = tableSettings.paginationPage;
+const appToolbar = appTools;
+const appContent = AppContent;
 export async function customerView() {
     // GET BACKEND DATA
     let DATA = await getEntitiesData("Customer");
