@@ -2,6 +2,7 @@
 
 import { UIControl } from "../Libs/lib.types.g.js";
 import { AppStorage } from "./AppStorage.js";
+import { login } from "./Login.js";
 import { Modal } from "./Modal.js";
 
 class Logout extends Modal {
@@ -33,6 +34,8 @@ class Logout extends Modal {
 
     static exit_(): void {
         AppStorage.remove("access_token")
+        login.checkToken()
+        window.location.reload()
     }
 }
 

@@ -2,11 +2,12 @@
 
 import { applicationView } from "../../Views/ApplicationUI/ApplicationView.js"
 import { UIControl } from "../Libs/lib.types.g.js"
-import { AppContainer, token } from "../Settings/Misc.js"
+import { AppContainer } from "../Settings/Misc.js"
+import { AppStorage } from "./AppStorage.js"
 
 class Login {
     private loginInterface = <HTMLElement>document.getElementById("login")
-    private accessToken: string | null = token
+    private accessToken: string | null = localStorage.getItem("access_token")
     private appContainer: UIControl = AppContainer
 
     public render() {
@@ -56,7 +57,7 @@ class Login {
                                 class="form_label">
                                 Contraseña
                             </label>
-                            <input type="text"
+                            <input type="password"
                                 class="input"
                                 name="email"
                                 placeholder="•••••••••••"
@@ -86,13 +87,17 @@ class Login {
             </div>`
     }
 
-    public checkToken() {
-        if (!this.accessToken)
+    public async checkToken(): Promise<void> {
+        const accessToken: string | null = localStorage.getItem("access_token")
+
+        if (!accessToken)
             this.appContainer.style.display = "none"
-        else if (this.accessToken === "undefined")
-            throw new Error("Error: access token is undefined")
-        else if (this.accessToken === null)
-            throw new Error("Error: access token is null")
+        else if (accessToken === "undefined")
+            console.error("Error: access token is undefined")
+
+        else if (accessToken === null || this.accessToken === "null")
+            console.error("Error: access token is null"),
+                console.error("No se ha podido generar el token correctamente")
         else
             this.appContainer.style.display = "block",
                 this.loginInterface.style.display = "none",

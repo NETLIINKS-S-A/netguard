@@ -13,7 +13,7 @@ loginForm?.addEventListener("submit", (e) => {
     else if (userPassword === "")
         alert("El campo 'Contraseña' no puede estar vacío");
     else
-        connect({ mail: userEmail.value, password: userPassword.value });
+        connect(userEmail.value, userPassword.value);
 });
 login.checkToken();
 renderAppDate();

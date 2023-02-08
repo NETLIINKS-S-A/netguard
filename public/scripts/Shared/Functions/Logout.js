@@ -1,5 +1,6 @@
 // @filename: Logout.ts
 import { AppStorage } from "./AppStorage.js";
+import { login } from "./Login.js";
 import { Modal } from "./Modal.js";
 class Logout extends Modal {
     open_() {
@@ -27,6 +28,8 @@ class Logout extends Modal {
     }
     static exit_() {
         AppStorage.remove("access_token");
+        login.checkToken();
+        window.location.reload();
     }
 }
 export const logout = new Logout();

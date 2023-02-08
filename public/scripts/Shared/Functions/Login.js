@@ -1,10 +1,10 @@
 // @filename: Login.ts
 import { applicationView } from "../../Views/ApplicationUI/ApplicationView.js";
-import { AppContainer, token } from "../Settings/Misc.js";
+import { AppContainer } from "../Settings/Misc.js";
 class Login {
     constructor() {
         this.loginInterface = document.getElementById("login");
-        this.accessToken = token;
+        this.accessToken = localStorage.getItem("access_token");
         this.appContainer = AppContainer;
     }
     render() {
@@ -54,7 +54,7 @@ class Login {
                                 class="form_label">
                                 Contraseña
                             </label>
-                            <input type="text"
+                            <input type="password"
                                 class="input"
                                 name="email"
                                 placeholder="•••••••••••"
@@ -83,13 +83,15 @@ class Login {
                 </div>
             </div>`;
     }
-    checkToken() {
-        if (!this.accessToken)
+    async checkToken() {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken)
             this.appContainer.style.display = "none";
-        else if (this.accessToken === "undefined")
-            throw new Error("Error: access token is undefined");
-        else if (this.accessToken === null)
-            throw new Error("Error: access token is null");
+        else if (accessToken === "undefined")
+            console.error("Error: access token is undefined");
+        else if (accessToken === null || this.accessToken === "null")
+            console.error("Error: access token is null"),
+                console.error("No se ha podido generar el token correctamente");
         else
             this.appContainer.style.display = "block",
                 this.loginInterface.style.display = "none",

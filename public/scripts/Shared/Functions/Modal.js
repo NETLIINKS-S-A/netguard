@@ -7,7 +7,7 @@ export class Modal {
     }
     close() {
         const modal = document.getElementById("modal");
-        setTimeout(() => modal.classList.toggle("open"), 200);
+        setTimeout(() => modal?.classList.toggle("open"), 200);
         modal.style.display = "none";
         modal.remove();
     }

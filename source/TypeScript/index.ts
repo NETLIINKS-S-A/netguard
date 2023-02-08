@@ -16,7 +16,7 @@ loginForm?.addEventListener("submit", (e: SubmitEvent): void => {
     if (userEmail?.value === "") alert("El campo 'correo' no puede estar vacío")
     else if (userPassword === "")
         alert("El campo 'Contraseña' no puede estar vacío")
-    else connect({ mail: userEmail.value, password: userPassword.value })
+    else connect(userEmail.value, userPassword.value)
 })
 
 login.checkToken()

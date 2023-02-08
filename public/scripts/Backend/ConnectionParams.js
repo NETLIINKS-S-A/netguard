@@ -1,16 +1,17 @@
 // @filename: ConnectionParams.ts
 import { login } from "../Shared/Functions/Login.js";
-import { UserAgent, token } from "../Shared/Settings/Misc.js";
+import { UserAgent } from "../Shared/Settings/Misc.js";
 /**
  * @param mail
  * @param password
  */
-export function connect(user) {
+export function connect(mail, password) {
+    generateToken();
     async function generateToken() {
         const url = "https://backend.netliinks.com:443/oauth/token";
-        const requestOptionParams = {
+        const requestOptions = {
             method: "POST",
-            body: `grant_type=password&username=${user.mail}&password=${user.password}`,
+            body: `grant_type=password&username=${mail}&password=${password}`,
             headers: {
                 Accept: "application/json",
                 "User-agent": `${UserAgent}`,
@@ -19,11 +20,11 @@ export function connect(user) {
                 Cookie: "JSESSIONID=CDD208A868EAABD1F523BB6F3C8946AF",
             }
         };
-        fetch(url, requestOptionParams)
+        fetch(url, requestOptions)
             .then((response) => response.json())
             .then((data) => {
             const loginInterface = document.getElementById("login");
-            localStorage.setItem("access_token", token);
+            localStorage.setItem("access_token", data.access_token);
             if (data.error === "invalid_grant")
                 alert("Credenciales incorrectas");
             else
