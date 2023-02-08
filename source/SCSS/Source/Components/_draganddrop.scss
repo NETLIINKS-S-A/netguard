@@ -1,0 +1,28 @@
+.drop_zone {
+    display: block;
+    background-color: $gray-100;
+    border: 1px dashed $gray-400;
+    text-align: center;
+    padding: 20px;
+    color: $gray-500;
+    border-radius: 4px;
+}
+
+.drop_result {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    height: 200px;
+    color: $gray-700;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: $gray-100;
+    overflow: hidden;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+
+input[type="select"] input[type="button"] {
+    text-transform: uppercase;
+    color: red;
+}
