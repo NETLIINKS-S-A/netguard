@@ -2,8 +2,7 @@
 
 import { applicationView } from "../../Views/ApplicationUI/ApplicationView.js"
 import { UIControl } from "../Libs/lib.types.g.js"
-import { AppContainer } from "../Settings/Misc.js"
-import { AppStorage } from "./AppStorage.js"
+import { AppContainer } from "../Settings/Misc.settings.js"
 
 class Login {
     private loginInterface = <HTMLElement>document.getElementById("login")

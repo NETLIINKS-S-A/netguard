@@ -15,7 +15,7 @@ import { citadelsView } from "../Citadels/CitadelsView.js"
 import { visitsView } from "../Binnacle/Visits/VisitsView.js"
 import { notesView } from "../Binnacle/Notes/NotesView.js"
 import { AppPreferences } from "../Preferences/Preferences.js"
-import { AppContainer, AppContent, AppWrapper } from "../../Shared/Settings/Misc.js"
+import { AppContainer, AppContent, AppWrapper } from "../../Shared/Settings/Misc.settings.js"
 // Testing files
 import { dragAndDrop } from "../../Test/DragAndDropFiles.test.js"
 

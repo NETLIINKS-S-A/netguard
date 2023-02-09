@@ -1,6 +1,6 @@
 // @filename: ConnectionParams.ts
 import { login } from "../Shared/Functions/Login.js";
-import { UserAgent } from "../Shared/Settings/Misc.js";
+import { UserAgent } from "../Shared/Settings/Misc.settings.js";
 /**
  * @param mail
  * @param password

@@ -1,6 +1,6 @@
 // @filename: StylingTable.ts
 
-import { color_ } from "../Libs/lib.color.g.js"
+import Color from "../Libs/lib.color.g.js"
 import { NLInterfaceElement, UIControl } from "../Libs/lib.types.g.js"
 
 export class StylingTable {
@@ -43,10 +43,10 @@ export class StylingTable {
 
         rucTableElement.forEach((ruc: any) => {
             if (ruc.innerText.length > 10)
-                ruc.style.color = color_.red.r500
+                ruc.style.color = Color.red.r500
 
             else if (ruc.innerText.length < 10)
-                ruc.style.color = color_.red.r500
+                ruc.style.color = Color.red.r500
         })
     }
 }

@@ -1,12 +1,3 @@
-/**
- * @function renderNotesData
- * @description render Notes data
- * @param items - array with datas
- * @param tableBody - DOM element
- * @param rowsPerPage - rows quantity
- * @param page - number of first page
- * @param paginationElement - DOM element
- */
 export async function renderNotesData(items, tableBody, rowsPerPage, page, paginationElement) {
     tableBody.innerHTML = "";
     page--;

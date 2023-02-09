@@ -2,10 +2,10 @@
 import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { VisitsControllers } from "./Render.js";
 import { getEntitiesData } from "../../../Backend/Connection.js";
-import { tableSettings } from "../../../Shared/Settings/Table.js";
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
-const tableRows = tableSettings.Rows;
-const currentPage = tableSettings.paginationPage;
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
+import TableSettings from "../../../Shared/Settings/Table.settings.js";
+const tableRows = TableSettings.rows;
+const currentPage = TableSettings.noPage;
 const app = AppContent;
 const tools = appTools;
 export async function visitsView() {

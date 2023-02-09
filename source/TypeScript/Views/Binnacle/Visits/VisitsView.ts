@@ -3,11 +3,11 @@ import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { VisitsControllers } from "./Render.js"
 import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { getEntitiesData } from "../../../Backend/Connection.js"
-import { tableSettings } from "../../../Shared/Settings/Table.js"
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
+import TableSettings from "../../../Shared/Settings/Table.settings.js"
 
-const tableRows: number = tableSettings.Rows
-const currentPage: number = tableSettings.paginationPage
+const tableRows: number = TableSettings.rows
+const currentPage: number = TableSettings.noPage
 const app = AppContent
 const tools = appTools
 

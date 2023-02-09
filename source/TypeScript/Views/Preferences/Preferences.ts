@@ -1,7 +1,7 @@
 // @filename: Preferences.ts
 import { UIControl } from "../../Shared/Libs/lib.types.g.js"
 import { AppStorage } from "../../Shared/Functions/AppStorage.js"
-import { interfaceSettings } from "../../Shared/Settings/Global.js"
+import { interfaceSettings } from "../../Shared/Settings/Global.settings.js"
 
 const content: UIControl = document.getElementsByTagName("body")[0]
 

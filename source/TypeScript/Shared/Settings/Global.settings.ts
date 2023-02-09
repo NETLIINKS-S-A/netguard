@@ -1,6 +1,6 @@
 // @filename: Global.ts
 
-import { ACCENT } from "../Libs/lib.color.g.js"
+import AccentColor from "../Libs/lib.accent.color.g.js"
 
 type Color = string
 type Accent = Color
@@ -14,7 +14,7 @@ interface InterfaceSettings {
 }
 
 export const interfaceSettings: InterfaceSettings = {
-    accentColor: ACCENT.PRIMARY,
+    accentColor: AccentColor.Primary,
     sidebarSize: "normal",
     theme: "light"
 }

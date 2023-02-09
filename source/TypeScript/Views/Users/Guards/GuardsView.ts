@@ -7,13 +7,14 @@ import { FNGuards } from "./GuardsFunctions.js"
 // Libs
 import { BackendValues, NLData, UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { pagination } from "../../../Shared/Functions/Pagination.js"
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
-import { tableSettings } from "../../../Shared/Settings/Table.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
+// import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js"
+import TableSettings from "../../../Shared/Settings/Table.settings.js"
 
 // Primary elements
-let rows: number = tableSettings.Rows
-const currentPage: number = tableSettings.paginationPage
+let rows: number = TableSettings.rows // 25
+const currentPage: number = TableSettings.noPage // 1
 const appToolbar = appTools
 const appContent = AppContent
 

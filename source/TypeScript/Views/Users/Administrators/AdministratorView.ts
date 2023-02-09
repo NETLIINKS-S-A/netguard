@@ -2,14 +2,15 @@
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
-import { tableSettings } from "../../../Shared/Settings/Table.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 import { renderAdministratorData } from "./Render.js"
 
-const tableRows: number = tableSettings.Rows
+import TableSettings from "../../../Shared/Settings/Table.settings.js"
+
+const tableRows: number = TableSettings.rows
+const currentPage: number = TableSettings.noPage
 const tools = appTools
 const app = AppContent
-const currentPage: number = 1
 
 export async function administratorsView(): Promise<void> {
     // write application template

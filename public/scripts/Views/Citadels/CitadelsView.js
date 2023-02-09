@@ -1,11 +1,11 @@
 // @filename: CitadelsView.ts
 import { getEntitiesData } from "../../Backend/Connection.js";
 import { pagination } from "../../Shared/Functions/Pagination.js";
-import { AppContent, appTools } from "../../Shared/Settings/Misc.js";
-import { tableSettings } from "../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../Shared/Settings/Misc.settings.js";
 import { renderCitadelData } from "./Render.js";
-const tableRows = tableSettings.Rows;
-const currentPage = tableSettings.paginationPage;
+import TableSettings from "../../Shared/Settings/Table.settings.js";
+const tableRows = TableSettings.rows;
+const currentPage = TableSettings.noPage;
 const app = AppContent;
 const tools = appTools;
 export async function citadelsView() {

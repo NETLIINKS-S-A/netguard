@@ -3,12 +3,13 @@
 import { displayGuardsData } from "./GuardsRender.js";
 import { FNGuards } from "./GuardsFunctions.js";
 import { pagination } from "../../../Shared/Functions/Pagination.js";
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
-import { tableSettings } from "../../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
+// import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js";
+import TableSettings from "../../../Shared/Settings/Table.settings.js";
 // Primary elements
-let rows = tableSettings.Rows;
-const currentPage = tableSettings.paginationPage;
+let rows = TableSettings.rows; // 25
+const currentPage = TableSettings.noPage; // 1
 const appToolbar = appTools;
 const appContent = AppContent;
 export async function guardsView() {

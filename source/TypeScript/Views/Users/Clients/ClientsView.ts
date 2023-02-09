@@ -5,12 +5,13 @@ import { NLData, UIControl, BackendValues } from "../../../Shared/Libs/lib.types
 import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { displayUserData } from "./ClientsRender.js"
 import { FNClients } from "./ClientsFunctions.js"
-import { tableSettings } from "../../../Shared/Settings/Table.js"
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
+
+import TableSettings from "../../../Shared/Settings/Table.settings.js"
 
 // Page settings
-const LIMIT_ROWS = tableSettings.Rows
-const currentPage: number = tableSettings.paginationPage
+const LIMIT_ROWS = TableSettings.rows // 25 (default)
+const currentPage: number = TableSettings.noPage // 1 (default)
 // DOM Elements
 const app = AppContent
 const tools = appTools

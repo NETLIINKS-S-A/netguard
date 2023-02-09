@@ -4,11 +4,11 @@ import { displayCustomerData } from "./CustomerRender.js";
 import { FNCustomers } from "./CustomerFunctions.js";
 import { pagination } from "../../Shared/Functions/Pagination.js";
 import { getEntitiesData } from "../../Backend/Connection.js";
-import { tableSettings } from "../../Shared/Settings/Table.js";
-import { AppContent, appTools } from "../../Shared/Settings/Misc.js";
+import { AppContent, appTools } from "../../Shared/Settings/Misc.settings.js";
+import TableSettings from "../../Shared/Settings/Table.settings.js";
 // Primary elements
-const limitRows = tableSettings.Rows;
-const currentPage = tableSettings.paginationPage;
+const limitRows = TableSettings.rows;
+const currentPage = TableSettings.noPage;
 const appToolbar = appTools;
 const appContent = AppContent;
 export async function customerView() {

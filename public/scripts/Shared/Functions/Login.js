@@ -1,6 +1,6 @@
 // @filename: Login.ts
 import { applicationView } from "../../Views/ApplicationUI/ApplicationView.js";
-import { AppContainer } from "../Settings/Misc.js";
+import { AppContainer } from "../Settings/Misc.settings.js";
 class Login {
     constructor() {
         this.loginInterface = document.getElementById("login");

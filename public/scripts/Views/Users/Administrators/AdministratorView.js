@@ -1,13 +1,13 @@
 // @filename: PlatformView.ts
 import { getEntitiesData } from "../../../Backend/Connection.js";
 import { pagination } from "../../../Shared/Functions/Pagination.js";
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js";
-import { tableSettings } from "../../../Shared/Settings/Table.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 import { renderAdministratorData } from "./Render.js";
-const tableRows = tableSettings.Rows;
+import TableSettings from "../../../Shared/Settings/Table.settings.js";
+const tableRows = TableSettings.rows;
+const currentPage = TableSettings.noPage;
 const tools = appTools;
 const app = AppContent;
-const currentPage = 1;
 export async function administratorsView() {
     // write application template
     app.innerHTML = `<h1 class="app_title">Administradores</h1>

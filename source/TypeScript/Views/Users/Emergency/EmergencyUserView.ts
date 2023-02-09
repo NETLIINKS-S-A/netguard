@@ -4,11 +4,11 @@ import { getEntitiesData } from "../../../Backend/Connection.js"
 import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { renderEmergencyUserData } from "./EmergencyRender.js"
-import { tableSettings } from "../../../Shared/Settings/Table.js"
-import { AppContent, appTools } from "../../../Shared/Settings/Misc.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
+import TableSettings from "../../../Shared/Settings/Table.settings.js"
 
-const tableRows = tableSettings.Rows
-const currentPage = tableSettings.paginationPage
+const tableRows = TableSettings.rows // 25
+const currentPage = TableSettings.noPage // 1
 const app = AppContent
 const tools = appTools
 

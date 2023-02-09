@@ -1,5 +1,5 @@
 // @filename: Connection.ts
-import { token } from "../Shared/Settings/Misc.js";
+import { token } from "../Shared/Settings/Misc.settings.js";
 let requestHeader = new Headers();
 requestHeader.append("Authorization", `Bearer ${token}`);
 requestHeader.append("Content-Type", "application/json");

@@ -1,5 +1,5 @@
 import { AppStorage } from "../../Shared/Functions/AppStorage.js";
-import { interfaceSettings } from "../../Shared/Settings/Global.js";
+import { interfaceSettings } from "../../Shared/Settings/Global.settings.js";
 const content = document.getElementsByTagName("body")[0];
 let savedTheme = AppStorage.get("theme");
 if (savedTheme === null || savedTheme === undefined) {

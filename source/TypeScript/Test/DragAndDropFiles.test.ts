@@ -1,10 +1,10 @@
 // @filename: DragAndDropFiles.test.ts
 
-import { AppContent } from "../Shared/Settings/Misc.js"
+import { AppContent } from "../Shared/Settings/Misc.settings.js"
 
 // Shared libraries
-import { color_ } from "../Shared/Libs/lib.color.g.js";
 import { UIControl } from "../Shared/Libs/lib.types.g.js"
+import Color from "../Shared/Libs/lib.color.g.js"
 
 export function dragAndDrop(): void {
     AppContent.innerHTML = `
@@ -37,17 +37,17 @@ export function dragAndDrop(): void {
 
     dropZone.addEventListener("dragover", (e): void => {
         e.preventDefault()
-        changeStyle(e.target, color_.blue.b500)
+        changeStyle(e.target, Color.blue.b500)
     })
 
     dropZone.addEventListener("dragleave", (e): void => {
         e.preventDefault()
-        changeStyle(e.target, color_.gray.g400)
+        changeStyle(e.target, Color.gray.g400)
     })
 
     dropZone.addEventListener("drop", (e) => {
         e.preventDefault()
-        changeStyle(e.target, color_.gray.g400)
+        changeStyle(e.target, Color.gray.g400)
         loadFile(e.dataTransfer?.files[0])
     })
 
@@ -175,4 +175,3 @@ export function dragAndDrop(): void {
     }
 
 }
-

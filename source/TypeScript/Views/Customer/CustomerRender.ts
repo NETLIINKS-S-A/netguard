@@ -2,7 +2,7 @@
 /* ******************************************
 DISPLAY TABLE DATA AND FILTERED TABLE DATA
 ******************************************** */
-import { UIControl, UIView } from "../../Shared/Libs/lib.types.g"
+import { UIControl, UIView } from "../../Shared/Libs/lib.types.g.js"
 import { FNCustomers } from "./CustomerFunctions.js"
 import { StylingTable } from "../../Shared/Functions/StylingTable.js"
 

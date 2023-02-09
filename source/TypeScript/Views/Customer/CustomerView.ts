@@ -8,12 +8,13 @@ import { FNCustomers } from "./CustomerFunctions.js"
 import { UIControl } from "../../Shared/Libs/lib.types.g.js"
 import { pagination } from "../../Shared/Functions/Pagination.js"
 import { getEntitiesData } from "../../Backend/Connection.js"
-import { tableSettings } from "../../Shared/Settings/Table.js"
-import { AppContent, appTools } from "../../Shared/Settings/Misc.js"
+import { AppContent, appTools } from "../../Shared/Settings/Misc.settings.js"
+
+import TableSettings from "../../Shared/Settings/Table.settings.js"
 
 // Primary elements
-const limitRows: number = tableSettings.Rows
-const currentPage: number = tableSettings.paginationPage
+const limitRows: number = TableSettings.rows
+const currentPage: number = TableSettings.noPage
 
 const appToolbar = appTools
 const appContent = AppContent
