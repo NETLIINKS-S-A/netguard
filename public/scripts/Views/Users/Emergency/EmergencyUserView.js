@@ -5,6 +5,7 @@ import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { renderEmergencyUserData } from "./EmergencyRender.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+import { select } from "../../../Shared/Functions/InputSelect.js";
 const tableRows = tableSettings.rows; // 25
 const currentPage = tableSettings.noPage; // 1
 const app = AppContent;
@@ -12,7 +13,11 @@ const tools = appTools;
 export async function emergencyUserView() {
     let GET_DATA = await getEntitiesData("Contact");
     let arrayEmergencyUsers = GET_DATA;
-    console.log(arrayEmergencyUsers);
+    const CUSTOMER_DATA = await getEntitiesData("Customer");
+    let customers = []; // data goes here
+    CUSTOMER_DATA.forEach((data) => {
+        customers.push(data.name);
+    });
     // write application template
     app.innerHTML = `<h1 class="app_title">Emergencia</h1>
     <table>
@@ -32,10 +37,14 @@ export async function emergencyUserView() {
     // write app tools
     tools.innerHTML = `
     <div class="toolbox">
-        <div class="select">
-            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
-            <div class="select_options" id="select_options">
-            </div>
+        <div class="select filter" id="select">
+            <input type="text"
+                class="input select_box"
+                id="input"
+                placeholder="Dropdown Menu"
+                readonly>
+
+                <div class="select_options" id="select_options"><div></div></div>
         </div>
 
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-user-plus"></i></button>
@@ -46,6 +55,11 @@ export async function emergencyUserView() {
         </div>
     </div>`;
     // get elements
+    const inputSelect = document.querySelector(".select");
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active");
+    });
+    select(inputSelect, customers);
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("pagination-counter");

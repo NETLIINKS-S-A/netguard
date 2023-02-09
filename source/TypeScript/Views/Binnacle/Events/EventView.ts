@@ -2,9 +2,10 @@
 
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { pagination } from "../../../Shared/Functions/Pagination.js"
-import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { NLData, UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 import { renderEventData } from "./Render.js"
+import { select } from "../../../Shared/Functions/InputSelect.js"
 
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
 
@@ -36,10 +37,14 @@ export async function eventView(): Promise<void> {
     // write app tools
     tools.innerHTML = `
     <div class="toolbox">
-        <div class="select">
-            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
-            <div class="select_options" id="select_options">
-            </div>
+        <div class="select filter" id="select">
+            <input type="text"
+                class="input select_box"
+                id="input"
+                placeholder="Dropdown Menu"
+                readonly>
+
+                <div class="select_options" id="select_options"><div></div></div>
         </div>
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
         <div class="toolbox_spotlight">
@@ -49,6 +54,7 @@ export async function eventView(): Promise<void> {
     </div>`
 
     // get elements
+
     const tableBody: UIControl = document.querySelector("#table-body")
     const searchInput: UIControl = document.querySelector("#search-input")
     const paginationCounter: UIControl =
@@ -63,10 +69,25 @@ export async function eventView(): Promise<void> {
         <td>Cargando...</td>
     </tr>`.repeat(tableRows)
 
-    let GET_DATA = await getEntitiesData("Notification")
+    let GET_DATA: NLData = await getEntitiesData("Notification")
     let arrayEvents: any = GET_DATA
 
-    console.log(arrayEvents)
+    const CUSTOMER_DATA: NLData = await getEntitiesData("Customer")
+
+    let customers: any = [] // data goes here
+
+    CUSTOMER_DATA.forEach((data: any) => {
+        customers.push(data.name)
+    })
+
+    const inputSelect: UIControl = document.querySelector(".select")
+
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active")
+    })
+
+    select(inputSelect, customers)
+
 
     const dataCount: UIControl = document.getElementById("data-count")
     dataCount.innerHTML = `${arrayEvents.length} eventos`

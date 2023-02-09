@@ -31,7 +31,7 @@ export async function selectMenut() {
     select(inputSelect, array);
 }
 // DROPDOWN INPUT
-export function select(input, datas) {
+function select(input, datas) {
     const inputSelectArray = input?.querySelector(".select_options div");
     const inputSelect = input?.querySelector("#input");
     datas.forEach((data) => {

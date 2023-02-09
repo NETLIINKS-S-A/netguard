@@ -5,6 +5,7 @@ import { displayUserData } from "./ClientsRender.js";
 import { FNClients } from "./ClientsFunctions.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+import { select } from "../../../Shared/Functions/InputSelect.js";
 // Page settings
 const LIMIT_ROWS = tableSettings.rows; // 25 (default)
 const currentPage = tableSettings.noPage; // 1 (default)
@@ -15,6 +16,11 @@ export async function clientsView() {
     let GET_DATA = await getEntitiesData("User");
     let notSuper = GET_DATA.filter((data) => data.isSuper === false);
     let arrayUsers = notSuper.filter((data) => `${data.userType}`.includes("CUSTOMER"));
+    const CUSTOMER_DATA = await getEntitiesData("Customer");
+    let customers = []; // data goes here
+    CUSTOMER_DATA.forEach((data) => {
+        customers.push(data.name);
+    });
     // BusinesView interface
     app.innerHTML = `
         <h1 class="app_title">Clientes</h1>
@@ -40,10 +46,14 @@ export async function clientsView() {
     // Add tools
     tools.innerHTML = `
         <div class="toolbox">
-            <div class="select">
-                <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
-                <div class="select_options" id="select_options">
-                </div>
+            <div class="select filter" id="select">
+                <input type="text"
+                    class="input select_box"
+                    id="input"
+                    placeholder="Dropdown Menu"
+                    readonly>
+
+                    <div class="select_options" id="select_options"><div></div></div>
             </div>
 
             <button class="btn btn_icon" id="add-new-client"><i class="fa-solid fa-user-plus"></i></button>
@@ -56,6 +66,11 @@ export async function clientsView() {
             </div>
         </div>`;
     // HTML ELEMENTS
+    const inputSelect = document.querySelector(".select");
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active");
+    });
+    select(inputSelect, customers);
     const tableBody = document.querySelector("#tableBody");
     const searchInput = document.querySelector("#search-input");
     const paginationCounter = document.getElementById("paginationCounter");

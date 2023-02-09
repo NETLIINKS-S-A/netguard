@@ -51,7 +51,7 @@ export async function selectMenut(): Promise<void> {
 }
 
 // DROPDOWN INPUT
-export function select(input: UIControl, datas?: any) {
+function select(input: UIControl, datas?: any) {
     const inputSelectArray: UIControl = input?.querySelector(".select_options div")
     const inputSelect: UIControl = input?.querySelector("#input")
 

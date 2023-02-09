@@ -1,7 +1,7 @@
 // @filename: PlatformView.ts
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { pagination } from "../../../Shared/Functions/Pagination.js"
-import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { NLData, UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 import { renderAdministratorData } from "./Render.js"
 
@@ -37,6 +37,15 @@ export async function administratorsView(): Promise<void> {
     // write app tools
     tools.innerHTML = `
     <div class="toolbox">
+        <div class="select filter" id="select">
+            <input type="text"
+                class="input select_box"
+                id="input"
+                placeholder="Dropdown Menu"
+                readonly>
+
+                <div class="select_options" id="select_options"><div></div></div>
+        </div>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
@@ -64,6 +73,14 @@ export async function administratorsView(): Promise<void> {
     let arrayAdministrators: any = GET_DATA.filter(
         (data: any) => data.isSuper === true
     )
+
+    const CUSTOMER_DATA: NLData = await getEntitiesData("Customer")
+
+    let customers: any = [] // data goes here
+
+    CUSTOMER_DATA.forEach((data: any) => {
+        customers.push(data.name)
+    })
 
     console.log(arrayAdministrators)
 

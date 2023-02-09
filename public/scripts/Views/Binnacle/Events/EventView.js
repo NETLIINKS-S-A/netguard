@@ -3,6 +3,7 @@ import { getEntitiesData } from "../../../Backend/Connection.js";
 import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 import { renderEventData } from "./Render.js";
+import { select } from "../../../Shared/Functions/InputSelect.js";
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
 const tableRows = tableSettings.rows;
 const currentPage = tableSettings.noPage;
@@ -30,10 +31,14 @@ export async function eventView() {
     // write app tools
     tools.innerHTML = `
     <div class="toolbox">
-        <div class="select">
-            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
-            <div class="select_options" id="select_options">
-            </div>
+        <div class="select filter" id="select">
+            <input type="text"
+                class="input select_box"
+                id="input"
+                placeholder="Dropdown Menu"
+                readonly>
+
+                <div class="select_options" id="select_options"><div></div></div>
         </div>
         <button class="btn btn_icon" id="add-new-emergency-contact"><i class="fa-solid fa-up-from-bracket"></i></button>
         <div class="toolbox_spotlight">
@@ -55,7 +60,16 @@ export async function eventView() {
     </tr>`.repeat(tableRows);
     let GET_DATA = await getEntitiesData("Notification");
     let arrayEvents = GET_DATA;
-    console.log(arrayEvents);
+    const CUSTOMER_DATA = await getEntitiesData("Customer");
+    let customers = []; // data goes here
+    CUSTOMER_DATA.forEach((data) => {
+        customers.push(data.name);
+    });
+    const inputSelect = document.querySelector(".select");
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active");
+    });
+    select(inputSelect, customers);
     const dataCount = document.getElementById("data-count");
     dataCount.innerHTML = `${arrayEvents.length} eventos`;
     await searchInput?.addEventListener("keyup", () => {

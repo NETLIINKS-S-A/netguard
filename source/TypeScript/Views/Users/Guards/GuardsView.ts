@@ -11,7 +11,7 @@ import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 // import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
-import { select } from "../../../Test/SelectMenu.test.js"
+import { select } from "../../../Shared/Functions/InputSelect.js"
 
 // Primary elements
 let rows: number = tableSettings.rows // 25
