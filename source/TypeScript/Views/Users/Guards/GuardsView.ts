@@ -11,6 +11,7 @@ import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 // import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
+import { select } from "../../../Test/SelectMenu.test.js"
 
 // Primary elements
 let rows: number = tableSettings.rows // 25
@@ -23,6 +24,13 @@ export async function guardsView(): Promise<BackendValues> {
     let notSuperUser: any = BACKEND_DATA.filter((data: any) => data.isSuper === false)
     let arrayGuards: any = notSuperUser.filter((data: any) =>
         `${data.userType}`.includes("GUARD"))
+
+    const CUSTOMER_DATA: NLData = await getEntitiesData("Customer")
+    let customers: any = []
+
+    CUSTOMER_DATA.forEach((data: any) => {
+        customers.push(data.name)
+    })
 
     // Write application template
     appContent.innerHTML = `
@@ -51,16 +59,17 @@ export async function guardsView(): Promise<BackendValues> {
     // write appTools
     appToolbar.innerHTML = `
     <div class="toolbox">
-        <div class="select filter">
-            <input type="text"
-                id="input-select"
-                class="input select_box"
-                placeholder="cargando..."
-                readonly>
 
-            <div class="select_options" id="select_options">
-            </div>
-        </div>
+        <div class="select filter" id="select">
+             <input type="text"
+                 class="input select_box"
+                 id="input"
+                 placeholder="Dropdown Menu"
+                 readonly>
+
+             <div class="select_options" id="select_options"><div></div></div>
+         </div>
+
 
         <button class="btn btn_icon" id="new-guard">
             <i class="fa-solid fa-user-plus"></i>
@@ -82,6 +91,14 @@ export async function guardsView(): Promise<BackendValues> {
             </label>
         </div>
     </div>`
+
+    const inputSelect: UIControl = document.querySelector(".select")
+
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active")
+    })
+
+    select(inputSelect, customers)
 
     // get rendered elements
     const tableBody: UIControl =

@@ -7,6 +7,7 @@ import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 // import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js";
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+import { select } from "../../../Test/SelectMenu.test.js";
 // Primary elements
 let rows = tableSettings.rows; // 25
 const currentPage = tableSettings.noPage; // 1
@@ -16,6 +17,11 @@ export async function guardsView() {
     const BACKEND_DATA = await getEntitiesData("User");
     let notSuperUser = BACKEND_DATA.filter((data) => data.isSuper === false);
     let arrayGuards = notSuperUser.filter((data) => `${data.userType}`.includes("GUARD"));
+    const CUSTOMER_DATA = await getEntitiesData("Customer");
+    let customers = [];
+    CUSTOMER_DATA.forEach((data) => {
+        customers.push(data.name);
+    });
     // Write application template
     appContent.innerHTML = `
     <h1 class="app_title">Guardias</h1>
@@ -42,16 +48,17 @@ export async function guardsView() {
     // write appTools
     appToolbar.innerHTML = `
     <div class="toolbox">
-        <div class="select filter">
-            <input type="text"
-                id="input-select"
-                class="input select_box"
-                placeholder="cargando..."
-                readonly>
 
-            <div class="select_options" id="select_options">
-            </div>
-        </div>
+        <div class="select filter" id="select">
+             <input type="text"
+                 class="input select_box"
+                 id="input"
+                 placeholder="Dropdown Menu"
+                 readonly>
+
+             <div class="select_options" id="select_options"><div></div></div>
+         </div>
+
 
         <button class="btn btn_icon" id="new-guard">
             <i class="fa-solid fa-user-plus"></i>
@@ -73,6 +80,11 @@ export async function guardsView() {
             </label>
         </div>
     </div>`;
+    const inputSelect = document.querySelector(".select");
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active");
+    });
+    select(inputSelect, customers);
     // get rendered elements
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");

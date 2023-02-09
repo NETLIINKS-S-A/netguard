@@ -18,6 +18,7 @@ import { AppPreferences } from "../Preferences/Preferences.js"
 import { AppContainer, AppContent, AppWrapper } from "../../Shared/Settings/Misc.settings.js"
 // Testing files
 import { dragAndDrop } from "../../Test/DragAndDropFiles.test.js"
+import { selectMenut } from "../../Test/SelectMenu.test.js"
 
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
@@ -353,11 +354,10 @@ export async function applicationView() {
         }
 
         // Render selected view
-        customerView()
+        // customerView()
         // clientsView()
         // guardsView()
         // emergencyUserView()
-        // dragAndDrop()
         // eventView()
         // platformView()
         // administratorsView()
@@ -365,6 +365,10 @@ export async function applicationView() {
         // visitsView()
         // notesView()
         // AppPreferences()
+
+        // Testing Views
+        // dragAndDrop()
+        selectMenut()
     }
 
     renderInterface(data)
