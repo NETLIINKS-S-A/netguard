@@ -1,5 +1,5 @@
 // @filename: CitadelsRenderData.ts
-import { UIControl } from "../../Libs/lib.types"
+import { UIControl } from "../../Shared/Libs/lib.types.g.js"
 
 export async function renderCitadelData(
     items: any,
@@ -40,7 +40,11 @@ export async function renderCitadelData(
                 citadel.innerText = "ninguno"
             } else if (citadel.innerText === "UNDEFINED") {
                 citadel.innerText = "•••"
-            } else if (citadel.innerText != "no aplica" && citadel.innerText != "NINGUNO" && citadel.innerText != "•••") {
+            } else if (
+                citadel.innerText != "no aplica" &&
+                citadel.innerText != "NINGUNO" &&
+                citadel.innerText != "•••"
+            ) {
                 citadel.classList.add("b")
             }
         })

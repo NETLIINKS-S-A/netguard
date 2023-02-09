@@ -1,13 +1,13 @@
 // @filename: PlatformView.ts
-import { UI } from "../../../Libs/lib.dom.js";
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { pagination } from "../../../Libs/lib.tools.js";
+import { getEntitiesData } from "../../../Backend/Connection.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
 import { renderPlatformData } from "./Render.js";
-const tableRows = 22;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-const currentPage = 1;
+const tableRows = tableSettings.rows;
+const currentPage = tableSettings.noPage;
+const app = AppContent;
+const tools = appTools;
 export async function platformView() {
     // write application template
     app.innerHTML = `
@@ -30,7 +30,7 @@ export async function platformView() {
         <div id="pagination-counter"></div>
     </div>`;
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">

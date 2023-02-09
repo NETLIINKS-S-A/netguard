@@ -1,18 +1,54 @@
-export class Modal {
-    constructor(id) {
-        this.id = id;
-        this.modal = document.getElementById(this.id);
-    }
-    open() {
-        this.modal.style.display = "block";
-        setTimeout(() => this.modal.classList.toggle("open"), 100);
-    }
-    close() {
-        this.modal.classList.toggle("open");
-        setTimeout(() => (this.modal.style.display = "none"), 100);
+class Funcs {
+    async TAGS_() {
+        const tags = document.querySelectorAll(".tag span");
+        tags.forEach((tag) => {
+            let tagText = tag.innerText;
+            if (tagText === "ENABLED" || tagText === "Enabled" || tagText === "enabled") {
+                tag.innerText = "Activo";
+                tag.classList.add("g");
+            }
+            else if (tagText === "Disabled" || tagText === "DISABLED" || tagText === "Inactivo" || tagText === "INACTIVO") {
+                tag.innerText = "Inactivo";
+                tag.classList.add("i");
+            }
+            else if (tagText === "NO APLICA" || tagText === "No aplica") {
+                tag.innerText = "No aplica";
+                tag.classList.add("i");
+            }
+            else if (tagText === "N/A") {
+                tag.innerText = "ninguno";
+                tag.classList.add("i");
+            }
+            else if (tagText === "undefined" || tagText === "" || tagText === "UNDEFINED") {
+                tag.innerText = "•••";
+            }
+            else {
+                tag.classList.add("b");
+            }
+        });
     }
 }
-export class AppStorage {
+export class Modal {
+    open() {
+        const modal = document.getElementById("modal");
+        modal ? modal.style.display = "block" : console.error("no se encuentra el modal");
+        setTimeout(() => modal.classList.add("open"), 200);
+    }
+    close() {
+        const modal = document.getElementById("modal");
+        setTimeout(() => modal.classList.toggle("open"), 200);
+        modal.style.display = "none";
+        modal.remove();
+    }
+    cancel() {
+        const modal = document.getElementById("modal");
+        // TODO: add clear input functions
+        setTimeout(() => modal.classList.toggle("open"), 200);
+        modal.style.display = "none";
+        modal.remove();
+    }
+}
+class AppStorage {
     /**
      * @function save
      * @param name - string
@@ -42,7 +78,9 @@ export class AppStorage {
      * @description show data saved in navigator console
      * @descripción muestra los datos guardados en la consola del navegador
      */
-    showInConsole(name) { console.log(localStorage.getItem(name)); }
+    showInConsole(name) {
+        console.log(localStorage.getItem(name));
+    }
 }
 /**
  * @class AppStorage
@@ -58,3 +96,4 @@ export class AppStorage {
  * save and get methods
  */
 export let appStorage = new AppStorage();
+export const NLFuncs = new Funcs();

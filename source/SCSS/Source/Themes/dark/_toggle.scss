@@ -28,6 +28,7 @@
 
     &:checked {
         background-color: $blue-500;
+        border-color: $blue-400 !important;
 
         &::before {
             left: 23px;

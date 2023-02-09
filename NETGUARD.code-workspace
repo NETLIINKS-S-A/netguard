@@ -5,34 +5,39 @@
             "path": "."
         },
         {
-            "name": "Playground",
+            "name": "Playgrounds",
             "path": "./Playground"
         },
         {
-            "name": "Public",
-            "path": "./public"
-        },
-        {
-            "name": "Source",
-            "path": "./source"
-        },
-        {
-            "name": "UI Components",
-            "path": "./Source/SCSS/Source/Components"
-        },
-        {
-            "name": "Themes",
-            "path": "./Source/SCSS/Source/Themes"
+            "name": "Styles",
+            "path": "./Source/SCSS"
         },
         {
             "name": "Core",
+            "path": "./Source/TypeScript"
+        },
+        {
+            "name": "Test",
+            "path": "./Source/TypeScript/Test"
+        },
+        {
+            "name": "Views",
             "path": "./Source/TypeScript/Views"
         },
         {
-            "name": "Libs",
-            "path": "./Source/TypeScript/Libs"
+            "name": "Shared Libs",
+            "path": "./Source/TypeScript/Shared/Libs"
+        },
+        {
+            "name": "Shared Functions",
+            "path": "./Source/TypeScript/Shared/Functions"
+        },
+        {
+            "name": "Shared Settings",
+            "path": "./Source/TypeScript/Shared/Settings"
         }
     ],
+
     "settings": {
         "typescript.updateImportsOnFileMove.enabled": "always",
         "liveServer.settings.multiRootWorkspaceName": "NETGUARD",
@@ -50,7 +55,7 @@
             "editor.formatOnPaste": true,
             "editor.formatOnSave": true
         },
-        "editor.rulers": [80],
+        "editor.rulers": [90],
         "files.insertFinalNewline": true,
         "editor.detectIndentation": true,
         "editor.wrappingIndent": "none",

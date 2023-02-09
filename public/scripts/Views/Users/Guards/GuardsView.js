@@ -1,16 +1,29 @@
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { UI } from "../../../Libs/lib.dom.js";
-import { pagination } from "../../../Libs/lib.tools.js";
-import { renderGuardData } from "./Render.js";
-import { TableFn } from "./Functions.js";
-const tableRows = UI.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-let currentPage = 1;
+// @filename: GuardsView.ts
+// Functions
+import { displayGuardsData } from "./GuardsRender.js";
+import { FNGuards } from "./GuardsFunctions.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
+// import { tableSettings } from "../../../Shared/Settings/Table.settings"
+import { getEntitiesData } from "../../../Backend/Connection.js";
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+import { select } from "../../../Shared/Functions/InputSelect.js";
+// Primary elements
+let rows = tableSettings.rows; // 25
+const currentPage = tableSettings.noPage; // 1
+const appToolbar = appTools;
+const appContent = AppContent;
 export async function guardsView() {
+    const BACKEND_DATA = await getEntitiesData("User");
+    let notSuperUser = BACKEND_DATA.filter((data) => data.isSuper === false);
+    let arrayGuards = notSuperUser.filter((data) => `${data.userType}`.includes("GUARD"));
+    const CUSTOMER_DATA = await getEntitiesData("Customer");
+    let customers = [];
+    CUSTOMER_DATA.forEach((data) => {
+        customers.push(data.name);
+    });
     // Write application template
-    app.innerHTML = `
+    appContent.innerHTML = `
     <h1 class="app_title">Guardias</h1>
     <table class="table">
         <thead>
@@ -30,51 +43,68 @@ export async function guardsView() {
     </table>
 
     <div class="pagination">
-        <div id="pagination-counter"></div>
-    </div>
-
-    <div id="modal-container"></div>`;
+        <div id="pagination"></div>
+    </div>`;
     // write appTools
-    appTools.innerHTML = `
+    appToolbar.innerHTML = `
     <div class="toolbox">
-        <div class="select filter">
-            <input type="text" id="input-select" class="input select_box" placeholder="cargando..." readonly>
-            <div class="select_options" id="select_options">
-            </div>
-        </div>
 
-        <button class="btn btn_icon" id="addNewBusiness"><i class="fa-solid fa-user-plus"></i></button>
-        <button class="btn btn_icon" id="addNewBusinessAdmin"><i class="fa-solid fa-shield-plus"></i></button>
+        <div class="select filter" id="select">
+             <input type="text"
+                 class="input select_box"
+                 id="input"
+                 placeholder="Dropdown Menu"
+                 readonly>
+
+             <div class="select_options" id="select_options"><div></div></div>
+         </div>
+
+
+        <button class="btn btn_icon" id="new-guard">
+            <i class="fa-solid fa-user-plus"></i>
+        </button>
+
+        <button class="btn btn_icon" id="new-superuser">
+            <i class="fa-solid fa-shield-plus"></i>
+        </button>
+
         <div class="toolbox_spotlight">
-            <input type="text" class="input input_spotlight" placeholder="Buscar por nombre" id="search-input">
-            <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
+            <input type="text"
+                class="input input_spotlight"
+                placeholder="Buscar por nombre"
+                id="search-input">
+
+            <label class="btn btn_icon spotlight_label"
+                for="search-input">
+                <i class="fa-solid fa-search"></i>
+            </label>
         </div>
     </div>`;
-    const BACKEND_DATA = await getEntitiesData("User");
-    const arrayGuards = BACKEND_DATA.filter((guard) => `${guard.userType}`.includes("GUARD"));
-    arrayGuards.filter((data) => data.isSuper == false);
-    arrayGuards.filter((data) => data.customer == "prueba");
-    console.log(arrayGuards);
+    const inputSelect = document.querySelector(".select");
+    inputSelect?.addEventListener("click", () => {
+        inputSelect.classList.toggle("select_active");
+    });
+    select(inputSelect, customers);
     // get rendered elements
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search-input");
-    const paginationCounter = document.getElementById("pagination-counter");
-    const select = document.querySelector(".select");
-    const selectInput = document.getElementById('input-select');
-    const selectOptionsContainer = document.querySelector('.select_options');
+    const pagination_ = document.getElementById("pagination");
+    const newGuard_ = document.getElementById("new-guard");
     // search data
     await searchInput?.addEventListener("keyup", () => {
-        // @ts-ignore
-        const arrayData = arrayGuardsFilteredByCustomer.filter((guard) => `${guard.firstName}
+        const arrayData = arrayGuards.filter((guard) => `${guard.firstName}
              ${guard.lastName}
+             ${guard.email}
+             ${guard.citadel?.description}
              ${guard.description}`
             .toLowerCase()
             .includes(searchInput.value.toLowerCase()));
         let filteredResult = arrayData.length;
-        if (filteredResult >= tableRows)
-            filteredResult = tableRows;
-        renderGuardData(arrayData, tableBody, filteredResult, currentPage, paginationCounter);
-        pagination(arrayData, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
+        console.log(filteredResult);
+        if (filteredResult >= rows)
+            filteredResult = rows;
+        displayGuardsData(arrayData, tableBody, filteredResult, currentPage, pagination_);
+        pagination(arrayData, pagination_, rows, currentPage, tableBody, displayGuardsData);
     });
     // write table template
     tableBody.innerHTML = `
@@ -87,10 +117,10 @@ export async function guardsView() {
         <td><button class="btn"><i class="fa-solid fa-pencil"></i></button></td>
         <td><button class="btn"><i class="fa-solid fa-trash"></i></button></td>
     </tr>
-    `.repeat(tableRows);
-    renderGuardData(arrayGuards, tableBody, tableRows, currentPage, paginationCounter);
-    pagination(arrayGuards, paginationCounter, tableRows, currentPage, tableBody, renderGuardData);
-    // table editors
-    const showEditor = document.querySelectorAll(".btn_table-editor");
-    TableFn.edit(showEditor);
+    `.repeat(rows);
+    displayGuardsData(arrayGuards, tableBody, rows, currentPage, pagination_);
+    pagination(arrayGuards, pagination_, rows, currentPage, tableBody, displayGuardsData);
+    newGuard_.addEventListener("click", () => {
+        FNGuards.new();
+    });
 }

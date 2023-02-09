@@ -1,15 +1,16 @@
 // @filename: PlatformView.ts
-import { UI } from "../../../Libs/lib.dom.js"
-import { getEntitiesData } from "../../../Libs/lib.request.js"
-import { pagination } from "../../../Libs/lib.tools.js"
-import { UIControl } from "../../../Libs/lib.types.js"
+import { getEntitiesData } from "../../../Backend/Connection.js"
+import { pagination } from "../../../Shared/Functions/Pagination.js"
+import { NLData, UIControl } from "../../../Shared/Libs/lib.types.g.js"
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 import { renderAdministratorData } from "./Render.js"
 
-const tableRows: number = UI?.tableRows
-const UIApp = UI.App
-const app = UIApp?.content
-const appTools = UIApp?.tools
-const currentPage: number = 1
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
+
+const tableRows: number = tableSettings.rows
+const currentPage: number = tableSettings.noPage
+const tools = appTools
+const app = AppContent
 
 export async function administratorsView(): Promise<void> {
     // write application template
@@ -34,8 +35,17 @@ export async function administratorsView(): Promise<void> {
     </div>`
 
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
+        <div class="select filter" id="select">
+            <input type="text"
+                class="input select_box"
+                id="input"
+                placeholder="Dropdown Menu"
+                readonly>
+
+                <div class="select_options" id="select_options"><div></div></div>
+        </div>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
@@ -63,6 +73,14 @@ export async function administratorsView(): Promise<void> {
     let arrayAdministrators: any = GET_DATA.filter(
         (data: any) => data.isSuper === true
     )
+
+    const CUSTOMER_DATA: NLData = await getEntitiesData("Customer")
+
+    let customers: any = [] // data goes here
+
+    CUSTOMER_DATA.forEach((data: any) => {
+        customers.push(data.name)
+    })
 
     console.log(arrayAdministrators)
 

@@ -56,7 +56,7 @@ export class App {
         </div>`;
     }
     async checkToken() {
-        const accessToken = localStorage.getItem('access_token');
+        const accessToken = localStorage.getItem("access_token");
         const application = UI.App.app;
         const login = document.getElementById("login");
         if (!accessToken)
@@ -73,8 +73,12 @@ export class App {
     }
     checkExpirationTime(time) {
         if (time === 0) {
-            logout();
+            logout.logout_();
         }
         console.log(time);
     }
 }
+/**
+ * A sets of functions for app rendering
+ */
+export const application = new App();

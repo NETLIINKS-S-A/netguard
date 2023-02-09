@@ -1,9 +1,14 @@
 // @filename: VisitsRenderData.ts
-import { getEntityData } from "../../../Libs/lib.request.js"
-import { UIViewAsync, UIControl } from "../../../Libs/lib.types"
+import { getEntityData } from "../../../Backend/Connection.js"
+import { UIControl, BackendValues } from "../../../Shared/Libs/lib.types.g.js"
 
 export class Visits {
-    public async render(items: any, table: UIControl, rows: number, page: number): UIViewAsync {
+    public async render(
+        items: any,
+        table: UIControl,
+        rows: number,
+        page: number
+    ): Promise<BackendValues> {
         table.innerHTML = ""
         page--
 
@@ -31,16 +36,19 @@ export class Visits {
         }
     }
 
-    public async showInfo(controllers: UIControl): UIViewAsync {
-
+    public async showInfo(controllers: UIControl): Promise<BackendValues> {
         controllers.forEach((controller: UIControl) => {
             // The entity
             let entityID: string = controller.dataset.id
 
-            controller.addEventListener('click', async (): Promise<void> => {
-                const arrayVisitsInformation: any = await getEntityData(entityID, 'Visit')
+            controller.addEventListener("click", async (): Promise<void> => {
+                const arrayVisitsInformation: any = await getEntityData(
+                    entityID,
+                    "Visit"
+                )
 
-                const modalContainer: UIControl = document.getElementById("modal-container")
+                const modalContainer: UIControl =
+                    document.getElementById("modal-container")
                 console.log(modalContainer)
 
                 modalContainer.innerHTML = `
@@ -78,7 +86,7 @@ export class Visits {
                 this.open()
 
                 const closeButton = document.getElementById("close")
-                closeButton?.addEventListener('click', () => {
+                closeButton?.addEventListener("click", () => {
                     const modal: UIControl = document.getElementById("modal")
                     modal.classList.toggle("open")
                     modal.style.display = "none"

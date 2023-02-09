@@ -1,12 +1,11 @@
 // @filename: AppView.ts
-import { UIControl } from "../../Libs/lib.types.js";
-import { logout, dismissLogout, openLogout } from "../Login/Logout.js"
+import { UIControl } from "../../Shared/Libs/lib.types.g.js"
+import { logout } from "../../Shared/Functions/Logout.js"
 // import libs
-import { UI } from "../../Libs/lib.dom.js"
-import { getData } from "../../Libs/lib.request.js"
+import { getData } from "../../Backend/Connection.js"
 // import views
 import { customerView } from "../Customer/CustomerView.js"
-import { usersView } from "../Users/Users/UsersView.js"
+import { clientsView } from "../Users/Clients/ClientsView.js"
 import { guardsView } from "../Users/Guards/GuardsView.js"
 import { emergencyUserView } from "../Users/Emergency/EmergencyUserView.js"
 import { eventView } from "../Binnacle/Events/EventView.js"
@@ -16,17 +15,22 @@ import { citadelsView } from "../Citadels/CitadelsView.js"
 import { visitsView } from "../Binnacle/Visits/VisitsView.js"
 import { notesView } from "../Binnacle/Notes/NotesView.js"
 import { AppPreferences } from "../Preferences/Preferences.js"
+import { AppContainer, AppContent, AppWrapper } from "../../Shared/Settings/Misc.settings.js"
+// Testing files
+import { dragAndDrop } from "../../Test/DragAndDropFiles.test.js"
+import { selectMenut } from "../../Test/SelectMenu.test.js"
 
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full"
     const sidebar: UIControl = document.getElementById("appSidebar")
-    const content: UIControl = UI.App?.app
-    const wrapper: UIControl = UI.App?.wrapper
+    const content: UIControl = AppContainer
+    const wrapper: UIControl = AppWrapper
 
     let data = await getData(url)
 
     async function renderInterface(interfaceData: any): Promise<void> {
-        if (interfaceData.error) logout() // if any error, close session (in case access token fails)
+        if (interfaceData.error)
+            logout.exit_() // if any error, close session (in case access token fails)
         else {
             wrapper.style.display = "block"
             content.style.display = "flex"
@@ -226,7 +230,7 @@ export async function applicationView() {
                                 </div>
                             </div>
 
-                            <a href="#" class="menu_link_item" id="openLogOut">
+                            <a href="#" class="menu_link_item" id="logout">
                                 <div class="menu_link_item_label">
                                     <i class="fa-regular fa-up-from-bracket"></i>
                                     <span>Salir</span>
@@ -234,23 +238,7 @@ export async function applicationView() {
                             </a>
                         </div>
                     </div>
-                </div>
-
-            <div class="modal" id="logOutModal">
-                <div class="modal_dialog modal_body">
-                    <h2 class="modal_title">Cerrar sesión</h2>
-
-                    <div class="modal_content">
-                        <p>${interfaceData.username} ¿Deseas cerrar sesión?</p>
-                    </div>
-
-                    <div class="modal_footer">
-                        <button class="btn" id="dismissLogOut">Cancelar</button>
-
-                        <button class="btn btn_danger" id="logOut">Cerrar sesión</button>
-                    </div>
-                </div>
-            </div>`
+                </div>`
             // render functions
             document
                 .getElementById("stadistics-view")
@@ -265,7 +253,7 @@ export async function applicationView() {
             // clients
             document
                 .getElementById("clients-view")
-                ?.addEventListener("click", (e) => usersView())
+                ?.addEventListener("click", (e) => clientsView())
             // guards
             document
                 .getElementById("guards-view")
@@ -331,20 +319,15 @@ export async function applicationView() {
             */
 
             // Open app preferences
-            document.getElementById("open-preferences")?.addEventListener('click', (): void => {
-                AppPreferences()
-            })
+            document
+                .getElementById("open-preferences")
+                ?.addEventListener("click", (): void => {
+                    AppPreferences()
+                })
 
             // Close session functions
-            document
-                .getElementById("openLogOut")
-                ?.addEventListener("click", (e) => openLogout("logOutModal"))
-            document
-                .getElementById("logOut")
-                ?.addEventListener("click", (e) => logout())
-            document
-                .getElementById("dismissLogOut")
-                ?.addEventListener("click", (e) => dismissLogout("logOutModal"))
+            document.getElementById("logout")?.addEventListener("click", (): void => logout.open_())
+
             // End close session functions
 
             const menuItems: UIControl = document.querySelectorAll(".menu_item")
@@ -371,9 +354,9 @@ export async function applicationView() {
         }
 
         // Render selected view
-        customerView()
-        // usersView()
-        // guardsView()
+        // customerView()
+        // clientsView()
+        guardsView()
         // emergencyUserView()
         // eventView()
         // platformView()
@@ -382,14 +365,18 @@ export async function applicationView() {
         // visitsView()
         // notesView()
         // AppPreferences()
+
+        // Testing Views
+        // dragAndDrop()
+        // selectMenut()
     }
 
     renderInterface(data)
 }
 
 function renderBlankPage(name: string): void {
-    let UIApp = UI.App
-    UIApp.content.innerHTML = `
+    let content = AppContent
+    content.innerHTML = `
     <h1 class="app_title">${name}</h1>
     <div class="container">
         <p class="message">Lo sentimos, ${name.toLowerCase()} aún está en desarrollo.</p>

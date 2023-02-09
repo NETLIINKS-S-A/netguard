@@ -1,13 +1,13 @@
 // @filename: PlatformView.ts
-import { UI } from "../../../Libs/lib.dom.js";
-import { getEntitiesData } from "../../../Libs/lib.request.js";
-import { pagination } from "../../../Libs/lib.tools.js";
+import { getEntitiesData } from "../../../Backend/Connection.js";
+import { pagination } from "../../../Shared/Functions/Pagination.js";
+import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 import { renderAdministratorData } from "./Render.js";
-const tableRows = UI?.tableRows;
-const UIApp = UI.App;
-const app = UIApp?.content;
-const appTools = UIApp?.tools;
-const currentPage = 1;
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+const tableRows = tableSettings.rows;
+const currentPage = tableSettings.noPage;
+const tools = appTools;
+const app = AppContent;
 export async function administratorsView() {
     // write application template
     app.innerHTML = `<h1 class="app_title">Administradores</h1>
@@ -30,8 +30,17 @@ export async function administratorsView() {
         <div id="pagination-counter"></div>
     </div>`;
     // write app tools
-    appTools.innerHTML = `
+    tools.innerHTML = `
     <div class="toolbox">
+        <div class="select filter" id="select">
+            <input type="text"
+                class="input select_box"
+                id="input"
+                placeholder="Dropdown Menu"
+                readonly>
+
+                <div class="select_options" id="select_options"><div></div></div>
+        </div>
         <div class="toolbox_spotlight">
             <input type="text" class="input input_spotlight" placeholder="buscar" id="search-input">
             <label class="btn btn_icon spotlight_label" for="search-input"><i class="fa-solid fa-search"></i></label>
@@ -53,6 +62,11 @@ export async function administratorsView() {
     </tr>`.repeat(tableRows);
     let GET_DATA = await getEntitiesData("User");
     let arrayAdministrators = GET_DATA.filter((data) => data.isSuper === true);
+    const CUSTOMER_DATA = await getEntitiesData("Customer");
+    let customers = []; // data goes here
+    CUSTOMER_DATA.forEach((data) => {
+        customers.push(data.name);
+    });
     console.log(arrayAdministrators);
     await searchInput?.addEventListener("keyup", () => {
         const arrayData = arrayAdministrators.filter((administrator) => `${administrator.firstName}

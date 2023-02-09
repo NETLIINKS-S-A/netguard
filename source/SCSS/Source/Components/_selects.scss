@@ -36,22 +36,28 @@
         cursor: pointer;
         outline: none;
 
-        &:active, &:active + .filter::before {
+        &:active,
+        &:active + .filter::before {
             border-color: $blue-300 !important;
         }
     }
 
     &_options {
         position: absolute;
-        top: 40px;
+        top: 45px;
         width: 100%;
         background-color: $white;
         box-shadow: $input-shadow;
         z-index: 200;
         border: 1px solid $slategray-300;
         border-radius: 8px;
-        overflow: hidden;
+        overflow-y: scroll;
         display: none;
+        height: 500px;
+
+        div {
+            padding: 4px;
+        }
 
         .select_option {
             padding: 10px 20px;
@@ -59,6 +65,7 @@
 
             &:hover {
                 background-color: $blue-500;
+                border-radius: 4px;
                 color: $white;
             }
         }

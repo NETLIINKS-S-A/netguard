@@ -1,5 +1,5 @@
 // @filename: VisitsRenderData.ts
-import { getEntityData } from "../../../Libs/lib.request.js";
+import { getEntityData } from "../../../Backend/Connection.js";
 export class Visits {
     async render(items, table, rows, page) {
         table.innerHTML = "";
@@ -29,8 +29,8 @@ export class Visits {
         controllers.forEach((controller) => {
             // The entity
             let entityID = controller.dataset.id;
-            controller.addEventListener('click', async () => {
-                const arrayVisitsInformation = await getEntityData(entityID, 'Visit');
+            controller.addEventListener("click", async () => {
+                const arrayVisitsInformation = await getEntityData(entityID, "Visit");
                 const modalContainer = document.getElementById("modal-container");
                 console.log(modalContainer);
                 modalContainer.innerHTML = `
@@ -67,7 +67,7 @@ export class Visits {
                 </div>`;
                 this.open();
                 const closeButton = document.getElementById("close");
-                closeButton?.addEventListener('click', () => {
+                closeButton?.addEventListener("click", () => {
                     const modal = document.getElementById("modal");
                     modal.classList.toggle("open");
                     modal.style.display = "none";

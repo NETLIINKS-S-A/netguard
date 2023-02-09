@@ -1,6 +1,6 @@
 // @filename: AppDate.ts
-import { shortMonths, shortDays } from "../../Libs/lib.date.js"
-import { UIControl } from "../../Libs/lib.types.js"
+import { shortMonths, shortDays } from "../../Shared/Libs/lib.date.g.js"
+import { UIControl } from "../../Shared/Libs/lib.types.g.js"
 
 export function renderAppDate() {
     // DOM elements

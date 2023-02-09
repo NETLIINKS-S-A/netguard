@@ -1,15 +1,15 @@
 // @filename: Preferences.ts
-import { UIControl } from "../../Libs/lib.types.js"
-import { appStorage } from "../../Classes.js"
-import { settings } from "../../Libs/lib.settings.js"
+import { UIControl } from "../../Shared/Libs/lib.types.g.js"
+import { AppStorage } from "../../Shared/Functions/AppStorage.js"
+import { interfaceSettings } from "../../Shared/Settings/Global.settings.js"
 
 const content: UIControl = document.getElementsByTagName("body")[0]
 
-let savedTheme = appStorage.get('theme')
+let savedTheme = AppStorage.get("theme")
 if (savedTheme === null || savedTheme === undefined) {
-    settings.theme
+    interfaceSettings.theme
 } else {
-    settings.theme = savedTheme
+    interfaceSettings.theme = savedTheme
 }
 
 /**
@@ -102,26 +102,28 @@ export function AppPreferences() {
     // Themes
     const togglesButton = document.querySelectorAll(".aspect_button")
     togglesButton.forEach((button: UIControl) => {
-        button.addEventListener('click', (): void => {
-            togglesButton.forEach((button: UIControl) => button.classList.remove('isActive'))
+        button.addEventListener("click", (): void => {
+            togglesButton.forEach((button: UIControl) =>
+                button.classList.remove("isActive")
+            )
             content.className = ""
             // set theme
             content.classList.add(`${button.dataset.theme}`)
-            button.classList.add('isActive')
-            settings.theme = `${button.dataset.theme}`
+            button.classList.add("isActive")
+            interfaceSettings.theme = `${button.dataset.theme}`
 
             tempTheme = ""
-            tempTheme = settings.theme
+            tempTheme = interfaceSettings.theme
         })
     })
     // Tables
     // Accessibility
 
     // SAVE
-    const save = document.getElementById('save-preferences')
-    save?.addEventListener('click', () => {
-        const currentTheme = content.classList.contains(`${settings.theme}`)
-        appStorage.save("theme", settings.theme, "show")
+    const save = document.getElementById("save-preferences")
+    save?.addEventListener("click", () => {
+        const currentTheme = content.classList.contains(`${interfaceSettings.theme}`)
+        AppStorage.save("theme", interfaceSettings.theme, "show")
         // hide preferences on save
         preferences.style.display = "none"
         preferencesWindow?.remove()
@@ -130,7 +132,7 @@ export function AppPreferences() {
     // CANCEL
     // BUG: not return if the current theme is light
     const cancel = document.getElementById("cancel-preferences")
-    cancel?.addEventListener('click', (): void => {
+    cancel?.addEventListener("click", (): void => {
         preferences.style.display = "none"
         content.classList.remove(tempTheme)
         content.classList.add(savedTheme)
