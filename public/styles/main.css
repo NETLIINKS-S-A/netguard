@@ -740,7 +740,8 @@ img {
   border-radius: 8px;
   overflow-y: scroll;
   display: none;
-  height: 500px;
+  height: fit-content;
+  max-height: 400px;
 }
 .select_options div {
   padding: 4px;
@@ -1766,26 +1767,15 @@ table .tbody tr td:first-child,
   color: white;
 }
 .dark_gray .select_options {
-  position: absolute;
-  top: 40px;
-  width: 100%;
   background-color: #374151;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  z-index: 200;
   border: 1px solid #4C5563;
-  border-radius: 4px;
-  display: none;
 }
 .dark_gray .select_options .select_option {
-  padding: 10px 20px;
   color: #F8FAFA;
 }
 .dark_gray .select_options .select_option:hover {
   background-color: #4C5563;
-}
-.dark_gray .select_active .select_options {
-  display: block;
 }
 .dark_gray .app_sidebar {
   background-color: #374151 !important;

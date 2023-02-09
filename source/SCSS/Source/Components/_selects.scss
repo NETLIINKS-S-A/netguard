@@ -53,7 +53,8 @@
         border-radius: 8px;
         overflow-y: scroll;
         display: none;
-        height: 500px;
+        height: fit-content;
+        max-height: 400px;
 
         div {
             padding: 4px;
