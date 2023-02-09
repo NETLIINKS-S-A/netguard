@@ -23,6 +23,6 @@ login.checkToken()
 renderAppDate()
 
 // theme
-// const content = document.getElementsByTagName("body")
-// let savedTheme = localStorage.getItem("theme")
-// content[0].classList.add(`${savedTheme}`)
+const content = document.getElementsByTagName("body")
+let savedTheme = localStorage.getItem("theme")
+content[0].classList.add(`${savedTheme}`)
