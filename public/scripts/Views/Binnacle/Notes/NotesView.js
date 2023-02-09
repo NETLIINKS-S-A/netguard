@@ -8,9 +8,9 @@ import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { renderNotesData } from "./Render.js";
 import { getEntitiesData } from "../../../Backend/Connection.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
-import TableSettings from "../../../Shared/Settings/Table.settings.js";
-const tableRows = TableSettings.rows;
-const currentPage = TableSettings.noPage;
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+const tableRows = tableSettings.rows;
+const currentPage = tableSettings.noPage;
 const app = AppContent;
 const tools = appTools;
 export async function notesView() {

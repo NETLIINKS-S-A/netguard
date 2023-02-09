@@ -3,9 +3,9 @@ import { getEntitiesData } from "../../../Backend/Connection.js";
 import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 import { renderAdministratorData } from "./Render.js";
-import TableSettings from "../../../Shared/Settings/Table.settings.js";
-const tableRows = TableSettings.rows;
-const currentPage = TableSettings.noPage;
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+const tableRows = tableSettings.rows;
+const currentPage = tableSettings.noPage;
 const tools = appTools;
 const app = AppContent;
 export async function administratorsView() {

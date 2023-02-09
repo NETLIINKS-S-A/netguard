@@ -5,10 +5,10 @@ import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 import { renderAdministratorData } from "./Render.js"
 
-import TableSettings from "../../../Shared/Settings/Table.settings.js"
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
 
-const tableRows: number = TableSettings.rows
-const currentPage: number = TableSettings.noPage
+const tableRows: number = tableSettings.rows
+const currentPage: number = tableSettings.noPage
 const tools = appTools
 const app = AppContent
 

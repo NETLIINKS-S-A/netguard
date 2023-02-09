@@ -5,10 +5,10 @@ import { FNCustomers } from "./CustomerFunctions.js";
 import { pagination } from "../../Shared/Functions/Pagination.js";
 import { getEntitiesData } from "../../Backend/Connection.js";
 import { AppContent, appTools } from "../../Shared/Settings/Misc.settings.js";
-import TableSettings from "../../Shared/Settings/Table.settings.js";
+import { tableSettings } from "../../Shared/Settings/Table.settings.js";
 // Primary elements
-const limitRows = TableSettings.rows;
-const currentPage = TableSettings.noPage;
+const limitRows = tableSettings.rows;
+const currentPage = tableSettings.noPage;
 const appToolbar = appTools;
 const appContent = AppContent;
 export async function customerView() {

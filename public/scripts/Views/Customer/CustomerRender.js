@@ -13,6 +13,7 @@ export async function displayCustomerData(items, table, rows, page, paginationCo
     let start = rows * page;
     let end = start + rows;
     let paginatedItems = items.slice(start, end);
+    console.log(page);
     for (let i = 0; i < paginatedItems.length; i++) {
         let customer = paginatedItems[i];
         let row = document.createElement("tr");
@@ -46,7 +47,6 @@ export async function displayCustomerData(items, table, rows, page, paginationCo
     // format table
     StylingTable.TAGS();
     StylingTable.validateRUC();
-    console.log(paginatedItems);
 }
 //     // verify RUC length
 //     const ruc: UIControl = document.querySelectorAll(".ruc")

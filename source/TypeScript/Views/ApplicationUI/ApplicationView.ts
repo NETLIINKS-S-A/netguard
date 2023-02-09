@@ -353,11 +353,11 @@ export async function applicationView() {
         }
 
         // Render selected view
-        // customerView()
+        customerView()
         // clientsView()
         // guardsView()
         // emergencyUserView()
-        dragAndDrop()
+        // dragAndDrop()
         // eventView()
         // platformView()
         // administratorsView()

@@ -4,9 +4,9 @@ import { getEntitiesData } from "../../../Backend/Connection.js";
 import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { renderEmergencyUserData } from "./EmergencyRender.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
-import TableSettings from "../../../Shared/Settings/Table.settings.js";
-const tableRows = TableSettings.rows; // 25
-const currentPage = TableSettings.noPage; // 1
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
+const tableRows = tableSettings.rows; // 25
+const currentPage = tableSettings.noPage; // 1
 const app = AppContent;
 const tools = appTools;
 export async function emergencyUserView() {

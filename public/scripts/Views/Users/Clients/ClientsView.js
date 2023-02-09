@@ -4,10 +4,10 @@ import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { displayUserData } from "./ClientsRender.js";
 import { FNClients } from "./ClientsFunctions.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
-import TableSettings from "../../../Shared/Settings/Table.settings.js";
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
 // Page settings
-const LIMIT_ROWS = TableSettings.rows; // 25 (default)
-const currentPage = TableSettings.noPage; // 1 (default)
+const LIMIT_ROWS = tableSettings.rows; // 25 (default)
+const currentPage = tableSettings.noPage; // 1 (default)
 // DOM Elements
 const app = AppContent;
 const tools = appTools;

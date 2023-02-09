@@ -10,10 +10,10 @@ import { renderNotesData } from "./Render.js"
 import { UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
-import TableSettings from "../../../Shared/Settings/Table.settings.js"
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
 
-const tableRows: number = TableSettings.rows
-const currentPage: number = TableSettings.noPage
+const tableRows: number = tableSettings.rows
+const currentPage: number = tableSettings.noPage
 const app = AppContent
 const tools = appTools
 

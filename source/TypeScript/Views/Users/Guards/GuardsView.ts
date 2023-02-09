@@ -10,11 +10,11 @@ import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
 // import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js"
-import TableSettings from "../../../Shared/Settings/Table.settings.js"
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
 
 // Primary elements
-let rows: number = TableSettings.rows // 25
-const currentPage: number = TableSettings.noPage // 1
+let rows: number = tableSettings.rows // 25
+const currentPage: number = tableSettings.noPage // 1
 const appToolbar = appTools
 const appContent = AppContent
 

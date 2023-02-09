@@ -1,3 +1,5 @@
 // filename: Table.settings.ts
-export default class TableSettings {
-}
+export const tableSettings = {
+    rows: 16,
+    noPage: 1
+};

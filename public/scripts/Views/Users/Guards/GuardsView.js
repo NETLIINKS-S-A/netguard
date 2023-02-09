@@ -6,10 +6,10 @@ import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
 // import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js";
-import TableSettings from "../../../Shared/Settings/Table.settings.js";
+import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
 // Primary elements
-let rows = TableSettings.rows; // 25
-const currentPage = TableSettings.noPage; // 1
+let rows = tableSettings.rows; // 25
+const currentPage = tableSettings.noPage; // 1
 const appToolbar = appTools;
 const appContent = AppContent;
 export async function guardsView() {

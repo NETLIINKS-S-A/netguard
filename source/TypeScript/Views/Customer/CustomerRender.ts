@@ -27,6 +27,7 @@ export async function displayCustomerData(
     let start: number = rows * page
     let end: number = start + rows
     let paginatedItems = items.slice(start, end)
+    console.log(page)
 
     for (let i = 0; i < paginatedItems.length; i++) {
         let customer = paginatedItems[i]
@@ -68,8 +69,6 @@ export async function displayCustomerData(
     // format table
     StylingTable.TAGS()
     StylingTable.validateRUC()
-
-    console.log(paginatedItems)
 }
 
 
