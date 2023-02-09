@@ -356,7 +356,7 @@ export async function applicationView() {
         // Render selected view
         // customerView()
         // clientsView()
-        // guardsView()
+        guardsView()
         // emergencyUserView()
         // eventView()
         // platformView()
@@ -368,7 +368,7 @@ export async function applicationView() {
 
         // Testing Views
         // dragAndDrop()
-        selectMenut()
+        // selectMenut()
     }
 
     renderInterface(data)
