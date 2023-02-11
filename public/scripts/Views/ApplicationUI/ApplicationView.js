@@ -14,6 +14,7 @@ import { visitsView } from "../Binnacle/Visits/VisitsView.js";
 import { notesView } from "../Binnacle/Notes/NotesView.js";
 import { AppPreferences } from "../Preferences/Preferences.js";
 import { AppContainer, AppContent, AppWrapper } from "../../Shared/Settings/Misc.settings.js";
+import { filterData } from "../../Test/FilterData.js";
 export async function applicationView() {
     const url = "https://backend.netliinks.com:443/rest/userInfo?fetchPlan=full";
     const sidebar = document.getElementById("appSidebar");
@@ -324,7 +325,7 @@ export async function applicationView() {
         // Render selected view
         // customerView()
         // clientsView()
-        guardsView();
+        // guardsView()
         // emergencyUserView()
         // eventView()
         // platformView()
@@ -336,6 +337,7 @@ export async function applicationView() {
         // Testing Views
         // dragAndDrop()
         // selectMenut()
+        filterData();
     }
     renderInterface(data);
 }
