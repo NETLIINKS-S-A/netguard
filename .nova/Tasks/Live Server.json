@@ -1,0 +1,15 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true
+    },
+    "run" : {
+      "postActions" : [
+        {
+          "script" : "live-server",
+          "type" : "runScript"
+        }
+      ]
+    }
+  }
+}

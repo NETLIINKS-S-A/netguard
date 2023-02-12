@@ -1,0 +1,21 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "postActions" : [
+        {
+          "script" : "tsc",
+          "type" : "runScript"
+        }
+      ]
+    },
+    "run" : {
+      "postActions" : [
+        {
+          "script" : "tsc -w",
+          "type" : "runScript"
+        }
+      ]
+    }
+  }
+}

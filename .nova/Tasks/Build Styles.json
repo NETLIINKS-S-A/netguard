@@ -1,0 +1,21 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "postActions" : [
+        {
+          "script" : "sass .\/source\/SCSS\/main.scss .\/public\/styles\/main.css",
+          "type" : "runScript"
+        }
+      ]
+    },
+    "run" : {
+      "postActions" : [
+        {
+          "script" : "sass .\/source\/SCSS\/main.scss .\/public\/styles\/main.css -w",
+          "type" : "runScript"
+        }
+      ]
+    }
+  }
+}
