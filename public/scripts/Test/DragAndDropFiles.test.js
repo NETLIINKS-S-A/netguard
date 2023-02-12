@@ -52,10 +52,10 @@ export function dragAndDrop() {
     function loadFile(file) {
         const reader = new FileReader();
         reader.readAsText(file);
-        // progressbar
-        reader.addEventListener("progress", (e) => {
-            let load = (e.loaded / file.size * 100);
-        });
+        // progress bar
+        // reader.addEventListener("progress", (e) => {
+        //     let load = (e.loaded / file.size * 100)
+        // })
         reader.addEventListener("load", (e) => {
             // @ts-ignore
             createTable(e.currentTarget.result);

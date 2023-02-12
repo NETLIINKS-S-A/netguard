@@ -1,18 +1,19 @@
-// @filename: GuardsView.ts
-// Functions
+//
+//  GuardsView.ts
+//  netguard
+//
+//  Created by Poll Castillo on 11/2/23.
+//
 import { displayGuardsData } from "./GuardsRender.js";
 import { FNGuards } from "./GuardsFunctions.js";
 import { pagination } from "../../../Shared/Functions/Pagination.js";
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js";
-// import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js";
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js";
 import { select } from "../../../Shared/Functions/InputSelect.js";
-// Primary elements
+// Settings
 let rows = tableSettings.rows; // 25
 const currentPage = tableSettings.noPage; // 1
-const appToolbar = appTools;
-const appContent = AppContent;
 export async function guardsView() {
     const BACKEND_DATA = await getEntitiesData("User");
     let notSuperUser = BACKEND_DATA.filter((data) => data.isSuper === false);
@@ -23,7 +24,7 @@ export async function guardsView() {
         customers.push(data.name);
     });
     // Write application template
-    appContent.innerHTML = `
+    AppContent.innerHTML = `
     <h1 class="app_title">Guardias</h1>
     <table class="table">
         <thead>
@@ -46,7 +47,7 @@ export async function guardsView() {
         <div id="pagination"></div>
     </div>`;
     // write appTools
-    appToolbar.innerHTML = `
+    appTools.innerHTML = `
     <div class="toolbox">
 
         <div class="select filter" id="select">

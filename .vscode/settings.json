@@ -16,11 +16,10 @@
   "editor.rulers": [80],
   "files.insertFinalNewline": true,
   "editor.detectIndentation": true,
-  //"editor.wrappingIndent": "none",
   "editor.formatOnSave": true,
   "editor.linkedEditing": true,
   "editor.minimap.enabled": true,
   "git.alwaysShowStagedChangesResourceGroup": true,
   "git.autofetch": "all",
-  "workbench.editor.languageDetection": true,
+  "workbench.editor.languageDetection": true
 }

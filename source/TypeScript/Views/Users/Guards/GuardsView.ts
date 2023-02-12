@@ -1,6 +1,10 @@
-// @filename: GuardsView.ts
+//
+//  GuardsView.ts
+//  netguard
+//
+//  Created by Poll Castillo on 11/2/23.
+//
 
-// Functions
 import { displayGuardsData } from "./GuardsRender.js"
 import { FNGuards } from "./GuardsFunctions.js"
 
@@ -8,16 +12,13 @@ import { FNGuards } from "./GuardsFunctions.js"
 import { BackendValues, NLData, UIControl } from "../../../Shared/Libs/lib.types.g.js"
 import { pagination } from "../../../Shared/Functions/Pagination.js"
 import { AppContent, appTools } from "../../../Shared/Settings/Misc.settings.js"
-// import { tableSettings } from "../../../Shared/Settings/Table.settings"
 import { getEntitiesData } from "../../../Backend/Connection.js"
 import { tableSettings } from "../../../Shared/Settings/Table.settings.js"
 import { select } from "../../../Shared/Functions/InputSelect.js"
 
-// Primary elements
+// Settings
 let rows: number = tableSettings.rows // 25
 const currentPage: number = tableSettings.noPage // 1
-const appToolbar = appTools
-const appContent = AppContent
 
 export async function guardsView(): Promise<BackendValues> {
     const BACKEND_DATA: NLData = await getEntitiesData("User")
@@ -33,7 +34,7 @@ export async function guardsView(): Promise<BackendValues> {
     })
 
     // Write application template
-    appContent.innerHTML = `
+    AppContent.innerHTML = `
     <h1 class="app_title">Guardias</h1>
     <table class="table">
         <thead>
@@ -57,7 +58,7 @@ export async function guardsView(): Promise<BackendValues> {
     </div>`
 
     // write appTools
-    appToolbar.innerHTML = `
+    appTools.innerHTML = `
     <div class="toolbox">
 
         <div class="select filter" id="select">

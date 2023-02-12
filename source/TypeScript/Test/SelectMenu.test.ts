@@ -2,15 +2,10 @@
 
 import { getEntitiesData } from "../Backend/Connection.js"
 import { NLData, UIControl } from "../Shared/Libs/lib.types.g.js"
-import { AppContent, appTools } from "../Shared/Settings/Misc.settings.js"
+import { AppContent } from "../Shared/Settings/Misc.settings.js"
 
-
-const datas = ['HTML', 'CSS', 'JavaScript', 'Figma', 'ReactJS', 'TypeScript', 'pug', 'SASS']
-
-export async function selectMenut(): Promise<void> {
-    const GUARD_DATA: NLData = await getEntitiesData("User")
+export async function selectMenut(): Promise < void > {
     const BUSINESS_DATA: NLData = await getEntitiesData("Customer")
-
 
     const businessArray: any = await BUSINESS_DATA
 
@@ -23,11 +18,7 @@ export async function selectMenut(): Promise<void> {
     console.log(array)
     console.log(businessArray)
 
-
     // let guards: any = await guardUser.filter((data: any) => `${data.userType}`.includes("GUARD"))
-
-
-
 
     AppContent.innerHTML = `
          <div class="select filter" id="select">
@@ -51,7 +42,7 @@ export async function selectMenut(): Promise<void> {
 }
 
 // DROPDOWN INPUT
-function select(input: UIControl, datas?: any) {
+function select(input: UIControl, datas ? : any) {
     const inputSelectArray: UIControl = input?.querySelector(".select_options div")
     const inputSelect: UIControl = input?.querySelector("#input")
 

@@ -1,3 +1,4 @@
+import { getEntitiesData } from "../../Backend/Connection"
 import { UIControl } from "../Libs/lib.types.g.js"
 
 export function select(input: UIControl, datas?: any) {
@@ -5,7 +6,8 @@ export function select(input: UIControl, datas?: any) {
     const inputSelect: UIControl = input?.querySelector("#input")
 
     datas.forEach((data: any) => {
-        inputSelectArray.innerHTML += `<div class="select_option">${data}</div>`
+        console.log(datas)
+        inputSelectArray.innerHTML += `<div class="select_option" data-id="">${data}</div>`
     })
 
     inputSelect.value = inputSelectArray.firstChild.innerText

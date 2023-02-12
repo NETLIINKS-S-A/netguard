@@ -1,9 +1,7 @@
 // @filename: SelectMenu.test.ts
 import { getEntitiesData } from "../Backend/Connection.js";
 import { AppContent } from "../Shared/Settings/Misc.settings.js";
-const datas = ['HTML', 'CSS', 'JavaScript', 'Figma', 'ReactJS', 'TypeScript', 'pug', 'SASS'];
 export async function selectMenut() {
-    const GUARD_DATA = await getEntitiesData("User");
     const BUSINESS_DATA = await getEntitiesData("Customer");
     const businessArray = await BUSINESS_DATA;
     let array = [];
