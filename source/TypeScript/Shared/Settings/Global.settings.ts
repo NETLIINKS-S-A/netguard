@@ -13,8 +13,11 @@ interface InterfaceSettings {
     theme: Theme
 }
 
+let currentTheme = localStorage.getItem("user_theme") as string
+currentTheme === null ? localStorage.setItem("user_theme", "light_theme") : localStorage.getItem("user_theme") as string
+
 export const interfaceSettings: InterfaceSettings = {
     accentColor: AccentColor.Primary,
     sidebarSize: "normal",
-    theme: "light"
+    theme: currentTheme
 }

@@ -1,37 +1,19 @@
 @mixin Toggle {
     position: relative;
     border-radius: 100px;
-    border: 1px solid $gray-600;
+    border-color: $gray-600;
     box-shadow: $input-shadow;
     background-color: $gray-600;
 }
 
 .toggle {
-    display: block;
-    width: 59px;
-    height: 37px;
-    @include Toggle();
-
     &::before {
-        content: '';
-        display: block;
-        height: 32px;
-        width: 32px;
         background-color: white;
-        border: 1px solid $gray-300;
-        border-radius: 25px;
-        position: absolute;
-        top: 1.5px;
-        left: 1.5px;
-        transition: 0.3s all ease;
+        border-color: $gray-300;
     }
 
     &:checked {
         background-color: $blue-500;
         border-color: $blue-400 !important;
-
-        &::before {
-            left: 23px;
-        }
     }
 }

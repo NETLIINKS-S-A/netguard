@@ -1,21 +1,6 @@
 import { AppStorage } from "../../Shared/Functions/AppStorage.js";
 import { interfaceSettings } from "../../Shared/Settings/Global.settings.js";
-const content = document.getElementsByTagName("body")[0];
-let savedTheme = AppStorage.get("theme");
-if (savedTheme === null || savedTheme === undefined) {
-    interfaceSettings.theme;
-}
-else {
-    interfaceSettings.theme = savedTheme;
-}
-/**
- * @description tempTheme save the current selected theme but, it is deleted
- * when not save the preferences
- *
- * @descripción thempTheme guarda el tema seleccionado actual, este se elimina
- * si no guardamos las preferencias
- */
-let tempTheme;
+let currentTheme = interfaceSettings.theme;
 /**
  * @function AppPreferences()
  *
@@ -35,37 +20,19 @@ export function AppPreferences() {
                 <p>Cambia el aspecto general de la plataforma. <i>Los cambios se guardan localmente</i>.</p>
                 <br>
                 <div class="pref_button_group">
-                    <button class="pref_button aspect_button isActive" data-theme="light_slategray">
-                        <img src="public/icons/light_slategray.png">
+                    <button class="pref_button aspect_button isActive" data-theme="light_theme">
+                        <img src="public/icons/light.png">
                         <span>Claro</span>
                     </button>
 
-                    <button class="pref_button aspect_button" data-theme="light_neutral">
-                        <img src="public/icons/theme_placeholder.png">
-                        <span>Claro Neutral</span>
-                    </button>
-
-                    <button class="pref_button aspect_button" data-theme="light_gray">
-                        <img src="public/icons/theme_placeholder.png">
-                        <span>Claro Gris</span>
-                    </button>
-                </div>
-                <br>
-
-                <div class="pref_button_group">
-                    <button class="pref_button aspect_button" data-theme="dark_slategray">
-                        <img src="public/icons/dark_slategray.png">
+                    <button class="pref_button aspect_button" data-theme="dark_theme">
+                        <img src="public/icons/dark.png">
                         <span>Oscuro</span>
                     </button>
 
-                    <button class="pref_button aspect_button" data-theme="dark_neutral">
-                        <img src="public/icons/dark_neutral.png">
-                        <span>Oscuro Neutral</span>
-                    </button>
-
-                    <button class="pref_button aspect_button" data-theme="dark_gray">
-                        <img src="public/icons/dark_gray.png">
-                        <span>Oscuro Gris</span>
+                    <button class="pref_button aspect_button" data-theme="automatic_theme">
+                        <img src="public/icons/automatic.png">
+                        <span>Automático</span>
                     </button>
                 </div>
             </section>
@@ -85,47 +52,41 @@ export function AppPreferences() {
             <section>
                 <div class="preferences_footer_buttons">
                     <button class="btn" id="cancel-preferences">Cancelar</button>
-                    <button class="btn btn_primary" id="save-preferences">Guardar</button>
+                    <button class="btn btn_success" id="save-preferences">Guardar</button>
                 </div>
             </section>
         </div>
     </div>`;
     const preferencesWindow = document.getElementById("app-preferences-window");
-    // Themes
     const togglesButton = document.querySelectorAll(".aspect_button");
+    const body = document.querySelector("body");
+    const openPreferences = document.getElementById("open-preferences");
     togglesButton.forEach((button) => {
+        button.dataset.theme === currentTheme ? button.classList.add("isActive") : button.classList.remove("isActive");
+        const themeID = button.dataset.theme;
         button.addEventListener("click", () => {
+            console.log(themeID);
+            body.className = "";
+            body?.classList.add(themeID);
             togglesButton.forEach((button) => button.classList.remove("isActive"));
-            content.className = "";
-            // set theme
-            content.classList.add(`${button.dataset.theme}`);
             button.classList.add("isActive");
-            interfaceSettings.theme = `${button.dataset.theme}`;
-            tempTheme = "";
-            tempTheme = interfaceSettings.theme;
+            currentTheme = themeID;
         });
     });
-    // Tables
-    // Accessibility
-    // SAVE
-    const save = document.getElementById("save-preferences");
-    save?.addEventListener("click", () => {
-        const currentTheme = content.classList.contains(`${interfaceSettings.theme}`);
-        AppStorage.save("theme", interfaceSettings.theme, "show");
-        // hide preferences on save
+    const saveButton = document.getElementById("save-preferences");
+    saveButton.addEventListener("click", () => {
+        AppStorage.save("user_theme", currentTheme);
         preferences.style.display = "none";
-        preferencesWindow?.remove();
+        preferences.innerHTML = "";
+        openPreferences.classList.remove("menu_item-isActive");
     });
-    // CANCEL
-    // BUG: not return if the current theme is light
-    const cancel = document.getElementById("cancel-preferences");
-    cancel?.addEventListener("click", () => {
+    const closeButton = document.getElementById("cancel-preferences");
+    closeButton.addEventListener("click", () => {
+        currentTheme = localStorage.getItem("user_theme");
+        body.className = "";
+        body?.classList.add(currentTheme);
         preferences.style.display = "none";
-        content.classList.remove(tempTheme);
-        content.classList.add(savedTheme);
-        preferencesWindow?.remove();
-        // clear temporal theme variable
-        tempTheme = "";
+        preferences.innerHTML = "";
+        openPreferences.classList.remove("menu_item-isActive");
     });
 }
-content.classList.add(savedTheme);

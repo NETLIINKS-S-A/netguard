@@ -19,5 +19,5 @@ login.checkToken();
 renderAppDate();
 // theme
 const content = document.getElementsByTagName("body");
-let savedTheme = localStorage.getItem("theme");
+let savedTheme = localStorage.getItem("user_theme");
 content[0].classList.add(`${savedTheme}`);

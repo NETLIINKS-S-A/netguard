@@ -1,5 +1,7 @@
-.dark_gray {
-    &, html, body {
+.dark_theme {
+    &,
+    html,
+    body {
         background-color: $gray-900;
     }
 
@@ -28,18 +30,18 @@
         }
     }
 
-    @import './dark/alerts';
-    @import './dark/buttons';
-    @import './dark/fonts';
-    @import './dark/form';
-    @import './dark/inputs';
-    @import './dark/login';
-    @import './dark/menu';
-    @import './dark/modal';
-    @import './dark/pagination';
-    @import './dark/preferences';
-    @import'./dark/select';
-    @import './dark/sidebar';
-    @import './dark/table';
-    @import './dark/toggle';
+    @import "./dark/alerts";
+    @import "./dark/buttons";
+    @import "./dark/fonts";
+    @import "./dark/form";
+    @import "./dark/inputs";
+    @import "./dark/login";
+    @import "./dark/menu";
+    @import "./dark/modal";
+    @import "./dark/pagination";
+    @import "./dark/preferences";
+    @import "./dark/select";
+    @import "./dark/sidebar";
+    @import "./dark/table";
+    @import "./dark/toggle";
 }
